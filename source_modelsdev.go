@@ -1,4 +1,4 @@
-package catalog
+package modeldb
 
 import (
 	"context"
@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/codewandler/llm/catalog/internal/source/modelsdev"
+	"github.com/codewandler/modeldb/internal/source/modelsdev"
 )
 
 const modelsDevSourceID = "modelsdev"

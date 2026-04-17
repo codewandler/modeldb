@@ -1,4 +1,4 @@
-package catalog
+package modeldb
 
 type Catalog struct {
 	Models    map[ModelKey]ModelRecord `json:"-"`

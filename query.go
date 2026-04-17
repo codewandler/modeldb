@@ -1,4 +1,4 @@
-package catalog
+package modeldb
 
 func (c Catalog) ModelByKey(key ModelKey) (ModelRecord, bool) {
 	model, ok := c.Models[NormalizeKey(key)]

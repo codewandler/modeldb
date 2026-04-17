@@ -1,4 +1,4 @@
-package catalog
+package modeldb
 
 type PreferenceOverlay struct {
 	FavoriteModels    []ModelKey

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/codewandler/llm/catalog"
+	modeldb "github.com/codewandler/modeldb"
 )
 
 func main() {
@@ -53,31 +53,31 @@ func build(args []string) {
 	useFixture := fs.Bool("modelsdev-fixture", false, "use bundled models.dev fixture instead of live fetch")
 	_ = fs.Parse(args)
 
-	sources := catalog.DefaultBuildSources()
+	sources := modeldb.DefaultBuildSources()
 	if *anthropicFile != "" {
 		for i := range sources {
-			if _, ok := sources[i].Source.(catalog.AnthropicAPISource); ok {
-				sources[i].Source = catalog.NewAnthropicAPISourceFromFile(*anthropicFile)
+			if _, ok := sources[i].Source.(modeldb.AnthropicAPISource); ok {
+				sources[i].Source = modeldb.NewAnthropicAPISourceFromFile(*anthropicFile)
 			}
 		}
 	}
 	if *modelsDevFile != "" || *useFixture {
 		for i := range sources {
-			if _, ok := sources[i].Source.(catalog.ModelsDevSource); ok {
-				cfg := catalog.NewModelsDevSource()
+			if _, ok := sources[i].Source.(modeldb.ModelsDevSource); ok {
+				cfg := modeldb.NewModelsDevSource()
 				cfg.FilePath = *modelsDevFile
 				cfg.UseFixture = *useFixture
 				sources[i].Source = cfg
 			}
 		}
 	}
-	builder := catalog.Builder{Sources: sources}
+	builder := modeldb.Builder{Sources: sources}
 	built, err := builder.Build(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "build catalog: %v\n", err)
 		os.Exit(1)
 	}
-	if err := catalog.SaveJSON(*outPath, built); err != nil {
+	if err := modeldb.SaveJSON(*outPath, built); err != nil {
 		fmt.Fprintf(os.Stderr, "save catalog: %v\n", err)
 		os.Exit(1)
 	}
@@ -87,12 +87,12 @@ func validate(args []string) {
 	fs := flag.NewFlagSet("validate", flag.ExitOnError)
 	path := fs.String("in", "catalog.json", "catalog JSON path")
 	_ = fs.Parse(args)
-	c, err := catalog.LoadJSON(*path)
+	c, err := modeldb.LoadJSON(*path)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "load catalog: %v\n", err)
 		os.Exit(1)
 	}
-	if err := catalog.ValidateCatalog(c); err != nil {
+	if err := modeldb.ValidateCatalog(c); err != nil {
 		fmt.Fprintf(os.Stderr, "validate catalog: %v\n", err)
 		os.Exit(1)
 	}
@@ -103,7 +103,7 @@ func inspect(args []string) {
 	path := fs.String("in", "catalog.json", "catalog JSON path")
 	serviceID := fs.String("service", "", "optional service ID to inspect")
 	_ = fs.Parse(args)
-	c, err := catalog.LoadJSON(*path)
+	c, err := modeldb.LoadJSON(*path)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "load catalog: %v\n", err)
 		os.Exit(1)
@@ -126,19 +126,19 @@ func modelShow(args []string) {
 	version := fs.String("version", "", "optional model version")
 	_ = fs.Parse(args)
 
-	c, err := catalog.LoadJSON(*path)
+	c, err := modeldb.LoadJSON(*path)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "load catalog: %v\n", err)
 		os.Exit(1)
 	}
-	selector, err := catalog.ParseModelSelector(*name, *version)
+	selector, err := modeldb.ParseModelSelector(*name, *version)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "parse selector: %v\n", err)
 		os.Exit(1)
 	}
 	selection, err := c.SelectOfferingsByModel(selector)
 	if err != nil {
-		var ambiguous *catalog.AmbiguousModelSelectorError
+		var ambiguous *modeldb.AmbiguousModelSelectorError
 		if errors.As(err, &ambiguous) {
 			fmt.Fprintf(os.Stderr, "ambiguous model selector: name=%s version=%s\n\n", selector.Name, selector.Version)
 			fmt.Fprintln(os.Stderr, "matches:")
@@ -178,9 +178,9 @@ func modelUsage() {
 	fmt.Fprintln(os.Stderr, "usage: modeldb model <show> [flags]")
 }
 
-func formatModelKey(key catalog.ModelKey) string {
-	if releaseID := catalog.ReleaseID(key); releaseID != "" {
+func formatModelKey(key modeldb.ModelKey) string {
+	if releaseID := modeldb.ReleaseID(key); releaseID != "" {
 		return releaseID
 	}
-	return catalog.LineID(key)
+	return modeldb.LineID(key)
 }
