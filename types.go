@@ -85,7 +85,6 @@ type Service struct {
 	APIURL     string       `json:"api_url,omitempty"`
 	DocsURL    string       `json:"docs_url,omitempty"`
 	EnvVars    []string     `json:"env_vars,omitempty"`
-	Package    string       `json:"package,omitempty"`
 	Provenance []Provenance `json:"provenance,omitempty"`
 }
 

@@ -155,9 +155,6 @@ func mergeService(dst *Catalog, service Service) error {
 		return err
 	}
 	existing.EnvVars = mergeStringSlices(existing.EnvVars, service.EnvVars)
-	if existing.Package, err = mergeStringField(existing.Package, service.Package, "service.package", service.ID); err != nil {
-		return err
-	}
 	existing.Provenance = append(existing.Provenance, service.Provenance...)
 	dst.Services[service.ID] = existing
 	return nil

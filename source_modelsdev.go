@@ -71,7 +71,6 @@ func (s ModelsDevSource) Fetch(ctx context.Context) (*Fragment, error) {
 			APIURL:   provider.API,
 			DocsURL:  provider.Doc,
 			EnvVars:  normalizeStrings(provider.Env),
-			Package:  provider.NPM,
 			Provenance: []Provenance{{
 				SourceID:   modelsDevSourceID,
 				Authority:  string(AuthorityEnrichment),

@@ -122,6 +122,20 @@ func TestModelsCommand_JSONImpliesDetailedRecords(t *testing.T) {
 	assert.Contains(t, out.String(), "claude-sonnet-4-5-20250929")
 }
 
+func TestModelsCommand_DetailsShowsVariant(t *testing.T) {
+	var out bytes.Buffer
+	cmd := NewModelsCommand(ModelsCommandOptions{
+		IO: IO{Out: &out, Err: &out},
+		LoadBaseCatalog: func(context.Context) (modeldb.Catalog, error) {
+			return testCatalog(), nil
+		},
+	})
+	cmd.SetArgs([]string{"--id", "openai/gpt/realtime/mini", "--details"})
+
+	require.NoError(t, cmd.Execute())
+	assert.Contains(t, out.String(), "variant: mini")
+}
+
 func TestModelsCommand_IDCompletion(t *testing.T) {
 	values := completeModelIDs(testCatalog())
 	joined := strings.Join(values, "\n")
@@ -132,14 +146,17 @@ func testCatalog() modeldb.Catalog {
 	c := modeldb.NewCatalog()
 	sonnet := modeldb.NormalizeKey(modeldb.ModelKey{Creator: "anthropic", Family: "claude", Series: "sonnet", Version: "4.5", ReleaseDate: "2025-09-29"})
 	gpt := modeldb.NormalizeKey(modeldb.ModelKey{Creator: "openai", Family: "gpt", Version: "5.4"})
+	realtimeMini := modeldb.NormalizeKey(modeldb.ModelKey{Creator: "openai", Family: "gpt", Version: "realtime", Variant: "mini"})
 	c.Models[sonnet] = modeldb.ModelRecord{Key: sonnet, Name: "Claude Sonnet 4.5", Aliases: []string{"sonnet", "claude-sonnet-4-5"}, Limits: modeldb.Limits{ContextWindow: 1000000, MaxOutput: 64000}, Capabilities: modeldb.Capabilities{Reasoning: true, StructuredOutput: true}, ReferencePricing: &modeldb.Pricing{Input: 3.0, Output: 15.0}}
 	c.Models[gpt] = modeldb.ModelRecord{Key: gpt, Name: "GPT-5.4", Aliases: []string{"gpt-5.4"}, Limits: modeldb.Limits{ContextWindow: 400000, MaxOutput: 128000}}
+	c.Models[realtimeMini] = modeldb.ModelRecord{Key: realtimeMini, Name: "GPT Realtime Mini"}
 	c.Services["anthropic"] = modeldb.Service{ID: "anthropic", Name: "Anthropic"}
 	c.Services["openrouter"] = modeldb.Service{ID: "openrouter", Name: "OpenRouter"}
 	c.Services["openai"] = modeldb.Service{ID: "openai", Name: "OpenAI"}
 	c.Offerings[modeldb.OfferingRef{ServiceID: "anthropic", WireModelID: "claude-sonnet-4-5-20250929"}] = modeldb.Offering{ServiceID: "anthropic", WireModelID: "claude-sonnet-4-5-20250929", ModelKey: sonnet}
 	c.Offerings[modeldb.OfferingRef{ServiceID: "openrouter", WireModelID: "anthropic/claude-sonnet-4.5"}] = modeldb.Offering{ServiceID: "openrouter", WireModelID: "anthropic/claude-sonnet-4.5", ModelKey: sonnet}
 	c.Offerings[modeldb.OfferingRef{ServiceID: "openai", WireModelID: "gpt-5.4"}] = modeldb.Offering{ServiceID: "openai", WireModelID: "gpt-5.4", ModelKey: gpt}
+	c.Offerings[modeldb.OfferingRef{ServiceID: "openai", WireModelID: "gpt-realtime-mini"}] = modeldb.Offering{ServiceID: "openai", WireModelID: "gpt-realtime-mini", ModelKey: realtimeMini}
 	return c
 }
 

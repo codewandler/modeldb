@@ -261,6 +261,9 @@ func printModelsDetails(out io.Writer, matches []modeldb.ModelMatch, includeOffe
 		if key.Series != "" {
 			fmt.Fprintf(out, "  series: %s\n", key.Series)
 		}
+		if key.Variant != "" {
+			fmt.Fprintf(out, "  variant: %s\n", key.Variant)
+		}
 		if key.Version != "" {
 			fmt.Fprintf(out, "  version: %s\n", key.Version)
 		}

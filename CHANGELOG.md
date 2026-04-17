@@ -2,6 +2,39 @@
 
 ## Unreleased
 
+## v0.9.0 - 2026-04-18
+
+### Added
+
+- Added broad `--query` / `-q` search to `modeldb models` for exploratory lookup
+  across canonical model IDs, names, aliases, services, and offering wire IDs.
+
+### Changed
+
+- `modeldb models --details` now prints the model `variant` field when present.
+- The default `models` command output remains offering-backed and now treats
+  orphan model records more consistently across normal, query, and detail modes.
+
+### Removed
+
+- Removed the `package` field from `Service` in the public API and generated
+  snapshot.
+- Stopped carrying NPM package metadata through `models.dev` service enrichment.
+
+### Fixed
+
+- Queries such as `modeldb models --query gpt-5.4` now work as a broad search
+  mode instead of requiring structured selector flags.
+- `modeldb models --query sherlock` no longer prints orphan models with empty
+  service columns.
+
+### Model Changes
+
+- `catalog.json` was regenerated without service `package` fields.
+- The regenerated snapshot also dropped the `meta-llama/llama-guard-4-12b:free`
+  OpenRouter offering and now keeps the canonical `Meta: Llama Guard 4 12B`
+  entry without the free-tier suffix.
+
 ## v0.8.0 - 2026-04-18
 
 ### Added
