@@ -7,13 +7,23 @@ import (
 )
 
 type ModelSelector struct {
+	ID          string
 	Name        string
+	Creator     string
+	ServiceID   string
+	Family      string
+	Series      string
 	Version     string
 	ReleaseDate string
 }
 
 type ModelSelection struct {
 	Selector  ModelSelector
+	Model     ModelRecord
+	Offerings []ServiceOffering
+}
+
+type ModelMatch struct {
 	Model     ModelRecord
 	Offerings []ServiceOffering
 }
@@ -29,7 +39,17 @@ type ModelSelectorNotFoundError struct {
 }
 
 func (e *ModelSelectorNotFoundError) Error() string {
-	return fmt.Sprintf("no catalog model matches name=%q version=%q release_date=%q", e.Selector.Name, e.Selector.Version, e.Selector.ReleaseDate)
+	return fmt.Sprintf(
+		"no catalog model matches id=%q name=%q creator=%q service=%q family=%q series=%q version=%q release_date=%q",
+		e.Selector.ID,
+		e.Selector.Name,
+		e.Selector.Creator,
+		e.Selector.ServiceID,
+		e.Selector.Family,
+		e.Selector.Series,
+		e.Selector.Version,
+		e.Selector.ReleaseDate,
+	)
 }
 
 type AmbiguousModelSelectorError struct {
@@ -38,7 +58,18 @@ type AmbiguousModelSelectorError struct {
 }
 
 func (e *AmbiguousModelSelectorError) Error() string {
-	return fmt.Sprintf("ambiguous catalog model selector name=%q version=%q release_date=%q (%d candidates)", e.Selector.Name, e.Selector.Version, e.Selector.ReleaseDate, len(e.Candidates))
+	return fmt.Sprintf(
+		"ambiguous catalog model selector id=%q name=%q creator=%q service=%q family=%q series=%q version=%q release_date=%q (%d candidates)",
+		e.Selector.ID,
+		e.Selector.Name,
+		e.Selector.Creator,
+		e.Selector.ServiceID,
+		e.Selector.Family,
+		e.Selector.Series,
+		e.Selector.Version,
+		e.Selector.ReleaseDate,
+		len(e.Candidates),
+	)
 }
 
 func ParseModelSelector(name, version string) (ModelSelector, error) {
@@ -49,35 +80,49 @@ func ParseModelSelector(name, version string) (ModelSelector, error) {
 	return selector, nil
 }
 
-func (c Catalog) SelectModel(sel ModelSelector) (ModelRecord, error) {
+func (c Catalog) FindModels(sel ModelSelector) []ModelMatch {
 	sel = normalizeModelSelector(sel)
-	if sel.Name == "" {
-		return ModelRecord{}, fmt.Errorf("model name is required")
-	}
 
-	candidates := make([]ModelRecord, 0)
+	matches := make([]ModelMatch, 0)
 	for _, model := range c.Models {
 		if !matchesModelSelector(model, sel) {
 			continue
 		}
-		candidates = append(candidates, model)
+		offerings := selectOfferingsForModel(c, model, sel)
+		if sel.ServiceID != "" && len(offerings) == 0 {
+			continue
+		}
+		matches = append(matches, ModelMatch{Model: model, Offerings: offerings})
 	}
 
-	sort.Slice(candidates, func(i, j int) bool {
-		left := formatModelID(candidates[i].Key)
-		right := formatModelID(candidates[j].Key)
+	sort.Slice(matches, func(i, j int) bool {
+		left := formatModelID(matches[i].Model.Key)
+		right := formatModelID(matches[j].Model.Key)
 		if left != right {
 			return left < right
 		}
-		return candidates[i].Name < candidates[j].Name
+		return matches[i].Model.Name < matches[j].Model.Name
 	})
+	return matches
+}
 
-	switch len(candidates) {
+func (c Catalog) SelectModel(sel ModelSelector) (ModelRecord, error) {
+	sel = normalizeModelSelector(sel)
+	if selectorIsZero(sel) {
+		return ModelRecord{}, fmt.Errorf("at least one selector field is required")
+	}
+
+	matches := c.FindModels(sel)
+	switch len(matches) {
 	case 0:
 		return ModelRecord{}, &ModelSelectorNotFoundError{Selector: sel}
 	case 1:
-		return candidates[0], nil
+		return matches[0].Model, nil
 	default:
+		candidates := make([]ModelRecord, 0, len(matches))
+		for _, match := range matches {
+			candidates = append(candidates, match.Model)
+		}
 		return ModelRecord{}, &AmbiguousModelSelectorError{Selector: sel, Candidates: candidates}
 	}
 }
@@ -88,11 +133,21 @@ func (c Catalog) SelectOfferingsByModel(sel ModelSelector) (ModelSelection, erro
 	if err != nil {
 		return ModelSelection{}, err
 	}
+	return ModelSelection{
+		Selector:  sel,
+		Model:     model,
+		Offerings: selectOfferingsForModel(c, model, sel),
+	}, nil
+}
 
+func selectOfferingsForModel(c Catalog, model ModelRecord, sel ModelSelector) []ServiceOffering {
 	selected := make(map[string]ServiceOffering)
 	targetLine := LineKey(model.Key)
 	for _, offering := range c.Offerings {
 		if LineKey(offering.ModelKey) != targetLine {
+			continue
+		}
+		if sel.ServiceID != "" && offering.ServiceID != sel.ServiceID {
 			continue
 		}
 		service, ok := c.Services[offering.ServiceID]
@@ -112,19 +167,24 @@ func (c Catalog) SelectOfferingsByModel(sel ModelSelector) (ModelSelection, erro
 	}
 	sort.Strings(services)
 
-	selection := ModelSelection{
-		Selector:  sel,
-		Model:     model,
-		Offerings: make([]ServiceOffering, 0, len(services)),
-	}
+	offerings := make([]ServiceOffering, 0, len(services))
 	for _, serviceID := range services {
-		selection.Offerings = append(selection.Offerings, selected[serviceID])
+		offerings = append(offerings, selected[serviceID])
 	}
-	return selection, nil
+	return offerings
+}
+
+func selectorIsZero(sel ModelSelector) bool {
+	return sel.ID == "" && sel.Name == "" && sel.Creator == "" && sel.ServiceID == "" && sel.Family == "" && sel.Series == "" && sel.Version == "" && sel.ReleaseDate == ""
 }
 
 func normalizeModelSelector(sel ModelSelector) ModelSelector {
+	sel.ID = normalizeKeyPart(sel.ID)
 	sel.Name = normalizeKeyPart(sel.Name)
+	sel.Creator = normalizeKeyPart(sel.Creator)
+	sel.ServiceID = normalizeKeyPart(sel.ServiceID)
+	sel.Family = normalizeKeyPart(sel.Family)
+	sel.Series = normalizeKeyPart(sel.Series)
 	sel.Version = normalizeKeyPart(sel.Version)
 	sel.ReleaseDate = normalizeDate(sel.ReleaseDate)
 	return sel
@@ -132,6 +192,18 @@ func normalizeModelSelector(sel ModelSelector) ModelSelector {
 
 func matchesModelSelector(model ModelRecord, sel ModelSelector) bool {
 	key := NormalizeKey(model.Key)
+	if sel.ID != "" && formatModelID(key) != sel.ID {
+		return false
+	}
+	if sel.Creator != "" && key.Creator != sel.Creator {
+		return false
+	}
+	if sel.Family != "" && key.Family != sel.Family {
+		return false
+	}
+	if sel.Series != "" && key.Series != sel.Series {
+		return false
+	}
 	if sel.Version != "" && key.Version != sel.Version {
 		return false
 	}

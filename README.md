@@ -54,10 +54,10 @@ func main() {
 
 ### Resolve one logical model across providers
 
-This is the package-level equivalent of:
+This is the package-level equivalent of querying:
 
 ```bash
-modeldb model show --name sonnet --version 4.5
+modeldb models --name sonnet --version 4.5
 ```
 
 ```go
@@ -169,26 +169,52 @@ func main() {
 Validate a snapshot:
 
 ```bash
-go run ./cmd/modeldb validate --in catalog.json
+modeldb validate --in catalog.json
 ```
 
-Inspect services or offerings:
+List matching logical models from the built-in catalog:
 
 ```bash
-go run ./cmd/modeldb inspect --in catalog.json
-go run ./cmd/modeldb inspect --in catalog.json --service anthropic
+modeldb models --name sonnet --version 4.5
 ```
 
-Resolve a logical model across providers:
+Search loosely across canonical IDs, names, aliases, services, and offering wire IDs:
 
 ```bash
-go run ./cmd/modeldb model show --in catalog.json --name sonnet --version 4.5
+modeldb models --query gpt-5.4
+```
+
+The default `models` listing only shows logical models that currently have at
+least one offering in the catalog.
+
+Expand offerings for each matching model:
+
+```bash
+modeldb models --name sonnet --version 4.5 --offerings
+```
+
+Filter to one service. `--service` implies `--offerings`:
+
+```bash
+modeldb models --service openrouter --name sonnet
+```
+
+Require exactly one logical model match and show text details:
+
+```bash
+modeldb models --id anthropic/claude/sonnet/4.5@2025-09-29 --select --details
+```
+
+Emit structured JSON. JSON always implies full detail output:
+
+```bash
+modeldb models --name sonnet --version 4.5 --json
 ```
 
 Rebuild the snapshot from fixture-backed sources:
 
 ```bash
-go run ./cmd/modeldb build \
+modeldb build \
 	--out catalog.json \
 	--anthropic-file internal/source/anthropic/testdata/models.json \
 	--modelsdev-file internal/source/modelsdev/testdata/api.json
@@ -287,8 +313,18 @@ letting each broker invent its own competing root entry.
 ## Repository Layout
 
 - root package `modeldb`: public types, views, builders, selectors, sources
-- `cmd/modeldb`: CLI for building, validating, and querying snapshots
+- `cli`: reusable Cobra command builders for host applications and the `modeldb` binary
+- `cmd/modeldb`: thin executable wrapper around the reusable CLI package
 - `internal/source/...`: upstream-specific fetchers, schemas, and fixtures
+
+## Roadmap
+
+Planned CLI work that is intentionally deferred from the current Cobra migration:
+
+- add `modeldb services`
+- add `modeldb offerings`
+- support consumer-provided overlay aliases and resolved-catalog sources in the reusable `models` Cobra command
+- expand shell completions to narrow results based on already-selected flags
 
 ## Development
 

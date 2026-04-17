@@ -2,6 +2,45 @@
 
 ## Unreleased
 
+## v0.8.0 - 2026-04-18
+
+### Added
+
+- Added a reusable public `cli` package for embedding `modeldb` Cobra commands in
+  other applications.
+- Added a new `modeldb models` command as the primary query interface.
+- Added `--offerings`, `--details`, `--select`, and `--query` support to the
+  `models` command.
+- Added shell completion for `--id`, `--service`, `--creator`, `--family`,
+  `--series`, `--version`, and `--release-date`.
+- Added a roadmap section to the README to track deferred CLI commands and
+  future overlay-oriented integration work.
+
+### Changed
+
+- Replaced the hand-rolled CLI dispatcher with Cobra.
+- Made `cmd/modeldb` a thin executable wrapper around the reusable CLI package.
+- Expanded `ModelSelector` with `ID`, `Creator`, `ServiceID`, `Family`, and
+  `Series` fields.
+- Added `FindModels(...)` as the listing-oriented public API and kept
+  `SelectModel(...)` as the strict single-match API built on top of it.
+- Updated the README CLI examples to use `modeldb ...` directly instead of
+  `go run ./cmd/modeldb ...`.
+
+### Removed
+
+- Removed the old `inspect` command.
+- Removed the old `model show` command in favor of `models`.
+
+### Fixed
+
+- `modeldb models` with no filters now lists all logical models that have at
+  least one offering instead of returning an empty result.
+- The default `models` output now hides orphan model records that have no
+  attached offerings, avoiding blank service columns.
+- Added broad `--query` search so exploratory lookups like `modeldb models --query gpt-5.4`
+  work without needing exact structured filters.
+
 ## v0.7.0 - 2026-04-17
 
 ### Changed

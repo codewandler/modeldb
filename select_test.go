@@ -7,26 +7,47 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestSelectOfferingsByModel_BuiltInSonnet45(t *testing.T) {
+func TestFindModels_BuiltInSonnet45(t *testing.T) {
 	c, err := LoadBuiltIn()
 	require.NoError(t, err)
 
-	selector, err := ParseModelSelector("sonnet", "4.5")
-	require.NoError(t, err)
+	matches := c.FindModels(ModelSelector{Name: "sonnet", Version: "4.5"})
+	require.Len(t, matches, 1)
+	assert.Equal(t, "anthropic/claude/sonnet/4.5@2025-09-29", formatModelID(matches[0].Model.Key))
 
-	selection, err := c.SelectOfferingsByModel(selector)
-	require.NoError(t, err)
-	assert.Equal(t, "anthropic/claude/sonnet/4.5@2025-09-29", formatModelID(selection.Model.Key))
-
-	byService := make(map[string]string, len(selection.Offerings))
-	for _, item := range selection.Offerings {
+	byService := make(map[string]string, len(matches[0].Offerings))
+	for _, item := range matches[0].Offerings {
 		byService[item.Service.ID] = item.Offering.WireModelID
 	}
-	assert.Len(t, byService, len(selection.Offerings), "expected one offering per service")
 	assert.Equal(t, "claude-sonnet-4-5-20250929", byService["anthropic"])
 	assert.Equal(t, "anthropic.claude-sonnet-4-5-20250929-v1:0", byService["bedrock"])
 	assert.Equal(t, "anthropic/claude-sonnet-4.5", byService["openrouter"])
-	assert.GreaterOrEqual(t, len(selection.Offerings), 3)
+}
+
+func TestFindModels_EmptySelectorListsAllModels(t *testing.T) {
+	c := NewCatalog()
+	sonnet := NormalizeKey(ModelKey{Creator: "anthropic", Family: "claude", Series: "sonnet", Version: "4.6"})
+	opus := NormalizeKey(ModelKey{Creator: "anthropic", Family: "claude", Series: "opus", Version: "4.7"})
+	c.Models[sonnet] = ModelRecord{Key: sonnet, Name: "Claude Sonnet 4.6"}
+	c.Models[opus] = ModelRecord{Key: opus, Name: "Claude Opus 4.7"}
+
+	matches := c.FindModels(ModelSelector{})
+	require.Len(t, matches, 2)
+	assert.Equal(t, []string{
+		"anthropic/claude/opus/4.7",
+		"anthropic/claude/sonnet/4.6",
+	}, []string{formatModelID(matches[0].Model.Key), formatModelID(matches[1].Model.Key)})
+}
+
+func TestFindModels_FiltersByService(t *testing.T) {
+	c, err := LoadBuiltIn()
+	require.NoError(t, err)
+
+	matches := c.FindModels(ModelSelector{Name: "sonnet", Version: "4.5", ServiceID: "openrouter"})
+	require.Len(t, matches, 1)
+	require.Len(t, matches[0].Offerings, 1)
+	assert.Equal(t, "openrouter", matches[0].Offerings[0].Service.ID)
+	assert.Equal(t, "anthropic/claude-sonnet-4.5", matches[0].Offerings[0].Offering.WireModelID)
 }
 
 func TestSelectModel_BuiltInSonnet45ResolvesCanonicalRelease(t *testing.T) {
@@ -36,6 +57,18 @@ func TestSelectModel_BuiltInSonnet45ResolvesCanonicalRelease(t *testing.T) {
 	model, err := c.SelectModel(ModelSelector{Name: "sonnet", Version: "4.5"})
 	require.NoError(t, err)
 	assert.Equal(t, "anthropic/claude/sonnet/4.5@2025-09-29", formatModelID(model.Key))
+}
+
+func TestSelectModel_CanFilterByCreator(t *testing.T) {
+	c := NewCatalog()
+	left := NormalizeKey(ModelKey{Creator: "anthropic", Family: "claude", Series: "sonnet", Version: "4.6"})
+	right := NormalizeKey(ModelKey{Creator: "other", Family: "claude", Series: "sonnet", Version: "4.6"})
+	c.Models[left] = ModelRecord{Key: left, Name: "Claude Sonnet 4.6", Aliases: []string{"sonnet"}}
+	c.Models[right] = ModelRecord{Key: right, Name: "Other Sonnet 4.6", Aliases: []string{"sonnet"}}
+
+	model, err := c.SelectModel(ModelSelector{Name: "sonnet", Version: "4.6", Creator: "anthropic"})
+	require.NoError(t, err)
+	assert.Equal(t, left, model.Key)
 }
 
 func TestSelectOfferingsByModel_PrefersUndatedWireIDPerService(t *testing.T) {
