@@ -1,108 +1,206 @@
-# Catalog
+# modeldb
 
-`catalog` is the future standalone model graph for `codewandler/modeldb`.
+`modeldb` is a standalone Go package and CLI for working with a typed model
+catalog across providers, brokers, and runtimes.
 
-It models:
+It gives you a consistent graph for questions like:
 
-- canonical model identity
-- service/API offerings
-- runtime-specific availability
-- acquisition state for local runtimes
-- additive overlays and provenance
+- Which services expose Claude Sonnet 4.5?
+- What is the canonical identity of `openrouter/anthropic/claude-sonnet-4.5`?
+- Which local runtime can route a given model right now?
+- What factual aliases exist without mixing in app-specific shortcuts like
+  `default` or `fast`?
 
-At runtime the package loads a prebuilt `catalog.json` snapshot. Build-time tools
-can refresh that snapshot from upstream sources such as `models.dev`, OpenAI, or
-OpenRouter.
+The module ships with a prebuilt `catalog.json` snapshot and a `modeldb` CLI for
+refreshing or inspecting that snapshot.
 
-The current build invariant is:
+## Install
 
-- creator/direct sources define root `ModelRecord`s
-- broker/platform sources primarily add `Offering`s and enrich existing roots
-- when a broker/platform source refers to a model line that already has a
-  creator root, the builder rebinds that fragment onto the creator-owned key
-- when no creator root exists yet, broker/platform sources may still create a
-  provisional non-canonical root so the catalog keeps coverage
-
-## Architecture
-
-```text
-                 +--------------------------+
-                 | Build Sources            |
-                 |--------------------------|
-| Anthropic API            |
-                 | OpenAI API               |
-                 | OpenRouter API           |
-                 | models.dev               |
-                 | Bedrock curated          |
-                 +------------+-------------+
-                              |
-                              v
-                      +----------------------+
-                      | Builder              |
-                      |----------------------|
-                      | pass 1: creator roots|
-                      | pass 2: offerings +  |
-                      |         enrichment   |
-                      | canonical rebind     |
-                      | validate / emit      |
-                      +----------+-----------+
-                              |
-                              v
-                      +---------------+
-                      | Catalog       |
-                      |---------------|
-                      | Models        |
-                      | Services      |
-                      | Offerings     |
-                      +-------+-------+
-                              |
-              +---------------+----------------+
-              |                                |
-              v                                v
-   +----------------------+         +------------------------+
-   | Runtime Sources      |         | External Fragments     |
-   |----------------------|         |------------------------|
-   | Ollama               |         | private services       |
-   | DockerMR             |         | private models         |
-   | Bedrock runtime      |         | custom overlays        |
-   +----------+-----------+         +-----------+------------+
-              |                                 |
-              +----------------+----------------+
-                               |
-                               v
-                      +---------------+
-                      | ResolvedCatalog|
-                      |---------------|
-                      | + runtimes     |
-                      | + access       |
-                      | + acquisition  |
-                      +-------+-------+
-                              |
-                              v
-                      +---------------+
-                      | View          |
-                      |---------------|
-                      | filters       |
-                      | sorting       |
-                      | aliases       |
-                      | preferences   |
-                      +-------+-------+
-                              |
-                              v
-               +----------------------------------+
-               | Consumer Adapters                |
-               |----------------------------------|
-               | llm.Models / Resolve()           |
-               | router aliases / selectors       |
-               | autocomplete / favorites / UI    |
-               +----------------------------------+
+```bash
+go get github.com/codewandler/modeldb
 ```
 
-## Core entities
+## What You Can Do
 
-### ModelKey
+- load a built-in cross-provider model catalog
+- select one logical model and find its offerings across services
+- inspect service-scoped or runtime-scoped views
+- merge external fragments onto the built-in graph
+- build deterministic snapshots from live or fixture-backed upstream sources
 
-The canonical identity key for a model.
+## Quick Start
+
+### Load the built-in catalog
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/codewandler/modeldb"
+)
+
+func main() {
+	catalog, err := modeldb.LoadBuiltIn()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("models=%d services=%d offerings=%d\n", len(catalog.Models), len(catalog.Services), len(catalog.Offerings))
+}
+```
+
+### Resolve one logical model across providers
+
+This is the package-level equivalent of:
+
+```bash
+modeldb model show --name sonnet --version 4.5
+```
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/codewandler/modeldb"
+)
+
+func main() {
+	catalog, err := modeldb.LoadBuiltIn()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	selector, err := modeldb.ParseModelSelector("sonnet", "4.5")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	selection, err := catalog.SelectOfferingsByModel(selector)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(modeldb.ReleaseID(selection.Model.Key))
+	for _, item := range selection.Offerings {
+		fmt.Printf("%s -> %s\n", item.Service.ID, item.Offering.WireModelID)
+	}
+}
+```
+
+Typical output:
+
+```text
+anthropic/claude/sonnet/4.5@2025-09-29
+anthropic -> claude-sonnet-4-5-20250929
+bedrock -> anthropic.claude-sonnet-4-5-20250929-v1:0
+openrouter -> anthropic/claude-sonnet-4.5
+```
+
+### Browse one service view
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/codewandler/modeldb"
+)
+
+func main() {
+	catalog, err := modeldb.LoadBuiltIn()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	view := modeldb.ServiceView(catalog, "anthropic", modeldb.ViewOptions{})
+	item, ok := view.Resolve("sonnet")
+	if !ok {
+		log.Fatal("sonnet not found")
+	}
+
+	fmt.Println(item.Offering.WireModelID)
+	fmt.Println(modeldb.ReleaseID(item.Model.Key))
+}
+```
+
+### Add runtime visibility on top of the built-in snapshot
+
+```go
+package main
+
+import (
+	"context"
+	"log"
+
+	"github.com/codewandler/modeldb"
+)
+
+func main() {
+	base, err := modeldb.LoadBuiltIn()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	source := modeldb.NewOllamaRuntimeSource()
+	resolved, err := modeldb.ResolveCatalog(context.Background(), base, modeldb.RegisteredSource{
+		Stage:     modeldb.StageRuntime,
+		Authority: modeldb.AuthorityLocal,
+		Source:    source,
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	view := modeldb.RuntimeView(resolved, "ollama-local", modeldb.ViewOptions{VisibleOnly: true})
+	_ = view.List()
+}
+```
+
+## CLI
+
+Validate a snapshot:
+
+```bash
+go run ./cmd/modeldb validate --in catalog.json
+```
+
+Inspect services or offerings:
+
+```bash
+go run ./cmd/modeldb inspect --in catalog.json
+go run ./cmd/modeldb inspect --in catalog.json --service anthropic
+```
+
+Resolve a logical model across providers:
+
+```bash
+go run ./cmd/modeldb model show --in catalog.json --name sonnet --version 4.5
+```
+
+Rebuild the snapshot from fixture-backed sources:
+
+```bash
+go run ./cmd/modeldb build \
+	--out catalog.json \
+	--anthropic-file internal/source/anthropic/testdata/models.json \
+	--modelsdev-file internal/source/modelsdev/testdata/api.json
+```
+
+## Core Concepts
+
+### `ModelKey`
+
+The canonical identity of a model line or release.
+
+Fields:
 
 - `Creator`
 - `Family`
@@ -111,149 +209,97 @@ The canonical identity key for a model.
 - `Variant`
 - `ReleaseDate`
 
-`ReleaseDate == ""` means a line-level identity or release-unknown record.
+Examples:
 
-### ModelRecord
+- line identity: `anthropic/claude/sonnet/4.6`
+- release identity: `anthropic/claude/sonnet/4.5@2025-09-29`
 
-Canonical or provisional model metadata.
+### `ModelRecord`
+
+Canonical or provisional metadata for a model identity.
+
+Includes:
 
 - factual aliases
 - capabilities
 - modalities
-- pricing reference
+- limits
+- reference pricing
 - provenance
-- enrichment fields like `OpenWeights`, `Attachment`, `LastUpdated`
 
-### Service
+### `Offering`
 
-An API/service surface that can expose models.
+A service-specific wire model ID mapped onto a canonical `ModelKey`.
 
 Examples:
 
-- `anthropic`
-- `openai`
-- `openrouter`
-- `bedrock`
-- `ollama`
-- `dockermr`
+- `anthropic -> claude-sonnet-4-5-20250929`
+- `openrouter -> anthropic/claude-sonnet-4.5`
+- `bedrock -> anthropic.claude-sonnet-4-5-20250929-v1:0`
 
-### Offering
+### `View`
 
-A service-level mapping from a wire model ID to a canonical `ModelKey`.
+`View` is the main end-user query API.
 
-### Runtime
+It provides:
 
-A concrete runtime environment such as a local Ollama daemon or a specific
-account/region context.
+- service-scoped browsing
+- runtime-scoped browsing
+- alias resolution
+- filtering and ordering
 
-### RuntimeAccess
+In general, prefer `ServiceView(...)` and `RuntimeView(...)` over directly
+walking the underlying maps.
 
-Whether an offering is routable right now for a specific runtime.
+## Alias Philosophy
 
-### RuntimeAcquisition
+The base graph stores factual aliases only.
 
-Whether an offering is known, installable, pullable, or otherwise acquirable.
-
-## Merge rules
-
-The graph is additive.
-
-- new entities are allowed
-- empty fields may be enriched
-- mergeable collections are deduplicated and unioned
-- conflicting non-empty scalar values are validation errors
-- provenance is appended, never replaced
-
-For build-time source reconciliation, additive does not mean every source gets
-to mint an independent root model.
-
-- creator/direct sources are the authority for root `ModelRecord`s
-- broker/platform sources may enrich those roots and add service offerings
-- if a broker/platform fragment uses a line-level key and the creator source has
-  a release-specific key for that same line, the builder binds the fragment to
-  the creator release key
-- if no creator root exists for that line, the broker/platform fragment is kept
-  as a provisional root instead of being dropped
-
-This keeps cross-service offerings attached to one logical model while still
-allowing fallback coverage when creator data is unavailable.
-
-## Alias philosophy
-
-The base catalog stores factual aliases only.
+Allowed:
 
 - creator aliases
 - service aliases
 - runtime-discovered aliases
 
-Intent aliases such as `default`, `fast`, `powerful`, or user shortcuts do not
-belong in the base graph. Those should be layered on top through view overlays
-or consuming application policy.
+Deliberately excluded from the base graph:
 
-## Views
+- `default`
+- `fast`
+- `powerful`
 
-Consumers should prefer `View` over direct map traversal.
+Those intent aliases belong in consuming applications, overlays, or provider
+policy layers, not in the shared model database.
 
-Views are:
+## Build Model
 
-- service-scoped or runtime-scoped subsets of the graph
-- filterable
-- alias-indexed
-- optionally preference-ranked
+Snapshot generation is creator-first.
 
-This is the primary API surface intended for consumers of the standalone module.
+- creator/direct sources define root `ModelRecord`s
+- broker/platform sources add offerings and enrich existing roots
+- when a broker/platform fragment points at a line that already has a creator
+  root, the builder rebinds that fragment onto the creator-owned key
+- when no creator root exists yet, the fragment may still create a provisional
+  non-canonical root so coverage is not lost
 
-## Source layout
+This keeps cross-service offerings attached to one logical model instead of
+letting each broker invent its own competing root entry.
 
-Not all source-related code belongs under `internal/source/...`.
+## Repository Layout
 
-- `catalog/source_*.go` contains public source adapters such as
-  `NewModelsDevSource()` or `NewOllamaRuntimeSource()`
-- `catalog/internal/source/...` contains upstream-specific implementation
-  details such as transport helpers, fixtures, and wire schemas
+- root package `modeldb`: public types, views, builders, selectors, sources
+- `cmd/modeldb`: CLI for building, validating, and querying snapshots
+- `internal/source/...`: upstream-specific fetchers, schemas, and fixtures
 
-This split is intentional: consumers of the future standalone module should be
-able to construct source adapters directly, while upstream-specific internals
-remain hidden.
+## Development
 
-## Snapshot generation
-
-The embedded `catalog.json` snapshot is refreshed through the CLI.
-
-From the `catalog/` directory:
+Regenerate the embedded snapshot:
 
 ```bash
 go generate ./...
 ```
 
-The current directive runs:
+Run the test suite:
 
 ```bash
-go run ./cmd/modeldb build --out catalog.json --anthropic-file internal/source/anthropic/testdata/models.json --modelsdev-file internal/source/modelsdev/testdata/api.json
+go test ./...
 ```
-
-That keeps runtime fast and deterministic while still allowing live refreshes
-through the CLI when desired.
-
-### Build phases
-
-Snapshot generation currently happens in two conceptual passes:
-
-1. merge creator-root sources such as Anthropic, OpenAI, and MiniMax
-2. merge broker/platform and enrichment sources such as OpenRouter and
-   `models.dev`, rebinding them to creator roots when possible
-
-This is what prevents duplicates such as a broker-created line-level Claude
-model and a creator-created dated Claude release from surviving as separate root
-models in the final snapshot.
-
-## Standalone module goal
-
-This directory is being shaped so it can be extracted into a standalone module.
-
-The key boundary rule is:
-
-- `catalog` must not depend on the root repo's provider or `llm` packages
-
-The root repo may adapt views from `catalog` into compatibility DTOs such as
-`llm.Model`, but those adapters must live outside the package.
