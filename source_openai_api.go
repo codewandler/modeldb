@@ -99,7 +99,6 @@ func (s OpenAISource) Fetch(ctx context.Context) (*Fragment, error) {
 			ServiceID:   "openai",
 			WireModelID: item.ID,
 			ModelKey:    key,
-			Exposures:   []OfferingExposure{{APIType: APITypeDefault}},
 			Provenance: []Provenance{{
 				SourceID:   s.ID(),
 				Authority:  string(AuthorityTrusted),

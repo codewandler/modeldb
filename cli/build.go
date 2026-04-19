@@ -24,7 +24,7 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 	var anthropicFile string
 	var modelsDevFile string
 	var codexFile string
-	var openAIDocsDir string
+	var openAIStaticFile string
 	var useFixture bool
 
 	cmd := &cobra.Command{
@@ -56,10 +56,10 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 					}
 				}
 			}
-			if openAIDocsDir != "" {
+			if openAIStaticFile != "" {
 				for i := range sources {
-					if _, ok := sources[i].Source.(modeldb.OpenAIDocsSource); ok {
-						sources[i].Source = modeldb.NewOpenAIDocsSourceFromDir(openAIDocsDir)
+					if _, ok := sources[i].Source.(modeldb.OpenAIStaticSource); ok {
+						sources[i].Source = modeldb.NewOpenAIStaticSourceFromFile(openAIStaticFile)
 					}
 				}
 			}
@@ -80,7 +80,7 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 	cmd.Flags().StringVar(&anthropicFile, "anthropic-file", "", "optional local Anthropic models payload path")
 	cmd.Flags().StringVar(&modelsDevFile, "modelsdev-file", "", "optional local models.dev payload path")
 	cmd.Flags().StringVar(&codexFile, "codex-file", "", "optional local codex models payload path")
-	cmd.Flags().StringVar(&openAIDocsDir, "openai-docs-dir", "", "optional local OpenAI docs model fixture directory")
+	cmd.Flags().StringVar(&openAIStaticFile, "openai-static-file", "", "optional local OpenAI static manifest path")
 	cmd.Flags().BoolVar(&useFixture, "modelsdev-fixture", false, "use bundled models.dev fixture instead of live fetch")
 	return cmd
 }

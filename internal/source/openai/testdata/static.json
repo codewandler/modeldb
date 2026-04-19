@@ -1,0 +1,1322 @@
+{
+  "profiles": {
+    "responses_reasoning_basic": {
+      "api_type": "openai-responses",
+      "capabilities": {
+        "tool_use": true,
+        "structured_output": true,
+        "streaming": true,
+        "vision": true,
+        "reasoning": {
+          "available": true,
+          "efforts": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        }
+      },
+      "supported_parameters": [
+        "tools",
+        "response_format",
+        "thinking",
+        "reasoning_effort"
+      ],
+      "parameter_mappings": [
+        {
+          "normalized": "tools",
+          "wire_name": "tools"
+        },
+        {
+          "normalized": "response_format",
+          "wire_name": "response_format"
+        },
+        {
+          "normalized": "thinking",
+          "wire_name": "reasoning"
+        },
+        {
+          "normalized": "reasoning_effort",
+          "wire_name": "reasoning.effort"
+        }
+      ],
+      "parameter_values": {
+        "reasoning_effort": [
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    },
+    "responses_basic": {
+      "api_type": "openai-responses",
+      "capabilities": {
+        "tool_use": true,
+        "structured_output": true,
+        "streaming": true,
+        "vision": true
+      },
+      "supported_parameters": [
+        "tools",
+        "response_format"
+      ],
+      "parameter_mappings": [
+        {
+          "normalized": "tools",
+          "wire_name": "tools"
+        },
+        {
+          "normalized": "response_format",
+          "wire_name": "response_format"
+        }
+      ]
+    }
+  },
+  "families": {
+    "gpt-5-reasoning": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ]
+        }
+      }
+    },
+    "gpt-4.1-reasoning": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ]
+        }
+      }
+    },
+    "gpt-4o-reasoning": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ]
+        }
+      }
+    },
+    "o-series-reasoning": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ]
+        }
+      }
+    },
+    "gpt-3.5-reasoning": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ]
+        }
+      }
+    },
+    "gpt-4-reasoning": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ]
+        }
+      }
+    }
+  },
+  "models": [
+    {
+      "slug": "gpt-3.5-turbo-instruct",
+      "family": "gpt-3.5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 0,
+          "max_output": 0
+        },
+        "capabilities": {
+          "structured_output": false,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-3.5-turbo",
+      "family": "gpt-3.5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 0,
+          "max_output": 0
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-4-turbo",
+      "family": "gpt-4-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 0,
+          "max_output": 0
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-4.1-mini",
+      "family": "gpt-4.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 47576,
+          "max_output": 32768
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-4.1-nano",
+      "family": "gpt-4.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 47576,
+          "max_output": 32768
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-4.1",
+      "family": "gpt-4.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 47576,
+          "max_output": 32768
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-4",
+      "family": "gpt-4-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 0,
+          "max_output": 0
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-4o-mini",
+      "family": "gpt-4o-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 128000,
+          "max_output": 16384
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-4o",
+      "family": "gpt-4o-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 128000,
+          "max_output": 16384
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5-chat-latest",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 128000,
+          "max_output": 16384
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5-codex",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5-mini",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5-nano",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5-pro",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 272000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.1-chat-latest",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 128000,
+          "max_output": 16384
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.1-codex-max",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.1-codex-mini",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.1-codex",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.1",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.2-chat-latest",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 128000,
+          "max_output": 16384
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.2-codex",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.2-pro",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.2",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "none",
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      },
+      "exposure_overrides": {
+        "openai-responses": {
+          "parameter_values": {
+            "reasoning_effort": [
+              "none",
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ]
+          },
+          "capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "none",
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.3-chat-latest",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 128000,
+          "max_output": 16384
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.3-codex",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.4-mini",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.4-nano",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.4-pro",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 50000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.4",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 50000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5",
+      "family": "gpt-5-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "o1-pro",
+      "family": "o-series-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "o1",
+      "family": "o-series-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "o3-deep-research",
+      "family": "o-series-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "o3-mini",
+      "family": "o-series-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "o3-pro",
+      "family": "o-series-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "o3",
+      "family": "o-series-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "o4-mini-deep-research",
+      "family": "o-series-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "o4-mini",
+      "family": "o-series-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

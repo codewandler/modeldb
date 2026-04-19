@@ -11,7 +11,7 @@ func sourceMergeRole(registered RegisteredSource) mergeRole {
 	switch registered.Source.ID() {
 	case anthropicSourceID, minimaxSourceID, "openai-api":
 		return mergeRoleCreatorRoot
-	case modelsDevSourceID, "openrouter-api":
+	case modelsDevSourceID, "openrouter-api", openAIStaticSourceID:
 		return mergeRoleOfferingEnriching
 	default:
 		return mergeRoleCreatorRoot

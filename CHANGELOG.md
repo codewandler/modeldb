@@ -2,6 +2,45 @@
 
 ## Unreleased
 
+## v0.11.0 - 2026-04-19
+
+### Added
+
+- Added `openai-static`, a curated static OpenAI enrichment source layered on
+  top of live OpenAI inventory from `/v1/models`.
+- Added reusable OpenAI static manifest profiles, family defaults, and
+  per-model / per-exposure overrides.
+- Added an OpenRouter-backed audit test for `openai-static` to flag likely
+  drift and missing high-confidence text-model capabilities.
+- Added maintainer documentation for OpenAI static enrichment scope and update
+  policy under `internal/source/openai/README.md`.
+
+### Changed
+
+- Replaced the previous docs-derived OpenAI enrichment flow with a checked-in
+  static manifest at `internal/source/openai/testdata/static.json`.
+- OpenAI placeholder `default` exposures are no longer emitted; OpenAI
+  exposures are now only emitted when statically curated.
+- Narrowed OpenAI static enrichment scope to maintained text models; audio,
+  realtime, image, transcription, TTS, moderation, and other non-text-focused
+  models now remain inventory-only unless explicitly curated later.
+- Renamed the build override flag from `--openai-docs-dir` to
+  `--openai-static-file`.
+
+### Removed
+
+- Removed the old `openai-docs` source implementation and its per-model docs
+  fixture workflow.
+
+### Model Changes
+
+- `catalog.json` was regenerated with `openai-static` as the OpenAI enrichment
+  source.
+- OpenAI text-model offerings now carry curated `openai-responses` exposures
+  with normalized parameters, mappings, and parameter values where maintained.
+- Non-text OpenAI inventory remains present in the catalog, but no longer
+  receives broad static exposure enrichment by default.
+
 ## v0.10.0 - 2026-04-18
 
 ### Added
@@ -11,7 +50,7 @@
   parameters, wire mappings, and valid parameter values.
 - Added exact exposure resolution helpers for service + wire model + API type.
 - Added a first-class `codex` source in modeldb, backed by a checked-in fixture.
-- Added an OpenAI docs-backed enrichment source for richer model capabilities.
+- Added an OpenAI static enrichment source for richer model capabilities.
 - Added structured `ReasoningCapability` metadata with explicit effort,
   summary, mode, and visible-summary support.
 - Added CLI filtering by `--api-type` and `--parameter`.
@@ -22,7 +61,7 @@
 - Replaced boolean-only reasoning capability flags with structured reasoning
   metadata.
 - OpenAI capability enrichment now combines inventory from `/v1/models` with
-  docs-backed fixture enrichment for richer model facts.
+  static manifest enrichment for richer model facts.
 - `modeldb models --details` and `--offerings` now expose API-type-specific
   offering surface details.
 
@@ -35,7 +74,7 @@
 - `catalog.json` was regenerated for the new exposure-oriented schema.
 - Anthropic, OpenRouter, Codex, and OpenAI models now carry richer capability
   information where upstream data is available.
-- OpenAI model capability coverage is materially improved via docs-backed
+- OpenAI model capability coverage is materially improved via static
   enrichment, while OpenAI offering exposures remain conservative unless
   creator-native surface metadata is known.
 
