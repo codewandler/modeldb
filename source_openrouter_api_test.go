@@ -66,9 +66,15 @@ func TestOpenRouterSourceFetch(t *testing.T) {
 	assert.Equal(t, APITypeOpenAIMessages, offering.Exposures[1].APIType)
 	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamTools)
 	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamThinking)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamReasoningEffort)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamReasoningSummary)
 	assert.Contains(t, offering.Exposures[1].SupportedParameters, ParamTools)
 	assert.Contains(t, offering.Exposures[1].SupportedParameters, ParamThinking)
 	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamTools, WireName: "tools"})
+	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamReasoningEffort, WireName: "reasoning.effort"})
+	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamReasoningSummary, WireName: "reasoning.summary"})
+	assert.True(t, offering.Exposures[0].SupportsParameterValue(string(ParamReasoningEffort), string(ReasoningEffortMinimal)))
+	assert.True(t, offering.Exposures[0].SupportsParameterValue(string(ParamReasoningSummary), string(ReasoningSummaryConcise)))
 }
 
 func TestOpenRouterSourceFetch_LogUnhandledModels(t *testing.T) {

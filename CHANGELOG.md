@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.11.4 - 2026-04-19
+
 ### Changed
 
 - OpenAI static enrichment is now organized around more explicit GPT-5 and
@@ -17,6 +19,11 @@
   static manifest is now the only maintained OpenAI enrichment input.
 - Added maintainer documentation explaining the evidence and reasoning behind
   current OpenAI family groupings and known remaining gaps.
+- OpenRouter `openai-responses` exposures now advertise richer reasoning
+  controls via normalized `reasoning_effort` and `reasoning_summary` support,
+  using OpenRouter-documented broker value sets.
+- Added `minimal` as a valid normalized reasoning effort level to represent the
+  broker-surface OpenRouter responses API reasoning control vocabulary.
 
 ### Model Changes
 
@@ -25,7 +32,8 @@
   `reasoning_summary` metadata where supported by creator-native evidence.
 - OpenAI o3 / o4 family members now expose richer summary metadata than the
   more conservative `o1` family.
-
+- OpenRouter `openai-responses` offerings now expose explicit reasoning effort
+  and summary controls with broker-documented parameter values.
 
 ## v0.11.2 - 2026-04-19
 

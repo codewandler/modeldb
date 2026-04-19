@@ -321,7 +321,7 @@ func convertPerRequestLimits(prl *struct {
 func parameterValuesFromOpenRouter(params []string) map[string][]string {
 	values := map[string][]string{}
 	if containsString(params, "reasoning_effort") {
-		values["reasoning_effort"] = []string{string(ReasoningEffortLow), string(ReasoningEffortMedium), string(ReasoningEffortHigh)}
+		values["reasoning_effort"] = []string{string(ReasoningEffortMinimal), string(ReasoningEffortLow), string(ReasoningEffortMedium), string(ReasoningEffortHigh)}
 	}
 	if containsString(params, "reasoning_summary") {
 		values["reasoning_summary"] = []string{string(ReasoningSummaryAuto), string(ReasoningSummaryConcise), string(ReasoningSummaryDetailed)}
@@ -424,8 +424,23 @@ func openRouterExposures(sourceID string, observedAt time.Time, rawID string, ca
 	values := parameterValuesFromOpenRouter(supportedParams)
 	def := convertDefaultParameters(defaults)
 	prov := []Provenance{{SourceID: sourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: rawID}}
+	responsesParams := mergeNormalizedParameters(params, []NormalizedParameter{ParamReasoningEffort, ParamReasoningSummary})
+	responsesMappings := mergeParameterMappings(mappings, []ParameterMapping{
+		{Normalized: ParamReasoningEffort, WireName: "reasoning.effort"},
+		{Normalized: ParamReasoningSummary, WireName: "reasoning.summary"},
+	})
+	responsesValues := values
+	if responsesValues == nil {
+		responsesValues = map[string][]string{}
+	}
+	if _, ok := responsesValues[string(ParamReasoningEffort)]; !ok {
+		responsesValues[string(ParamReasoningEffort)] = []string{string(ReasoningEffortMinimal), string(ReasoningEffortLow), string(ReasoningEffortMedium), string(ReasoningEffortHigh)}
+	}
+	if _, ok := responsesValues[string(ParamReasoningSummary)]; !ok {
+		responsesValues[string(ParamReasoningSummary)] = []string{string(ReasoningSummaryAuto), string(ReasoningSummaryConcise), string(ReasoningSummaryDetailed)}
+	}
 	return []OfferingExposure{
-		{APIType: APITypeOpenAIResponses, ExposedCapabilities: capabilitiesPtr(caps), SupportedParameters: params, ParameterMappings: mappings, ParameterValues: values, DefaultParameters: def, Provenance: prov},
+		{APIType: APITypeOpenAIResponses, ExposedCapabilities: capabilitiesPtr(caps), SupportedParameters: responsesParams, ParameterMappings: responsesMappings, ParameterValues: responsesValues, DefaultParameters: def, Provenance: prov},
 		{APIType: APITypeOpenAIMessages, ExposedCapabilities: capabilitiesPtr(caps), SupportedParameters: params, ParameterMappings: mappings, ParameterValues: values, DefaultParameters: def, Provenance: prov},
 	}
 }

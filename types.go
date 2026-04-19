@@ -55,12 +55,13 @@ type ReasoningCapability struct {
 type ReasoningEffortLevel string
 
 const (
-	ReasoningEffortNone   ReasoningEffortLevel = "none"
-	ReasoningEffortLow    ReasoningEffortLevel = "low"
-	ReasoningEffortMedium ReasoningEffortLevel = "medium"
-	ReasoningEffortHigh   ReasoningEffortLevel = "high"
-	ReasoningEffortMax    ReasoningEffortLevel = "max"
-	ReasoningEffortXHigh  ReasoningEffortLevel = "xhigh"
+	ReasoningEffortMinimal ReasoningEffortLevel = "minimal"
+	ReasoningEffortNone    ReasoningEffortLevel = "none"
+	ReasoningEffortLow     ReasoningEffortLevel = "low"
+	ReasoningEffortMedium  ReasoningEffortLevel = "medium"
+	ReasoningEffortHigh    ReasoningEffortLevel = "high"
+	ReasoningEffortMax     ReasoningEffortLevel = "max"
+	ReasoningEffortXHigh   ReasoningEffortLevel = "xhigh"
 )
 
 type ReasoningSummaryValue string

@@ -78,7 +78,7 @@ func validateCapabilities(c Capabilities, id string) error {
 	}
 	for _, effort := range c.Reasoning.Efforts {
 		switch effort {
-		case ReasoningEffortNone, ReasoningEffortLow, ReasoningEffortMedium, ReasoningEffortHigh, ReasoningEffortMax, ReasoningEffortXHigh:
+		case ReasoningEffortMinimal, ReasoningEffortNone, ReasoningEffortLow, ReasoningEffortMedium, ReasoningEffortHigh, ReasoningEffortMax, ReasoningEffortXHigh:
 		default:
 			return fmt.Errorf("%s has invalid reasoning effort %q", id, effort)
 		}
