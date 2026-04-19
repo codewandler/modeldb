@@ -13415,14 +13415,21 @@
         "reasoning": {
           "available": true,
           "efforts": [
+            "none",
             "low",
             "medium",
             "high"
           ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -13553,10 +13560,16 @@
             "medium",
             "high"
           ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -13637,10 +13650,16 @@
             "medium",
             "high"
           ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -13716,10 +13735,16 @@
             "medium",
             "high"
           ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -13795,10 +13820,16 @@
             "medium",
             "high"
           ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -14022,12 +14053,19 @@
           "efforts": [
             "low",
             "medium",
-            "high"
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
           ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -14106,12 +14144,19 @@
           "efforts": [
             "low",
             "medium",
-            "high"
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
           ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -14186,12 +14231,19 @@
           "efforts": [
             "low",
             "medium",
-            "high"
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
           ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -14318,12 +14370,19 @@
           "efforts": [
             "low",
             "medium",
-            "high"
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
           ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -14692,12 +14751,19 @@
           "efforts": [
             "low",
             "medium",
-            "high"
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
           ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -14776,12 +14842,19 @@
           "efforts": [
             "low",
             "medium",
-            "high"
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
           ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -15389,8 +15462,6 @@
         "reasoning": {
           "available": true,
           "efforts": [
-            "low",
-            "medium",
             "high"
           ],
           "modes": [
@@ -16318,10 +16389,16 @@
             "medium",
             "high"
           ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -16410,10 +16487,16 @@
             "medium",
             "high"
           ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -16503,10 +16586,16 @@
             "medium",
             "high"
           ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -16638,10 +16727,16 @@
             "medium",
             "high"
           ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -16729,10 +16824,16 @@
             "medium",
             "high"
           ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -16827,10 +16928,16 @@
             "medium",
             "high"
           ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
           "modes": [
             "enabled",
             "off"
-          ]
+          ],
+          "visible_summary": true
         },
         "tool_use": true,
         "structured_output": true,
@@ -24523,8 +24630,6 @@
           ],
           "parameter_values": {
             "reasoning_effort": [
-              "low",
-              "medium",
               "high"
             ]
           },
@@ -24624,12 +24729,19 @@
               "efforts": [
                 "low",
                 "medium",
-                "high"
+                "high",
+                "none"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
               ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -24640,7 +24752,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -24658,13 +24771,23 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
             "reasoning_effort": [
+              "none",
               "low",
               "medium",
               "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -24730,10 +24853,16 @@
                 "medium",
                 "high"
               ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -24744,7 +24873,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -24762,6 +24892,10 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
@@ -24769,6 +24903,11 @@
               "low",
               "medium",
               "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -24816,10 +24955,16 @@
                 "medium",
                 "high"
               ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -24830,7 +24975,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -24848,6 +24994,10 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
@@ -24855,6 +25005,11 @@
               "low",
               "medium",
               "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -24902,10 +25057,16 @@
                 "medium",
                 "high"
               ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -24916,7 +25077,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -24934,6 +25096,10 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
@@ -24941,6 +25107,11 @@
               "low",
               "medium",
               "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -24988,10 +25159,16 @@
                 "medium",
                 "high"
               ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -25002,7 +25179,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -25020,6 +25198,10 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
@@ -25027,6 +25209,11 @@
               "low",
               "medium",
               "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -25072,13 +25259,19 @@
                 "low",
                 "medium",
                 "high",
-                "none",
-                "xhigh"
+                "xhigh",
+                "none"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
               ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -25089,7 +25282,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -25107,6 +25301,10 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
@@ -25116,6 +25314,11 @@
               "medium",
               "high",
               "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -25179,12 +25382,19 @@
               "efforts": [
                 "low",
                 "medium",
-                "high"
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
               ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -25195,7 +25405,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -25213,13 +25424,23 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
             "reasoning_effort": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -25265,12 +25486,19 @@
               "efforts": [
                 "low",
                 "medium",
-                "high"
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
               ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -25281,7 +25509,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -25299,13 +25528,23 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
             "reasoning_effort": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -25351,12 +25590,19 @@
               "efforts": [
                 "low",
                 "medium",
-                "high"
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
               ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -25367,7 +25613,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -25385,13 +25632,23 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
             "reasoning_effort": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -25455,12 +25712,19 @@
               "efforts": [
                 "low",
                 "medium",
-                "high"
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
               ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -25471,7 +25735,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -25489,13 +25754,23 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
             "reasoning_effort": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -25541,12 +25816,19 @@
               "efforts": [
                 "low",
                 "medium",
-                "high"
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
               ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -25557,7 +25839,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -25575,13 +25858,23 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
             "reasoning_effort": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -25626,12 +25919,19 @@
               "efforts": [
                 "low",
                 "medium",
-                "high"
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
               ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -25642,7 +25942,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -25660,13 +25961,23 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
             "reasoning_effort": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -25730,12 +26041,19 @@
               "efforts": [
                 "low",
                 "medium",
-                "high"
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
               ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -25746,7 +26064,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -25764,13 +26083,23 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
             "reasoning_effort": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -25834,12 +26163,19 @@
               "efforts": [
                 "low",
                 "medium",
-                "high"
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
               ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -25850,7 +26186,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -25868,13 +26205,23 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
             "reasoning_effort": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -25938,12 +26285,19 @@
               "efforts": [
                 "low",
                 "medium",
-                "high"
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
               ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -25954,7 +26308,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -25972,13 +26327,23 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
             "reasoning_effort": [
               "low",
               "medium",
-              "high"
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -26518,10 +26883,16 @@
                 "medium",
                 "high"
               ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -26532,7 +26903,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -26550,6 +26922,10 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
@@ -26557,6 +26933,11 @@
               "low",
               "medium",
               "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -26622,10 +27003,16 @@
                 "medium",
                 "high"
               ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -26636,7 +27023,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -26654,6 +27042,10 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
@@ -26661,6 +27053,11 @@
               "low",
               "medium",
               "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -26726,10 +27123,16 @@
                 "medium",
                 "high"
               ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -26740,7 +27143,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -26758,6 +27162,10 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
@@ -26765,6 +27173,11 @@
               "low",
               "medium",
               "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -26830,10 +27243,16 @@
                 "medium",
                 "high"
               ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -26844,7 +27263,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -26862,6 +27282,10 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
@@ -26869,6 +27293,11 @@
               "low",
               "medium",
               "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -26934,10 +27363,16 @@
                 "medium",
                 "high"
               ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -26948,7 +27383,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -26966,6 +27402,10 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
@@ -26973,6 +27413,11 @@
               "low",
               "medium",
               "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -27038,10 +27483,16 @@
                 "medium",
                 "high"
               ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
               "modes": [
                 "enabled",
                 "off"
-              ]
+              ],
+              "visible_summary": true
             },
             "tool_use": true,
             "structured_output": true,
@@ -27052,7 +27503,8 @@
             "tools",
             "response_format",
             "thinking",
-            "reasoning_effort"
+            "reasoning_effort",
+            "reasoning_summary"
           ],
           "parameter_mappings": [
             {
@@ -27070,6 +27522,10 @@
             {
               "normalized": "reasoning_effort",
               "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
             }
           ],
           "parameter_values": {
@@ -27077,6 +27533,11 @@
               "low",
               "medium",
               "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
             ]
           },
           "provenance": [
@@ -35624,7 +36085,7 @@
         "audio": 0.7
       },
       "limits_override": {
-        "context_window": 1000000,
+        "context_window": 1048576,
         "max_output": 8192
       },
       "provenance": [

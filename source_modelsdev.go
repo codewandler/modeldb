@@ -120,7 +120,7 @@ func (s ModelsDevSource) Fetch(ctx context.Context) (*Fragment, error) {
 					ServiceID:   serviceID,
 					WireModelID: modelID,
 					ModelKey:    key,
-					Exposures: []OfferingExposure{{APIType: APITypeDefault}},
+					Exposures:   []OfferingExposure{{APIType: APITypeDefault}},
 					Pricing: &Pricing{
 						Input:       entry.Cost.Input,
 						Output:      entry.Cost.Output,

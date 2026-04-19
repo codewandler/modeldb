@@ -85,7 +85,6 @@ func (c ResolvedCatalog) AcquirableOfferings(runtimeID string) []Offering {
 	return out
 }
 
-
 func (c Catalog) ExposureByRef(ref ExposureRef) (Offering, OfferingExposure, bool) {
 	offering, ok := c.OfferingByRef(OfferingRef{ServiceID: normalizeKeyPart(ref.ServiceID), WireModelID: ref.WireModelID})
 	if !ok {

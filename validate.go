@@ -72,7 +72,6 @@ func ValidateResolvedCatalog(c ResolvedCatalog) error {
 	return nil
 }
 
-
 func validateCapabilities(c Capabilities, id string) error {
 	if c.Reasoning == nil {
 		return nil
@@ -100,7 +99,6 @@ func validateCapabilities(c Capabilities, id string) error {
 	}
 	return nil
 }
-
 
 func validateNormalizedParameter(p NormalizedParameter) bool {
 	switch p {

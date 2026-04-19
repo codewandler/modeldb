@@ -29,7 +29,6 @@ func (o Offering) Exposure(apiType APIType) *OfferingExposure {
 	return nil
 }
 
-
 func (c Capabilities) SupportsReasoningMode(mode ReasoningMode) bool {
 	if c.Reasoning == nil {
 		return false
@@ -67,7 +66,6 @@ func (e OfferingExposure) SupportsParameterValue(name, value string) bool {
 	}
 	return false
 }
-
 
 func (o Offering) ExposureRef(apiType APIType) ExposureRef {
 	return ExposureRef{ServiceID: o.ServiceID, WireModelID: o.WireModelID, APIType: apiType}

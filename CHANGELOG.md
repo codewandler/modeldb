@@ -2,6 +2,31 @@
 
 ## Unreleased
 
+### Changed
+
+- OpenAI static enrichment is now organized around more explicit GPT-5 and
+  o-series family boundaries instead of relying only on broad line-level
+  defaults or reviewer-driven per-model patches.
+- OpenAI GPT-5 text-model summary support and effort controls were refined using
+  creator-native API reference evidence, with tighter family splits for
+  pre-5.1, 5.1, 5.2+, and Codex-backed descendants where corroboration exists.
+- OpenAI o-series reasoning metadata was split into conservative `o1` and
+  richer `o3+` family groups so summary support is only inherited where current
+  source evidence supports it.
+- The old per-model OpenAI docs-capture remnants were removed; the curated
+  static manifest is now the only maintained OpenAI enrichment input.
+- Added maintainer documentation explaining the evidence and reasoning behind
+  current OpenAI family groupings and known remaining gaps.
+
+### Model Changes
+
+- `catalog.json` was regenerated after OpenAI family/category normalization.
+- OpenAI GPT-5.1 / GPT-5.2 / GPT-5.4 family members now expose more consistent
+  `reasoning_summary` metadata where supported by creator-native evidence.
+- OpenAI o3 / o4 family members now expose richer summary metadata than the
+  more conservative `o1` family.
+
+
 ## v0.11.2 - 2026-04-19
 
 ### Changed

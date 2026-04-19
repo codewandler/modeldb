@@ -77,30 +77,6 @@
     }
   },
   "families": {
-    "gpt-5-reasoning": {
-      "model_defaults": {
-        "capabilities": {
-          "tool_use": true,
-          "structured_output": true,
-          "streaming": true,
-          "vision": true,
-          "reasoning": {
-            "available": true,
-            "modes": [
-              "enabled",
-              "off"
-            ]
-          }
-        }
-      },
-      "exposure_defaults": {
-        "openai-responses": {
-          "profiles": [
-            "responses_reasoning_basic"
-          ]
-        }
-      }
-    },
     "gpt-4.1-reasoning": {
       "model_defaults": {
         "capabilities": {
@@ -126,30 +102,6 @@
       }
     },
     "gpt-4o-reasoning": {
-      "model_defaults": {
-        "capabilities": {
-          "tool_use": true,
-          "structured_output": true,
-          "streaming": true,
-          "vision": true,
-          "reasoning": {
-            "available": true,
-            "modes": [
-              "enabled",
-              "off"
-            ]
-          }
-        }
-      },
-      "exposure_defaults": {
-        "openai-responses": {
-          "profiles": [
-            "responses_reasoning_basic"
-          ]
-        }
-      }
-    },
-    "o-series-reasoning": {
       "model_defaults": {
         "capabilities": {
           "tool_use": true,
@@ -218,6 +170,342 @@
           "profiles": [
             "responses_reasoning_basic"
           ]
+        }
+      }
+    },
+    "gpt-5-pre-5.1-reasoning": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ]
+        }
+      }
+    },
+    "gpt-5-5.1-reasoning": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ],
+            "summaries": [
+              "auto",
+              "concise",
+              "detailed"
+            ],
+            "visible_summary": true
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ],
+          "overrides": {
+            "capabilities": {
+              "reasoning": {
+                "available": true,
+                "summaries": [
+                  "auto",
+                  "concise",
+                  "detailed"
+                ],
+                "modes": [
+                  "enabled",
+                  "off"
+                ],
+                "visible_summary": true
+              }
+            },
+            "supported_parameters": [
+              "reasoning_summary"
+            ],
+            "parameter_mappings": [
+              {
+                "normalized": "reasoning_summary",
+                "wire_name": "reasoning.summary"
+              }
+            ],
+            "parameter_values": {
+              "reasoning_summary": [
+                "auto",
+                "concise",
+                "detailed"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "gpt-5-5.2plus-reasoning": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ],
+            "summaries": [
+              "auto",
+              "concise",
+              "detailed"
+            ],
+            "visible_summary": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ]
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ],
+          "overrides": {
+            "capabilities": {
+              "reasoning": {
+                "available": true,
+                "summaries": [
+                  "auto",
+                  "concise",
+                  "detailed"
+                ],
+                "modes": [
+                  "enabled",
+                  "off"
+                ],
+                "visible_summary": true,
+                "efforts": [
+                  "low",
+                  "medium",
+                  "high",
+                  "xhigh"
+                ]
+              }
+            },
+            "supported_parameters": [
+              "reasoning_summary"
+            ],
+            "parameter_mappings": [
+              {
+                "normalized": "reasoning_summary",
+                "wire_name": "reasoning.summary"
+              }
+            ],
+            "parameter_values": {
+              "reasoning_summary": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "reasoning_effort": [
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "o1-reasoning": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ]
+        }
+      }
+    },
+    "o3plus-reasoning": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ],
+            "summaries": [
+              "auto",
+              "concise",
+              "detailed"
+            ],
+            "visible_summary": true
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ],
+          "overrides": {
+            "capabilities": {
+              "reasoning": {
+                "available": true,
+                "summaries": [
+                  "auto",
+                  "concise",
+                  "detailed"
+                ],
+                "modes": [
+                  "enabled",
+                  "off"
+                ],
+                "visible_summary": true
+              }
+            },
+            "supported_parameters": [
+              "reasoning_summary"
+            ],
+            "parameter_mappings": [
+              {
+                "normalized": "reasoning_summary",
+                "wire_name": "reasoning.summary"
+              }
+            ],
+            "parameter_values": {
+              "reasoning_summary": [
+                "auto",
+                "concise",
+                "detailed"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "gpt-5-5.2plus-codex-backed": {
+      "model_defaults": {
+        "capabilities": {
+          "tool_use": true,
+          "structured_output": true,
+          "streaming": true,
+          "vision": true,
+          "reasoning": {
+            "available": true,
+            "modes": [
+              "enabled",
+              "off"
+            ],
+            "summaries": [
+              "auto",
+              "concise",
+              "detailed"
+            ],
+            "visible_summary": true,
+            "efforts": [
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ]
+          }
+        }
+      },
+      "exposure_defaults": {
+        "openai-responses": {
+          "profiles": [
+            "responses_reasoning_basic"
+          ],
+          "overrides": {
+            "capabilities": {
+              "reasoning": {
+                "available": true,
+                "summaries": [
+                  "auto",
+                  "concise",
+                  "detailed"
+                ],
+                "modes": [
+                  "enabled",
+                  "off"
+                ],
+                "visible_summary": true,
+                "efforts": [
+                  "low",
+                  "medium",
+                  "high",
+                  "xhigh"
+                ]
+              }
+            },
+            "supported_parameters": [
+              "reasoning_summary"
+            ],
+            "parameter_mappings": [
+              {
+                "normalized": "reasoning_summary",
+                "wire_name": "reasoning.summary"
+              }
+            ],
+            "parameter_values": {
+              "reasoning_summary": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "reasoning_effort": [
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ]
+            }
+          }
         }
       }
     }
@@ -477,7 +765,7 @@
     },
     {
       "slug": "gpt-5-chat-latest",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-pre-5.1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 128000,
@@ -505,7 +793,7 @@
     },
     {
       "slug": "gpt-5-codex",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-pre-5.1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -533,7 +821,7 @@
     },
     {
       "slug": "gpt-5-mini",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-pre-5.1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -561,7 +849,7 @@
     },
     {
       "slug": "gpt-5-nano",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-pre-5.1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -589,7 +877,7 @@
     },
     {
       "slug": "gpt-5-pro",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-pre-5.1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -603,8 +891,6 @@
           "reasoning": {
             "available": true,
             "efforts": [
-              "low",
-              "medium",
               "high"
             ],
             "modes": [
@@ -613,11 +899,27 @@
             ]
           }
         }
+      },
+      "exposure_overrides": {
+        "openai-responses": {
+          "capabilities": {
+            "reasoning": {
+              "efforts": [
+                "high"
+              ]
+            }
+          },
+          "parameter_values": {
+            "reasoning_effort": [
+              "high"
+            ]
+          }
+        }
       }
     },
     {
       "slug": "gpt-5.1-chat-latest",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 128000,
@@ -645,7 +947,7 @@
     },
     {
       "slug": "gpt-5.1-codex-max",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -673,7 +975,7 @@
     },
     {
       "slug": "gpt-5.1-codex-mini",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -701,7 +1003,7 @@
     },
     {
       "slug": "gpt-5.1-codex",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -729,7 +1031,7 @@
     },
     {
       "slug": "gpt-5.1",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -743,6 +1045,7 @@
           "reasoning": {
             "available": true,
             "efforts": [
+              "none",
               "low",
               "medium",
               "high"
@@ -753,11 +1056,43 @@
             ]
           }
         }
+      },
+      "exposure_overrides": {
+        "openai-responses": {
+          "capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "none",
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            }
+          },
+          "parameter_values": {
+            "reasoning_effort": [
+              "none",
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          }
+        }
       }
     },
     {
       "slug": "gpt-5.2-chat-latest",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.2plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 128000,
@@ -785,7 +1120,7 @@
     },
     {
       "slug": "gpt-5.2-codex",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.2plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -813,7 +1148,7 @@
     },
     {
       "slug": "gpt-5.2-pro",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.2plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -841,7 +1176,7 @@
     },
     {
       "slug": "gpt-5.2",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.2plus-codex-backed",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -900,7 +1235,7 @@
     },
     {
       "slug": "gpt-5.3-chat-latest",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.2plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 128000,
@@ -928,7 +1263,7 @@
     },
     {
       "slug": "gpt-5.3-codex",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.2plus-codex-backed",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -952,11 +1287,44 @@
             ]
           }
         }
+      },
+      "exposure_overrides": {
+        "openai-responses": {
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "capabilities": {
+            "reasoning": {
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "visible_summary": true
+            }
+          }
+        }
       }
     },
     {
       "slug": "gpt-5.4-mini",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.2plus-codex-backed",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -984,7 +1352,7 @@
     },
     {
       "slug": "gpt-5.4-nano",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.2plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -1012,7 +1380,7 @@
     },
     {
       "slug": "gpt-5.4-pro",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.2plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 50000,
@@ -1040,7 +1408,7 @@
     },
     {
       "slug": "gpt-5.4",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-5.2plus-codex-backed",
       "model_overrides": {
         "limits": {
           "context_window": 50000,
@@ -1064,11 +1432,29 @@
             ]
           }
         }
+      },
+      "exposure_overrides": {
+        "openai-responses": {
+          "capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            }
+          }
+        }
       }
     },
     {
       "slug": "gpt-5",
-      "family": "gpt-5-reasoning",
+      "family": "gpt-5-pre-5.1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 400000,
@@ -1096,7 +1482,7 @@
     },
     {
       "slug": "o1-pro",
-      "family": "o-series-reasoning",
+      "family": "o1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 200000,
@@ -1124,7 +1510,7 @@
     },
     {
       "slug": "o1",
-      "family": "o-series-reasoning",
+      "family": "o1-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 200000,
@@ -1152,7 +1538,7 @@
     },
     {
       "slug": "o3-deep-research",
-      "family": "o-series-reasoning",
+      "family": "o3plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 200000,
@@ -1180,7 +1566,7 @@
     },
     {
       "slug": "o3-mini",
-      "family": "o-series-reasoning",
+      "family": "o3plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 200000,
@@ -1208,7 +1594,7 @@
     },
     {
       "slug": "o3-pro",
-      "family": "o-series-reasoning",
+      "family": "o3plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 200000,
@@ -1236,7 +1622,7 @@
     },
     {
       "slug": "o3",
-      "family": "o-series-reasoning",
+      "family": "o3plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 200000,
@@ -1264,7 +1650,7 @@
     },
     {
       "slug": "o4-mini-deep-research",
-      "family": "o-series-reasoning",
+      "family": "o3plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 200000,
@@ -1292,7 +1678,7 @@
     },
     {
       "slug": "o4-mini",
-      "family": "o-series-reasoning",
+      "family": "o3plus-reasoning",
       "model_overrides": {
         "limits": {
           "context_window": 200000,

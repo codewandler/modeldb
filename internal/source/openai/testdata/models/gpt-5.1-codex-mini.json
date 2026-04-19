@@ -1,8 +1,0 @@
-{
-  "slug": "gpt-5.1-codex-mini",
-  "context_window": 400000,
-  "max_output": 128000,
-  "structured_output": true,
-  "reasoning_effort": true,
-  "vision": true
-}
