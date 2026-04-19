@@ -150,7 +150,7 @@ type anthropicModelEntry struct {
 		} `json:"context_management"`
 		Effort struct {
 			Supported bool `json:"supported"`
-			Low struct {
+			Low       struct {
 				Supported bool `json:"supported"`
 			} `json:"low"`
 			Medium struct {
@@ -159,6 +159,9 @@ type anthropicModelEntry struct {
 			High struct {
 				Supported bool `json:"supported"`
 			} `json:"high"`
+			XHigh struct {
+				Supported bool `json:"supported"`
+			} `json:"xhigh"`
 			Max struct {
 				Supported bool `json:"supported"`
 			} `json:"max"`
@@ -237,13 +240,13 @@ func (s AnthropicAPISource) loadPayload(ctx context.Context) (anthropicModelsPay
 
 func capabilitiesFromAnthropicAPI(item anthropicModelEntry) Capabilities {
 	return Capabilities{
-		Reasoning:         reasoningFromAnthropicAPI(item),
-		ToolUse:           true,
-		StructuredOutput:  item.Capabilities.StructuredOutputs.Supported,
-		Vision:            item.Capabilities.ImageInput.Supported,
-		Streaming:         true,
-		Caching:           item.Capabilities.ContextManagement.Supported,
-		Temperature:       true,
+		Reasoning:        reasoningFromAnthropicAPI(item),
+		ToolUse:          true,
+		StructuredOutput: item.Capabilities.StructuredOutputs.Supported,
+		Vision:           item.Capabilities.ImageInput.Supported,
+		Streaming:        true,
+		Caching:          item.Capabilities.ContextManagement.Supported,
+		Temperature:      true,
 	}
 }
 
@@ -253,7 +256,7 @@ func reasoningFromAnthropicAPI(item anthropicModelEntry) *ReasoningCapability {
 	}
 	r := &ReasoningCapability{
 		Available: item.Capabilities.Thinking.Supported,
-				Adaptive:  item.Capabilities.Thinking.Types.Adaptive.Supported,
+		Adaptive:  item.Capabilities.Thinking.Types.Adaptive.Supported,
 	}
 	if item.Capabilities.Thinking.Types.Enabled.Supported {
 		r.Modes = append(r.Modes, ReasoningModeEnabled, ReasoningModeOff)
@@ -270,10 +273,30 @@ func reasoningFromAnthropicAPI(item anthropicModelEntry) *ReasoningCapability {
 	if item.Capabilities.Effort.High.Supported {
 		r.Efforts = append(r.Efforts, ReasoningEffortHigh)
 	}
+	if item.Capabilities.Effort.XHigh.Supported {
+		r.Efforts = append(r.Efforts, ReasoningEffortXHigh)
+	}
 	if item.Capabilities.Effort.Max.Supported {
 		r.Efforts = append(r.Efforts, ReasoningEffortMax)
 	}
+	applyAnthropicReasoningOverrides(item.ID, r)
 	return r
+}
+
+func applyAnthropicReasoningOverrides(id string, r *ReasoningCapability) {
+	if r == nil {
+		return
+	}
+	switch strings.TrimSpace(id) {
+	case "claude-opus-4-7":
+		r.Adaptive = true
+		r.AdaptiveOnly = true
+		r.Modes = mergeReasoningModes([]ReasoningMode{ReasoningModeAdaptive, ReasoningModeOff}, nil)
+		r.Efforts = dedupeEfforts(append(r.Efforts, ReasoningEffortXHigh))
+		r.DefaultDisplay = "omitted"
+	case "claude-opus-4-6", "claude-sonnet-4-6":
+		r.DefaultDisplay = "summarized"
+	}
 }
 
 func anthropicInputModalities(item anthropicModelEntry) []string {
@@ -466,6 +489,9 @@ func anthropicParameterValues(item anthropicModelEntry) map[string][]string {
 		if item.Capabilities.Effort.High.Supported {
 			efforts = append(efforts, string(ReasoningEffortHigh))
 		}
+		if item.Capabilities.Effort.XHigh.Supported || strings.TrimSpace(item.ID) == "claude-opus-4-7" {
+			efforts = append(efforts, string(ReasoningEffortXHigh))
+		}
 		if item.Capabilities.Effort.Max.Supported {
 			efforts = append(efforts, string(ReasoningEffortMax))
 		}
@@ -481,6 +507,9 @@ func anthropicParameterValues(item anthropicModelEntry) map[string][]string {
 		if item.Capabilities.Thinking.Types.Adaptive.Supported {
 			modes = append(modes, string(ReasoningModeAdaptive))
 		}
+		if strings.TrimSpace(item.ID) == "claude-opus-4-7" {
+			modes = []string{string(ReasoningModeAdaptive), string(ReasoningModeOff)}
+		}
 		if len(modes) > 0 {
 			values["thinking.mode"] = modes
 		}
@@ -490,7 +519,6 @@ func anthropicParameterValues(item anthropicModelEntry) map[string][]string {
 	}
 	return values
 }
-
 
 func anthropicParameterMappings(item anthropicModelEntry) []ParameterMapping {
 	mappings := []ParameterMapping{{Normalized: ParamMessages, WireName: "messages"}}

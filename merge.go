@@ -325,12 +325,20 @@ func mergeReasoningCapability(a, b *ReasoningCapability) *ReasoningCapability {
 	if b == nil {
 		return a
 	}
+	defaultDisplay := a.DefaultDisplay
+	if defaultDisplay == "" {
+		defaultDisplay = b.DefaultDisplay
+	}
 	return &ReasoningCapability{
-		Available:   a.Available || b.Available,
-		Efforts:     mergeReasoningEfforts(a.Efforts, b.Efforts),
-		Modes:       mergeReasoningModes(a.Modes, b.Modes),
-		Interleaved: a.Interleaved || b.Interleaved,
-		Adaptive:    a.Adaptive || b.Adaptive,
+		Available:      a.Available || b.Available,
+		Efforts:        mergeReasoningEfforts(a.Efforts, b.Efforts),
+		Summaries:      mergeReasoningSummaries(a.Summaries, b.Summaries),
+		Modes:          mergeReasoningModes(a.Modes, b.Modes),
+		VisibleSummary: a.VisibleSummary || b.VisibleSummary,
+		Interleaved:    a.Interleaved || b.Interleaved,
+		Adaptive:       a.Adaptive || b.Adaptive,
+		AdaptiveOnly:   a.AdaptiveOnly || b.AdaptiveOnly,
+		DefaultDisplay: defaultDisplay,
 	}
 }
 
@@ -338,6 +346,18 @@ func mergeReasoningEfforts(a, b []ReasoningEffortLevel) []ReasoningEffortLevel {
 	seen := map[ReasoningEffortLevel]bool{}
 	out := make([]ReasoningEffortLevel, 0, len(a)+len(b))
 	for _, v := range append(append([]ReasoningEffortLevel{}, a...), b...) {
+		if !seen[v] {
+			seen[v] = true
+			out = append(out, v)
+		}
+	}
+	return out
+}
+
+func mergeReasoningSummaries(a, b []ReasoningSummaryValue) []ReasoningSummaryValue {
+	seen := map[ReasoningSummaryValue]bool{}
+	out := make([]ReasoningSummaryValue, 0, len(a)+len(b))
+	for _, v := range append(append([]ReasoningSummaryValue{}, a...), b...) {
 		if !seen[v] {
 			seen[v] = true
 			out = append(out, v)

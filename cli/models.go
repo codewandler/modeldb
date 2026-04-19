@@ -174,8 +174,12 @@ func matchModelQuery(match modeldb.ModelMatch, query string) bool {
 		search = append(search, offering.Service.ID, offering.Service.Name, offering.Offering.WireModelID)
 		for _, exposure := range offering.Offering.Exposures {
 			search = append(search, string(exposure.APIType))
-			for _, p := range exposure.SupportedParameters { search = append(search, string(p)) }
-			for _, m := range exposure.ParameterMappings { search = append(search, m.WireName) }
+			for _, p := range exposure.SupportedParameters {
+				search = append(search, string(p))
+			}
+			for _, m := range exposure.ParameterMappings {
+				search = append(search, m.WireName)
+			}
 		}
 		for _, alias := range offering.Offering.Aliases {
 			search = append(search, alias)
@@ -428,7 +432,6 @@ func capabilityNames(caps modeldb.Capabilities) []string {
 	return out
 }
 
-
 func capabilitySummary(caps modeldb.Capabilities) string {
 	names := capabilityNames(caps)
 	if len(names) == 0 {
@@ -459,6 +462,12 @@ func capabilitySummary(caps modeldb.Capabilities) string {
 				modes = append(modes, string(mode))
 			}
 			parts = append(parts, "modes=["+strings.Join(modes, ",")+"]")
+		}
+		if caps.Reasoning.AdaptiveOnly {
+			parts = append(parts, "adaptive_only=true")
+		}
+		if caps.Reasoning.DefaultDisplay != "" {
+			parts = append(parts, "default_display="+caps.Reasoning.DefaultDisplay)
 		}
 	}
 	return strings.Join(parts, "; ")
@@ -531,7 +540,6 @@ func completeKeyPart(c modeldb.Catalog, pick func(modeldb.ModelKey) string) []st
 	return values
 }
 
-
 func completeAPITypes(c modeldb.Catalog) []string {
 	seen := map[string]bool{}
 	for _, offering := range c.Offerings {
@@ -548,7 +556,6 @@ func completeAPITypes(c modeldb.Catalog) []string {
 	sort.Strings(out)
 	return out
 }
-
 
 func joinNormalizedParameters(values []modeldb.NormalizedParameter) string {
 	parts := make([]string, 0, len(values))

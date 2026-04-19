@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+## v0.11.1 - 2026-04-19
+
+### Changed
+
+- Anthropic Claude Opus 4.7 now models adaptive-only reasoning semantics.
+- Anthropic Claude Opus 4.7 now exposes the `xhigh` reasoning effort tier.
+- Anthropic Claude Opus 4.7 now carries `default_display=omitted` reasoning metadata.
+- Anthropic Claude Opus 4.6 and Claude Sonnet 4.6 now carry `default_display=summarized` reasoning metadata.
+- Reasoning capability merge now preserves summary/display metadata that was previously dropped during catalog merges.
+
+### Model Changes
+
+- `catalog.json` was regenerated for updated Anthropic Claude 4.x reasoning metadata.
+- Anthropic Opus 4.7 offerings now expose `thinking.mode=[adaptive,off]` and `reasoning_effort` including `xhigh`.
+- Regenerated catalog provenance timestamps and preserved reasoning summary fields may produce broader catalog diff churn than the Anthropic-only metadata changes.
+
 ## v0.11.0 - 2026-04-19
 
 ### Added

@@ -48,6 +48,8 @@ type ReasoningCapability struct {
 	VisibleSummary bool                    `json:"visible_summary,omitempty"`
 	Interleaved    bool                    `json:"interleaved,omitempty"`
 	Adaptive       bool                    `json:"adaptive,omitempty"`
+	AdaptiveOnly   bool                    `json:"adaptive_only,omitempty"`
+	DefaultDisplay string                  `json:"default_display,omitempty"`
 }
 
 type ReasoningEffortLevel string
@@ -158,18 +160,18 @@ type Offering struct {
 type NormalizedParameter string
 
 const (
-	ParamMessages        NormalizedParameter = "messages"
-	ParamThinking        NormalizedParameter = "thinking"
-	ParamThinkingMode    NormalizedParameter = "thinking.mode"
-	ParamReasoningEffort NormalizedParameter = "reasoning_effort"
-	ParamResponseFormat  NormalizedParameter = "response_format"
-	ParamTools           NormalizedParameter = "tools"
-	ParamToolChoice      NormalizedParameter = "tool_choice"
-	ParamTemperature     NormalizedParameter = "temperature"
-	ParamSeed            NormalizedParameter = "seed"
-	ParamLogprobs        NormalizedParameter = "logprobs"
-	ParamParallelTools   NormalizedParameter = "parallel_tool_calls"
-	ParamWebSearch       NormalizedParameter = "web_search"
+	ParamMessages         NormalizedParameter = "messages"
+	ParamThinking         NormalizedParameter = "thinking"
+	ParamThinkingMode     NormalizedParameter = "thinking.mode"
+	ParamReasoningEffort  NormalizedParameter = "reasoning_effort"
+	ParamResponseFormat   NormalizedParameter = "response_format"
+	ParamTools            NormalizedParameter = "tools"
+	ParamToolChoice       NormalizedParameter = "tool_choice"
+	ParamTemperature      NormalizedParameter = "temperature"
+	ParamSeed             NormalizedParameter = "seed"
+	ParamLogprobs         NormalizedParameter = "logprobs"
+	ParamParallelTools    NormalizedParameter = "parallel_tool_calls"
+	ParamWebSearch        NormalizedParameter = "web_search"
 	ParamReasoningSummary NormalizedParameter = "reasoning_summary"
 )
 
@@ -179,13 +181,13 @@ type ParameterMapping struct {
 }
 
 type OfferingExposure struct {
-	APIType                     APIType                `json:"api_type"`
-	ExposedCapabilities         *Capabilities          `json:"exposed_capabilities,omitempty"`
-	SupportedParameters         []NormalizedParameter  `json:"supported_parameters,omitempty"`
-	ParameterMappings           []ParameterMapping     `json:"parameter_mappings,omitempty"`
-	ParameterValues             map[string][]string    `json:"parameter_values,omitempty"`
-	DefaultParameters           *DefaultParameters     `json:"default_parameters,omitempty"`
-	Provenance                  []Provenance           `json:"provenance,omitempty"`
+	APIType             APIType               `json:"api_type"`
+	ExposedCapabilities *Capabilities         `json:"exposed_capabilities,omitempty"`
+	SupportedParameters []NormalizedParameter `json:"supported_parameters,omitempty"`
+	ParameterMappings   []ParameterMapping    `json:"parameter_mappings,omitempty"`
+	ParameterValues     map[string][]string   `json:"parameter_values,omitempty"`
+	DefaultParameters   *DefaultParameters    `json:"default_parameters,omitempty"`
+	Provenance          []Provenance          `json:"provenance,omitempty"`
 }
 
 type Runtime struct {
