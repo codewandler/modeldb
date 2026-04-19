@@ -1,0 +1,8 @@
+{
+  "slug": "gpt-4o-mini-search-preview",
+  "context_window": 128000,
+  "max_output": 16384,
+  "structured_output": true,
+  "reasoning_effort": true,
+  "vision": true
+}

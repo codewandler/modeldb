@@ -1,0 +1,8 @@
+{
+  "slug": "gpt-5.4-pro",
+  "context_window": 50000,
+  "max_output": 128000,
+  "structured_output": true,
+  "reasoning_effort": true,
+  "vision": true
+}

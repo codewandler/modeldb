@@ -120,6 +120,7 @@ func (s ModelsDevSource) Fetch(ctx context.Context) (*Fragment, error) {
 					ServiceID:   serviceID,
 					WireModelID: modelID,
 					ModelKey:    key,
+					Exposures: []OfferingExposure{{APIType: APITypeDefault}},
 					Pricing: &Pricing{
 						Input:       entry.Cost.Input,
 						Output:      entry.Cost.Output,
@@ -141,14 +142,22 @@ func (s ModelsDevSource) Fetch(ctx context.Context) (*Fragment, error) {
 }
 
 func capabilitiesFromModelsDev(entry modelsdev.Model) Capabilities {
-	return Capabilities{
-		Reasoning:           entry.Reasoning,
-		ToolUse:             entry.ToolCall,
-		StructuredOutput:    entry.StructuredOutput,
-		Vision:              containsString(entry.Modalities.Input, "image"),
-		InterleavedThinking: entry.Interleaved != nil && entry.Interleaved.Enabled,
-		Temperature:         entry.Temperature,
+	caps := Capabilities{
+		ToolUse:          entry.ToolCall,
+		StructuredOutput: entry.StructuredOutput,
+		Vision:           containsString(entry.Modalities.Input, "image"),
+		Temperature:      entry.Temperature,
 	}
+	if entry.Reasoning || (entry.Interleaved != nil && entry.Interleaved.Enabled) {
+		caps.Reasoning = &ReasoningCapability{
+			Available:   entry.Reasoning,
+			Interleaved: entry.Interleaved != nil && entry.Interleaved.Enabled,
+		}
+		if caps.Reasoning.Interleaved {
+			caps.Reasoning.Modes = append(caps.Reasoning.Modes, ReasoningModeInterleaved)
+		}
+	}
+	return caps
 }
 
 func serviceIDForModelsDevProvider(providerID string) (string, bool) {

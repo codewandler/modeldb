@@ -39,9 +39,12 @@ func TestAnthropicAPISourceFetch(t *testing.T) {
 	assert.True(t, latest.Canonical)
 	assert.Contains(t, latest.Aliases, "claude-sonnet-4-6")
 	assert.Contains(t, latest.Aliases, "sonnet")
-	assert.True(t, latest.Capabilities.Reasoning)
-	assert.True(t, latest.Capabilities.ReasoningEffort)
-	assert.True(t, latest.Capabilities.AdaptiveThinking)
+	if assert.NotNil(t, latest.Capabilities.Reasoning) {
+		assert.True(t, latest.Capabilities.Reasoning.Available)
+		assert.True(t, latest.Capabilities.Reasoning.Adaptive)
+		assert.Contains(t, latest.Capabilities.Reasoning.Modes, ReasoningModeEnabled)
+		assert.Contains(t, latest.Capabilities.Reasoning.Modes, ReasoningModeAdaptive)
+	}
 	assert.True(t, latest.Capabilities.StructuredOutput)
 	assert.Equal(t, 1000000, latest.Limits.ContextWindow)
 	assert.Equal(t, 128000, latest.Limits.MaxOutput)
@@ -56,12 +59,17 @@ func TestAnthropicAPISourceFetch(t *testing.T) {
 	require.True(t, ok)
 	assert.Contains(t, release.Aliases, "claude-sonnet-4-5")
 	assert.NotContains(t, release.Aliases, "sonnet")
-	assert.False(t, release.Capabilities.ReasoningEffort)
+	if assert.NotNil(t, release.Capabilities.Reasoning) { assert.Empty(t, release.Capabilities.Reasoning.Efforts) }
 
 	offering, ok := c.Offerings[OfferingRef{ServiceID: "anthropic", WireModelID: "claude-sonnet-4-6"}]
 	require.True(t, ok)
 	assert.Equal(t, latestKey, offering.ModelKey)
-	assert.Equal(t, []string{"anthropic-messages"}, offering.APITypes)
+	require.Len(t, offering.Exposures, 1)
+	assert.Equal(t, APITypeAnthropicMessages, offering.Exposures[0].APIType)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamThinking)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamReasoningEffort)
+	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamThinkingMode, WireName: "thinking.type"})
+	assert.Contains(t, offering.Exposures[0].ParameterValues["thinking.mode"], "adaptive")
 	assert.Empty(t, offering.Aliases)
 	if assert.NotNil(t, offering.Pricing) {
 		assert.Equal(t, 0.30, offering.Pricing.CachedInput)

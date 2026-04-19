@@ -154,10 +154,25 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 				RawID:      item.ID,
 			}},
 		})
+		caps := capabilitiesFromOpenRouter(item.SupportedParameters, item.Architecture.InputModalities, item.Pricing.InputCacheRead != "")
 		offering := Offering{
 			ServiceID:   "openrouter",
 			WireModelID: item.ID,
 			ModelKey:    key,
+			Exposures: []OfferingExposure{{
+				APIType:             APITypeOpenAIChat,
+				ExposedCapabilities: capabilitiesPtr(caps),
+				SupportedParameters: normalizedParametersFromOpenRouter(item.SupportedParameters),
+				ParameterMappings:   parameterMappingsFromOpenRouter(item.SupportedParameters),
+				ParameterValues:     parameterValuesFromOpenRouter(item.SupportedParameters),
+				DefaultParameters:   convertDefaultParameters(item.DefaultParameters),
+				Provenance: []Provenance{{
+					SourceID:   s.ID(),
+					Authority:  string(AuthorityTrusted),
+					ObservedAt: observedAt,
+					RawID:      item.ID,
+				}},
+			}},
 			Pricing: pricingFromOpenRouter(
 				item.Pricing.Prompt,
 				item.Pricing.Completion,
@@ -172,10 +187,8 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 				item.Pricing.Request,
 				item.Pricing.WebSearch,
 			),
-			LimitsOverride:      limitsPtr(item.TopProvider.ContextLength, item.TopProvider.MaxCompletionTokens),
-			SupportedParameters: item.SupportedParameters,
-			DefaultParameters:   convertDefaultParameters(item.DefaultParameters),
-			PerRequestLimits:    convertPerRequestLimits(item.PerRequestLimits),
+			LimitsOverride:   limitsPtr(item.TopProvider.ContextLength, item.TopProvider.MaxCompletionTokens),
+			PerRequestLimits: convertPerRequestLimits(item.PerRequestLimits),
 			IsModerated:         item.TopProvider.IsModerated,
 			Provenance: []Provenance{{
 				SourceID:   s.ID(),
@@ -195,20 +208,31 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 
 func capabilitiesFromOpenRouter(params []string, inputModalities []string, hasCacheReadPricing bool) Capabilities {
 	return Capabilities{
-		Reasoning:         containsString(params, "reasoning") || containsString(params, "include_reasoning"),
-		ReasoningEffort:   containsString(params, "reasoning_effort"),
+		Reasoning:         reasoningFromOpenRouter(params),
 		ToolUse:           containsString(params, "tools") || containsString(params, "tool_choice"),
 		ParallelToolCalls: containsString(params, "parallel_tool_calls"),
 		StructuredOutput:  containsString(params, "response_format"),
 		StructuredOutputs: containsString(params, "structured_outputs"),
 		Vision:            containsString(inputModalities, "image") || containsString(inputModalities, "video"),
-		Streaming:         true, // OpenRouter always supports streaming
+		Streaming:         true,
 		Caching:           hasCacheReadPricing,
 		Temperature:       containsString(params, "temperature"),
 		Logprobs:          containsString(params, "logprobs"),
 		Seed:              containsString(params, "seed"),
 		WebSearch:         containsString(params, "web_search_options"),
 	}
+}
+
+func reasoningFromOpenRouter(params []string) *ReasoningCapability {
+	hasReasoning := containsString(params, "reasoning") || containsString(params, "include_reasoning") || containsString(params, "reasoning_effort")
+	if !hasReasoning {
+		return nil
+	}
+	r := &ReasoningCapability{Available: true, Modes: []ReasoningMode{ReasoningModeEnabled, ReasoningModeOff}}
+	if containsString(params, "reasoning_effort") {
+		r.Efforts = []ReasoningEffortLevel{ReasoningEffortLow, ReasoningEffortMedium, ReasoningEffortHigh}
+	}
+	return r
 }
 
 func pricingFromOpenRouter(prompt, completion, cacheRead, cacheWrite, reasoning, image, imageToken, imageOutput, audio, audioOutput, request, webSearch string) *Pricing {
@@ -298,4 +322,99 @@ func convertPerRequestLimits(prl *struct {
 		PromptTokens:     prl.PromptTokens,
 		CompletionTokens: prl.CompletionTokens,
 	}
+}
+
+
+func parameterValuesFromOpenRouter(params []string) map[string][]string {
+	values := map[string][]string{}
+	if containsString(params, "reasoning_effort") {
+		values["reasoning_effort"] = []string{string(ReasoningEffortLow), string(ReasoningEffortMedium), string(ReasoningEffortHigh)}
+	}
+	if containsString(params, "reasoning_summary") {
+		values["reasoning_summary"] = []string{string(ReasoningSummaryAuto), string(ReasoningSummaryConcise), string(ReasoningSummaryDetailed)}
+	}
+	if len(values) == 0 {
+		return nil
+	}
+	return values
+}
+
+
+func normalizedParametersFromOpenRouter(params []string) []NormalizedParameter {
+	out := make([]NormalizedParameter, 0)
+	if containsString(params, "tools") {
+		out = append(out, ParamTools)
+	}
+	if containsString(params, "tool_choice") {
+		out = append(out, ParamToolChoice)
+	}
+	if containsString(params, "temperature") {
+		out = append(out, ParamTemperature)
+	}
+	if containsString(params, "response_format") {
+		out = append(out, ParamResponseFormat)
+	}
+	if containsString(params, "reasoning_effort") {
+		out = append(out, ParamReasoningEffort)
+	}
+	if containsString(params, "reasoning") || containsString(params, "include_reasoning") {
+		out = append(out, ParamThinking)
+	}
+	if containsString(params, "parallel_tool_calls") {
+		out = append(out, ParamParallelTools)
+	}
+	if containsString(params, "logprobs") {
+		out = append(out, ParamLogprobs)
+	}
+	if containsString(params, "seed") {
+		out = append(out, ParamSeed)
+	}
+	if containsString(params, "web_search_options") {
+		out = append(out, ParamWebSearch)
+	}
+	if containsString(params, "reasoning_summary") {
+		out = append(out, ParamReasoningSummary)
+	}
+	return normalizeNormalizedParameters(out)
+}
+
+func parameterMappingsFromOpenRouter(params []string) []ParameterMapping {
+	out := make([]ParameterMapping, 0)
+	if containsString(params, "tools") {
+		out = append(out, ParameterMapping{Normalized: ParamTools, WireName: "tools"})
+	}
+	if containsString(params, "tool_choice") {
+		out = append(out, ParameterMapping{Normalized: ParamToolChoice, WireName: "tool_choice"})
+	}
+	if containsString(params, "temperature") {
+		out = append(out, ParameterMapping{Normalized: ParamTemperature, WireName: "temperature"})
+	}
+	if containsString(params, "response_format") {
+		out = append(out, ParameterMapping{Normalized: ParamResponseFormat, WireName: "response_format"})
+	}
+	if containsString(params, "reasoning_effort") {
+		out = append(out, ParameterMapping{Normalized: ParamReasoningEffort, WireName: "reasoning_effort"})
+	}
+	if containsString(params, "reasoning") {
+		out = append(out, ParameterMapping{Normalized: ParamThinking, WireName: "reasoning"})
+	}
+	if containsString(params, "include_reasoning") {
+		out = append(out, ParameterMapping{Normalized: ParamThinking, WireName: "include_reasoning"})
+	}
+	if containsString(params, "parallel_tool_calls") {
+		out = append(out, ParameterMapping{Normalized: ParamParallelTools, WireName: "parallel_tool_calls"})
+	}
+	if containsString(params, "logprobs") {
+		out = append(out, ParameterMapping{Normalized: ParamLogprobs, WireName: "logprobs"})
+	}
+	if containsString(params, "seed") {
+		out = append(out, ParameterMapping{Normalized: ParamSeed, WireName: "seed"})
+	}
+	if containsString(params, "web_search_options") {
+		out = append(out, ParameterMapping{Normalized: ParamWebSearch, WireName: "web_search_options"})
+	}
+	if containsString(params, "reasoning_summary") {
+		out = append(out, ParameterMapping{Normalized: ParamReasoningSummary, WireName: "reasoning_summary"})
+	}
+	return out
 }

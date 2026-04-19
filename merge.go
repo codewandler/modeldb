@@ -165,8 +165,7 @@ func mergeOffering(dst *Catalog, offering Offering) error {
 	offering.WireModelID = strings.TrimSpace(offering.WireModelID)
 	offering.ModelKey = NormalizeKey(offering.ModelKey)
 	offering.Aliases = normalizeStrings(offering.Aliases)
-	offering.APITypes = normalizeStrings(offering.APITypes)
-	offering.SupportedParameters = normalizeStrings(offering.SupportedParameters)
+	offering.Exposures = normalizeOfferingExposures(offering.Exposures)
 
 	ref := OfferingRef{ServiceID: offering.ServiceID, WireModelID: offering.WireModelID}
 	existing, ok := dst.Offerings[ref]
@@ -180,15 +179,13 @@ func mergeOffering(dst *Catalog, offering Offering) error {
 
 	var err error
 	existing.Aliases = mergeStringSlices(existing.Aliases, offering.Aliases)
-	existing.APITypes = mergeStringSlices(existing.APITypes, offering.APITypes)
 	if existing.Pricing, err = mergePointerField(existing.Pricing, offering.Pricing, "offering.pricing", ref.ServiceID+"/"+ref.WireModelID); err != nil {
 		return err
 	}
 	if existing.LimitsOverride, err = mergePointerField(existing.LimitsOverride, offering.LimitsOverride, "offering.limits_override", ref.ServiceID+"/"+ref.WireModelID); err != nil {
 		return err
 	}
-	existing.SupportedParameters = mergeStringSlices(existing.SupportedParameters, offering.SupportedParameters)
-	if existing.DefaultParameters, err = mergePointerField(existing.DefaultParameters, offering.DefaultParameters, "offering.default_parameters", ref.ServiceID+"/"+ref.WireModelID); err != nil {
+	if existing.Exposures, err = mergeOfferingExposures(existing.Exposures, offering.Exposures, ref.ServiceID+"/"+ref.WireModelID); err != nil {
 		return err
 	}
 	if existing.PerRequestLimits, err = mergePointerField(existing.PerRequestLimits, offering.PerRequestLimits, "offering.per_request_limits", ref.ServiceID+"/"+ref.WireModelID); err != nil {
@@ -306,22 +303,119 @@ func mergeRuntimeAcquisition(dst *ResolvedCatalog, acquisition RuntimeAcquisitio
 
 func mergeCapabilities(a, b Capabilities) Capabilities {
 	return Capabilities{
-		Reasoning:           a.Reasoning || b.Reasoning,
-		ReasoningEffort:     a.ReasoningEffort || b.ReasoningEffort,
-		ToolUse:             a.ToolUse || b.ToolUse,
-		ParallelToolCalls:   a.ParallelToolCalls || b.ParallelToolCalls,
-		StructuredOutput:    a.StructuredOutput || b.StructuredOutput,
-		StructuredOutputs:   a.StructuredOutputs || b.StructuredOutputs,
-		Vision:              a.Vision || b.Vision,
-		Streaming:           a.Streaming || b.Streaming,
-		Caching:             a.Caching || b.Caching,
-		InterleavedThinking: a.InterleavedThinking || b.InterleavedThinking,
-		AdaptiveThinking:    a.AdaptiveThinking || b.AdaptiveThinking,
-		Temperature:         a.Temperature || b.Temperature,
-		Logprobs:            a.Logprobs || b.Logprobs,
-		Seed:                a.Seed || b.Seed,
-		WebSearch:           a.WebSearch || b.WebSearch,
+		Reasoning:         mergeReasoningCapability(a.Reasoning, b.Reasoning),
+		ToolUse:           a.ToolUse || b.ToolUse,
+		ParallelToolCalls: a.ParallelToolCalls || b.ParallelToolCalls,
+		StructuredOutput:  a.StructuredOutput || b.StructuredOutput,
+		StructuredOutputs: a.StructuredOutputs || b.StructuredOutputs,
+		Vision:            a.Vision || b.Vision,
+		Streaming:         a.Streaming || b.Streaming,
+		Caching:           a.Caching || b.Caching,
+		Temperature:       a.Temperature || b.Temperature,
+		Logprobs:          a.Logprobs || b.Logprobs,
+		Seed:              a.Seed || b.Seed,
+		WebSearch:         a.WebSearch || b.WebSearch,
 	}
+}
+
+func mergeReasoningCapability(a, b *ReasoningCapability) *ReasoningCapability {
+	if a == nil {
+		return b
+	}
+	if b == nil {
+		return a
+	}
+	return &ReasoningCapability{
+		Available:   a.Available || b.Available,
+		Efforts:     mergeReasoningEfforts(a.Efforts, b.Efforts),
+		Modes:       mergeReasoningModes(a.Modes, b.Modes),
+		Interleaved: a.Interleaved || b.Interleaved,
+		Adaptive:    a.Adaptive || b.Adaptive,
+	}
+}
+
+func mergeReasoningEfforts(a, b []ReasoningEffortLevel) []ReasoningEffortLevel {
+	seen := map[ReasoningEffortLevel]bool{}
+	out := make([]ReasoningEffortLevel, 0, len(a)+len(b))
+	for _, v := range append(append([]ReasoningEffortLevel{}, a...), b...) {
+		if !seen[v] {
+			seen[v] = true
+			out = append(out, v)
+		}
+	}
+	return out
+}
+
+func mergeReasoningModes(a, b []ReasoningMode) []ReasoningMode {
+	seen := map[ReasoningMode]bool{}
+	out := make([]ReasoningMode, 0, len(a)+len(b))
+	for _, v := range append(append([]ReasoningMode{}, a...), b...) {
+		if !seen[v] {
+			seen[v] = true
+			out = append(out, v)
+		}
+	}
+	return out
+}
+
+func normalizeOfferingExposures(exposures []OfferingExposure) []OfferingExposure {
+	for i := range exposures {
+		exposures[i].SupportedParameters = normalizeNormalizedParameters(exposures[i].SupportedParameters)
+		if exposures[i].ParameterValues != nil {
+			for k, v := range exposures[i].ParameterValues {
+				exposures[i].ParameterValues[k] = normalizeStrings(v)
+			}
+		}
+	}
+	return exposures
+}
+
+func mergeOfferingExposures(a, b []OfferingExposure, id string) ([]OfferingExposure, error) {
+	if len(a) == 0 {
+		return b, nil
+	}
+	if len(b) == 0 {
+		return a, nil
+	}
+	byType := map[APIType]OfferingExposure{}
+	for _, exposure := range a {
+		byType[exposure.APIType] = exposure
+	}
+	for _, exposure := range b {
+		existing, ok := byType[exposure.APIType]
+		if !ok {
+			byType[exposure.APIType] = exposure
+			continue
+		}
+		var err error
+		existing.SupportedParameters = mergeNormalizedParameters(existing.SupportedParameters, exposure.SupportedParameters)
+		existing.ParameterMappings = mergeParameterMappings(existing.ParameterMappings, exposure.ParameterMappings)
+		if existing.DefaultParameters, err = mergePointerField(existing.DefaultParameters, exposure.DefaultParameters, "offering.exposure.default_parameters", id+"/"+string(exposure.APIType)); err != nil {
+			return nil, err
+		}
+		existing.ExposedCapabilities = capabilitiesPtr(mergeCapabilities(valueOrZeroCapabilities(existing.ExposedCapabilities), valueOrZeroCapabilities(exposure.ExposedCapabilities)))
+		if existing.ParameterValues == nil {
+			existing.ParameterValues = exposure.ParameterValues
+		} else {
+			for k, v := range exposure.ParameterValues {
+				existing.ParameterValues[k] = mergeStringSlices(existing.ParameterValues[k], v)
+			}
+		}
+		existing.Provenance = append(existing.Provenance, exposure.Provenance...)
+		byType[exposure.APIType] = existing
+	}
+	out := make([]OfferingExposure, 0, len(byType))
+	for _, exposure := range byType {
+		out = append(out, exposure)
+	}
+	return out, nil
+}
+
+func valueOrZeroCapabilities(c *Capabilities) Capabilities {
+	if c == nil {
+		return Capabilities{}
+	}
+	return *c
 }
 
 func mergeLimits(a, b Limits, id string) (Limits, error) {
@@ -376,7 +470,10 @@ func mergeIntField(existing, incoming int, field, id string) (int, error) {
 	if incoming == 0 || existing == incoming {
 		return existing, nil
 	}
-	return existing, fmt.Errorf("%s conflict for %s: %d vs %d", field, id, existing, incoming)
+	if incoming > existing {
+		return incoming, nil
+	}
+	return existing, nil
 }
 
 func mergePointerField[T any](existing, incoming *T, field, id string) (*T, error) {
@@ -458,4 +555,43 @@ func ensureResolvedMaps(dst *ResolvedCatalog) {
 	if dst.RuntimeAcquisition == nil {
 		dst.RuntimeAcquisition = make(map[RuntimeAcquisitionKey]RuntimeAcquisition)
 	}
+}
+
+func normalizeNormalizedParameters(values []NormalizedParameter) []NormalizedParameter {
+	seen := map[NormalizedParameter]bool{}
+	out := make([]NormalizedParameter, 0, len(values))
+	for _, v := range values {
+		nv := normalizeNormalizedParameter(v)
+		if nv == "" || seen[nv] {
+			continue
+		}
+		seen[nv] = true
+		out = append(out, nv)
+	}
+	return out
+}
+
+func normalizeNormalizedParameter(v NormalizedParameter) NormalizedParameter {
+	s := strings.TrimSpace(string(v))
+	s = strings.ReplaceAll(s, "-", "_")
+	s = strings.ToLower(s)
+	return NormalizedParameter(s)
+}
+
+func mergeNormalizedParameters(a, b []NormalizedParameter) []NormalizedParameter {
+	return normalizeNormalizedParameters(append(append([]NormalizedParameter{}, a...), b...))
+}
+
+func mergeParameterMappings(a, b []ParameterMapping) []ParameterMapping {
+	seen := map[string]bool{}
+	out := make([]ParameterMapping, 0, len(a)+len(b))
+	for _, m := range append(append([]ParameterMapping{}, a...), b...) {
+		key := string(m.Normalized) + "|" + m.WireName
+		if seen[key] {
+			continue
+		}
+		seen[key] = true
+		out = append(out, m)
+	}
+	return out
 }

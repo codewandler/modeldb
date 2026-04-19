@@ -24,6 +24,8 @@ type modelsFlags struct {
 	name        string
 	creator     string
 	service     string
+	apiType     string
+	parameter   string
 	family      string
 	series      string
 	version     string
@@ -68,6 +70,8 @@ func NewModelsCommand(opts ModelsCommandOptions) *cobra.Command {
 				Name:        flags.name,
 				Creator:     flags.creator,
 				ServiceID:   flags.service,
+				APIType:     modeldb.APIType(flags.apiType),
+				Parameter:   modeldb.NormalizedParameter(flags.parameter),
 				Family:      flags.family,
 				Series:      flags.series,
 				Version:     flags.version,
@@ -113,6 +117,8 @@ func NewModelsCommand(opts ModelsCommandOptions) *cobra.Command {
 	cmd.Flags().StringVar(&flags.name, "name", "", "Logical model name or alias")
 	cmd.Flags().StringVar(&flags.creator, "creator", "", "Filter by creator")
 	cmd.Flags().StringVar(&flags.service, "service", "", "Filter by service and expand offerings")
+	cmd.Flags().StringVar(&flags.apiType, "api-type", "", "Filter offerings/exposures by API type")
+	cmd.Flags().StringVar(&flags.parameter, "parameter", "", "Filter offerings/exposures by normalized parameter")
 	cmd.Flags().StringVar(&flags.family, "family", "", "Filter by model family")
 	cmd.Flags().StringVar(&flags.series, "series", "", "Filter by model series")
 	cmd.Flags().StringVar(&flags.version, "version", "", "Filter by model version")
@@ -166,6 +172,11 @@ func matchModelQuery(match modeldb.ModelMatch, query string) bool {
 	}
 	for _, offering := range match.Offerings {
 		search = append(search, offering.Service.ID, offering.Service.Name, offering.Offering.WireModelID)
+		for _, exposure := range offering.Offering.Exposures {
+			search = append(search, string(exposure.APIType))
+			for _, p := range exposure.SupportedParameters { search = append(search, string(p)) }
+			for _, m := range exposure.ParameterMappings { search = append(search, m.WireName) }
+		}
 		for _, alias := range offering.Offering.Aliases {
 			search = append(search, alias)
 		}
@@ -190,6 +201,8 @@ func registerModelsCompletions(cmd *cobra.Command, load func(context.Context) (m
 	}
 	_ = cmd.RegisterFlagCompletionFunc("id", completion(completeModelIDs))
 	_ = cmd.RegisterFlagCompletionFunc("service", completion(completeServiceIDs))
+	_ = cmd.RegisterFlagCompletionFunc("api-type", completion(completeAPITypes))
+	_ = cmd.RegisterFlagCompletionFunc("parameter", completion(completeNormalizedParameters))
 	_ = cmd.RegisterFlagCompletionFunc("creator", completion(completeCreators))
 	_ = cmd.RegisterFlagCompletionFunc("family", completion(completeFamilies))
 	_ = cmd.RegisterFlagCompletionFunc("series", completion(completeSeries))
@@ -225,6 +238,7 @@ func printModelsOfferings(out io.Writer, matches []modeldb.ModelMatch) {
 	}
 	maxID := len("MODEL")
 	maxService := len("SERVICE")
+	maxAPI := len("API TYPES")
 	for _, item := range flat {
 		if len(item.ModelID) > maxID {
 			maxID = len(item.ModelID)
@@ -232,10 +246,13 @@ func printModelsOfferings(out io.Writer, matches []modeldb.ModelMatch) {
 		if len(item.ServiceID) > maxService {
 			maxService = len(item.ServiceID)
 		}
+		if len(item.APITypes) > maxAPI {
+			maxAPI = len(item.APITypes)
+		}
 	}
-	fmt.Fprintf(out, "%-*s  %-*s  %s\n", maxID, "MODEL", maxService, "SERVICE", "WIRE MODEL ID")
+	fmt.Fprintf(out, "%-*s  %-*s  %-*s  %s\n", maxID, "MODEL", maxService, "SERVICE", maxAPI, "API TYPES", "WIRE MODEL ID")
 	for _, item := range flat {
-		fmt.Fprintf(out, "%-*s  %-*s  %s\n", maxID, item.ModelID, maxService, item.ServiceID, item.WireModelID)
+		fmt.Fprintf(out, "%-*s  %-*s  %-*s  %s\n", maxID, item.ModelID, maxService, item.ServiceID, maxAPI, item.APITypes, item.WireModelID)
 	}
 }
 
@@ -278,7 +295,7 @@ func printModelsDetails(out io.Writer, matches []modeldb.ModelMatch, includeOffe
 			fmt.Fprintf(out, "  limits: context_window=%d max_output=%d\n", model.Limits.ContextWindow, model.Limits.MaxOutput)
 		}
 		if caps := capabilityNames(model.Capabilities); len(caps) > 0 {
-			fmt.Fprintf(out, "  capabilities: %s\n", strings.Join(caps, ", "))
+			fmt.Fprintf(out, "  capabilities: %s\n", capabilitySummary(model.Capabilities))
 		}
 		if model.ReferencePricing != nil {
 			fmt.Fprintf(out, "  pricing: input=%s output=%s cached_input=%s cache_write=%s\n",
@@ -292,6 +309,32 @@ func printModelsDetails(out io.Writer, matches []modeldb.ModelMatch, includeOffe
 			fmt.Fprintln(out, "  offerings:")
 			for _, offering := range match.Offerings {
 				fmt.Fprintf(out, "    - %s -> %s\n", offering.Service.ID, offering.Offering.WireModelID)
+				for _, exposure := range offering.Offering.Exposures {
+					fmt.Fprintf(out, "      api_type: %s\n", exposure.APIType)
+					if exposure.ExposedCapabilities != nil {
+						if caps := capabilityNames(*exposure.ExposedCapabilities); len(caps) > 0 {
+							fmt.Fprintf(out, "      capabilities: %s\n", capabilitySummary(*exposure.ExposedCapabilities))
+						}
+					}
+					if len(exposure.SupportedParameters) > 0 {
+						fmt.Fprintf(out, "      supported_parameters: %s\n", joinNormalizedParameters(exposure.SupportedParameters))
+					}
+					if len(exposure.ParameterMappings) > 0 {
+						for _, m := range exposure.ParameterMappings {
+							fmt.Fprintf(out, "      parameter_mapping: %s -> %s\n", m.Normalized, m.WireName)
+						}
+					}
+					if len(exposure.ParameterValues) > 0 {
+						keys := make([]string, 0, len(exposure.ParameterValues))
+						for k := range exposure.ParameterValues {
+							keys = append(keys, k)
+						}
+						sort.Strings(keys)
+						for _, k := range keys {
+							fmt.Fprintf(out, "      parameter_values[%s]: %s\n", k, strings.Join(exposure.ParameterValues[k], ", "))
+						}
+					}
+				}
 			}
 		}
 	}
@@ -320,6 +363,7 @@ type offeringRow struct {
 	ModelID     string
 	ServiceID   string
 	WireModelID string
+	APITypes    string
 }
 
 func flattenOfferings(matches []modeldb.ModelMatch) []offeringRow {
@@ -327,7 +371,12 @@ func flattenOfferings(matches []modeldb.ModelMatch) []offeringRow {
 	for _, match := range matches {
 		id := modelID(match.Model)
 		for _, offering := range match.Offerings {
-			rows = append(rows, offeringRow{ModelID: id, ServiceID: offering.Service.ID, WireModelID: offering.Offering.WireModelID})
+			apiTypes := make([]string, 0, len(offering.Offering.Exposures))
+			for _, exposure := range offering.Offering.Exposures {
+				apiTypes = append(apiTypes, string(exposure.APIType))
+			}
+			sort.Strings(apiTypes)
+			rows = append(rows, offeringRow{ModelID: id, ServiceID: offering.Service.ID, WireModelID: offering.Offering.WireModelID, APITypes: strings.Join(apiTypes, ",")})
 		}
 	}
 	return rows
@@ -353,17 +402,18 @@ func capabilityNames(caps modeldb.Capabilities) []string {
 		name string
 		on   bool
 	}
+	reasoning := caps.Reasoning
 	all := []capability{
-		{"reasoning", caps.Reasoning},
-		{"reasoning_effort", caps.ReasoningEffort},
+		{"reasoning", reasoning != nil && reasoning.Available},
+		{"reasoning_effort", reasoning != nil && len(reasoning.Efforts) > 0},
 		{"tool_use", caps.ToolUse},
 		{"parallel_tool_calls", caps.ParallelToolCalls},
 		{"structured_output", caps.StructuredOutput || caps.StructuredOutputs},
 		{"vision", caps.Vision},
 		{"streaming", caps.Streaming},
 		{"caching", caps.Caching},
-		{"interleaved_thinking", caps.InterleavedThinking},
-		{"adaptive_thinking", caps.AdaptiveThinking},
+		{"interleaved_thinking", reasoning != nil && reasoning.Interleaved},
+		{"adaptive_thinking", reasoning != nil && reasoning.Adaptive},
 		{"temperature", caps.Temperature},
 		{"logprobs", caps.Logprobs},
 		{"seed", caps.Seed},
@@ -376,6 +426,42 @@ func capabilityNames(caps modeldb.Capabilities) []string {
 		}
 	}
 	return out
+}
+
+
+func capabilitySummary(caps modeldb.Capabilities) string {
+	names := capabilityNames(caps)
+	if len(names) == 0 {
+		return ""
+	}
+	parts := []string{strings.Join(names, ", ")}
+	if caps.Reasoning != nil {
+		if caps.Reasoning.VisibleSummary {
+			parts = append(parts, "visible_summary=true")
+		}
+		if len(caps.Reasoning.Efforts) > 0 {
+			efforts := make([]string, 0, len(caps.Reasoning.Efforts))
+			for _, effort := range caps.Reasoning.Efforts {
+				efforts = append(efforts, string(effort))
+			}
+			parts = append(parts, "efforts=["+strings.Join(efforts, ",")+"]")
+		}
+		if len(caps.Reasoning.Summaries) > 0 {
+			summaries := make([]string, 0, len(caps.Reasoning.Summaries))
+			for _, s := range caps.Reasoning.Summaries {
+				summaries = append(summaries, string(s))
+			}
+			parts = append(parts, "summaries=["+strings.Join(summaries, ",")+"]")
+		}
+		if len(caps.Reasoning.Modes) > 0 {
+			modes := make([]string, 0, len(caps.Reasoning.Modes))
+			for _, mode := range caps.Reasoning.Modes {
+				modes = append(modes, string(mode))
+			}
+			parts = append(parts, "modes=["+strings.Join(modes, ",")+"]")
+		}
+	}
+	return strings.Join(parts, "; ")
 }
 
 func formatPrice(v float64) string {
@@ -443,4 +529,48 @@ func completeKeyPart(c modeldb.Catalog, pick func(modeldb.ModelKey) string) []st
 	}
 	sort.Strings(values)
 	return values
+}
+
+
+func completeAPITypes(c modeldb.Catalog) []string {
+	seen := map[string]bool{}
+	for _, offering := range c.Offerings {
+		for _, exposure := range offering.Exposures {
+			if exposure.APIType != "" {
+				seen[string(exposure.APIType)] = true
+			}
+		}
+	}
+	out := make([]string, 0, len(seen))
+	for apiType := range seen {
+		out = append(out, apiType)
+	}
+	sort.Strings(out)
+	return out
+}
+
+
+func joinNormalizedParameters(values []modeldb.NormalizedParameter) string {
+	parts := make([]string, 0, len(values))
+	for _, v := range values {
+		parts = append(parts, string(v))
+	}
+	return strings.Join(parts, ", ")
+}
+
+func completeNormalizedParameters(c modeldb.Catalog) []string {
+	seen := map[string]bool{}
+	for _, offering := range c.Offerings {
+		for _, exposure := range offering.Exposures {
+			for _, p := range exposure.SupportedParameters {
+				seen[string(p)] = true
+			}
+		}
+	}
+	out := make([]string, 0, len(seen))
+	for p := range seen {
+		out = append(out, p)
+	}
+	sort.Strings(out)
+	return out
 }

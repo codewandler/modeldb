@@ -11,6 +11,8 @@ type ModelSelector struct {
 	Name        string
 	Creator     string
 	ServiceID   string
+	APIType     APIType
+	Parameter   NormalizedParameter
 	Family      string
 	Series      string
 	Version     string
@@ -40,11 +42,13 @@ type ModelSelectorNotFoundError struct {
 
 func (e *ModelSelectorNotFoundError) Error() string {
 	return fmt.Sprintf(
-		"no catalog model matches id=%q name=%q creator=%q service=%q family=%q series=%q version=%q release_date=%q",
+		"no catalog model matches id=%q name=%q creator=%q service=%q api_type=%q parameter=%q family=%q series=%q version=%q release_date=%q",
 		e.Selector.ID,
 		e.Selector.Name,
 		e.Selector.Creator,
 		e.Selector.ServiceID,
+		string(e.Selector.APIType),
+		string(e.Selector.Parameter),
 		e.Selector.Family,
 		e.Selector.Series,
 		e.Selector.Version,
@@ -59,11 +63,13 @@ type AmbiguousModelSelectorError struct {
 
 func (e *AmbiguousModelSelectorError) Error() string {
 	return fmt.Sprintf(
-		"ambiguous catalog model selector id=%q name=%q creator=%q service=%q family=%q series=%q version=%q release_date=%q (%d candidates)",
+		"ambiguous catalog model selector id=%q name=%q creator=%q service=%q api_type=%q parameter=%q family=%q series=%q version=%q release_date=%q (%d candidates)",
 		e.Selector.ID,
 		e.Selector.Name,
 		e.Selector.Creator,
 		e.Selector.ServiceID,
+		string(e.Selector.APIType),
+		string(e.Selector.Parameter),
 		e.Selector.Family,
 		e.Selector.Series,
 		e.Selector.Version,
@@ -150,6 +156,28 @@ func selectOfferingsForModel(c Catalog, model ModelRecord, sel ModelSelector) []
 		if sel.ServiceID != "" && offering.ServiceID != sel.ServiceID {
 			continue
 		}
+		if sel.APIType != "" && !offering.HasExposure(sel.APIType) {
+			continue
+		}
+		if sel.Parameter != "" {
+			if sel.APIType == "" {
+				matched := false
+				for _, exposure := range offering.Exposures {
+					if exposure.SupportsParameter(sel.Parameter) {
+						matched = true
+						break
+					}
+				}
+				if !matched {
+					continue
+				}
+			} else {
+				exp := offering.Exposure(sel.APIType)
+				if exp == nil || !exp.SupportsParameter(sel.Parameter) {
+					continue
+				}
+			}
+		}
 		service, ok := c.Services[offering.ServiceID]
 		if !ok {
 			continue
@@ -175,7 +203,7 @@ func selectOfferingsForModel(c Catalog, model ModelRecord, sel ModelSelector) []
 }
 
 func selectorIsZero(sel ModelSelector) bool {
-	return sel.ID == "" && sel.Name == "" && sel.Creator == "" && sel.ServiceID == "" && sel.Family == "" && sel.Series == "" && sel.Version == "" && sel.ReleaseDate == ""
+	return sel.ID == "" && sel.Name == "" && sel.Creator == "" && sel.ServiceID == "" && sel.APIType == "" && sel.Parameter == "" && sel.Family == "" && sel.Series == "" && sel.Version == "" && sel.ReleaseDate == ""
 }
 
 func normalizeModelSelector(sel ModelSelector) ModelSelector {
@@ -183,6 +211,8 @@ func normalizeModelSelector(sel ModelSelector) ModelSelector {
 	sel.Name = normalizeKeyPart(sel.Name)
 	sel.Creator = normalizeKeyPart(sel.Creator)
 	sel.ServiceID = normalizeKeyPart(sel.ServiceID)
+	sel.APIType = APIType(normalizeKeyPart(string(sel.APIType)))
+	sel.Parameter = normalizeNormalizedParameter(sel.Parameter)
 	sel.Family = normalizeKeyPart(sel.Family)
 	sel.Series = normalizeKeyPart(sel.Series)
 	sel.Version = normalizeKeyPart(sel.Version)

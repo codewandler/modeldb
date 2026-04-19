@@ -1,0 +1,6 @@
+{
+  "slug": "gpt-realtime",
+  "structured_output": true,
+  "reasoning_effort": true,
+  "vision": true
+}

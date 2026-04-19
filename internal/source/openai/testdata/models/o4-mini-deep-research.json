@@ -1,0 +1,8 @@
+{
+  "slug": "o4-mini-deep-research",
+  "context_window": 200000,
+  "max_output": 100000,
+  "structured_output": true,
+  "reasoning_effort": true,
+  "vision": true
+}

@@ -50,12 +50,10 @@ func (MiniMaxStaticSource) Fetch(context.Context) (*Fragment, error) {
 			name:    "MiniMax M2.7",
 			aliases: []string{"minimax-m2-7"},
 			capabilities: Capabilities{
-				Reasoning:           true,
-				ToolUse:             true,
-				Streaming:           true,
-				InterleavedThinking: true,
-				AdaptiveThinking:    true,
-				Temperature:         true,
+				Reasoning: &ReasoningCapability{Available: true, Interleaved: true, Adaptive: true, Modes: []ReasoningMode{ReasoningModeInterleaved, ReasoningModeAdaptive}},
+				ToolUse:    true,
+				Streaming:  true,
+				Temperature: true,
 			},
 			limits:  Limits{ContextWindow: 1000000, MaxOutput: 32000},
 			pricing: &Pricing{Input: 2.1, Output: 8.4, CachedInput: 0.42, CacheWrite: 2.625},
@@ -69,7 +67,7 @@ func (MiniMaxStaticSource) Fetch(context.Context) (*Fragment, error) {
 			name:    "MiniMax M2.5",
 			aliases: []string{"minimax-m2-5"},
 			capabilities: Capabilities{
-				Reasoning:   true,
+				Reasoning:   &ReasoningCapability{Available: true},
 				ToolUse:     true,
 				Streaming:   true,
 				Temperature: true,
@@ -86,7 +84,7 @@ func (MiniMaxStaticSource) Fetch(context.Context) (*Fragment, error) {
 			name:    "MiniMax M2.1",
 			aliases: []string{"minimax-m2-1"},
 			capabilities: Capabilities{
-				Reasoning:   true,
+				Reasoning:   &ReasoningCapability{Available: true},
 				ToolUse:     true,
 				Streaming:   true,
 				Temperature: true,
@@ -103,7 +101,7 @@ func (MiniMaxStaticSource) Fetch(context.Context) (*Fragment, error) {
 			name:    "MiniMax M2",
 			aliases: []string{"minimax-m2"},
 			capabilities: Capabilities{
-				Reasoning:   true,
+				Reasoning:   &ReasoningCapability{Available: true},
 				ToolUse:     true,
 				Streaming:   true,
 				Temperature: true,
@@ -180,7 +178,7 @@ func (MiniMaxStaticSource) Fetch(context.Context) (*Fragment, error) {
 				WireModelID: offering.wireID,
 				ModelKey:    offeringKey,
 				Aliases:     offering.aliases,
-				APITypes:    []string{"anthropic-messages"},
+				Exposures:   []OfferingExposure{{APIType: APITypeAnthropicMessages}},
 				Pricing:     offeringPricing,
 				Provenance: []Provenance{{
 					SourceID:   minimaxSourceID,

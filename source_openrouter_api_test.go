@@ -46,7 +46,7 @@ func TestOpenRouterSourceFetch(t *testing.T) {
 	assert.Equal(t, "Claude", model.Tokenizer)
 	assert.True(t, model.Capabilities.ToolUse)
 	assert.True(t, model.Capabilities.StructuredOutput)
-	assert.True(t, model.Capabilities.Reasoning)
+	if assert.NotNil(t, model.Capabilities.Reasoning) { assert.True(t, model.Capabilities.Reasoning.Available) }
 	assert.True(t, model.Capabilities.Logprobs)
 	assert.True(t, model.Capabilities.Vision)
 
@@ -59,8 +59,13 @@ func TestOpenRouterSourceFetch(t *testing.T) {
 	assert.Equal(t, 15.0, offering.Pricing.Output)
 	assert.Equal(t, 0.3, offering.Pricing.CachedInput)
 	assert.True(t, offering.IsModerated)
-	assert.Contains(t, offering.SupportedParameters, "tools")
-	assert.Contains(t, offering.SupportedParameters, "reasoning")
+	require.Len(t, offering.Exposures, 1)
+	assert.Equal(t, APITypeOpenAIChat, offering.Exposures[0].APIType)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamTools)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamThinking)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamTools)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamThinking)
+	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamTools, WireName: "tools"})
 }
 
 func TestOpenRouterSourceFetch_LogUnhandledModels(t *testing.T) {

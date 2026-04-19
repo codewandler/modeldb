@@ -1,0 +1,6 @@
+{
+  "slug": "gpt-4o-transcribe",
+  "structured_output": false,
+  "reasoning_effort": true,
+  "vision": true
+}

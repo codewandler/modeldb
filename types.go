@@ -26,22 +26,58 @@ type ModelRecord struct {
 }
 
 type Capabilities struct {
-	Reasoning           bool `json:"reasoning,omitempty"`
-	ReasoningEffort     bool `json:"reasoning_effort,omitempty"`
-	ToolUse             bool `json:"tool_use,omitempty"`
-	ParallelToolCalls   bool `json:"parallel_tool_calls,omitempty"`
-	StructuredOutput    bool `json:"structured_output,omitempty"`
-	StructuredOutputs   bool `json:"structured_outputs,omitempty"`
-	Vision              bool `json:"vision,omitempty"`
-	Streaming           bool `json:"streaming,omitempty"`
-	Caching             bool `json:"caching,omitempty"`
-	InterleavedThinking bool `json:"interleaved_thinking,omitempty"`
-	AdaptiveThinking    bool `json:"adaptive_thinking,omitempty"`
-	Temperature         bool `json:"temperature,omitempty"`
-	Logprobs            bool `json:"logprobs,omitempty"`
-	Seed                bool `json:"seed,omitempty"`
-	WebSearch           bool `json:"web_search,omitempty"`
+	Reasoning         *ReasoningCapability `json:"reasoning,omitempty"`
+	ToolUse           bool                 `json:"tool_use,omitempty"`
+	ParallelToolCalls bool                 `json:"parallel_tool_calls,omitempty"`
+	StructuredOutput  bool                 `json:"structured_output,omitempty"`
+	StructuredOutputs bool                 `json:"structured_outputs,omitempty"`
+	Vision            bool                 `json:"vision,omitempty"`
+	Streaming         bool                 `json:"streaming,omitempty"`
+	Caching           bool                 `json:"caching,omitempty"`
+	Temperature       bool                 `json:"temperature,omitempty"`
+	Logprobs          bool                 `json:"logprobs,omitempty"`
+	Seed              bool                 `json:"seed,omitempty"`
+	WebSearch         bool                 `json:"web_search,omitempty"`
 }
+
+type ReasoningCapability struct {
+	Available      bool                    `json:"available,omitempty"`
+	Efforts        []ReasoningEffortLevel  `json:"efforts,omitempty"`
+	Summaries      []ReasoningSummaryValue `json:"summaries,omitempty"`
+	Modes          []ReasoningMode         `json:"modes,omitempty"`
+	VisibleSummary bool                    `json:"visible_summary,omitempty"`
+	Interleaved    bool                    `json:"interleaved,omitempty"`
+	Adaptive       bool                    `json:"adaptive,omitempty"`
+}
+
+type ReasoningEffortLevel string
+
+const (
+	ReasoningEffortNone   ReasoningEffortLevel = "none"
+	ReasoningEffortLow    ReasoningEffortLevel = "low"
+	ReasoningEffortMedium ReasoningEffortLevel = "medium"
+	ReasoningEffortHigh   ReasoningEffortLevel = "high"
+	ReasoningEffortMax    ReasoningEffortLevel = "max"
+	ReasoningEffortXHigh  ReasoningEffortLevel = "xhigh"
+)
+
+type ReasoningSummaryValue string
+
+const (
+	ReasoningSummaryNone     ReasoningSummaryValue = "none"
+	ReasoningSummaryAuto     ReasoningSummaryValue = "auto"
+	ReasoningSummaryConcise  ReasoningSummaryValue = "concise"
+	ReasoningSummaryDetailed ReasoningSummaryValue = "detailed"
+)
+
+type ReasoningMode string
+
+const (
+	ReasoningModeEnabled     ReasoningMode = "enabled"
+	ReasoningModeAdaptive    ReasoningMode = "adaptive"
+	ReasoningModeInterleaved ReasoningMode = "interleaved"
+	ReasoningModeOff         ReasoningMode = "off"
+)
 
 type Limits struct {
 	ContextWindow int `json:"context_window,omitempty"`
@@ -97,19 +133,59 @@ const (
 	ServiceKindLocal    ServiceKind = "local"
 )
 
+type APIType string
+
+const (
+	APITypeDefault           APIType = "default"
+	APITypeAnthropicMessages APIType = "anthropic-messages"
+	APITypeOpenAIChat        APIType = "openai-chat"
+	APITypeOpenAIResponses   APIType = "openai-responses"
+)
+
 type Offering struct {
-	ServiceID           string             `json:"service_id"`
-	WireModelID         string             `json:"wire_model_id"`
-	ModelKey            ModelKey           `json:"model_key"`
-	Aliases             []string           `json:"aliases,omitempty"`
-	SupportedParameters []string           `json:"supported_parameters,omitempty"`
-	DefaultParameters   *DefaultParameters `json:"default_parameters,omitempty"`
-	APITypes            []string           `json:"api_types,omitempty"`
-	Pricing             *Pricing           `json:"pricing,omitempty"`
-	LimitsOverride      *Limits            `json:"limits_override,omitempty"`
-	PerRequestLimits    *PerRequestLimits  `json:"per_request_limits,omitempty"`
-	IsModerated         bool               `json:"is_moderated,omitempty"`
-	Provenance          []Provenance       `json:"provenance,omitempty"`
+	ServiceID        string             `json:"service_id"`
+	WireModelID      string             `json:"wire_model_id"`
+	ModelKey         ModelKey           `json:"model_key"`
+	Aliases          []string           `json:"aliases,omitempty"`
+	Exposures        []OfferingExposure `json:"exposures,omitempty"`
+	Pricing          *Pricing           `json:"pricing,omitempty"`
+	LimitsOverride   *Limits            `json:"limits_override,omitempty"`
+	PerRequestLimits *PerRequestLimits  `json:"per_request_limits,omitempty"`
+	IsModerated      bool               `json:"is_moderated,omitempty"`
+	Provenance       []Provenance       `json:"provenance,omitempty"`
+}
+
+type NormalizedParameter string
+
+const (
+	ParamMessages        NormalizedParameter = "messages"
+	ParamThinking        NormalizedParameter = "thinking"
+	ParamThinkingMode    NormalizedParameter = "thinking.mode"
+	ParamReasoningEffort NormalizedParameter = "reasoning_effort"
+	ParamResponseFormat  NormalizedParameter = "response_format"
+	ParamTools           NormalizedParameter = "tools"
+	ParamToolChoice      NormalizedParameter = "tool_choice"
+	ParamTemperature     NormalizedParameter = "temperature"
+	ParamSeed            NormalizedParameter = "seed"
+	ParamLogprobs        NormalizedParameter = "logprobs"
+	ParamParallelTools   NormalizedParameter = "parallel_tool_calls"
+	ParamWebSearch       NormalizedParameter = "web_search"
+	ParamReasoningSummary NormalizedParameter = "reasoning_summary"
+)
+
+type ParameterMapping struct {
+	Normalized NormalizedParameter `json:"normalized"`
+	WireName   string              `json:"wire_name,omitempty"`
+}
+
+type OfferingExposure struct {
+	APIType                     APIType                `json:"api_type"`
+	ExposedCapabilities         *Capabilities          `json:"exposed_capabilities,omitempty"`
+	SupportedParameters         []NormalizedParameter  `json:"supported_parameters,omitempty"`
+	ParameterMappings           []ParameterMapping     `json:"parameter_mappings,omitempty"`
+	ParameterValues             map[string][]string    `json:"parameter_values,omitempty"`
+	DefaultParameters           *DefaultParameters     `json:"default_parameters,omitempty"`
+	Provenance                  []Provenance           `json:"provenance,omitempty"`
 }
 
 type Runtime struct {
@@ -126,6 +202,12 @@ type Runtime struct {
 type OfferingRef struct {
 	ServiceID   string `json:"service_id"`
 	WireModelID string `json:"wire_model_id"`
+}
+
+type ExposureRef struct {
+	ServiceID   string  `json:"service_id"`
+	WireModelID string  `json:"wire_model_id"`
+	APIType     APIType `json:"api_type"`
 }
 
 type RuntimeAccess struct {

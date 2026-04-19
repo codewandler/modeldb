@@ -84,3 +84,20 @@ func (c ResolvedCatalog) AcquirableOfferings(runtimeID string) []Offering {
 	}
 	return out
 }
+
+
+func (c Catalog) ExposureByRef(ref ExposureRef) (Offering, OfferingExposure, bool) {
+	offering, ok := c.OfferingByRef(OfferingRef{ServiceID: normalizeKeyPart(ref.ServiceID), WireModelID: ref.WireModelID})
+	if !ok {
+		return Offering{}, OfferingExposure{}, false
+	}
+	exposure := offering.Exposure(ref.APIType)
+	if exposure == nil {
+		return Offering{}, OfferingExposure{}, false
+	}
+	return offering, *exposure, true
+}
+
+func (c Catalog) ResolveOfferingExposure(serviceID, wireModelID string, apiType APIType) (Offering, OfferingExposure, bool) {
+	return c.ExposureByRef(ExposureRef{ServiceID: serviceID, WireModelID: wireModelID, APIType: apiType})
+}

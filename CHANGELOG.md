@@ -2,6 +2,43 @@
 
 ## Unreleased
 
+## v0.10.0 - 2026-04-18
+
+### Added
+
+- Added first-class per-offering per-API `OfferingExposure` modeling.
+- Added normalized exposure parameter metadata, including supported normalized
+  parameters, wire mappings, and valid parameter values.
+- Added exact exposure resolution helpers for service + wire model + API type.
+- Added a first-class `codex` source in modeldb, backed by a checked-in fixture.
+- Added an OpenAI docs-backed enrichment source for richer model capabilities.
+- Added structured `ReasoningCapability` metadata with explicit effort,
+  summary, mode, and visible-summary support.
+- Added CLI filtering by `--api-type` and `--parameter`.
+
+### Changed
+
+- Replaced flat offering API metadata with `Offering.Exposures`.
+- Replaced boolean-only reasoning capability flags with structured reasoning
+  metadata.
+- OpenAI capability enrichment now combines inventory from `/v1/models` with
+  docs-backed fixture enrichment for richer model facts.
+- `modeldb models --details` and `--offerings` now expose API-type-specific
+  offering surface details.
+
+### Removed
+
+- Removed the derived `ReasoningCapability.Toggle` field from the catalog model.
+
+### Model Changes
+
+- `catalog.json` was regenerated for the new exposure-oriented schema.
+- Anthropic, OpenRouter, Codex, and OpenAI models now carry richer capability
+  information where upstream data is available.
+- OpenAI model capability coverage is materially improved via docs-backed
+  enrichment, while OpenAI offering exposures remain conservative unless
+  creator-native surface metadata is known.
+
 ## v0.9.0 - 2026-04-18
 
 ### Added

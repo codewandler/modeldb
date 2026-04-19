@@ -1,0 +1,8 @@
+{
+  "slug": "gpt-4.1",
+  "context_window": 47576,
+  "max_output": 32768,
+  "structured_output": true,
+  "reasoning_effort": true,
+  "vision": true
+}

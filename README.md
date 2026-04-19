@@ -102,6 +102,51 @@ bedrock -> anthropic.claude-sonnet-4-5-20250929-v1:0
 openrouter -> anthropic/claude-sonnet-4.5
 ```
 
+### Filter by API surface or normalized parameter
+
+```bash
+modeldb models --name sonnet --version 4.5 --api-type openai-chat --offerings
+modeldb models --creator openai --parameter reasoning_effort --offerings
+```
+
+Use `--api-type` and `--parameter` together when you want to ask invocation-
+surface questions rather than purely logical-model questions.
+
+## Data Model Layers
+
+`modeldb` now distinguishes four layers:
+
+- `ModelRecord`: canonical logical model identity and normalized capabilities
+- `Offering`: a service-specific listing for a wire model ID
+- `OfferingExposure`: one provider-native API surface for invoking an offering
+- unified modeldb request shape: an internal normalization layer, not a provider exposure
+
+`OfferingExposure` is the main place where invocation semantics live. Each
+exposure is scoped to exactly one API type and carries:
+
+- exposed capabilities
+- normalized supported parameters
+- wire parameter mappings
+- valid parameter values
+
+That means capabilities exist at two levels:
+
+- `ModelRecord.Capabilities` describes what the logical model supports canonically
+- `Offering.Exposures[*].ExposedCapabilities` describes what a concrete service/API surface exposes
+
+Runtime invocation should target an exposure, not just an offering.
+
+Reasoning is structured rather than boolean-only. The catalog now records, when
+known:
+
+- supported effort values (`none`, `low`, `medium`, `high`, `max`, `xhigh`)
+- supported summary values (`none`, `auto`, `concise`, `detailed`)
+- supported modes (`enabled`, `off`, `adaptive`, `interleaved`)
+- visible-summary support
+
+Parameters are normalized per exposure and remain API-type-specific. A
+normalized parameter is only valid for the exposure that declares it.
+
 ### Browse one service view
 
 ```go
@@ -263,6 +308,11 @@ Examples:
 - `openrouter -> anthropic/claude-sonnet-4.5`
 - `bedrock -> anthropic.claude-sonnet-4-5-20250929-v1:0`
 
+Each offering may expose one or more provider-native API surfaces via
+`Offering.Exposures`. For example, two offerings may share a logical model and
+wire identity but differ in API type, supported parameters, wire mappings,
+valid parameter values, and exposed capabilities.
+
 ### `View`
 
 `View` is the main end-user query API.
@@ -302,6 +352,9 @@ Snapshot generation is creator-first.
 
 - creator/direct sources define root `ModelRecord`s
 - broker/platform sources add offerings and enrich existing roots
+- offerings carry provider-native API exposures under `Offering.Exposures`
+- capability-rich enrichment may come from creator-native docs or checked-in
+  source fixtures when a live inventory endpoint is too thin
 - when a broker/platform fragment points at a line that already has a creator
   root, the builder rebinds that fragment onto the creator-owned key
 - when no creator root exists yet, the fragment may still create a provisional
@@ -316,6 +369,20 @@ letting each broker invent its own competing root entry.
 - `cli`: reusable Cobra command builders for host applications and the `modeldb` binary
 - `cmd/modeldb`: thin executable wrapper around the reusable CLI package
 - `internal/source/...`: upstream-specific fetchers, schemas, and fixtures
+
+## Source Notes
+
+Current source quality differs by upstream:
+
+- Anthropic: creator-native API source with structured capability data
+- OpenAI: live `/v1/models` inventory plus docs-backed fixture enrichment for
+  richer capability data
+- Codex: fixture-backed source with rich reasoning and parameter metadata
+- OpenRouter: broker-native exposure metadata with normalized parameters and
+  mappings
+- MiniMax: currently still weaker on per-exposure capability completeness than
+  the other major sources above; treat it as partially modeled until a richer
+  source is added
 
 ## Roadmap
 

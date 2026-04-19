@@ -1,0 +1,6 @@
+{
+  "slug": "gpt-4o-realtime-preview",
+  "structured_output": true,
+  "reasoning_effort": true,
+  "vision": true
+}

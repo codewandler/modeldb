@@ -15,7 +15,9 @@ func DefaultBuildSources() []RegisteredSource {
 	sources := []RegisteredSource{
 		{Stage: StageBuild, Authority: AuthorityCanonical, Source: NewAnthropicAPISourceFromEnv()},
 		{Stage: StageBuild, Authority: AuthorityCanonical, Source: NewMiniMaxStaticSource()},
+		{Stage: StageBuild, Authority: AuthorityTrusted, Source: NewOpenAIDocsSource()},
 		{Stage: StageBuild, Authority: AuthorityEnrichment, Source: NewModelsDevSource()},
+		{Stage: StageBuild, Authority: AuthorityTrusted, Source: NewCodexSource()},
 	}
 	if src := NewOpenAISourceFromEnv(); src.APIKey != "" {
 		sources = append(sources, RegisteredSource{Stage: StageBuild, Authority: AuthorityTrusted, Source: src})

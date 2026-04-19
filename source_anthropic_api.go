@@ -93,12 +93,25 @@ func (s AnthropicAPISource) Fetch(ctx context.Context) (*Fragment, error) {
 			}},
 		}
 		fragment.Models = append(fragment.Models, model)
+		caps := capabilitiesFromAnthropicAPI(item)
 		fragment.Offerings = append(fragment.Offerings, Offering{
 			ServiceID:   service.ID,
 			WireModelID: item.ID,
 			ModelKey:    key,
-			APITypes:    []string{"anthropic-messages"},
-			Pricing:     anthropicPricing(item.ID, key),
+			Exposures: []OfferingExposure{{
+				APIType:             APITypeAnthropicMessages,
+				ExposedCapabilities: capabilitiesPtr(caps),
+				SupportedParameters: anthropicSupportedParameters(item),
+				ParameterMappings:   anthropicParameterMappings(item),
+				ParameterValues:     anthropicParameterValues(item),
+				Provenance: []Provenance{{
+					SourceID:   anthropicSourceID,
+					Authority:  string(AuthorityCanonical),
+					ObservedAt: observedAt,
+					RawID:      item.ID,
+				}},
+			}},
+			Pricing: anthropicPricing(item.ID, key),
 			Provenance: []Provenance{{
 				SourceID:   anthropicSourceID,
 				Authority:  string(AuthorityCanonical),
@@ -137,6 +150,18 @@ type anthropicModelEntry struct {
 		} `json:"context_management"`
 		Effort struct {
 			Supported bool `json:"supported"`
+			Low struct {
+				Supported bool `json:"supported"`
+			} `json:"low"`
+			Medium struct {
+				Supported bool `json:"supported"`
+			} `json:"medium"`
+			High struct {
+				Supported bool `json:"supported"`
+			} `json:"high"`
+			Max struct {
+				Supported bool `json:"supported"`
+			} `json:"max"`
 		} `json:"effort"`
 		ImageInput struct {
 			Supported bool `json:"supported"`
@@ -212,17 +237,43 @@ func (s AnthropicAPISource) loadPayload(ctx context.Context) (anthropicModelsPay
 
 func capabilitiesFromAnthropicAPI(item anthropicModelEntry) Capabilities {
 	return Capabilities{
-		Reasoning:           item.Capabilities.Thinking.Supported,
-		ReasoningEffort:     item.Capabilities.Effort.Supported,
-		ToolUse:             true,
-		StructuredOutput:    item.Capabilities.StructuredOutputs.Supported,
-		Vision:              item.Capabilities.ImageInput.Supported,
-		Streaming:           true,
-		Caching:             item.Capabilities.ContextManagement.Supported,
-		InterleavedThinking: item.Capabilities.Thinking.Supported,
-		AdaptiveThinking:    item.Capabilities.Thinking.Types.Adaptive.Supported,
-		Temperature:         true,
+		Reasoning:         reasoningFromAnthropicAPI(item),
+		ToolUse:           true,
+		StructuredOutput:  item.Capabilities.StructuredOutputs.Supported,
+		Vision:            item.Capabilities.ImageInput.Supported,
+		Streaming:         true,
+		Caching:           item.Capabilities.ContextManagement.Supported,
+		Temperature:       true,
 	}
+}
+
+func reasoningFromAnthropicAPI(item anthropicModelEntry) *ReasoningCapability {
+	if !item.Capabilities.Thinking.Supported && !item.Capabilities.Effort.Supported {
+		return nil
+	}
+	r := &ReasoningCapability{
+		Available: item.Capabilities.Thinking.Supported,
+				Adaptive:  item.Capabilities.Thinking.Types.Adaptive.Supported,
+	}
+	if item.Capabilities.Thinking.Types.Enabled.Supported {
+		r.Modes = append(r.Modes, ReasoningModeEnabled, ReasoningModeOff)
+	}
+	if item.Capabilities.Thinking.Types.Adaptive.Supported {
+		r.Modes = append(r.Modes, ReasoningModeAdaptive)
+	}
+	if item.Capabilities.Effort.Low.Supported {
+		r.Efforts = append(r.Efforts, ReasoningEffortLow)
+	}
+	if item.Capabilities.Effort.Medium.Supported {
+		r.Efforts = append(r.Efforts, ReasoningEffortMedium)
+	}
+	if item.Capabilities.Effort.High.Supported {
+		r.Efforts = append(r.Efforts, ReasoningEffortHigh)
+	}
+	if item.Capabilities.Effort.Max.Supported {
+		r.Efforts = append(r.Efforts, ReasoningEffortMax)
+	}
+	return r
 }
 
 func anthropicInputModalities(item anthropicModelEntry) []string {
@@ -383,4 +434,77 @@ func anthropicPricing(id string, key ModelKey) *Pricing {
 		return &Pricing{Input: p.input, Output: p.output, CachedInput: p.cachedInput, CacheWrite: p.cacheWrite}
 	}
 	return nil
+}
+
+func anthropicSupportedParameters(item anthropicModelEntry) []NormalizedParameter {
+	params := []NormalizedParameter{ParamMessages}
+	if item.Capabilities.Thinking.Supported {
+		params = append(params, ParamThinking)
+		if item.Capabilities.Thinking.Types.Enabled.Supported || item.Capabilities.Thinking.Types.Adaptive.Supported {
+			params = append(params, ParamThinkingMode)
+		}
+	}
+	if item.Capabilities.Effort.Supported {
+		params = append(params, ParamReasoningEffort)
+	}
+	if item.Capabilities.StructuredOutputs.Supported {
+		params = append(params, ParamResponseFormat)
+	}
+	return normalizeNormalizedParameters(params)
+}
+
+func anthropicParameterValues(item anthropicModelEntry) map[string][]string {
+	values := map[string][]string{}
+	if item.Capabilities.Effort.Supported {
+		efforts := make([]string, 0, 4)
+		if item.Capabilities.Effort.Low.Supported {
+			efforts = append(efforts, string(ReasoningEffortLow))
+		}
+		if item.Capabilities.Effort.Medium.Supported {
+			efforts = append(efforts, string(ReasoningEffortMedium))
+		}
+		if item.Capabilities.Effort.High.Supported {
+			efforts = append(efforts, string(ReasoningEffortHigh))
+		}
+		if item.Capabilities.Effort.Max.Supported {
+			efforts = append(efforts, string(ReasoningEffortMax))
+		}
+		if len(efforts) > 0 {
+			values["reasoning_effort"] = efforts
+		}
+	}
+	if item.Capabilities.Thinking.Supported {
+		modes := make([]string, 0, 2)
+		if item.Capabilities.Thinking.Types.Enabled.Supported {
+			modes = append(modes, string(ReasoningModeEnabled))
+		}
+		if item.Capabilities.Thinking.Types.Adaptive.Supported {
+			modes = append(modes, string(ReasoningModeAdaptive))
+		}
+		if len(modes) > 0 {
+			values["thinking.mode"] = modes
+		}
+	}
+	if len(values) == 0 {
+		return nil
+	}
+	return values
+}
+
+
+func anthropicParameterMappings(item anthropicModelEntry) []ParameterMapping {
+	mappings := []ParameterMapping{{Normalized: ParamMessages, WireName: "messages"}}
+	if item.Capabilities.Thinking.Supported {
+		mappings = append(mappings, ParameterMapping{Normalized: ParamThinking, WireName: "thinking"})
+		if item.Capabilities.Thinking.Types.Enabled.Supported || item.Capabilities.Thinking.Types.Adaptive.Supported {
+			mappings = append(mappings, ParameterMapping{Normalized: ParamThinkingMode, WireName: "thinking.type"})
+		}
+	}
+	if item.Capabilities.Effort.Supported {
+		mappings = append(mappings, ParameterMapping{Normalized: ParamReasoningEffort, WireName: "reasoning_effort"})
+	}
+	if item.Capabilities.StructuredOutputs.Supported {
+		mappings = append(mappings, ParameterMapping{Normalized: ParamResponseFormat, WireName: "response_format"})
+	}
+	return mappings
 }

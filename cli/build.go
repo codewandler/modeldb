@@ -23,6 +23,8 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 	var outPath string
 	var anthropicFile string
 	var modelsDevFile string
+	var codexFile string
+	var openAIDocsDir string
 	var useFixture bool
 
 	cmd := &cobra.Command{
@@ -47,6 +49,20 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 					}
 				}
 			}
+			if codexFile != "" {
+				for i := range sources {
+					if _, ok := sources[i].Source.(modeldb.CodexSource); ok {
+						sources[i].Source = modeldb.NewCodexSourceFromFile(codexFile)
+					}
+				}
+			}
+			if openAIDocsDir != "" {
+				for i := range sources {
+					if _, ok := sources[i].Source.(modeldb.OpenAIDocsSource); ok {
+						sources[i].Source = modeldb.NewOpenAIDocsSourceFromDir(openAIDocsDir)
+					}
+				}
+			}
 			builder := modeldb.Builder{Sources: sources}
 			built, err := builder.Build(context.Background())
 			if err != nil {
@@ -63,6 +79,8 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 	cmd.Flags().StringVar(&outPath, "out", defaultPath, "output catalog JSON path")
 	cmd.Flags().StringVar(&anthropicFile, "anthropic-file", "", "optional local Anthropic models payload path")
 	cmd.Flags().StringVar(&modelsDevFile, "modelsdev-file", "", "optional local models.dev payload path")
+	cmd.Flags().StringVar(&codexFile, "codex-file", "", "optional local codex models payload path")
+	cmd.Flags().StringVar(&openAIDocsDir, "openai-docs-dir", "", "optional local OpenAI docs model fixture directory")
 	cmd.Flags().BoolVar(&useFixture, "modelsdev-fixture", false, "use bundled models.dev fixture instead of live fetch")
 	return cmd
 }

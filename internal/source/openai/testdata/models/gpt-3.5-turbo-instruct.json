@@ -1,0 +1,6 @@
+{
+  "slug": "gpt-3.5-turbo-instruct",
+  "structured_output": false,
+  "reasoning_effort": true,
+  "vision": true
+}
