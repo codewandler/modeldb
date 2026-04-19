@@ -20050,11 +20050,13 @@
             "structured_output": true,
             "vision": true,
             "streaming": true,
-            "caching": true,
             "temperature": true
           },
           "supported_parameters": [
             "messages",
+            "tools",
+            "tool_choice",
+            "temperature",
             "thinking",
             "thinking.mode",
             "response_format"
@@ -20063,6 +20065,18 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
             },
             {
               "normalized": "thinking",
@@ -20132,11 +20146,13 @@
             "structured_output": true,
             "vision": true,
             "streaming": true,
-            "caching": true,
             "temperature": true
           },
           "supported_parameters": [
             "messages",
+            "tools",
+            "tool_choice",
+            "temperature",
             "thinking",
             "thinking.mode",
             "response_format"
@@ -20145,6 +20161,18 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
             },
             {
               "normalized": "thinking",
@@ -20213,11 +20241,13 @@
             "tool_use": true,
             "vision": true,
             "streaming": true,
-            "caching": true,
             "temperature": true
           },
           "supported_parameters": [
             "messages",
+            "tools",
+            "tool_choice",
+            "temperature",
             "thinking",
             "thinking.mode"
           ],
@@ -20225,6 +20255,18 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
             },
             {
               "normalized": "thinking",
@@ -20295,11 +20337,13 @@
             "structured_output": true,
             "vision": true,
             "streaming": true,
-            "caching": true,
             "temperature": true
           },
           "supported_parameters": [
             "messages",
+            "tools",
+            "tool_choice",
+            "temperature",
             "thinking",
             "thinking.mode",
             "reasoning_effort",
@@ -20309,6 +20353,18 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
             },
             {
               "normalized": "thinking",
@@ -20395,11 +20451,13 @@
             "structured_output": true,
             "vision": true,
             "streaming": true,
-            "caching": true,
             "temperature": true
           },
           "supported_parameters": [
             "messages",
+            "tools",
+            "tool_choice",
+            "temperature",
             "thinking",
             "thinking.mode",
             "reasoning_effort",
@@ -20409,6 +20467,18 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
             },
             {
               "normalized": "thinking",
@@ -20498,11 +20568,13 @@
             "structured_output": true,
             "vision": true,
             "streaming": true,
-            "caching": true,
             "temperature": true
           },
           "supported_parameters": [
             "messages",
+            "tools",
+            "tool_choice",
+            "temperature",
             "thinking",
             "thinking.mode",
             "reasoning_effort",
@@ -20512,6 +20584,18 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
             },
             {
               "normalized": "thinking",
@@ -20592,11 +20676,13 @@
             "tool_use": true,
             "vision": true,
             "streaming": true,
-            "caching": true,
             "temperature": true
           },
           "supported_parameters": [
             "messages",
+            "tools",
+            "tool_choice",
+            "temperature",
             "thinking",
             "thinking.mode"
           ],
@@ -20604,6 +20690,18 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
             },
             {
               "normalized": "thinking",
@@ -20669,11 +20767,13 @@
             "structured_output": true,
             "vision": true,
             "streaming": true,
-            "caching": true,
             "temperature": true
           },
           "supported_parameters": [
             "messages",
+            "tools",
+            "tool_choice",
+            "temperature",
             "thinking",
             "thinking.mode",
             "response_format"
@@ -20682,6 +20782,18 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
             },
             {
               "normalized": "thinking",
@@ -20759,11 +20871,13 @@
             "structured_output": true,
             "vision": true,
             "streaming": true,
-            "caching": true,
             "temperature": true
           },
           "supported_parameters": [
             "messages",
+            "tools",
+            "tool_choice",
+            "temperature",
             "thinking",
             "thinking.mode",
             "reasoning_effort",
@@ -20773,6 +20887,18 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
             },
             {
               "normalized": "thinking",
@@ -37603,7 +37729,7 @@
         "audio": 0.7
       },
       "limits_override": {
-        "context_window": 1048576,
+        "context_window": 1000000,
         "max_output": 8192
       },
       "provenance": [

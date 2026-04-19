@@ -245,7 +245,7 @@ func capabilitiesFromAnthropicAPI(item anthropicModelEntry) Capabilities {
 		StructuredOutput: item.Capabilities.StructuredOutputs.Supported,
 		Vision:           item.Capabilities.ImageInput.Supported,
 		Streaming:        true,
-		Caching:          item.Capabilities.ContextManagement.Supported,
+		Caching:          false,
 		Temperature:      true,
 	}
 }
@@ -255,7 +255,7 @@ func reasoningFromAnthropicAPI(item anthropicModelEntry) *ReasoningCapability {
 		return nil
 	}
 	r := &ReasoningCapability{
-		Available: item.Capabilities.Thinking.Supported,
+		Available: item.Capabilities.Thinking.Supported || item.Capabilities.Effort.Supported,
 		Adaptive:  item.Capabilities.Thinking.Types.Adaptive.Supported,
 	}
 	if item.Capabilities.Thinking.Types.Enabled.Supported {
@@ -460,7 +460,7 @@ func anthropicPricing(id string, key ModelKey) *Pricing {
 }
 
 func anthropicSupportedParameters(item anthropicModelEntry) []NormalizedParameter {
-	params := []NormalizedParameter{ParamMessages}
+	params := []NormalizedParameter{ParamMessages, ParamTools, ParamToolChoice, ParamTemperature}
 	if item.Capabilities.Thinking.Supported {
 		params = append(params, ParamThinking)
 		if item.Capabilities.Thinking.Types.Enabled.Supported || item.Capabilities.Thinking.Types.Adaptive.Supported {
@@ -521,7 +521,12 @@ func anthropicParameterValues(item anthropicModelEntry) map[string][]string {
 }
 
 func anthropicParameterMappings(item anthropicModelEntry) []ParameterMapping {
-	mappings := []ParameterMapping{{Normalized: ParamMessages, WireName: "messages"}}
+	mappings := []ParameterMapping{
+		{Normalized: ParamMessages, WireName: "messages"},
+		{Normalized: ParamTools, WireName: "tools"},
+		{Normalized: ParamToolChoice, WireName: "tool_choice"},
+		{Normalized: ParamTemperature, WireName: "temperature"},
+	}
 	if item.Capabilities.Thinking.Supported {
 		mappings = append(mappings, ParameterMapping{Normalized: ParamThinking, WireName: "thinking"})
 		if item.Capabilities.Thinking.Types.Enabled.Supported || item.Capabilities.Thinking.Types.Adaptive.Supported {

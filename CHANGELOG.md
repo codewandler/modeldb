@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+## v0.11.5 - 2026-04-19
+
+### Changed
+
+- Anthropic exposure metadata is now more internally consistent: tool use and
+  temperature support are reflected in supported parameters and parameter
+  mappings for the Anthropic Messages surface.
+- Anthropic reasoning availability now reflects either `thinking` or `effort`
+  support instead of only `thinking` support.
+- Anthropic `caching` is no longer inferred from the broader
+  `context_management` capability, avoiding an over-broad semantic mapping.
+
+### Model Changes
+
+- `catalog.json` was regenerated after Anthropic capability/exposure cleanup.
+- Anthropic offerings now expose `tools`, `tool_choice`, and `temperature`
+  consistently alongside existing reasoning and structured-output metadata.
+- Anthropic offerings no longer overclaim prompt-caching support from generic
+  context-management capability flags alone.
+
 ## v0.11.4 - 2026-04-19
 
 ### Changed

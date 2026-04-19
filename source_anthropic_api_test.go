@@ -67,6 +67,7 @@ func TestAnthropicAPISourceFetch(t *testing.T) {
 	assert.Equal(t, 128000, latest.Limits.MaxOutput)
 	assert.Equal(t, "2026-02-17", latest.LastUpdated)
 	if assert.NotNil(t, latest.ReferencePricing) {
+		assert.False(t, latest.Capabilities.Caching)
 		assert.Equal(t, 3.0, latest.ReferencePricing.Input)
 		assert.Equal(t, 15.0, latest.ReferencePricing.Output)
 	}
@@ -89,7 +90,13 @@ func TestAnthropicAPISourceFetch(t *testing.T) {
 	assert.Equal(t, APITypeAnthropicMessages, offering.Exposures[0].APIType)
 	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamThinking)
 	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamReasoningEffort)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamTools)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamToolChoice)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamTemperature)
 	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamThinkingMode, WireName: "thinking.type"})
+	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamTools, WireName: "tools"})
+	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamToolChoice, WireName: "tool_choice"})
+	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamTemperature, WireName: "temperature"})
 	assert.Contains(t, offering.Exposures[0].ParameterValues["thinking.mode"], "adaptive")
 	assert.NotContains(t, offering.Exposures[0].ParameterValues["reasoning_effort"], "xhigh")
 	assert.Empty(t, offering.Aliases)
