@@ -11722,11 +11722,34 @@
         "version": "3.5",
         "variant": "turbo-0125"
       },
-      "capabilities": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
       "limits": {},
+      "reference_pricing": {
+        "input": 0.5,
+        "output": 1.5,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-3.5-turbo-0125"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-3.5-turbo-0125"
@@ -11777,11 +11800,34 @@
         "version": "3.5",
         "variant": "turbo-1106"
       },
-      "capabilities": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
       "limits": {},
+      "reference_pricing": {
+        "input": 1,
+        "output": 2,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-3.5-turbo-1106"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-3.5-turbo-1106"
@@ -11798,15 +11844,25 @@
       "name": "OpenAI: GPT-3.5 Turbo 16k",
       "description": "This model offers four times the context length of gpt-3.5-turbo, allowing it to support approximately 20 pages of text in a single request at a higher cost. Training data: up...",
       "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
         "tool_use": true,
         "structured_output": true,
         "structured_outputs": true,
+        "vision": true,
         "streaming": true,
         "temperature": true,
         "logprobs": true,
         "seed": true
       },
-      "limits": {},
+      "limits": {
+        "context_window": 16000
+      },
       "input_modalities": [
         "text"
       ],
@@ -11816,9 +11872,20 @@
       "knowledge_cutoff": "2021-09-30",
       "tokenizer": "GPT",
       "modality": "text-\u003etext",
+      "reference_pricing": {
+        "input": 3,
+        "output": 4,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-3.5-turbo-16k"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-3.5-turbo-16k"
@@ -11905,11 +11972,34 @@
         "version": "3.5",
         "variant": "turbo-instruct-0914"
       },
-      "capabilities": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
       "limits": {},
+      "reference_pricing": {
+        "input": 1.5,
+        "output": 2,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-3.5-turbo-instruct-0914"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-3.5-turbo-instruct-0914"
@@ -12083,11 +12173,38 @@
         "version": "4.1",
         "variant": "2025-04-14"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 47576,
+        "max_output": 32768
+      },
+      "reference_pricing": {
+        "input": 2,
+        "output": 8,
+        "cached_input": 0.5,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4.1-2025-04-14"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4.1-2025-04-14"
@@ -12188,11 +12305,38 @@
         "version": "4.1",
         "variant": "mini-2025-04-14"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 47576,
+        "max_output": 32768
+      },
+      "reference_pricing": {
+        "input": 0.4,
+        "output": 1.6,
+        "cached_input": 0.1,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4.1-mini-2025-04-14"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4.1-mini-2025-04-14"
@@ -12287,11 +12431,38 @@
         "version": "4.1",
         "variant": "nano-2025-04-14"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 47576,
+        "max_output": 32768
+      },
+      "reference_pricing": {
+        "input": 0.1,
+        "output": 0.4,
+        "cached_input": 0.025,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4.1-nano-2025-04-14"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4.1-nano-2025-04-14"
@@ -12342,11 +12513,34 @@
         "version": "4",
         "variant": "0613"
       },
-      "capabilities": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
       "limits": {},
+      "reference_pricing": {
+        "input": 30,
+        "output": 60,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4-0613"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4-0613"
@@ -12473,11 +12667,34 @@
         "version": "4",
         "variant": "turbo-2024-04-09"
       },
-      "capabilities": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
       "limits": {},
+      "reference_pricing": {
+        "input": 10,
+        "output": 30,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4-turbo-2024-04-09"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4-turbo-2024-04-09"
@@ -12613,6 +12830,13 @@
       "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs. It maintains the intelligence level of [GPT-4 Turbo](/models/openai/gpt-4-turbo) while being twice as...",
       "attachment": true,
       "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
         "tool_use": true,
         "structured_output": true,
         "structured_outputs": true,
@@ -12623,7 +12847,10 @@
         "seed": true,
         "web_search": true
       },
-      "limits": {},
+      "limits": {
+        "context_window": 128000,
+        "max_output": 16384
+      },
       "input_modalities": [
         "text",
         "image",
@@ -12636,9 +12863,20 @@
       "last_updated": "2024-05-13",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
+      "reference_pricing": {
+        "input": 5,
+        "output": 15,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4o-2024-05-13"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-2024-05-13"
@@ -12668,6 +12906,13 @@
       "description": "The 2024-08-06 version of GPT-4o offers improved performance in structured outputs, with the ability to supply a JSON schema in the respone_format. Read more [here](https://openai.com/index/introducing-structured-outputs-in-the-api/). GPT-4o (\"o\" for \"omni\") is...",
       "attachment": true,
       "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
         "tool_use": true,
         "structured_output": true,
         "structured_outputs": true,
@@ -12679,7 +12924,10 @@
         "seed": true,
         "web_search": true
       },
-      "limits": {},
+      "limits": {
+        "context_window": 128000,
+        "max_output": 16384
+      },
       "input_modalities": [
         "text",
         "image",
@@ -12692,9 +12940,21 @@
       "last_updated": "2024-08-06",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
+      "reference_pricing": {
+        "input": 2.5,
+        "output": 10,
+        "cached_input": 1.25,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4o-2024-08-06"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-2024-08-06"
@@ -12724,6 +12984,13 @@
       "description": "The 2024-11-20 version of GPT-4o offers a leveled-up creative writing ability with more natural, engaging, and tailored writing to improve relevance \u0026 readability. It’s also better at working with uploaded...",
       "attachment": true,
       "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
         "tool_use": true,
         "structured_output": true,
         "structured_outputs": true,
@@ -12735,7 +13002,10 @@
         "seed": true,
         "web_search": true
       },
-      "limits": {},
+      "limits": {
+        "context_window": 128000,
+        "max_output": 16384
+      },
       "input_modalities": [
         "text",
         "image",
@@ -12748,9 +13018,21 @@
       "last_updated": "2024-11-20",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
+      "reference_pricing": {
+        "input": 2.5,
+        "output": 10,
+        "cached_input": 1.25,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4o-2024-11-20"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-2024-11-20"
@@ -13557,11 +13839,44 @@
         "version": "5.1",
         "variant": "2025-11-13"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 400000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 1.25,
+        "output": 10,
+        "cached_input": 0.125,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.1-2025-11-13"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.1-2025-11-13"
@@ -14082,11 +14397,50 @@
         "version": "5.2",
         "variant": "2025-12-11"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "efforts": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 400000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 1.75,
+        "output": 14,
+        "cached_input": 0.175,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.2-2025-12-11"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.2-2025-12-11"
@@ -14417,11 +14771,49 @@
         "version": "5.2",
         "variant": "pro-2025-12-11"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "efforts": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 400000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 21,
+        "output": 168,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.2-pro-2025-12-11"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.2-pro-2025-12-11"
@@ -14752,11 +15144,50 @@
         "version": "5.4",
         "variant": "2026-03-05"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "efforts": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 50000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 2.5,
+        "output": 15,
+        "cached_input": 0.25,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.4-2026-03-05"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.4-2026-03-05"
@@ -14858,11 +15289,50 @@
         "version": "5.4",
         "variant": "mini-2026-03-17"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "efforts": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 400000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 0.75,
+        "output": 4.5,
+        "cached_input": 0.075,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.4-mini-2026-03-17"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.4-mini-2026-03-17"
@@ -14955,11 +15425,50 @@
         "version": "5.4",
         "variant": "nano-2026-03-17"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "efforts": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 400000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 0.2,
+        "output": 1.25,
+        "cached_input": 0.02,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.4-nano-2026-03-17"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.4-nano-2026-03-17"
@@ -15049,11 +15558,49 @@
         "version": "5.4",
         "variant": "pro-2026-03-05"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "efforts": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 50000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 30,
+        "output": 180,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.4-pro-2026-03-05"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.4-pro-2026-03-05"
@@ -15067,11 +15614,38 @@
         "version": "5",
         "variant": "2025-08-07"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 400000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 1.25,
+        "output": 10,
+        "cached_input": 0.125,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-2025-08-07"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-2025-08-07"
@@ -15501,11 +16075,38 @@
         "version": "5",
         "variant": "mini-2025-08-07"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 400000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 0.25,
+        "output": 2,
+        "cached_input": 0.025,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-mini-2025-08-07"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-mini-2025-08-07"
@@ -15605,11 +16206,38 @@
         "version": "5",
         "variant": "nano-2025-08-07"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 400000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 0.05,
+        "output": 0.4,
+        "cached_input": 0.005,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-nano-2025-08-07"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-nano-2025-08-07"
@@ -15705,11 +16333,37 @@
         "version": "5",
         "variant": "pro-2025-10-06"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 400000,
+        "max_output": 272000
+      },
+      "reference_pricing": {
+        "input": 15,
+        "output": 120,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-pro-2025-10-06"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-pro-2025-10-06"
@@ -15723,11 +16377,38 @@
         "version": "5",
         "variant": "search-api"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 400000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 1.25,
+        "output": 10,
+        "cached_input": 0.125,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-search-api"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-search-api"
@@ -15741,11 +16422,38 @@
         "version": "5",
         "variant": "search-api-2025-10-14"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 400000,
+        "max_output": 128000
+      },
+      "reference_pricing": {
+        "input": 1.25,
+        "output": 10,
+        "cached_input": 0.125,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-search-api-2025-10-14"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-search-api-2025-10-14"
@@ -15802,11 +16510,43 @@
         "version": "audio",
         "variant": "1.5"
       },
-      "capabilities": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
       "limits": {},
+      "input_modalities": [
+        "text",
+        "audio"
+      ],
+      "output_modalities": [
+        "text",
+        "audio"
+      ],
+      "reference_pricing": {
+        "input": 4,
+        "output": 16,
+        "cached_input": 0.4,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-audio-1.5"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-audio-1.5"
@@ -15954,11 +16694,43 @@
         "version": "image",
         "variant": "1.5"
       },
-      "capabilities": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
       "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "image",
+        "text"
+      ],
+      "reference_pricing": {
+        "input": 5,
+        "output": 10,
+        "cached_input": 1.25,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-image-1.5"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-image-1.5"
@@ -16216,11 +16988,43 @@
         "version": "realtime",
         "variant": "1.5"
       },
-      "capabilities": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
       "limits": {},
+      "input_modalities": [
+        "text",
+        "audio"
+      ],
+      "output_modalities": [
+        "text",
+        "audio"
+      ],
+      "reference_pricing": {
+        "input": 4,
+        "output": 16,
+        "cached_input": 0.4,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-realtime-1.5"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-realtime-1.5"
@@ -16385,11 +17189,38 @@
         "version": "1",
         "variant": "2024-12-17"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 200000,
+        "max_output": 100000
+      },
+      "reference_pricing": {
+        "input": 15,
+        "output": 60,
+        "cached_input": 7.5,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o1-2024-12-17"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o1-2024-12-17"
@@ -16545,11 +17376,37 @@
         "version": "1",
         "variant": "pro-2025-03-19"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 200000,
+        "max_output": 100000
+      },
+      "reference_pricing": {
+        "input": 150,
+        "output": 600,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o1-pro-2025-03-19"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o1-pro-2025-03-19"
@@ -16648,11 +17505,44 @@
         "version": "3",
         "variant": "2025-04-16"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 200000,
+        "max_output": 100000
+      },
+      "reference_pricing": {
+        "input": 2,
+        "output": 8,
+        "cached_input": 0.5,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3-2025-04-16"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-2025-04-16"
@@ -16754,11 +17644,44 @@
         "version": "3",
         "variant": "deep-research-2025-06-26"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 200000,
+        "max_output": 100000
+      },
+      "reference_pricing": {
+        "input": 10,
+        "output": 40,
+        "cached_input": 2.5,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3-deep-research-2025-06-26"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-deep-research-2025-06-26"
@@ -16856,11 +17779,44 @@
         "version": "3",
         "variant": "mini-2025-01-31"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 200000,
+        "max_output": 100000
+      },
+      "reference_pricing": {
+        "input": 1.1,
+        "output": 4.4,
+        "cached_input": 0.55,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3-mini-2025-01-31"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-mini-2025-01-31"
@@ -17002,11 +17958,43 @@
         "version": "3",
         "variant": "pro-2025-06-10"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 200000,
+        "max_output": 100000
+      },
+      "reference_pricing": {
+        "input": 20,
+        "output": 80,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3-pro-2025-06-10"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-pro-2025-06-10"
@@ -17112,11 +18100,44 @@
         "version": "4",
         "variant": "mini-2025-04-16"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 200000,
+        "max_output": 100000
+      },
+      "reference_pricing": {
+        "input": 1.1,
+        "output": 4.4,
+        "cached_input": 0.275,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o4-mini-2025-04-16"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o4-mini-2025-04-16"
@@ -17218,11 +18239,44 @@
         "version": "4",
         "variant": "mini-deep-research-2025-06-26"
       },
-      "capabilities": {},
-      "limits": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "summaries": [
+            "auto",
+            "concise",
+            "detailed"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ],
+          "visible_summary": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {
+        "context_window": 200000,
+        "max_output": 100000
+      },
+      "reference_pricing": {
+        "input": 2,
+        "output": 8,
+        "cached_input": 0.5,
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o4-mini-deep-research-2025-06-26"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o4-mini-deep-research-2025-06-26"
@@ -17282,11 +18336,39 @@
         "version": "mni",
         "variant": "moderation-2024-09-26"
       },
-      "capabilities": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
       "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "reference_pricing": {
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "omni-moderation-2024-09-26"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "omni-moderation-2024-09-26"
@@ -17300,11 +18382,39 @@
         "version": "mni",
         "variant": "moderation-latest"
       },
-      "capabilities": {},
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true
+      },
       "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "reference_pricing": {
+        "cache_write": 0
+      },
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "omni-moderation-latest"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "omni-moderation-latest"
@@ -23202,9 +24312,83 @@
         "version": "3.5",
         "variant": "turbo-0125"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-3.5-turbo-0125"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 0.5,
+        "output": 1.5,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-3.5-turbo-0125"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-3.5-turbo-0125"
@@ -23220,9 +24404,83 @@
         "version": "3.5",
         "variant": "turbo-1106"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-3.5-turbo-1106"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 1,
+        "output": 2,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-3.5-turbo-1106"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-3.5-turbo-1106"
@@ -23238,9 +24496,83 @@
         "version": "3.5",
         "variant": "turbo-16k"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-3.5-turbo-16k"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 3,
+        "output": 4,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-3.5-turbo-16k"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-3.5-turbo-16k"
@@ -23348,9 +24680,83 @@
         "version": "3.5",
         "variant": "turbo-instruct-0914"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-3.5-turbo-instruct-0914"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 1.5,
+        "output": 2,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-3.5-turbo-instruct-0914"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-3.5-turbo-instruct-0914"
@@ -23457,9 +24863,83 @@
         "version": "4",
         "variant": "0613"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-4-0613"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 30,
+        "output": 60,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4-0613"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4-0613"
@@ -23567,9 +25047,83 @@
         "version": "4",
         "variant": "turbo-2024-04-09"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-4-turbo-2024-04-09"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 10,
+        "output": 30,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4-turbo-2024-04-09"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4-turbo-2024-04-09"
@@ -23677,9 +25231,84 @@
         "version": "4.1",
         "variant": "2025-04-14"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-4.1-2025-04-14"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 2,
+        "output": 8,
+        "cached_input": 0.5,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4.1-2025-04-14"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4.1-2025-04-14"
@@ -23788,9 +25417,84 @@
         "version": "4.1",
         "variant": "mini-2025-04-14"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-4.1-mini-2025-04-14"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 0.4,
+        "output": 1.6,
+        "cached_input": 0.1,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4.1-mini-2025-04-14"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4.1-mini-2025-04-14"
@@ -23899,9 +25603,84 @@
         "version": "4.1",
         "variant": "nano-2025-04-14"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-4.1-nano-2025-04-14"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 0.1,
+        "output": 0.4,
+        "cached_input": 0.025,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4.1-nano-2025-04-14"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4.1-nano-2025-04-14"
@@ -24009,9 +25788,83 @@
         "version": "4o",
         "variant": "2024-05-13"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-4o-2024-05-13"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 5,
+        "output": 15,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4o-2024-05-13"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-2024-05-13"
@@ -24027,9 +25880,84 @@
         "version": "4o",
         "variant": "2024-08-06"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-4o-2024-08-06"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 2.5,
+        "output": 10,
+        "cached_input": 1.25,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4o-2024-08-06"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-2024-08-06"
@@ -24045,9 +25973,84 @@
         "version": "4o",
         "variant": "2024-11-20"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-4o-2024-11-20"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 2.5,
+        "output": 10,
+        "cached_input": 1.25,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4o-2024-11-20"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-2024-11-20"
@@ -24662,9 +26665,84 @@
         "version": "5",
         "variant": "2025-08-07"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5-2025-08-07"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 1.25,
+        "output": 10,
+        "cached_input": 0.125,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-2025-08-07"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-2025-08-07"
@@ -24959,9 +27037,84 @@
         "version": "5",
         "variant": "mini-2025-08-07"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5-mini-2025-08-07"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 0.25,
+        "output": 2,
+        "cached_input": 0.025,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-mini-2025-08-07"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-mini-2025-08-07"
@@ -25070,9 +27223,84 @@
         "version": "5",
         "variant": "nano-2025-08-07"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5-nano-2025-08-07"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 0.05,
+        "output": 0.4,
+        "cached_input": 0.005,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-nano-2025-08-07"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-nano-2025-08-07"
@@ -25178,9 +27406,83 @@
         "version": "5",
         "variant": "pro-2025-10-06"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5-pro-2025-10-06"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 15,
+        "output": 120,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-pro-2025-10-06"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-pro-2025-10-06"
@@ -25196,9 +27498,84 @@
         "version": "5",
         "variant": "search-api"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5-search-api"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 1.25,
+        "output": 10,
+        "cached_input": 0.125,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-search-api"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-search-api"
@@ -25214,9 +27591,84 @@
         "version": "5",
         "variant": "search-api-2025-10-14"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5-search-api-2025-10-14"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 1.25,
+        "output": 10,
+        "cached_input": 0.125,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-search-api-2025-10-14"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-search-api-2025-10-14"
@@ -25342,9 +27794,100 @@
         "version": "5.1",
         "variant": "2025-11-13"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5.1-2025-11-13"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 1.25,
+        "output": 10,
+        "cached_input": 0.125,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.1-2025-11-13"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.1-2025-11-13"
@@ -25908,9 +28451,102 @@
         "version": "5.2",
         "variant": "2025-12-11"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5.2-2025-12-11"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 1.75,
+        "output": 14,
+        "cached_input": 0.175,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.2-2025-12-11"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.2-2025-12-11"
@@ -26258,9 +28894,101 @@
         "version": "5.2",
         "variant": "pro-2025-12-11"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5.2-pro-2025-12-11"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 21,
+        "output": 168,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.2-pro-2025-12-11"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.2-pro-2025-12-11"
@@ -26608,9 +29336,102 @@
         "version": "5.4",
         "variant": "2026-03-05"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5.4-2026-03-05"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 2.5,
+        "output": 15,
+        "cached_input": 0.25,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.4-2026-03-05"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.4-2026-03-05"
@@ -26737,9 +29558,102 @@
         "version": "5.4",
         "variant": "mini-2026-03-17"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5.4-mini-2026-03-17"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 0.75,
+        "output": 4.5,
+        "cached_input": 0.075,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.4-mini-2026-03-17"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.4-mini-2026-03-17"
@@ -26866,9 +29780,102 @@
         "version": "5.4",
         "variant": "nano-2026-03-17"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5.4-nano-2026-03-17"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 0.2,
+        "output": 1.25,
+        "cached_input": 0.02,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.4-nano-2026-03-17"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.4-nano-2026-03-17"
@@ -26994,9 +30001,101 @@
         "version": "5.4",
         "variant": "pro-2026-03-05"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5.4-pro-2026-03-05"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 30,
+        "output": 180,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.4-pro-2026-03-05"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.4-pro-2026-03-05"
@@ -27029,9 +30128,84 @@
         "version": "audio",
         "variant": "1.5"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-audio-1.5"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 4,
+        "output": 16,
+        "cached_input": 0.4,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-audio-1.5"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-audio-1.5"
@@ -27155,9 +30329,84 @@
         "version": "image",
         "variant": "1.5"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-image-1.5"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 5,
+        "output": 10,
+        "cached_input": 1.25,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-image-1.5"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-image-1.5"
@@ -27190,9 +30439,84 @@
         "version": "realtime",
         "variant": "1.5"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-realtime-1.5"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 4,
+        "output": 16,
+        "cached_input": 0.4,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-realtime-1.5"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-realtime-1.5"
@@ -27372,9 +30696,84 @@
         "version": "1",
         "variant": "2024-12-17"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "o1-2024-12-17"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 15,
+        "output": 60,
+        "cached_input": 7.5,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o1-2024-12-17"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o1-2024-12-17"
@@ -27482,9 +30881,83 @@
         "version": "1",
         "variant": "pro-2025-03-19"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "o1-pro-2025-03-19"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 150,
+        "output": 600,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o1-pro-2025-03-19"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o1-pro-2025-03-19"
@@ -27608,9 +31081,100 @@
         "version": "3",
         "variant": "2025-04-16"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "o3-2025-04-16"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 2,
+        "output": 8,
+        "cached_input": 0.5,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3-2025-04-16"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-2025-04-16"
@@ -27735,9 +31299,100 @@
         "version": "3",
         "variant": "deep-research-2025-06-26"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "o3-deep-research-2025-06-26"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 10,
+        "output": 40,
+        "cached_input": 2.5,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3-deep-research-2025-06-26"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-deep-research-2025-06-26"
@@ -27862,9 +31517,100 @@
         "version": "3",
         "variant": "mini-2025-01-31"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "o3-mini-2025-01-31"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 1.1,
+        "output": 4.4,
+        "cached_input": 0.55,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3-mini-2025-01-31"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-mini-2025-01-31"
@@ -27988,9 +31734,99 @@
         "version": "3",
         "variant": "pro-2025-06-10"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "o3-pro-2025-06-10"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 20,
+        "output": 80,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3-pro-2025-06-10"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-pro-2025-06-10"
@@ -28115,9 +31951,100 @@
         "version": "4",
         "variant": "mini-2025-04-16"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "o4-mini-2025-04-16"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 1.1,
+        "output": 4.4,
+        "cached_input": 0.275,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o4-mini-2025-04-16"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o4-mini-2025-04-16"
@@ -28242,9 +32169,100 @@
         "version": "4",
         "variant": "mini-deep-research-2025-06-26"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "summaries": [
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "o4-mini-deep-research-2025-06-26"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 2,
+        "output": 8,
+        "cached_input": 0.5,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o4-mini-deep-research-2025-06-26"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o4-mini-deep-research-2025-06-26"
@@ -28260,9 +32278,81 @@
         "version": "mni",
         "variant": "moderation-2024-09-26"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "omni-moderation-2024-09-26"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "cache_write": 0
+      },
+      "pricing_status": "free",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "omni-moderation-2024-09-26"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "omni-moderation-2024-09-26"
@@ -28278,9 +32368,81 @@
         "version": "mni",
         "variant": "moderation-latest"
       },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "openai-static",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "omni-moderation-latest"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "cache_write": 0
+      },
+      "pricing_status": "free",
       "provenance": [
         {
           "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "omni-moderation-latest"
+        },
+        {
+          "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "omni-moderation-latest"
@@ -38392,7 +42554,7 @@
       },
       "pricing_status": "known",
       "limits_override": {
-        "context_window": 1000000,
+        "context_window": 1048576,
         "max_output": 8192
       },
       "provenance": [

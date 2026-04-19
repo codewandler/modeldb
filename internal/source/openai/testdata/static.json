@@ -1922,6 +1922,642 @@
           "cache_write": 0
         }
       }
+    },
+    {
+      "slug": "gpt-3.5-turbo-0125",
+      "family": "gpt-4-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 0,
+          "max_output": 0
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": false,
+          "tool_use": true,
+          "streaming": true
+        },
+        "pricing": {
+          "input": 0.5,
+          "output": 1.5,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-3.5-turbo-1106",
+      "family": "gpt-4-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 0,
+          "max_output": 0
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": false,
+          "tool_use": true,
+          "streaming": true
+        },
+        "pricing": {
+          "input": 1,
+          "output": 2,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-3.5-turbo-16k",
+      "family": "gpt-4-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 16000,
+          "max_output": 0
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": false,
+          "tool_use": true,
+          "streaming": true
+        },
+        "pricing": {
+          "input": 3,
+          "output": 4,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-3.5-turbo-instruct-0914",
+      "family": "gpt-4-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 0,
+          "max_output": 0
+        },
+        "capabilities": {
+          "structured_output": false,
+          "vision": false,
+          "tool_use": true,
+          "streaming": true
+        },
+        "pricing": {
+          "input": 1.5,
+          "output": 2,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-4-0613",
+      "family": "gpt-4-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 0,
+          "max_output": 0
+        },
+        "pricing": {
+          "input": 30,
+          "output": 60,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-4-turbo-2024-04-09",
+      "family": "gpt-4-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 0,
+          "max_output": 0
+        },
+        "pricing": {
+          "input": 10,
+          "output": 30,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-4.1-2025-04-14",
+      "family": "gpt-4.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 47576,
+          "max_output": 32768
+        },
+        "pricing": {
+          "input": 2,
+          "cached_input": 0.5,
+          "output": 8,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-4.1-mini-2025-04-14",
+      "family": "gpt-4.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 47576,
+          "max_output": 32768
+        },
+        "pricing": {
+          "input": 0.4,
+          "cached_input": 0.1,
+          "output": 1.6,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-4.1-nano-2025-04-14",
+      "family": "gpt-4.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 47576,
+          "max_output": 32768
+        },
+        "pricing": {
+          "input": 0.1,
+          "cached_input": 0.025,
+          "output": 0.4,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-4o-2024-05-13",
+      "family": "gpt-4o-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 128000,
+          "max_output": 16384
+        },
+        "pricing": {
+          "input": 5,
+          "output": 15,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-4o-2024-08-06",
+      "family": "gpt-4o-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 128000,
+          "max_output": 16384
+        },
+        "pricing": {
+          "input": 2.5,
+          "cached_input": 1.25,
+          "output": 10,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-4o-2024-11-20",
+      "family": "gpt-4o-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 128000,
+          "max_output": 16384
+        },
+        "pricing": {
+          "input": 2.5,
+          "cached_input": 1.25,
+          "output": 10,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5-2025-08-07",
+      "family": "gpt-5-pre-5.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5-mini-2025-08-07",
+      "family": "gpt-5-pre-5.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 0.25,
+          "cached_input": 0.025,
+          "output": 2,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5-nano-2025-08-07",
+      "family": "gpt-5-pre-5.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 0.05,
+          "cached_input": 0.005,
+          "output": 0.4,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5-pro-2025-10-06",
+      "family": "gpt-5-pre-5.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 272000
+        },
+        "pricing": {
+          "input": 15,
+          "output": 120,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5-search-api",
+      "family": "gpt-5-pre-5.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5-search-api-2025-10-14",
+      "family": "gpt-5-pre-5.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.1-2025-11-13",
+      "family": "gpt-5-5.1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.2-2025-12-11",
+      "family": "gpt-5-5.2plus-codex-backed",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 1.75,
+          "cached_input": 0.175,
+          "output": 14,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.2-pro-2025-12-11",
+      "family": "gpt-5-5.2plus-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 21,
+          "output": 168,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.4-2026-03-05",
+      "family": "gpt-5-5.2plus-codex-backed",
+      "model_overrides": {
+        "limits": {
+          "context_window": 50000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 2.5,
+          "cached_input": 0.25,
+          "output": 15,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.4-mini-2026-03-17",
+      "family": "gpt-5-5.2plus-codex-backed",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 0.75,
+          "cached_input": 0.075,
+          "output": 4.5,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.4-nano-2026-03-17",
+      "family": "gpt-5-5.2plus-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 400000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 0.2,
+          "cached_input": 0.02,
+          "output": 1.25,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.4-pro-2026-03-05",
+      "family": "gpt-5-5.2plus-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 50000,
+          "max_output": 128000
+        },
+        "pricing": {
+          "input": 30,
+          "output": 180,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-audio-1.5",
+      "family": "gpt-4o-reasoning",
+      "model_overrides": {
+        "input_modalities": [
+          "text",
+          "audio"
+        ],
+        "output_modalities": [
+          "text",
+          "audio"
+        ],
+        "pricing": {
+          "input": 4,
+          "cached_input": 0.4,
+          "output": 16,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-image-1.5",
+      "family": "gpt-4o-reasoning",
+      "model_overrides": {
+        "input_modalities": [
+          "text",
+          "image"
+        ],
+        "output_modalities": [
+          "image",
+          "text"
+        ],
+        "pricing": {
+          "input": 5,
+          "cached_input": 1.25,
+          "output": 10,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-realtime-1.5",
+      "family": "gpt-4o-reasoning",
+      "model_overrides": {
+        "input_modalities": [
+          "text",
+          "audio"
+        ],
+        "output_modalities": [
+          "text",
+          "audio"
+        ],
+        "pricing": {
+          "input": 4,
+          "cached_input": 0.4,
+          "output": 16,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "o1-2024-12-17",
+      "family": "o1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "pricing": {
+          "input": 15,
+          "cached_input": 7.5,
+          "output": 60,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "o1-pro-2025-03-19",
+      "family": "o1-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "pricing": {
+          "input": 150,
+          "output": 600,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "o3-2025-04-16",
+      "family": "o3plus-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "pricing": {
+          "input": 2,
+          "cached_input": 0.5,
+          "output": 8,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "o3-deep-research-2025-06-26",
+      "family": "o3plus-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "pricing": {
+          "input": 10,
+          "cached_input": 2.5,
+          "output": 40,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "o3-mini-2025-01-31",
+      "family": "o3plus-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "pricing": {
+          "input": 1.1,
+          "cached_input": 0.55,
+          "output": 4.4,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "o3-pro-2025-06-10",
+      "family": "o3plus-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "pricing": {
+          "input": 20,
+          "output": 80,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "o4-mini-2025-04-16",
+      "family": "o3plus-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "pricing": {
+          "input": 1.1,
+          "cached_input": 0.275,
+          "output": 4.4,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "o4-mini-deep-research-2025-06-26",
+      "family": "o3plus-reasoning",
+      "model_overrides": {
+        "limits": {
+          "context_window": 200000,
+          "max_output": 100000
+        },
+        "pricing": {
+          "input": 2,
+          "cached_input": 0.5,
+          "output": 8,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "omni-moderation-2024-09-26",
+      "family": "gpt-4o-reasoning",
+      "model_overrides": {
+        "input_modalities": [
+          "text",
+          "image"
+        ],
+        "output_modalities": [
+          "text"
+        ],
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "omni-moderation-latest",
+      "family": "gpt-4o-reasoning",
+      "model_overrides": {
+        "input_modalities": [
+          "text",
+          "image"
+        ],
+        "output_modalities": [
+          "text"
+        ],
+        "pricing": {
+          "input": 0,
+          "output": 0,
+          "cache_write": 0
+        }
+      }
     }
   ]
 }

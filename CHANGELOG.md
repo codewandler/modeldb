@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+## v0.11.7 - 2026-04-19
+
+### Changed
+
+- Pricing validation is now scoped to regular text offerings so strict pricing checks ignore realtime, audio, image, transcription, moderation, and search-specialized variants.
+- OpenAI static pricing coverage was extended further across dated text-model aliases and additional text-focused GPT/o-series offerings.
+- Strict pricing builds now succeed for the regular text-model catalog while preserving warnings for specialized offerings outside the text-model scope.
+
+### Model Changes
+
+-  was regenerated after additional OpenAI text-model pricing enrichment and text-only pricing audit refinement.
+- Regular text OpenAI offerings now carry more complete pricing coverage across both base and dated aliases.
+
 ## v0.11.6 - 2026-04-19
 
 ### Changed

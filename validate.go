@@ -3,6 +3,7 @@ package modeldb
 import (
 	"fmt"
 	"sort"
+	"strings"
 )
 
 func ValidateCatalog(c Catalog) error {
@@ -131,6 +132,9 @@ type PricingReport struct {
 func AuditPricing(c Catalog) PricingReport {
 	report := PricingReport{}
 	for ref, offering := range c.Offerings {
+		if !isRegularTextPricingOffering(c, offering) {
+			continue
+		}
 		status := offering.PricingStatus
 		if status == "" {
 			if offering.Pricing == nil {
@@ -155,4 +159,38 @@ func AuditPricing(c Catalog) PricingReport {
 	sort.Strings(report.Free)
 	sort.Strings(report.Known)
 	return report
+}
+
+
+func isRegularTextPricingOffering(c Catalog, offering Offering) bool {
+	model, ok := c.Models[offering.ModelKey]
+	if !ok {
+		return true
+	}
+	modalities := append([]string{}, model.InputModalities...)
+	modalities = append(modalities, model.OutputModalities...)
+	for _, m := range modalities {
+		switch m {
+		case "audio", "image", "video":
+			return false
+		}
+	}
+	wire := offering.WireModelID
+	blocked := []string{
+		"realtime",
+		"audio",
+		"transcribe",
+		"tts",
+		"image",
+		"search-preview",
+		"search-api",
+		"moderation",
+		"omni-moderation",
+	}
+	for _, token := range blocked {
+		if strings.Contains(wire, token) {
+			return false
+		}
+	}
+	return true
 }

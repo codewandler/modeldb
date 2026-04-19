@@ -79,3 +79,17 @@ func TestAuditPricingClassifiesStatuses(t *testing.T) {
 	assert.Len(t, report.Free, 1)
 	assert.Len(t, report.Unknown, 1)
 }
+
+
+func TestAuditPricingIgnoresNonTextOfferings(t *testing.T) {
+	c := NewCatalog()
+	textKey := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "5"})
+	audioKey := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "audio", Variant: "1.5"})
+	c.Services["openai"] = Service{ID: "openai"}
+	c.Models[textKey] = ModelRecord{Key: textKey, InputModalities: []string{"text"}, OutputModalities: []string{"text"}}
+	c.Models[audioKey] = ModelRecord{Key: audioKey, InputModalities: []string{"audio"}, OutputModalities: []string{"text"}}
+	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "gpt-5"}] = Offering{ServiceID: "openai", WireModelID: "gpt-5", ModelKey: textKey, PricingStatus: "unknown"}
+	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "gpt-audio-1.5"}] = Offering{ServiceID: "openai", WireModelID: "gpt-audio-1.5", ModelKey: audioKey, PricingStatus: "unknown"}
+	report := AuditPricing(c)
+	assert.Equal(t, []string{"openai/gpt-5"}, report.Unknown)
+}
