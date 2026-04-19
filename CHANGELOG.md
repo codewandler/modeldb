@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+## v0.11.6 - 2026-04-19
+
+### Changed
+
+- OpenAI static pricing coverage was expanded substantially across GPT-5, GPT-4, gpt-3.5, and o-series model families using creator pricing data.
+- Offerings now carry explicit `pricing_status` metadata so known, free, and unknown pricing states are distinguishable during catalog generation and validation.
+- Build tooling now warns on unknown pricing and supports strict failure or filtered output via `--fail-on-unknown-pricing` and `--exclude-unknown-pricing`.
+- Offering pricing can now be hydrated automatically from creator reference pricing for aligned services such as Codex.
+- OpenRouter pricing classification now distinguishes explicit zero-cost offerings from offerings with missing pricing data.
+- Local runtime offerings now mark pricing explicitly as free.
+
+### Model Changes
+
+- `catalog.json` was regenerated after OpenAI pricing enrichment and pricing-status propagation.
+- OpenAI base offerings now expose explicit token pricing more consistently, including cached-input pricing where documented and `cache_write=0` where no separate write price is published.
+- Codex offerings now inherit OpenAI base pricing where appropriate.
+- Free offerings can now be identified explicitly in the generated catalog, while offerings with unclear pricing are surfaced for follow-up or optional exclusion.
+
 ## v0.11.5 - 2026-04-19
 
 ### Changed

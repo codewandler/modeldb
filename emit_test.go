@@ -39,3 +39,18 @@ func TestSaveAndLoadJSONRoundTrip(t *testing.T) {
 	assert.Equal(t, expected, loaded)
 	assert.NoError(t, ValidateCatalog(loaded))
 }
+
+
+func TestFilterCatalogByPricingStatus(t *testing.T) {
+	c := NewCatalog()
+	key := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "5"})
+	c.Services["openai"] = Service{ID: "openai"}
+	c.Models[key] = ModelRecord{Key: key}
+	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "known"}] = Offering{ServiceID: "openai", WireModelID: "known", ModelKey: key, Pricing: &Pricing{Input: 1, CacheWrite: 0}, PricingStatus: "known"}
+	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "free"}] = Offering{ServiceID: "openai", WireModelID: "free", ModelKey: key, Pricing: &Pricing{CacheWrite: 0}, PricingStatus: "free"}
+	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "unknown"}] = Offering{ServiceID: "openai", WireModelID: "unknown", ModelKey: key, PricingStatus: "unknown"}
+	filtered := FilterCatalogByPricingStatus(c, "unknown")
+	assert.Len(t, filtered.Offerings, 2)
+	_, ok := filtered.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "unknown"}]
+	assert.False(t, ok)
+}

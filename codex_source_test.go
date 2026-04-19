@@ -27,3 +27,23 @@ func TestCodexStaticSourceFetch(t *testing.T) {
 		assert.True(t, exposure.ExposedCapabilities.Reasoning.VisibleSummary)
 	}
 }
+
+
+func TestCodexPricingHydratesFromOpenAIReferencePricing(t *testing.T) {
+	c := NewCatalog()
+	frag, err := NewCodexSource().Fetch(context.Background())
+	require.NoError(t, err)
+	require.NoError(t, MergeCatalogFragment(&c, frag))
+	staticFrag, err := NewOpenAIStaticSource().Fetch(context.Background())
+	require.NoError(t, err)
+	require.NoError(t, MergeCatalogFragment(&c, staticFrag))
+	require.NoError(t, ValidateCatalog(c))
+	offering, _, ok := c.ResolveOfferingExposure("codex", "gpt-5.4", APITypeOpenAIResponses)
+	require.True(t, ok)
+	if assert.NotNil(t, offering.Pricing) {
+		assert.Equal(t, 2.5, offering.Pricing.Input)
+		assert.Equal(t, 0.25, offering.Pricing.CachedInput)
+		assert.Equal(t, 15.0, offering.Pricing.Output)
+		assert.Equal(t, 0.0, offering.Pricing.CacheWrite)
+	}
+}

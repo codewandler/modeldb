@@ -112,3 +112,33 @@ func catalogArtifactFromCatalog(c Catalog) catalogArtifact {
 	})
 	return artifact
 }
+
+
+func FilterCatalogByPricingStatus(c Catalog, excludeStatus ...string) Catalog {
+	out := NewCatalog()
+	excluded := map[string]bool{}
+	for _, status := range excludeStatus {
+		excluded[status] = true
+	}
+	for k, v := range c.Services {
+		out.Services[k] = v
+	}
+	for ref, offering := range c.Offerings {
+		status := offering.PricingStatus
+		if status == "" {
+			if offering.Pricing == nil {
+				status = "unknown"
+			} else if pricingIsFree(offering.Pricing) {
+				status = "free"
+			} else {
+				status = "known"
+			}
+		}
+		if excluded[status] {
+			continue
+		}
+		out.Offerings[ref] = offering
+		out.Models[offering.ModelKey] = c.Models[offering.ModelKey]
+	}
+	return out
+}

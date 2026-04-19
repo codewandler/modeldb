@@ -155,10 +155,24 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 			}},
 		})
 		caps := capabilitiesFromOpenRouter(item.SupportedParameters, item.Architecture.InputModalities, item.Pricing.InputCacheRead != "")
+		pricing, pricingStatus := pricingFromOpenRouter(
+			item.Pricing.Prompt,
+			item.Pricing.Completion,
+			item.Pricing.InputCacheRead,
+			item.Pricing.InputCacheWrite,
+			item.Pricing.InternalReasoning,
+			item.Pricing.Image,
+			item.Pricing.ImageToken,
+			item.Pricing.ImageOutput,
+			item.Pricing.Audio,
+			item.Pricing.AudioOutput,
+			item.Pricing.Request,
+			item.Pricing.WebSearch,
+		)
 		offering := Offering{
-			ServiceID:   "openrouter",
-			WireModelID: item.ID,
-			ModelKey:    key,
+			ServiceID:     "openrouter",
+			WireModelID:   item.ID,
+			ModelKey:      key,
 			Exposures: openRouterExposures(
 				s.ID(),
 				observedAt,
@@ -167,20 +181,8 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 				item.SupportedParameters,
 				item.DefaultParameters,
 			),
-			Pricing: pricingFromOpenRouter(
-				item.Pricing.Prompt,
-				item.Pricing.Completion,
-				item.Pricing.InputCacheRead,
-				item.Pricing.InputCacheWrite,
-				item.Pricing.InternalReasoning,
-				item.Pricing.Image,
-				item.Pricing.ImageToken,
-				item.Pricing.ImageOutput,
-				item.Pricing.Audio,
-				item.Pricing.AudioOutput,
-				item.Pricing.Request,
-				item.Pricing.WebSearch,
-			),
+			Pricing:       pricing,
+			PricingStatus: pricingStatus,
 			LimitsOverride:   limitsPtr(item.TopProvider.ContextLength, item.TopProvider.MaxCompletionTokens),
 			PerRequestLimits: convertPerRequestLimits(item.PerRequestLimits),
 			IsModerated:      item.TopProvider.IsModerated,
@@ -229,8 +231,16 @@ func reasoningFromOpenRouter(params []string) *ReasoningCapability {
 	return r
 }
 
-func pricingFromOpenRouter(prompt, completion, cacheRead, cacheWrite, reasoning, image, imageToken, imageOutput, audio, audioOutput, request, webSearch string) *Pricing {
+func pricingFromOpenRouter(prompt, completion, cacheRead, cacheWrite, reasoning, image, imageToken, imageOutput, audio, audioOutput, request, webSearch string) (*Pricing, string) {
 	p := &Pricing{}
+	fields := []string{prompt, completion, cacheRead, cacheWrite, reasoning, image, imageToken, imageOutput, audio, audioOutput, request, webSearch}
+	sawField := false
+	for _, field := range fields {
+		if field != "" {
+			sawField = true
+			break
+		}
+	}
 	if v, ok := parsePerTokenDollars(prompt); ok {
 		p.Input = v
 	}
@@ -267,10 +277,13 @@ func pricingFromOpenRouter(prompt, completion, cacheRead, cacheWrite, reasoning,
 	if v, ok := parsePerTokenDollars(webSearch); ok {
 		p.WebSearch = v
 	}
-	if p.Input == 0 && p.Output == 0 && p.CachedInput == 0 && p.CacheWrite == 0 && p.Reasoning == 0 && p.Image == 0 && p.ImageToken == 0 && p.ImageOutput == 0 && p.Audio == 0 && p.AudioOutput == 0 && p.Request == 0 && p.WebSearch == 0 {
-		return nil
+	if !sawField {
+		return nil, "unknown"
 	}
-	return p
+	if pricingIsFree(p) {
+		return p, "free"
+	}
+	return p, "known"
 }
 
 func parsePerTokenDollars(raw string) (float64, bool) {

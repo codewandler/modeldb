@@ -58,6 +58,7 @@ type openAIStaticModelEntry struct {
 type openAIStaticModelTemplate struct {
 	Capabilities     *Capabilities `json:"capabilities,omitempty"`
 	Limits           *Limits       `json:"limits,omitempty"`
+	Pricing          *Pricing      `json:"pricing,omitempty"`
 	InputModalities  []string      `json:"input_modalities,omitempty"`
 	OutputModalities []string      `json:"output_modalities,omitempty"`
 }
@@ -99,6 +100,7 @@ func (s OpenAIStaticSource) Fetch(context.Context) (*Fragment, error) {
 			Canonical:        false,
 			Capabilities:     resolvedModel.capabilities,
 			Limits:           resolvedModel.limits,
+			ReferencePricing: resolvedModel.pricing,
 			InputModalities:  resolvedModel.inputModalities,
 			OutputModalities: resolvedModel.outputModalities,
 			Provenance:       []Provenance{{SourceID: openAIStaticSourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: item.Slug}},
@@ -115,12 +117,22 @@ func (s OpenAIStaticSource) Fetch(context.Context) (*Fragment, error) {
 			})
 		}
 		sort.Slice(offExposures, func(i, j int) bool { return offExposures[i].APIType < offExposures[j].APIType })
+		pricingStatus := "unknown"
+		if resolvedModel.pricing != nil {
+			if pricingIsFree(resolvedModel.pricing) {
+				pricingStatus = "free"
+			} else {
+				pricingStatus = "known"
+			}
+		}
 		frag.Offerings = append(frag.Offerings, Offering{
-			ServiceID:   "openai",
-			WireModelID: item.Slug,
-			ModelKey:    key,
-			Exposures:   offExposures,
-			Provenance:  []Provenance{{SourceID: openAIStaticSourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: item.Slug}},
+			ServiceID:     "openai",
+			WireModelID:   item.Slug,
+			ModelKey:      key,
+			Exposures:     offExposures,
+			Pricing:       resolvedModel.pricing,
+			PricingStatus: pricingStatus,
+			Provenance:    []Provenance{{SourceID: openAIStaticSourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: item.Slug}},
 		})
 	}
 	sort.Slice(frag.Models, func(i, j int) bool { return modelID(frag.Models[i].Key) < modelID(frag.Models[j].Key) })
@@ -130,6 +142,7 @@ func (s OpenAIStaticSource) Fetch(context.Context) (*Fragment, error) {
 type resolvedOpenAIStaticModel struct {
 	capabilities     Capabilities
 	limits           Limits
+	pricing          *Pricing
 	inputModalities  []string
 	outputModalities []string
 }
@@ -185,6 +198,10 @@ func applyOpenAIStaticModelTemplate(dst *resolvedOpenAIStaticModel, tpl *openAIS
 		if tpl.Limits.MaxOutput != 0 {
 			dst.limits.MaxOutput = tpl.Limits.MaxOutput
 		}
+	}
+	if tpl.Pricing != nil {
+		pricing := *tpl.Pricing
+		dst.pricing = &pricing
 	}
 	if tpl.InputModalities != nil {
 		dst.inputModalities = normalizeStrings(tpl.InputModalities)

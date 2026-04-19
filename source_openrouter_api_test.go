@@ -124,3 +124,11 @@ func TestOpenRouterSourceFetch_LogUnhandledModels(t *testing.T) {
 		t.Logf("  UNHANDLED: %-55s %s", m.ID, m.Name)
 	}
 }
+
+
+func TestOpenRouterFreePricingStatus(t *testing.T) {
+	p, status := pricingFromOpenRouter("0", "0", "0", "0", "", "", "", "", "", "", "", "")
+	require.NotNil(t, p)
+	assert.Equal(t, "free", status)
+	assert.Equal(t, 0.0, p.CacheWrite)
+}

@@ -116,17 +116,23 @@ func (s ModelsDevSource) Fetch(ctx context.Context) (*Fragment, error) {
 			}
 			fragment.Models = append(fragment.Models, modelRecord)
 			if serviceID == "bedrock" {
+				pricing := &Pricing{
+					Input:       entry.Cost.Input,
+					Output:      entry.Cost.Output,
+					CachedInput: entry.Cost.CacheRead,
+					CacheWrite:  entry.Cost.CacheWrite,
+				}
+				pricingStatus := "known"
+				if pricingIsFree(pricing) {
+					pricingStatus = "free"
+				}
 				fragment.Offerings = append(fragment.Offerings, Offering{
-					ServiceID:   serviceID,
-					WireModelID: modelID,
-					ModelKey:    key,
-					Exposures:   []OfferingExposure{{APIType: APITypeDefault}},
-					Pricing: &Pricing{
-						Input:       entry.Cost.Input,
-						Output:      entry.Cost.Output,
-						CachedInput: entry.Cost.CacheRead,
-						CacheWrite:  entry.Cost.CacheWrite,
-					},
+					ServiceID:     serviceID,
+					WireModelID:   modelID,
+					ModelKey:      key,
+					Exposures:     []OfferingExposure{{APIType: APITypeDefault}},
+					Pricing:       pricing,
+					PricingStatus: pricingStatus,
 					LimitsOverride: limitsPtr(entry.Limit.Context, entry.Limit.Output),
 					Provenance: []Provenance{{
 						SourceID:   modelsDevSourceID,

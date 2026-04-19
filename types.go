@@ -105,7 +105,7 @@ type Pricing struct {
 	Input       float64 `json:"input,omitempty"`
 	Output      float64 `json:"output,omitempty"`
 	CachedInput float64 `json:"cached_input,omitempty"`
-	CacheWrite  float64 `json:"cache_write,omitempty"`
+	CacheWrite  float64 `json:"cache_write"`
 	Reasoning   float64 `json:"reasoning,omitempty"`
 	Image       float64 `json:"image,omitempty"`
 	ImageToken  float64 `json:"image_token,omitempty"`
@@ -153,6 +153,7 @@ type Offering struct {
 	Aliases          []string           `json:"aliases,omitempty"`
 	Exposures        []OfferingExposure `json:"exposures,omitempty"`
 	Pricing          *Pricing           `json:"pricing,omitempty"`
+	PricingStatus    string             `json:"pricing_status,omitempty"`
 	LimitsOverride   *Limits            `json:"limits_override,omitempty"`
 	PerRequestLimits *PerRequestLimits  `json:"per_request_limits,omitempty"`
 	IsModerated      bool               `json:"is_moderated,omitempty"`

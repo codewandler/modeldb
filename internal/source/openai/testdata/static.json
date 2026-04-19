@@ -536,6 +536,11 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.5,
+          "output": 2,
+          "cache_write": 0
         }
       }
     },
@@ -564,6 +569,11 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 0.5,
+          "output": 1.5,
+          "cache_write": 0
         }
       }
     },
@@ -592,6 +602,11 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 10,
+          "output": 30,
+          "cache_write": 0
         }
       }
     },
@@ -620,6 +635,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 0.4,
+          "cached_input": 0.1,
+          "output": 1.6,
+          "cache_write": 0
         }
       }
     },
@@ -648,6 +669,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 0.1,
+          "cached_input": 0.025,
+          "output": 0.4,
+          "cache_write": 0
         }
       }
     },
@@ -676,6 +703,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 2,
+          "cached_input": 0.5,
+          "output": 8,
+          "cache_write": 0
         }
       }
     },
@@ -704,6 +737,11 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 30,
+          "output": 60,
+          "cache_write": 0
         }
       }
     },
@@ -732,6 +770,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 0.15,
+          "cached_input": 0.075,
+          "output": 0.6,
+          "cache_write": 0
         }
       }
     },
@@ -760,6 +804,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 2.5,
+          "cached_input": 1.25,
+          "output": 10,
+          "cache_write": 0
         }
       }
     },
@@ -788,6 +838,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10,
+          "cache_write": 0
         }
       }
     },
@@ -816,6 +872,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10,
+          "cache_write": 0
         }
       }
     },
@@ -844,6 +906,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 0.25,
+          "cached_input": 0.025,
+          "output": 2,
+          "cache_write": 0
         }
       }
     },
@@ -872,6 +940,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 0.05,
+          "cached_input": 0.005,
+          "output": 0.4,
+          "cache_write": 0
         }
       }
     },
@@ -898,6 +972,11 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 15,
+          "output": 120,
+          "cache_write": 0
         }
       },
       "exposure_overrides": {
@@ -942,6 +1021,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10,
+          "cache_write": 0
         }
       }
     },
@@ -970,6 +1055,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10,
+          "cache_write": 0
         }
       }
     },
@@ -998,6 +1089,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 0.25,
+          "cached_input": 0.025,
+          "output": 2,
+          "cache_write": 0
         }
       }
     },
@@ -1026,6 +1123,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10,
+          "cache_write": 0
         }
       }
     },
@@ -1055,6 +1158,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10,
+          "cache_write": 0
         }
       },
       "exposure_overrides": {
@@ -1115,6 +1224,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.75,
+          "cached_input": 0.175,
+          "output": 14,
+          "cache_write": 0
         }
       }
     },
@@ -1143,6 +1258,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.75,
+          "cached_input": 0.175,
+          "output": 14,
+          "cache_write": 0
         }
       }
     },
@@ -1171,6 +1292,11 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 21,
+          "output": 168,
+          "cache_write": 0
         }
       }
     },
@@ -1201,6 +1327,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.75,
+          "cached_input": 0.175,
+          "output": 14,
+          "cache_write": 0
         }
       },
       "exposure_overrides": {
@@ -1258,6 +1390,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.75,
+          "cached_input": 0.175,
+          "output": 14,
+          "cache_write": 0
         }
       }
     },
@@ -1286,6 +1424,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.75,
+          "cached_input": 0.175,
+          "output": 14,
+          "cache_write": 0
         }
       },
       "exposure_overrides": {
@@ -1347,6 +1491,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 0.75,
+          "cached_input": 0.075,
+          "output": 4.5,
+          "cache_write": 0
         }
       }
     },
@@ -1375,6 +1525,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 0.2,
+          "cached_input": 0.02,
+          "output": 1.25,
+          "cache_write": 0
         }
       }
     },
@@ -1403,6 +1559,11 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 30,
+          "output": 180,
+          "cache_write": 0
         }
       }
     },
@@ -1431,6 +1592,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 2.5,
+          "cached_input": 0.25,
+          "output": 15,
+          "cache_write": 0
         }
       },
       "exposure_overrides": {
@@ -1477,6 +1644,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.25,
+          "cached_input": 0.125,
+          "output": 10,
+          "cache_write": 0
         }
       }
     },
@@ -1505,6 +1678,11 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 150,
+          "output": 600,
+          "cache_write": 0
         }
       }
     },
@@ -1533,6 +1711,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 15,
+          "cached_input": 7.5,
+          "output": 60,
+          "cache_write": 0
         }
       }
     },
@@ -1561,6 +1745,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 10,
+          "cached_input": 2.5,
+          "output": 40,
+          "cache_write": 0
         }
       }
     },
@@ -1589,6 +1779,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.1,
+          "cached_input": 0.55,
+          "output": 4.4,
+          "cache_write": 0
         }
       }
     },
@@ -1617,6 +1813,11 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 20,
+          "output": 80,
+          "cache_write": 0
         }
       }
     },
@@ -1645,6 +1846,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 2,
+          "cached_input": 0.5,
+          "output": 8,
+          "cache_write": 0
         }
       }
     },
@@ -1673,6 +1880,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 2,
+          "cached_input": 0.5,
+          "output": 8,
+          "cache_write": 0
         }
       }
     },
@@ -1701,6 +1914,12 @@
               "off"
             ]
           }
+        },
+        "pricing": {
+          "input": 1.1,
+          "cached_input": 0.275,
+          "output": 4.4,
+          "cache_write": 0
         }
       }
     }

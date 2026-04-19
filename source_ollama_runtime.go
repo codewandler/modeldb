@@ -185,9 +185,10 @@ func localRuntimeEntries(serviceID, modelID, fallbackName, sourceID string, obse
 	}
 	ref := OfferingRef{ServiceID: serviceID, WireModelID: modelID}
 	provenance := []Provenance{{SourceID: sourceID, Authority: string(AuthorityLocal), ObservedAt: observedAt, RawID: modelID}}
+	freePricing := &Pricing{CacheWrite: 0}
 	return ref,
 		ModelRecord{Key: key, Name: name, Canonical: false, Provenance: provenance},
-		Offering{ServiceID: serviceID, WireModelID: modelID, ModelKey: key, Provenance: provenance}
+		Offering{ServiceID: serviceID, WireModelID: modelID, ModelKey: key, Pricing: freePricing, PricingStatus: "free", Provenance: provenance}
 }
 
 func sortedOfferingRefs(items map[OfferingRef]Offering) []OfferingRef {

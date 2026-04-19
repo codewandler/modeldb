@@ -25,12 +25,24 @@ func TestOpenAIStaticSourceFetch(t *testing.T) {
 	}
 	assert.Equal(t, 400000, m.Limits.ContextWindow)
 	assert.Equal(t, 128000, m.Limits.MaxOutput)
+	if assert.NotNil(t, m.ReferencePricing) {
+		assert.Equal(t, 1.75, m.ReferencePricing.Input)
+		assert.Equal(t, 0.175, m.ReferencePricing.CachedInput)
+		assert.Equal(t, 14.0, m.ReferencePricing.Output)
+		assert.Equal(t, 0.0, m.ReferencePricing.CacheWrite)
+	}
 
 	off, ok := c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "gpt-5.2"}]
 	require.True(t, ok)
 	exp := off.Exposure(APITypeOpenAIResponses)
 	require.NotNil(t, exp)
 	require.NotNil(t, exp.ExposedCapabilities)
+	if assert.NotNil(t, off.Pricing) {
+		assert.Equal(t, 1.75, off.Pricing.Input)
+		assert.Equal(t, 0.175, off.Pricing.CachedInput)
+		assert.Equal(t, 14.0, off.Pricing.Output)
+		assert.Equal(t, 0.0, off.Pricing.CacheWrite)
+	}
 	assert.True(t, exp.ExposedCapabilities.StructuredOutput)
 	assert.True(t, exp.ExposedCapabilities.ToolUse)
 	if assert.NotNil(t, exp.ExposedCapabilities.Reasoning) {
@@ -42,4 +54,84 @@ func TestOpenAIStaticSourceFetch(t *testing.T) {
 	assert.Contains(t, exp.SupportedParameters, ParamReasoningEffort)
 	assert.True(t, exp.SupportsParameterValue(string(ParamReasoningEffort), string(ReasoningEffortLow)))
 	assert.True(t, exp.SupportsParameterValue(string(ParamReasoningEffort), string(ReasoningEffortNone)))
+}
+
+
+func TestOpenAIStaticPricingCoverage(t *testing.T) {
+	frag, err := NewOpenAIStaticSource().Fetch(context.Background())
+	require.NoError(t, err)
+	c := NewCatalog()
+	require.NoError(t, MergeCatalogFragment(&c, frag))
+	require.NoError(t, ValidateCatalog(c))
+	priced := []string{
+		"gpt-4-turbo",
+		"gpt-4.1-mini",
+		"gpt-4.1-nano",
+		"gpt-4.1",
+		"gpt-4",
+		"gpt-4o-mini",
+		"gpt-4o",
+		"gpt-5-chat-latest",
+		"gpt-5-codex",
+		"gpt-5-mini",
+		"gpt-5-nano",
+		"gpt-5-pro",
+		"gpt-5.1-chat-latest",
+		"gpt-5.1-codex-max",
+		"gpt-5.1-codex-mini",
+		"gpt-5.1-codex",
+		"gpt-5.1",
+		"gpt-5.2-chat-latest",
+		"gpt-5.2-codex",
+		"gpt-5.2-pro",
+		"gpt-5.2",
+		"gpt-5.3-chat-latest",
+		"gpt-5.3-codex",
+		"gpt-5.4-mini",
+		"gpt-5.4-nano",
+		"gpt-5.4-pro",
+		"gpt-5.4",
+		"gpt-5",
+	}
+	for _, slug := range priced {
+		key, ok := inferOpenAIModelKey(slug)
+		require.True(t, ok, slug)
+		model, ok := c.Models[NormalizeKey(key)]
+		require.True(t, ok, slug)
+		if assert.NotNil(t, model.ReferencePricing, slug) {
+			assert.Equal(t, 0.0, model.ReferencePricing.CacheWrite, slug)
+		}
+		off, ok := c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: slug}]
+		require.True(t, ok, slug)
+		if assert.NotNil(t, off.Pricing, slug) {
+			assert.Equal(t, 0.0, off.Pricing.CacheWrite, slug)
+		}
+	}
+}
+
+
+func TestOpenAIStaticCoreOpenAIPricingExtensions(t *testing.T) {
+	frag, err := NewOpenAIStaticSource().Fetch(context.Background())
+	require.NoError(t, err)
+	c := NewCatalog()
+	require.NoError(t, MergeCatalogFragment(&c, frag))
+	require.NoError(t, ValidateCatalog(c))
+	for _, tc := range []struct{ slug string; input, output float64 }{
+		{slug: "gpt-3.5-turbo", input: 0.5, output: 1.5},
+		{slug: "gpt-3.5-turbo-instruct", input: 1.5, output: 2},
+		{slug: "o1", input: 15, output: 60},
+		{slug: "o1-pro", input: 150, output: 600},
+		{slug: "o3", input: 2, output: 8},
+		{slug: "o3-mini", input: 1.1, output: 4.4},
+		{slug: "o3-pro", input: 20, output: 80},
+		{slug: "o4-mini", input: 1.1, output: 4.4},
+	} {
+		off, ok := c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: tc.slug}]
+		require.True(t, ok, tc.slug)
+		if assert.NotNil(t, off.Pricing, tc.slug) {
+			assert.Equal(t, tc.input, off.Pricing.Input, tc.slug)
+			assert.Equal(t, tc.output, off.Pricing.Output, tc.slug)
+			assert.Equal(t, 0.0, off.Pricing.CacheWrite, tc.slug)
+		}
+	}
 }

@@ -1,6 +1,9 @@
 package modeldb
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func ValidateCatalog(c Catalog) error {
 	for ref, offering := range c.Offerings {
@@ -9,6 +12,15 @@ func ValidateCatalog(c Catalog) error {
 		}
 		if _, ok := c.Models[offering.ModelKey]; !ok {
 			return fmt.Errorf("offering %s/%s references unknown model %q", ref.ServiceID, ref.WireModelID, modelID(offering.ModelKey))
+		}
+		if offering.PricingStatus != "" && offering.PricingStatus != "known" && offering.PricingStatus != "free" && offering.PricingStatus != "unknown" {
+			return fmt.Errorf("offering %s/%s has invalid pricing_status %q", ref.ServiceID, ref.WireModelID, offering.PricingStatus)
+		}
+		if offering.PricingStatus == "free" && offering.Pricing == nil {
+			return fmt.Errorf("offering %s/%s marked free without explicit zero pricing", ref.ServiceID, ref.WireModelID)
+		}
+		if offering.PricingStatus == "free" && !pricingIsFree(offering.Pricing) {
+			return fmt.Errorf("offering %s/%s marked free but has non-zero pricing", ref.ServiceID, ref.WireModelID)
 		}
 		seen := map[APIType]bool{}
 		for _, exposure := range offering.Exposures {
@@ -107,4 +119,40 @@ func validateNormalizedParameter(p NormalizedParameter) bool {
 	default:
 		return false
 	}
+}
+
+
+type PricingReport struct {
+	Unknown []string
+	Free    []string
+	Known   []string
+}
+
+func AuditPricing(c Catalog) PricingReport {
+	report := PricingReport{}
+	for ref, offering := range c.Offerings {
+		status := offering.PricingStatus
+		if status == "" {
+			if offering.Pricing == nil {
+				status = "unknown"
+			} else if pricingIsFree(offering.Pricing) {
+				status = "free"
+			} else {
+				status = "known"
+			}
+		}
+		id := ref.ServiceID + "/" + ref.WireModelID
+		switch status {
+		case "free":
+			report.Free = append(report.Free, id)
+		case "known":
+			report.Known = append(report.Known, id)
+		default:
+			report.Unknown = append(report.Unknown, id)
+		}
+	}
+	sort.Strings(report.Unknown)
+	sort.Strings(report.Free)
+	sort.Strings(report.Known)
+	return report
 }

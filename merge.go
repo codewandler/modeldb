@@ -27,7 +27,44 @@ func MergeCatalogFragment(dst *Catalog, frag *Fragment) error {
 			return err
 		}
 	}
+	hydrateOfferingPricingFromModels(dst)
 	return nil
+}
+
+func hydrateOfferingPricingFromModels(dst *Catalog) {
+	if dst == nil {
+		return
+	}
+	for ref, offering := range dst.Offerings {
+		if offering.Pricing != nil {
+			continue
+		}
+		model, ok := dst.Models[offering.ModelKey]
+		if !ok || model.ReferencePricing == nil {
+			continue
+		}
+		service, ok := dst.Services[offering.ServiceID]
+		if !ok {
+			continue
+		}
+		creator := normalizeKeyPart(offering.ModelKey.Creator)
+		if creator == "" {
+			continue
+		}
+		if offering.ServiceID != creator && normalizeKeyPart(service.Operator) != creator {
+			continue
+		}
+		pricing := *model.ReferencePricing
+		offering.Pricing = &pricing
+		if offering.PricingStatus == "" || offering.PricingStatus == "unknown" {
+			if pricingIsFree(&pricing) {
+				offering.PricingStatus = "free"
+			} else {
+				offering.PricingStatus = "known"
+			}
+		}
+		dst.Offerings[ref] = offering
+	}
 }
 
 func MergeResolvedFragment(dst *ResolvedCatalog, frag *Fragment) error {
@@ -181,6 +218,16 @@ func mergeOffering(dst *Catalog, offering Offering) error {
 	existing.Aliases = mergeStringSlices(existing.Aliases, offering.Aliases)
 	if existing.Pricing, err = mergePointerField(existing.Pricing, offering.Pricing, "offering.pricing", ref.ServiceID+"/"+ref.WireModelID); err != nil {
 		return err
+	}
+	switch {
+	case existing.PricingStatus == "":
+		existing.PricingStatus = offering.PricingStatus
+	case offering.PricingStatus == "" || offering.PricingStatus == "unknown":
+		// keep existing
+	case existing.PricingStatus == "unknown":
+		existing.PricingStatus = offering.PricingStatus
+	case existing.PricingStatus == offering.PricingStatus:
+		// ok
 	}
 	if existing.LimitsOverride, err = mergePointerField(existing.LimitsOverride, offering.LimitsOverride, "offering.limits_override", ref.ServiceID+"/"+ref.WireModelID); err != nil {
 		return err
@@ -614,4 +661,12 @@ func mergeParameterMappings(a, b []ParameterMapping) []ParameterMapping {
 		out = append(out, m)
 	}
 	return out
+}
+
+
+func pricingIsFree(p *Pricing) bool {
+	if p == nil {
+		return false
+	}
+	return p.Input == 0 && p.Output == 0 && p.CachedInput == 0 && p.CacheWrite == 0 && p.Reasoning == 0 && p.Image == 0 && p.ImageToken == 0 && p.ImageOutput == 0 && p.Audio == 0 && p.AudioOutput == 0 && p.Request == 0 && p.WebSearch == 0
 }

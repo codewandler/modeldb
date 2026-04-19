@@ -53,3 +53,29 @@ func TestValidateResolvedCatalogMissingRuntimeOffering(t *testing.T) {
 	require.Error(t, err)
 	assert.Contains(t, err.Error(), "unknown offering")
 }
+
+
+func TestValidateCatalogRejectsFreeWithoutExplicitPricing(t *testing.T) {
+	c := NewCatalog()
+	key := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "5"})
+	c.Models[key] = ModelRecord{Key: key}
+	c.Services["openai"] = Service{ID: "openai"}
+	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "gpt-5"}] = Offering{ServiceID: "openai", WireModelID: "gpt-5", ModelKey: key, PricingStatus: "free"}
+	err := ValidateCatalog(c)
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "marked free without explicit zero pricing")
+}
+
+func TestAuditPricingClassifiesStatuses(t *testing.T) {
+	c := NewCatalog()
+	key := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "5"})
+	c.Models[key] = ModelRecord{Key: key}
+	c.Services["openai"] = Service{ID: "openai"}
+	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "known"}] = Offering{ServiceID: "openai", WireModelID: "known", ModelKey: key, Pricing: &Pricing{Input: 1, CacheWrite: 0}, PricingStatus: "known"}
+	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "free"}] = Offering{ServiceID: "openai", WireModelID: "free", ModelKey: key, Pricing: &Pricing{CacheWrite: 0}, PricingStatus: "free"}
+	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "unknown"}] = Offering{ServiceID: "openai", WireModelID: "unknown", ModelKey: key, PricingStatus: "unknown"}
+	report := AuditPricing(c)
+	assert.Len(t, report.Known, 1)
+	assert.Len(t, report.Free, 1)
+	assert.Len(t, report.Unknown, 1)
+}

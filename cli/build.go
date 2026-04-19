@@ -26,6 +26,8 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 	var codexFile string
 	var openAIStaticFile string
 	var useFixture bool
+	var failOnUnknownPricing bool
+	var excludeUnknownPricing bool
 
 	cmd := &cobra.Command{
 		Use:   "build",
@@ -68,6 +70,19 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 			if err != nil {
 				return fmt.Errorf("build catalog: %w", err)
 			}
+			report := modeldb.AuditPricing(built)
+			if len(report.Unknown) > 0 {
+				fmt.Fprintf(ioCfg.Err, "WARN pricing unknown for %d offerings\n", len(report.Unknown))
+				for _, id := range report.Unknown {
+					fmt.Fprintf(ioCfg.Err, "WARN missing pricing: %s\n", id)
+				}
+			}
+			if failOnUnknownPricing && len(report.Unknown) > 0 {
+				return fmt.Errorf("build catalog: unknown pricing for %d offerings", len(report.Unknown))
+			}
+			if excludeUnknownPricing {
+				built = modeldb.FilterCatalogByPricingStatus(built, "unknown")
+			}
 			if err := modeldb.SaveJSON(outPath, built); err != nil {
 				return fmt.Errorf("save catalog: %w", err)
 			}
@@ -82,5 +97,7 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 	cmd.Flags().StringVar(&codexFile, "codex-file", "", "optional local codex models payload path")
 	cmd.Flags().StringVar(&openAIStaticFile, "openai-static-file", "", "optional local OpenAI static manifest path")
 	cmd.Flags().BoolVar(&useFixture, "modelsdev-fixture", false, "use bundled models.dev fixture instead of live fetch")
+	cmd.Flags().BoolVar(&failOnUnknownPricing, "fail-on-unknown-pricing", false, "fail build when any offering has unknown pricing")
+	cmd.Flags().BoolVar(&excludeUnknownPricing, "exclude-unknown-pricing", false, "exclude offerings with unknown pricing from output")
 	return cmd
 }
