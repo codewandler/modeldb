@@ -86,6 +86,11 @@ func ValidateResolvedCatalog(c ResolvedCatalog) error {
 }
 
 func validateCapabilities(c Capabilities, id string) error {
+	if c.Caching != nil {
+		if err := validateCachingCapability(c.Caching, id); err != nil {
+			return err
+		}
+	}
 	if c.Reasoning == nil {
 		return nil
 	}
@@ -113,15 +118,57 @@ func validateCapabilities(c Capabilities, id string) error {
 	return nil
 }
 
+func validateCachingCapability(c *CachingCapability, id string) error {
+	if c == nil {
+		return nil
+	}
+	switch c.Mode {
+	case "", CachingModeExplicit, CachingModeImplicit, CachingModeMixed:
+	default:
+		return fmt.Errorf("%s has invalid caching mode %q", id, c.Mode)
+	}
+	if c.PromptCacheRetention {
+		if !c.Available {
+			return fmt.Errorf("%s has prompt_cache_retention without available caching", id)
+		}
+		if !c.Configurable {
+			return fmt.Errorf("%s has prompt_cache_retention without configurable caching", id)
+		}
+	}
+	if c.PromptCacheKey {
+		if !c.Available {
+			return fmt.Errorf("%s has prompt_cache_key without available caching", id)
+		}
+		if !c.Configurable {
+			return fmt.Errorf("%s has prompt_cache_key without configurable caching", id)
+		}
+	}
+	if (c.TopLevelRequestCaching || c.PerMessageCaching) && !c.Available {
+		return fmt.Errorf("%s has caching controls without available caching", id)
+	}
+	if c.Mode == CachingModeImplicit && c.Configurable {
+		return fmt.Errorf("%s has implicit caching marked configurable", id)
+	}
+	if c.Mode == CachingModeMixed && !c.Configurable {
+		return fmt.Errorf("%s has mixed caching marked non-configurable", id)
+	}
+	if len(c.RetentionValues) > 0 && !c.PromptCacheRetention {
+		return fmt.Errorf("%s has retention_values without prompt_cache_retention", id)
+	}
+	if len(c.CacheControlTypes) > 0 && !(c.TopLevelRequestCaching || c.PerMessageCaching) {
+		return fmt.Errorf("%s has cache_control_types without cache control support", id)
+	}
+	return nil
+}
+
 func validateNormalizedParameter(p NormalizedParameter) bool {
 	switch p {
-	case ParamMessages, ParamThinking, ParamThinkingMode, ParamReasoningEffort, ParamReasoningSummary, ParamResponseFormat, ParamTools, ParamToolChoice, ParamTemperature, ParamSeed, ParamLogprobs, ParamParallelTools, ParamWebSearch:
+	case ParamMessages, ParamThinking, ParamThinkingMode, ParamReasoningEffort, ParamReasoningSummary, ParamResponseFormat, ParamTools, ParamToolChoice, ParamTemperature, ParamSeed, ParamLogprobs, ParamParallelTools, ParamWebSearch, ParamPromptCacheRetention, ParamPromptCacheKey, ParamCacheControl, ParamTopLevelCacheControl, ParamBlockCacheControl:
 		return true
 	default:
 		return false
 	}
 }
-
 
 type PricingReport struct {
 	Unknown []string
@@ -160,7 +207,6 @@ func AuditPricing(c Catalog) PricingReport {
 	sort.Strings(report.Known)
 	return report
 }
-
 
 func isRegularTextPricingOffering(c Catalog, offering Offering) bool {
 	model, ok := c.Models[offering.ModelKey]
