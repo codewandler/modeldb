@@ -8,9 +8,9 @@ import (
 )
 
 func TestOfferingExposureHelpers(t *testing.T) {
-	o := Offering{Exposures: []OfferingExposure{{APIType: APITypeOpenAIChat, SupportedParameters: []NormalizedParameter{ParamTools}, ParameterValues: map[string][]string{"reasoning_effort": {"low", "high"}}}}}
-	require.True(t, o.HasExposure(APITypeOpenAIChat))
-	exp := o.Exposure(APITypeOpenAIChat)
+	o := Offering{Exposures: []OfferingExposure{{APIType: APITypeOpenAIResponses, SupportedParameters: []NormalizedParameter{ParamTools}, ParameterValues: map[string][]string{"reasoning_effort": {"low", "high"}}}}}
+	require.True(t, o.HasExposure(APITypeOpenAIResponses))
+	exp := o.Exposure(APITypeOpenAIResponses)
 	require.NotNil(t, exp)
 	assert.True(t, exp.SupportsParameter("tools"))
 	assert.True(t, exp.SupportsParameterValue("reasoning_effort", "low"))
@@ -26,7 +26,7 @@ func TestValidateCatalogRejectsDuplicateExposureAPIType(t *testing.T) {
 		ServiceID:   "openai",
 		WireModelID: "gpt-5",
 		ModelKey:    key,
-		Exposures: []OfferingExposure{{APIType: APITypeDefault}, {APIType: APITypeDefault}},
+		Exposures:   []OfferingExposure{{APIType: APITypeDefault}, {APIType: APITypeDefault}},
 	}
 	assert.Error(t, ValidateCatalog(c))
 }

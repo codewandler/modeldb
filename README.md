@@ -105,7 +105,7 @@ openrouter -> anthropic/claude-sonnet-4.5
 ### Filter by API surface or normalized parameter
 
 ```bash
-modeldb models --name sonnet --version 4.5 --api-type openai-chat --offerings
+modeldb models --name sonnet --version 4.5 --api-type openai-messages --offerings
 modeldb models --creator openai --parameter reasoning_effort --offerings
 ```
 

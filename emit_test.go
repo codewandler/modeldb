@@ -27,6 +27,15 @@ func TestSaveAndLoadJSONRoundTrip(t *testing.T) {
 
 	loaded, err := LoadJSON(path)
 	require.NoError(t, err)
-	assert.Equal(t, c, loaded)
+	expected := c
+	expected.Services["anthropic"] = Service{ID: "anthropic", Name: "Anthropic", Provenance: []Provenance{{SourceID: "test"}}}
+	expected.Models[key] = ModelRecord{Key: key, Name: "Claude Sonnet 4.6", Canonical: true, Provenance: []Provenance{{SourceID: "test"}}}
+	expected.Offerings[OfferingRef{ServiceID: "anthropic", WireModelID: "claude-sonnet-4-6"}] = Offering{
+		ServiceID:   "anthropic",
+		WireModelID: "claude-sonnet-4-6",
+		ModelKey:    key,
+		Provenance:  []Provenance{{SourceID: "test"}},
+	}
+	assert.Equal(t, expected, loaded)
 	assert.NoError(t, ValidateCatalog(loaded))
 }

@@ -45,7 +45,7 @@ func TestOpenAIStaticAuditAgainstOpenRouter(t *testing.T) {
 			t.Logf("WARN openai-static missing model for openrouter offering %s -> %s", o.WireModelID, modelID(o.ModelKey))
 			continue
 		}
-		orExp := o.Exposure(APITypeOpenAIChat)
+		orExp := o.Exposure(APITypeOpenAIMessages)
 		staticOff, ok := staticCatalog.Offerings[OfferingRef{ServiceID: "openai", WireModelID: canonicalOpenAIStaticSlug(o.WireModelID)}]
 		if !ok {
 			// fallback to normalized key rendered by openai inventory id expectation is not directly derivable from OR wire IDs

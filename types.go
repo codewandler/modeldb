@@ -140,6 +140,7 @@ type APIType string
 const (
 	APITypeDefault           APIType = "default"
 	APITypeAnthropicMessages APIType = "anthropic-messages"
+	APITypeOpenAIMessages    APIType = "openai-messages"
 	APITypeOpenAIChat        APIType = "openai-chat"
 	APITypeOpenAIResponses   APIType = "openai-responses"
 )

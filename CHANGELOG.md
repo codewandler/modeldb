@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+## v0.11.2 - 2026-04-19
+
+### Changed
+
+- Catalog JSON emission now strips volatile provenance observation timestamps so regenerating `catalog.json` does not churn on `observed_at` values alone.
+- OpenRouter offerings now expose `openai-responses` and `openai-messages` API surfaces instead of the previous single `openai-chat` exposure.
+- README examples and OpenAI static audit coverage were updated to use `openai-messages` for OpenRouter-facing message-surface queries.
+
+### Model Changes
+
+- `catalog.json` was regenerated with stable provenance timestamps removed from snapshot churn.
+- OpenRouter offerings across creators now carry dual translated broker exposures: `openai-responses` and `openai-messages`.
+
 ## v0.11.1 - 2026-04-19
 
 ### Changed

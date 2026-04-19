@@ -136,8 +136,6 @@ func TestModelsCommand_DetailsShowsVariant(t *testing.T) {
 	assert.Contains(t, out.String(), "variant: mini")
 }
 
-
-
 func TestModelsCommand_OfferingsShowsAPITypes(t *testing.T) {
 	var out bytes.Buffer
 	cmd := NewModelsCommand(ModelsCommandOptions{
@@ -150,7 +148,7 @@ func TestModelsCommand_OfferingsShowsAPITypes(t *testing.T) {
 
 	require.NoError(t, cmd.Execute())
 	assert.Contains(t, out.String(), "API TYPES")
-	assert.Contains(t, out.String(), "openai-chat")
+	assert.Contains(t, out.String(), "openai-responses")
 }
 
 func TestModelsCommand_APITypeFiltersOfferings(t *testing.T) {
@@ -161,7 +159,7 @@ func TestModelsCommand_APITypeFiltersOfferings(t *testing.T) {
 			return testCatalog(), nil
 		},
 	})
-	cmd.SetArgs([]string{"--api-type", "openai-chat", "--offerings", "--name", "sonnet", "--version", "4.5"})
+	cmd.SetArgs([]string{"--api-type", "openai-responses", "--offerings", "--name", "sonnet", "--version", "4.5"})
 
 	require.NoError(t, cmd.Execute())
 	assert.Contains(t, out.String(), "openrouter")
@@ -171,7 +169,7 @@ func TestModelsCommand_APITypeFiltersOfferings(t *testing.T) {
 func TestModelsCommand_ParameterFiltersOfferings(t *testing.T) {
 	var out bytes.Buffer
 	cmd := NewModelsCommand(ModelsCommandOptions{
-		IO: IO{Out: &out, Err: &out},
+		IO:              IO{Out: &out, Err: &out},
 		LoadBaseCatalog: func(context.Context) (modeldb.Catalog, error) { return testCatalog(), nil },
 	})
 	cmd.SetArgs([]string{"--parameter", "reasoning_effort", "--offerings", "--name", "sonnet", "--version", "4.5"})
@@ -197,7 +195,7 @@ func testCatalog() modeldb.Catalog {
 	c.Services["openrouter"] = modeldb.Service{ID: "openrouter", Name: "OpenRouter"}
 	c.Services["openai"] = modeldb.Service{ID: "openai", Name: "OpenAI"}
 	c.Offerings[modeldb.OfferingRef{ServiceID: "anthropic", WireModelID: "claude-sonnet-4-5-20250929"}] = modeldb.Offering{ServiceID: "anthropic", WireModelID: "claude-sonnet-4-5-20250929", ModelKey: sonnet, Exposures: []modeldb.OfferingExposure{{APIType: modeldb.APITypeAnthropicMessages}}}
-	c.Offerings[modeldb.OfferingRef{ServiceID: "openrouter", WireModelID: "anthropic/claude-sonnet-4.5"}] = modeldb.Offering{ServiceID: "openrouter", WireModelID: "anthropic/claude-sonnet-4.5", ModelKey: sonnet, Exposures: []modeldb.OfferingExposure{{APIType: modeldb.APITypeOpenAIChat, SupportedParameters: []modeldb.NormalizedParameter{modeldb.ParamTools, modeldb.ParamReasoningEffort}, ParameterMappings: []modeldb.ParameterMapping{{Normalized: modeldb.ParamTools, WireName: "tools"}}}}}
+	c.Offerings[modeldb.OfferingRef{ServiceID: "openrouter", WireModelID: "anthropic/claude-sonnet-4.5"}] = modeldb.Offering{ServiceID: "openrouter", WireModelID: "anthropic/claude-sonnet-4.5", ModelKey: sonnet, Exposures: []modeldb.OfferingExposure{{APIType: modeldb.APITypeOpenAIResponses, SupportedParameters: []modeldb.NormalizedParameter{modeldb.ParamTools, modeldb.ParamReasoningEffort}, ParameterMappings: []modeldb.ParameterMapping{{Normalized: modeldb.ParamTools, WireName: "tools"}}}}}
 	c.Offerings[modeldb.OfferingRef{ServiceID: "openai", WireModelID: "gpt-5.4"}] = modeldb.Offering{ServiceID: "openai", WireModelID: "gpt-5.4", ModelKey: gpt, Exposures: []modeldb.OfferingExposure{{APIType: modeldb.APITypeDefault}}}
 	c.Offerings[modeldb.OfferingRef{ServiceID: "openai", WireModelID: "gpt-realtime-mini"}] = modeldb.Offering{ServiceID: "openai", WireModelID: "gpt-realtime-mini", ModelKey: realtimeMini, Exposures: []modeldb.OfferingExposure{{APIType: modeldb.APITypeDefault}}}
 	return c

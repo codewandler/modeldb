@@ -15,7 +15,7 @@ func NewMiniMaxStaticSource() MiniMaxStaticSource { return MiniMaxStaticSource{}
 func (MiniMaxStaticSource) ID() string { return minimaxSourceID }
 
 func (MiniMaxStaticSource) Fetch(context.Context) (*Fragment, error) {
-	observedAt := time.Now().UTC()
+	observedAt := time.Time{}
 
 	service := Service{
 		ID:       "minimax",
@@ -50,9 +50,9 @@ func (MiniMaxStaticSource) Fetch(context.Context) (*Fragment, error) {
 			name:    "MiniMax M2.7",
 			aliases: []string{"minimax-m2-7"},
 			capabilities: Capabilities{
-				Reasoning: &ReasoningCapability{Available: true, Interleaved: true, Adaptive: true, Modes: []ReasoningMode{ReasoningModeInterleaved, ReasoningModeAdaptive}},
-				ToolUse:    true,
-				Streaming:  true,
+				Reasoning:   &ReasoningCapability{Available: true, Interleaved: true, Adaptive: true, Modes: []ReasoningMode{ReasoningModeInterleaved, ReasoningModeAdaptive}},
+				ToolUse:     true,
+				Streaming:   true,
 				Temperature: true,
 			},
 			limits:  Limits{ContextWindow: 1000000, MaxOutput: 32000},

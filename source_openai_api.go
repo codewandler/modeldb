@@ -67,7 +67,7 @@ func (s OpenAISource) Fetch(ctx context.Context) (*Fragment, error) {
 		return nil, err
 	}
 
-	observedAt := time.Now().UTC()
+	observedAt := time.Time{}
 	fragment := &Fragment{Services: []Service{{
 		ID:       "openai",
 		Name:     "OpenAI",

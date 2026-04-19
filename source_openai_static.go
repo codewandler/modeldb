@@ -80,7 +80,7 @@ func (s OpenAIStaticSource) Fetch(context.Context) (*Fragment, error) {
 	if err := json.Unmarshal(data, &manifest); err != nil {
 		return nil, err
 	}
-	observedAt := time.Now().UTC()
+	observedAt := time.Time{}
 	frag := &Fragment{Services: []Service{{
 		ID:         "openai",
 		Name:       "OpenAI",

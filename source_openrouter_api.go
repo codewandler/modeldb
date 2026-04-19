@@ -116,7 +116,7 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 		return nil, err
 	}
 
-	observedAt := time.Now().UTC()
+	observedAt := time.Time{}
 	fragment := &Fragment{Services: []Service{{
 		ID:       "openrouter",
 		Name:     "OpenRouter",
@@ -159,20 +159,14 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 			ServiceID:   "openrouter",
 			WireModelID: item.ID,
 			ModelKey:    key,
-			Exposures: []OfferingExposure{{
-				APIType:             APITypeOpenAIChat,
-				ExposedCapabilities: capabilitiesPtr(caps),
-				SupportedParameters: normalizedParametersFromOpenRouter(item.SupportedParameters),
-				ParameterMappings:   parameterMappingsFromOpenRouter(item.SupportedParameters),
-				ParameterValues:     parameterValuesFromOpenRouter(item.SupportedParameters),
-				DefaultParameters:   convertDefaultParameters(item.DefaultParameters),
-				Provenance: []Provenance{{
-					SourceID:   s.ID(),
-					Authority:  string(AuthorityTrusted),
-					ObservedAt: observedAt,
-					RawID:      item.ID,
-				}},
-			}},
+			Exposures: openRouterExposures(
+				s.ID(),
+				observedAt,
+				item.ID,
+				caps,
+				item.SupportedParameters,
+				item.DefaultParameters,
+			),
 			Pricing: pricingFromOpenRouter(
 				item.Pricing.Prompt,
 				item.Pricing.Completion,
@@ -189,7 +183,7 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 			),
 			LimitsOverride:   limitsPtr(item.TopProvider.ContextLength, item.TopProvider.MaxCompletionTokens),
 			PerRequestLimits: convertPerRequestLimits(item.PerRequestLimits),
-			IsModerated:         item.TopProvider.IsModerated,
+			IsModerated:      item.TopProvider.IsModerated,
 			Provenance: []Provenance{{
 				SourceID:   s.ID(),
 				Authority:  string(AuthorityTrusted),
@@ -324,7 +318,6 @@ func convertPerRequestLimits(prl *struct {
 	}
 }
 
-
 func parameterValuesFromOpenRouter(params []string) map[string][]string {
 	values := map[string][]string{}
 	if containsString(params, "reasoning_effort") {
@@ -338,7 +331,6 @@ func parameterValuesFromOpenRouter(params []string) map[string][]string {
 	}
 	return values
 }
-
 
 func normalizedParametersFromOpenRouter(params []string) []NormalizedParameter {
 	out := make([]NormalizedParameter, 0)
@@ -417,4 +409,23 @@ func parameterMappingsFromOpenRouter(params []string) []ParameterMapping {
 		out = append(out, ParameterMapping{Normalized: ParamReasoningSummary, WireName: "reasoning_summary"})
 	}
 	return out
+}
+
+func openRouterExposures(sourceID string, observedAt time.Time, rawID string, caps Capabilities, supportedParams []string, defaults *struct {
+	Temperature       *float64 `json:"temperature"`
+	TopP              *float64 `json:"top_p"`
+	TopK              *int     `json:"top_k"`
+	FrequencyPenalty  *float64 `json:"frequency_penalty"`
+	PresencePenalty   *float64 `json:"presence_penalty"`
+	RepetitionPenalty *float64 `json:"repetition_penalty"`
+}) []OfferingExposure {
+	params := normalizedParametersFromOpenRouter(supportedParams)
+	mappings := parameterMappingsFromOpenRouter(supportedParams)
+	values := parameterValuesFromOpenRouter(supportedParams)
+	def := convertDefaultParameters(defaults)
+	prov := []Provenance{{SourceID: sourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: rawID}}
+	return []OfferingExposure{
+		{APIType: APITypeOpenAIResponses, ExposedCapabilities: capabilitiesPtr(caps), SupportedParameters: params, ParameterMappings: mappings, ParameterValues: values, DefaultParameters: def, Provenance: prov},
+		{APIType: APITypeOpenAIMessages, ExposedCapabilities: capabilitiesPtr(caps), SupportedParameters: params, ParameterMappings: mappings, ParameterValues: values, DefaultParameters: def, Provenance: prov},
+	}
 }

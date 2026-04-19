@@ -5,10 +5,11 @@ import (
 	"fmt"
 	"os"
 	"sort"
+	"time"
 )
 
 func SaveJSON(filePath string, c Catalog) error {
-	artifact := catalogArtifactFromCatalog(c)
+	artifact := stripArtifactVolatileFields(catalogArtifactFromCatalog(c))
 	data, err := json.MarshalIndent(artifact, "", "  ")
 	if err != nil {
 		return err
@@ -46,6 +47,34 @@ func LoadJSONBytes(data []byte) (Catalog, error) {
 		return Catalog{}, fmt.Errorf("validate catalog: %w", err)
 	}
 	return c, nil
+}
+
+func stripArtifactVolatileFields(artifact catalogArtifact) catalogArtifact {
+	for i := range artifact.Models {
+		artifact.Models[i].Provenance = stripProvenanceTimestamps(artifact.Models[i].Provenance)
+	}
+	for i := range artifact.Services {
+		artifact.Services[i].Provenance = stripProvenanceTimestamps(artifact.Services[i].Provenance)
+	}
+	for i := range artifact.Offerings {
+		artifact.Offerings[i].Provenance = stripProvenanceTimestamps(artifact.Offerings[i].Provenance)
+		for j := range artifact.Offerings[i].Exposures {
+			artifact.Offerings[i].Exposures[j].Provenance = stripProvenanceTimestamps(artifact.Offerings[i].Exposures[j].Provenance)
+		}
+	}
+	return artifact
+}
+
+func stripProvenanceTimestamps(items []Provenance) []Provenance {
+	if len(items) == 0 {
+		return nil
+	}
+	out := make([]Provenance, len(items))
+	copy(out, items)
+	for i := range out {
+		out[i].ObservedAt = time.Time{}
+	}
+	return out
 }
 
 type catalogArtifact struct {

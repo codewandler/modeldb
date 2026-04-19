@@ -51,7 +51,7 @@ func (s AnthropicAPISource) Fetch(ctx context.Context) (*Fragment, error) {
 		return nil, err
 	}
 
-	observedAt := time.Now().UTC()
+	observedAt := time.Time{}
 	service := Service{
 		ID:       "anthropic",
 		Name:     "Anthropic",
