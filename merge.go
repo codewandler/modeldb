@@ -357,12 +357,43 @@ func mergeCapabilities(a, b Capabilities) Capabilities {
 		StructuredOutputs: a.StructuredOutputs || b.StructuredOutputs,
 		Vision:            a.Vision || b.Vision,
 		Streaming:         a.Streaming || b.Streaming,
-		Caching:           a.Caching || b.Caching,
+		Caching:           mergeCachingCapability(a.Caching, b.Caching),
 		Temperature:       a.Temperature || b.Temperature,
 		Logprobs:          a.Logprobs || b.Logprobs,
 		Seed:              a.Seed || b.Seed,
 		WebSearch:         a.WebSearch || b.WebSearch,
 	}
+}
+
+func mergeCachingCapability(a, b *CachingCapability) *CachingCapability {
+	if a == nil {
+		return b
+	}
+	if b == nil {
+		return a
+	}
+	mode := mergeCachingMode(a.Mode, b.Mode)
+	return &CachingCapability{
+		Available:              a.Available || b.Available,
+		Mode:                   mode,
+		Configurable:           a.Configurable || b.Configurable,
+		PromptCacheRetention:   a.PromptCacheRetention || b.PromptCacheRetention,
+		PromptCacheKey:         a.PromptCacheKey || b.PromptCacheKey,
+		RetentionValues:        mergeStringSlices(a.RetentionValues, b.RetentionValues),
+		TopLevelRequestCaching: a.TopLevelRequestCaching || b.TopLevelRequestCaching,
+		PerMessageCaching:      a.PerMessageCaching || b.PerMessageCaching,
+		CacheControlTypes:      mergeStringSlices(a.CacheControlTypes, b.CacheControlTypes),
+	}
+}
+
+func mergeCachingMode(a, b CachingMode) CachingMode {
+	if a == "" {
+		return b
+	}
+	if b == "" || a == b {
+		return a
+	}
+	return CachingModeMixed
 }
 
 func mergeReasoningCapability(a, b *ReasoningCapability) *ReasoningCapability {
@@ -662,7 +693,6 @@ func mergeParameterMappings(a, b []ParameterMapping) []ParameterMapping {
 	}
 	return out
 }
-
 
 func pricingIsFree(p *Pricing) bool {
 	if p == nil {

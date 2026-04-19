@@ -33,7 +33,7 @@ type Capabilities struct {
 	StructuredOutputs bool                 `json:"structured_outputs,omitempty"`
 	Vision            bool                 `json:"vision,omitempty"`
 	Streaming         bool                 `json:"streaming,omitempty"`
-	Caching           bool                 `json:"caching,omitempty"`
+	Caching           *CachingCapability   `json:"caching,omitempty"`
 	Temperature       bool                 `json:"temperature,omitempty"`
 	Logprobs          bool                 `json:"logprobs,omitempty"`
 	Seed              bool                 `json:"seed,omitempty"`
@@ -81,6 +81,26 @@ const (
 	ReasoningModeInterleaved ReasoningMode = "interleaved"
 	ReasoningModeOff         ReasoningMode = "off"
 )
+
+type CachingMode string
+
+const (
+	CachingModeExplicit CachingMode = "explicit"
+	CachingModeImplicit CachingMode = "implicit"
+	CachingModeMixed    CachingMode = "mixed"
+)
+
+type CachingCapability struct {
+	Available              bool        `json:"available,omitempty"`
+	Mode                   CachingMode `json:"mode,omitempty"`
+	Configurable           bool        `json:"configurable,omitempty"`
+	PromptCacheRetention   bool        `json:"prompt_cache_retention,omitempty"`
+	PromptCacheKey         bool        `json:"prompt_cache_key,omitempty"`
+	RetentionValues        []string    `json:"retention_values,omitempty"`
+	TopLevelRequestCaching bool        `json:"top_level_request_caching,omitempty"`
+	PerMessageCaching      bool        `json:"per_message_caching,omitempty"`
+	CacheControlTypes      []string    `json:"cache_control_types,omitempty"`
+}
 
 type Limits struct {
 	ContextWindow int `json:"context_window,omitempty"`
@@ -163,19 +183,24 @@ type Offering struct {
 type NormalizedParameter string
 
 const (
-	ParamMessages         NormalizedParameter = "messages"
-	ParamThinking         NormalizedParameter = "thinking"
-	ParamThinkingMode     NormalizedParameter = "thinking.mode"
-	ParamReasoningEffort  NormalizedParameter = "reasoning_effort"
-	ParamResponseFormat   NormalizedParameter = "response_format"
-	ParamTools            NormalizedParameter = "tools"
-	ParamToolChoice       NormalizedParameter = "tool_choice"
-	ParamTemperature      NormalizedParameter = "temperature"
-	ParamSeed             NormalizedParameter = "seed"
-	ParamLogprobs         NormalizedParameter = "logprobs"
-	ParamParallelTools    NormalizedParameter = "parallel_tool_calls"
-	ParamWebSearch        NormalizedParameter = "web_search"
-	ParamReasoningSummary NormalizedParameter = "reasoning_summary"
+	ParamMessages             NormalizedParameter = "messages"
+	ParamThinking             NormalizedParameter = "thinking"
+	ParamThinkingMode         NormalizedParameter = "thinking.mode"
+	ParamReasoningEffort      NormalizedParameter = "reasoning_effort"
+	ParamResponseFormat       NormalizedParameter = "response_format"
+	ParamTools                NormalizedParameter = "tools"
+	ParamToolChoice           NormalizedParameter = "tool_choice"
+	ParamTemperature          NormalizedParameter = "temperature"
+	ParamSeed                 NormalizedParameter = "seed"
+	ParamLogprobs             NormalizedParameter = "logprobs"
+	ParamParallelTools        NormalizedParameter = "parallel_tool_calls"
+	ParamWebSearch            NormalizedParameter = "web_search"
+	ParamReasoningSummary     NormalizedParameter = "reasoning_summary"
+	ParamPromptCacheRetention NormalizedParameter = "prompt_cache_retention"
+	ParamPromptCacheKey       NormalizedParameter = "prompt_cache_key"
+	ParamCacheControl         NormalizedParameter = "cache_control"
+	ParamTopLevelCacheControl NormalizedParameter = "top_level_cache_control"
+	ParamBlockCacheControl    NormalizedParameter = "block_cache_control"
 )
 
 type ParameterMapping struct {

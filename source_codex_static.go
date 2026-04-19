@@ -72,17 +72,26 @@ func (s CodexSource) Fetch(context.Context) (*Fragment, error) {
 		if !ok {
 			continue
 		}
-		caps := capabilitiesFromCodexModel(item)
-		frag.Models = append(frag.Models, ModelRecord{Key: key, Name: item.DisplayName, Description: item.Description, Canonical: false, Capabilities: caps, Limits: Limits{ContextWindow: item.ContextWindow}, InputModalities: normalizeStrings(item.InputModalities), OutputModalities: normalizeStrings(item.OutputModalities), LastUpdated: normalizeDate(item.LastUpdated), Deprecated: item.Deprecated, Provenance: []Provenance{{SourceID: codexSourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: item.Slug}}})
-		exp := OfferingExposure{APIType: APITypeOpenAIResponses, ExposedCapabilities: capabilitiesPtr(caps), SupportedParameters: codexSupportedParameters(item), ParameterMappings: codexParameterMappings(item), ParameterValues: codexParameterValues(item), Provenance: []Provenance{{SourceID: codexSourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: item.Slug}}}
+		modelCaps := coarseCachingCapabilities(capabilitiesFromCodexModel(item), true)
+		exposureCaps := capabilitiesFromCodexModel(item)
+		frag.Models = append(frag.Models, ModelRecord{Key: key, Name: item.DisplayName, Description: item.Description, Canonical: false, Capabilities: modelCaps, Limits: Limits{ContextWindow: item.ContextWindow}, InputModalities: normalizeStrings(item.InputModalities), OutputModalities: normalizeStrings(item.OutputModalities), LastUpdated: normalizeDate(item.LastUpdated), Deprecated: item.Deprecated, Provenance: []Provenance{{SourceID: codexSourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: item.Slug}}})
+		exp := OfferingExposure{APIType: APITypeOpenAIResponses, ExposedCapabilities: capabilitiesPtr(exposureCaps), SupportedParameters: codexSupportedParameters(item), ParameterMappings: codexParameterMappings(item), ParameterValues: codexParameterValues(item), Provenance: []Provenance{{SourceID: codexSourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: item.Slug}}}
 		frag.Offerings = append(frag.Offerings, Offering{ServiceID: "codex", WireModelID: item.Slug, ModelKey: key, Exposures: []OfferingExposure{exp}, Provenance: []Provenance{{SourceID: codexSourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: item.Slug}}})
 	}
 	sort.Slice(frag.Offerings, func(i, j int) bool { return frag.Offerings[i].WireModelID < frag.Offerings[j].WireModelID })
 	return frag, nil
 }
 
+func coarseCachingCapabilities(caps Capabilities, available bool) Capabilities {
+	if !available {
+		return caps
+	}
+	caps.Caching = &CachingCapability{Available: true}
+	return caps
+}
+
 func capabilitiesFromCodexModel(item codexModelEntry) Capabilities {
-	caps := Capabilities{ToolUse: true, ParallelToolCalls: item.SupportsParallelTools, StructuredOutput: true, Streaming: true, Temperature: true, Vision: containsString(item.InputModalities, "image")}
+	caps := Capabilities{ToolUse: true, ParallelToolCalls: item.SupportsParallelTools, StructuredOutput: true, Streaming: true, Temperature: true, Vision: containsString(item.InputModalities, "image"), Caching: &CachingCapability{Available: true, Mode: CachingModeImplicit}}
 	efforts := make([]ReasoningEffortLevel, 0, len(item.SupportedReasoningLevels)+1)
 	if !strings.Contains(strings.ToLower(item.Slug), "mini") {
 		efforts = append(efforts, ReasoningEffortNone)

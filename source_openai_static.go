@@ -95,6 +95,9 @@ func (s OpenAIStaticSource) Fetch(context.Context) (*Fragment, error) {
 			continue
 		}
 		resolvedModel, resolvedExposures := resolveOpenAIStaticModel(manifest, item)
+		if openAIHasDocumentedPromptCaching(item) {
+			resolvedModel.capabilities = mergeCapabilities(resolvedModel.capabilities, Capabilities{Caching: &CachingCapability{Available: true}})
+		}
 		frag.Models = append(frag.Models, ModelRecord{
 			Key:              key,
 			Canonical:        false,
@@ -107,6 +110,7 @@ func (s OpenAIStaticSource) Fetch(context.Context) (*Fragment, error) {
 		})
 		offExposures := make([]OfferingExposure, 0, len(resolvedExposures))
 		for _, exp := range resolvedExposures {
+			exp = applyOpenAICachingDefaults(item, exp)
 			offExposures = append(offExposures, OfferingExposure{
 				APIType:             exp.APIType,
 				ExposedCapabilities: capabilitiesPtr(exp.Capabilities),
@@ -247,6 +251,51 @@ func applyOpenAIStaticExposurePatch(dst *resolvedOpenAIStaticExposure, manifest 
 		for k, v := range patch.ParameterValues {
 			dst.ParameterValues[k] = normalizeStrings(v)
 		}
+	}
+}
+
+func applyOpenAICachingDefaults(item openAIStaticModelEntry, exp resolvedOpenAIStaticExposure) resolvedOpenAIStaticExposure {
+	if exp.APIType != APITypeOpenAIResponses || !openAIHasDocumentedPromptCaching(item) {
+		return exp
+	}
+	exp.Capabilities = mergeCapabilities(exp.Capabilities, Capabilities{Caching: &CachingCapability{
+		Available:            true,
+		Mode:                 CachingModeMixed,
+		Configurable:         true,
+		PromptCacheRetention: true,
+		PromptCacheKey:       true,
+		RetentionValues:      []string{"in_memory", "24h"},
+	}})
+	exp.SupportedParameters = mergeNormalizedParameters(exp.SupportedParameters, []NormalizedParameter{ParamPromptCacheRetention, ParamPromptCacheKey})
+	exp.ParameterMappings = mergeParameterMappings(exp.ParameterMappings, []ParameterMapping{{Normalized: ParamPromptCacheRetention, WireName: "prompt_cache_retention"}, {Normalized: ParamPromptCacheKey, WireName: "prompt_cache_key"}})
+	if exp.ParameterValues == nil {
+		exp.ParameterValues = map[string][]string{}
+	}
+	exp.ParameterValues[string(ParamPromptCacheRetention)] = mergeStringSlices(exp.ParameterValues[string(ParamPromptCacheRetention)], []string{"in_memory", "24h"})
+	return exp
+}
+
+func openAIHasDocumentedPromptCaching(item openAIStaticModelEntry) bool {
+	family := item.Family
+	switch {
+	case family == "gpt-4.1-reasoning":
+		return true
+	case family == "gpt-4o-reasoning":
+		return true
+	case family == "o1-reasoning":
+		return true
+	case family == "o3plus-reasoning":
+		return true
+	case family == "gpt-5-pre-5.1-reasoning":
+		return true
+	case family == "gpt-5-5.1-reasoning":
+		return true
+	case family == "gpt-5-5.2plus-reasoning":
+		return true
+	case family == "gpt-5-5.2plus-codex-backed":
+		return true
+	default:
+		return false
 	}
 }
 

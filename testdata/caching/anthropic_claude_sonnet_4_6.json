@@ -1,0 +1,90 @@
+{
+  "service_id": "anthropic",
+  "wire_model_id": "claude-sonnet-4-6",
+  "api_type": "anthropic-messages",
+  "model_caching": {
+    "available": true
+  },
+  "exposure_caching": {
+    "available": true,
+    "mode": "explicit",
+    "configurable": true,
+    "top_level_request_caching": true,
+    "per_message_caching": true,
+    "cache_control_types": [
+      "ephemeral"
+    ]
+  },
+  "supported_parameters": [
+    "messages",
+    "tools",
+    "tool_choice",
+    "temperature",
+    "top_level_cache_control",
+    "block_cache_control",
+    "thinking",
+    "thinking.mode",
+    "reasoning_effort",
+    "response_format"
+  ],
+  "parameter_mappings": [
+    {
+      "normalized": "messages",
+      "wire_name": "messages"
+    },
+    {
+      "normalized": "tools",
+      "wire_name": "tools"
+    },
+    {
+      "normalized": "tool_choice",
+      "wire_name": "tool_choice"
+    },
+    {
+      "normalized": "temperature",
+      "wire_name": "temperature"
+    },
+    {
+      "normalized": "top_level_cache_control",
+      "wire_name": "cache_control"
+    },
+    {
+      "normalized": "block_cache_control",
+      "wire_name": "messages[*].content[*].cache_control"
+    },
+    {
+      "normalized": "thinking",
+      "wire_name": "thinking"
+    },
+    {
+      "normalized": "thinking.mode",
+      "wire_name": "thinking.type"
+    },
+    {
+      "normalized": "reasoning_effort",
+      "wire_name": "reasoning_effort"
+    },
+    {
+      "normalized": "response_format",
+      "wire_name": "response_format"
+    }
+  ],
+  "parameter_values": {
+    "block_cache_control": [
+      "ephemeral"
+    ],
+    "reasoning_effort": [
+      "low",
+      "medium",
+      "high",
+      "max"
+    ],
+    "thinking.mode": [
+      "enabled",
+      "adaptive"
+    ],
+    "top_level_cache_control": [
+      "ephemeral"
+    ]
+  }
+}

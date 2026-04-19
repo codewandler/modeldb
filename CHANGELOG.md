@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+## v0.11.8 - 2026-04-19
+
+### Changed
+
+- Caching capabilities are now structured metadata instead of a single boolean, with authoritative exposure-level modeling for `explicit`, `implicit`, and `mixed` caching semantics.
+- OpenAI prompt-caching support is now modeled more selectively instead of being applied blanket-wide to every Responses exposure.
+- Canonical model-level caching is now kept coarse while exposure-level caching retains detailed configuration semantics.
+- Anthropic caching parameter modeling now distinguishes top-level and block-level cache control surfaces.
+- OpenRouter caching remains conservative and is no longer inferred from cached-input pricing alone.
+- CLI model detail output now shows richer caching metadata instead of only a coarse capability label.
+- Added provider snapshot tests covering caching semantics for OpenAI, Codex, Anthropic, MiniMax, and OpenRouter.
+- Removed legacy boolean JSON compatibility for `capabilities.caching`; catalogs must now use the structured caching object form.
+
+### Model Changes
+
+- `catalog.json` was regenerated after the structured caching migration and provider-specific caching refinements.
+- OpenAI, Codex, Anthropic, MiniMax, and OpenRouter offerings now expose more precise caching semantics and parameter surfaces.
+
 ## v0.11.7 - 2026-04-19
 
 ### Changed

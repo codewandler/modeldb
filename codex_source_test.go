@@ -17,6 +17,12 @@ func TestCodexStaticSourceFetch(t *testing.T) {
 	require.NoError(t, ValidateCatalog(c))
 	_, ok := c.Services["codex"]
 	require.True(t, ok)
+	model := c.Models[offeringModelKey(c, "codex", "gpt-5.4")]
+	if assert.NotNil(t, model.Capabilities.Caching) {
+		assert.True(t, model.Capabilities.Caching.Available)
+		assert.Empty(t, model.Capabilities.Caching.Mode)
+		assert.False(t, model.Capabilities.Caching.Configurable)
+	}
 	offering, exposure, ok := c.ResolveOfferingExposure("codex", "gpt-5.4", APITypeOpenAIResponses)
 	require.True(t, ok)
 	assert.Equal(t, "codex", offering.ServiceID)
@@ -26,8 +32,14 @@ func TestCodexStaticSourceFetch(t *testing.T) {
 		assert.Contains(t, exposure.ExposedCapabilities.Reasoning.Summaries, ReasoningSummaryAuto)
 		assert.True(t, exposure.ExposedCapabilities.Reasoning.VisibleSummary)
 	}
+	if assert.NotNil(t, exposure.ExposedCapabilities.Caching) {
+		assert.True(t, exposure.ExposedCapabilities.Caching.Available)
+		assert.Equal(t, CachingModeImplicit, exposure.ExposedCapabilities.Caching.Mode)
+		assert.False(t, exposure.ExposedCapabilities.Caching.Configurable)
+	}
+	assert.NotContains(t, exposure.SupportedParameters, ParamPromptCacheRetention)
+	assert.NotContains(t, exposure.SupportedParameters, ParamPromptCacheKey)
 }
-
 
 func TestCodexPricingHydratesFromOpenAIReferencePricing(t *testing.T) {
 	c := NewCatalog()
@@ -46,4 +58,8 @@ func TestCodexPricingHydratesFromOpenAIReferencePricing(t *testing.T) {
 		assert.Equal(t, 15.0, offering.Pricing.Output)
 		assert.Equal(t, 0.0, offering.Pricing.CacheWrite)
 	}
+}
+
+func offeringModelKey(c Catalog, serviceID, wireModelID string) ModelKey {
+	return c.Offerings[OfferingRef{ServiceID: serviceID, WireModelID: wireModelID}].ModelKey
 }

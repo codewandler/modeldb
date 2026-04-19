@@ -52,10 +52,19 @@ func TestOpenAIStaticSourceFetch(t *testing.T) {
 	assert.Contains(t, exp.SupportedParameters, ParamResponseFormat)
 	assert.Contains(t, exp.SupportedParameters, ParamThinking)
 	assert.Contains(t, exp.SupportedParameters, ParamReasoningEffort)
+	assert.Contains(t, exp.SupportedParameters, ParamPromptCacheRetention)
+	assert.Contains(t, exp.SupportedParameters, ParamPromptCacheKey)
+	if assert.NotNil(t, exp.ExposedCapabilities.Caching) {
+		assert.True(t, exp.ExposedCapabilities.Caching.Available)
+		assert.Equal(t, CachingModeMixed, exp.ExposedCapabilities.Caching.Mode)
+		assert.True(t, exp.ExposedCapabilities.Caching.Configurable)
+		assert.True(t, exp.ExposedCapabilities.Caching.PromptCacheRetention)
+		assert.True(t, exp.ExposedCapabilities.Caching.PromptCacheKey)
+		assert.ElementsMatch(t, []string{"in_memory", "24h"}, exp.ExposedCapabilities.Caching.RetentionValues)
+	}
 	assert.True(t, exp.SupportsParameterValue(string(ParamReasoningEffort), string(ReasoningEffortLow)))
 	assert.True(t, exp.SupportsParameterValue(string(ParamReasoningEffort), string(ReasoningEffortNone)))
 }
-
 
 func TestOpenAIStaticPricingCoverage(t *testing.T) {
 	frag, err := NewOpenAIStaticSource().Fetch(context.Background())
@@ -109,14 +118,16 @@ func TestOpenAIStaticPricingCoverage(t *testing.T) {
 	}
 }
 
-
 func TestOpenAIStaticCoreOpenAIPricingExtensions(t *testing.T) {
 	frag, err := NewOpenAIStaticSource().Fetch(context.Background())
 	require.NoError(t, err)
 	c := NewCatalog()
 	require.NoError(t, MergeCatalogFragment(&c, frag))
 	require.NoError(t, ValidateCatalog(c))
-	for _, tc := range []struct{ slug string; input, output float64 }{
+	for _, tc := range []struct {
+		slug          string
+		input, output float64
+	}{
 		{slug: "gpt-3.5-turbo", input: 0.5, output: 1.5},
 		{slug: "gpt-3.5-turbo-instruct", input: 1.5, output: 2},
 		{slug: "o1", input: 15, output: 60},
@@ -133,5 +144,39 @@ func TestOpenAIStaticCoreOpenAIPricingExtensions(t *testing.T) {
 			assert.Equal(t, tc.output, off.Pricing.Output, tc.slug)
 			assert.Equal(t, 0.0, off.Pricing.CacheWrite, tc.slug)
 		}
+	}
+}
+
+func TestOpenAIStaticLegacyResponsesModelsDoNotAssumePromptCaching(t *testing.T) {
+	frag, err := NewOpenAIStaticSource().Fetch(context.Background())
+	require.NoError(t, err)
+	c := NewCatalog()
+	require.NoError(t, MergeCatalogFragment(&c, frag))
+	require.NoError(t, ValidateCatalog(c))
+	off, ok := c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "gpt-4-turbo"}]
+	require.True(t, ok)
+	exp := off.Exposure(APITypeOpenAIResponses)
+	require.NotNil(t, exp)
+	require.NotNil(t, exp.ExposedCapabilities)
+	assert.Nil(t, exp.ExposedCapabilities.Caching)
+	assert.NotContains(t, exp.SupportedParameters, ParamPromptCacheRetention)
+	assert.NotContains(t, exp.SupportedParameters, ParamPromptCacheKey)
+}
+
+func TestOpenAIStaticModelCachingIsCoarse(t *testing.T) {
+	frag, err := NewOpenAIStaticSource().Fetch(context.Background())
+	require.NoError(t, err)
+	c := NewCatalog()
+	require.NoError(t, MergeCatalogFragment(&c, frag))
+	require.NoError(t, ValidateCatalog(c))
+	key := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "5.2"})
+	m, ok := c.Models[key]
+	require.True(t, ok)
+	if assert.NotNil(t, m.Capabilities.Caching) {
+		assert.True(t, m.Capabilities.Caching.Available)
+		assert.Empty(t, m.Capabilities.Caching.Mode)
+		assert.False(t, m.Capabilities.Caching.Configurable)
+		assert.False(t, m.Capabilities.Caching.PromptCacheRetention)
+		assert.False(t, m.Capabilities.Caching.PromptCacheKey)
 	}
 }

@@ -1,0 +1,65 @@
+{
+  "service_id": "openrouter",
+  "wire_model_id": "anthropic/claude-sonnet-4-6",
+  "api_type": "openai-responses",
+  "model_caching": {
+    "available": true
+  },
+  "supported_parameters": [
+    "tools",
+    "tool_choice",
+    "temperature",
+    "response_format",
+    "thinking",
+    "logprobs",
+    "reasoning_effort",
+    "reasoning_summary"
+  ],
+  "parameter_mappings": [
+    {
+      "normalized": "tools",
+      "wire_name": "tools"
+    },
+    {
+      "normalized": "tool_choice",
+      "wire_name": "tool_choice"
+    },
+    {
+      "normalized": "temperature",
+      "wire_name": "temperature"
+    },
+    {
+      "normalized": "response_format",
+      "wire_name": "response_format"
+    },
+    {
+      "normalized": "thinking",
+      "wire_name": "reasoning"
+    },
+    {
+      "normalized": "logprobs",
+      "wire_name": "logprobs"
+    },
+    {
+      "normalized": "reasoning_effort",
+      "wire_name": "reasoning.effort"
+    },
+    {
+      "normalized": "reasoning_summary",
+      "wire_name": "reasoning.summary"
+    }
+  ],
+  "parameter_values": {
+    "reasoning_effort": [
+      "minimal",
+      "low",
+      "medium",
+      "high"
+    ],
+    "reasoning_summary": [
+      "auto",
+      "concise",
+      "detailed"
+    ]
+  }
+}

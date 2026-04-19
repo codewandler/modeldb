@@ -86,3 +86,19 @@ func TestMergeCatalogFragmentAppendsProvenance(t *testing.T) {
 
 	assert.Len(t, c.Models[key].Provenance, 2)
 }
+
+func TestMergeCachingCapability(t *testing.T) {
+	merged := mergeCapabilities(
+		Capabilities{Caching: &CachingCapability{Available: true, Mode: CachingModeExplicit, Configurable: true, PromptCacheRetention: true, RetentionValues: []string{"24h"}}},
+		Capabilities{Caching: &CachingCapability{Available: true, Mode: CachingModeImplicit, TopLevelRequestCaching: true, CacheControlTypes: []string{"ephemeral"}}},
+	)
+	if assert.NotNil(t, merged.Caching) {
+		assert.Equal(t, CachingModeMixed, merged.Caching.Mode)
+		assert.True(t, merged.Caching.Available)
+		assert.True(t, merged.Caching.Configurable)
+		assert.True(t, merged.Caching.PromptCacheRetention)
+		assert.True(t, merged.Caching.TopLevelRequestCaching)
+		assert.ElementsMatch(t, []string{"24h"}, merged.Caching.RetentionValues)
+		assert.ElementsMatch(t, []string{"ephemeral"}, merged.Caching.CacheControlTypes)
+	}
+}

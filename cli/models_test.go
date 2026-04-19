@@ -189,14 +189,14 @@ func testCatalog() modeldb.Catalog {
 	gpt := modeldb.NormalizeKey(modeldb.ModelKey{Creator: "openai", Family: "gpt", Version: "5.4"})
 	realtimeMini := modeldb.NormalizeKey(modeldb.ModelKey{Creator: "openai", Family: "gpt", Version: "realtime", Variant: "mini"})
 	c.Models[sonnet] = modeldb.ModelRecord{Key: sonnet, Name: "Claude Sonnet 4.5", Aliases: []string{"sonnet", "claude-sonnet-4-5"}, Limits: modeldb.Limits{ContextWindow: 1000000, MaxOutput: 64000}, Capabilities: modeldb.Capabilities{Reasoning: &modeldb.ReasoningCapability{Available: true}, StructuredOutput: true}, ReferencePricing: &modeldb.Pricing{Input: 3.0, Output: 15.0}}
-	c.Models[gpt] = modeldb.ModelRecord{Key: gpt, Name: "GPT-5.4", Aliases: []string{"gpt-5.4"}, Limits: modeldb.Limits{ContextWindow: 400000, MaxOutput: 128000}}
+	c.Models[gpt] = modeldb.ModelRecord{Key: gpt, Name: "GPT-5.4", Aliases: []string{"gpt-5.4"}, Limits: modeldb.Limits{ContextWindow: 400000, MaxOutput: 128000}, Capabilities: modeldb.Capabilities{Caching: &modeldb.CachingCapability{Available: true}}}
 	c.Models[realtimeMini] = modeldb.ModelRecord{Key: realtimeMini, Name: "GPT Realtime Mini"}
 	c.Services["anthropic"] = modeldb.Service{ID: "anthropic", Name: "Anthropic"}
 	c.Services["openrouter"] = modeldb.Service{ID: "openrouter", Name: "OpenRouter"}
 	c.Services["openai"] = modeldb.Service{ID: "openai", Name: "OpenAI"}
 	c.Offerings[modeldb.OfferingRef{ServiceID: "anthropic", WireModelID: "claude-sonnet-4-5-20250929"}] = modeldb.Offering{ServiceID: "anthropic", WireModelID: "claude-sonnet-4-5-20250929", ModelKey: sonnet, Exposures: []modeldb.OfferingExposure{{APIType: modeldb.APITypeAnthropicMessages}}}
 	c.Offerings[modeldb.OfferingRef{ServiceID: "openrouter", WireModelID: "anthropic/claude-sonnet-4.5"}] = modeldb.Offering{ServiceID: "openrouter", WireModelID: "anthropic/claude-sonnet-4.5", ModelKey: sonnet, Exposures: []modeldb.OfferingExposure{{APIType: modeldb.APITypeOpenAIResponses, SupportedParameters: []modeldb.NormalizedParameter{modeldb.ParamTools, modeldb.ParamReasoningEffort}, ParameterMappings: []modeldb.ParameterMapping{{Normalized: modeldb.ParamTools, WireName: "tools"}}}}}
-	c.Offerings[modeldb.OfferingRef{ServiceID: "openai", WireModelID: "gpt-5.4"}] = modeldb.Offering{ServiceID: "openai", WireModelID: "gpt-5.4", ModelKey: gpt, Exposures: []modeldb.OfferingExposure{{APIType: modeldb.APITypeDefault}}}
+	c.Offerings[modeldb.OfferingRef{ServiceID: "openai", WireModelID: "gpt-5.4"}] = modeldb.Offering{ServiceID: "openai", WireModelID: "gpt-5.4", ModelKey: gpt, Exposures: []modeldb.OfferingExposure{{APIType: modeldb.APITypeDefault}, {APIType: modeldb.APITypeOpenAIResponses, ExposedCapabilities: &modeldb.Capabilities{Caching: &modeldb.CachingCapability{Available: true, Mode: modeldb.CachingModeMixed, Configurable: true, PromptCacheRetention: true, PromptCacheKey: true}}}}}
 	c.Offerings[modeldb.OfferingRef{ServiceID: "openai", WireModelID: "gpt-realtime-mini"}] = modeldb.Offering{ServiceID: "openai", WireModelID: "gpt-realtime-mini", ModelKey: realtimeMini, Exposures: []modeldb.OfferingExposure{{APIType: modeldb.APITypeDefault}}}
 	return c
 }
@@ -212,4 +212,21 @@ func testCatalogWithAmbiguity() modeldb.Catalog {
 	c.Offerings[modeldb.OfferingRef{ServiceID: "anthropic", WireModelID: "claude-sonnet-4-6"}] = modeldb.Offering{ServiceID: "anthropic", WireModelID: "claude-sonnet-4-6", ModelKey: line}
 	c.Offerings[modeldb.OfferingRef{ServiceID: "openrouter", WireModelID: "anthropic/claude-sonnet-4.6"}] = modeldb.Offering{ServiceID: "openrouter", WireModelID: "anthropic/claude-sonnet-4.6", ModelKey: release}
 	return c
+}
+
+func TestModelsCommand_DetailsShowsCachingDetails(t *testing.T) {
+	var out bytes.Buffer
+	cmd := NewModelsCommand(ModelsCommandOptions{
+		IO: IO{Out: &out, Err: &out},
+		LoadBaseCatalog: func(context.Context) (modeldb.Catalog, error) {
+			return testCatalog(), nil
+		},
+	})
+	cmd.SetArgs([]string{"--id", "openai/gpt/5.4", "--details", "--offerings"})
+
+	require.NoError(t, cmd.Execute())
+	text := out.String()
+	assert.Contains(t, text, "caching: available=true")
+	assert.Contains(t, text, "mode=mixed")
+	assert.Contains(t, text, "prompt_cache_retention=true")
 }

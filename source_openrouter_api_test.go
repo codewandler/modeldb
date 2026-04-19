@@ -51,6 +51,7 @@ func TestOpenRouterSourceFetch(t *testing.T) {
 	}
 	assert.True(t, model.Capabilities.Logprobs)
 	assert.True(t, model.Capabilities.Vision)
+	assert.Nil(t, model.Capabilities.Caching)
 
 	offering, ok := c.Offerings[OfferingRef{ServiceID: "openrouter", WireModelID: "anthropic/claude-sonnet-4-6"}]
 	require.True(t, ok)
@@ -71,6 +72,8 @@ func TestOpenRouterSourceFetch(t *testing.T) {
 	assert.Contains(t, offering.Exposures[1].SupportedParameters, ParamTools)
 	assert.Contains(t, offering.Exposures[1].SupportedParameters, ParamThinking)
 	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamTools, WireName: "tools"})
+	assert.Nil(t, offering.Exposures[0].ExposedCapabilities.Caching)
+	assert.Nil(t, offering.Exposures[1].ExposedCapabilities.Caching)
 	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamReasoningEffort, WireName: "reasoning.effort"})
 	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamReasoningSummary, WireName: "reasoning.summary"})
 	assert.True(t, offering.Exposures[0].SupportsParameterValue(string(ParamReasoningEffort), string(ReasoningEffortMinimal)))
@@ -124,7 +127,6 @@ func TestOpenRouterSourceFetch_LogUnhandledModels(t *testing.T) {
 		t.Logf("  UNHANDLED: %-55s %s", m.ID, m.Name)
 	}
 }
-
 
 func TestOpenRouterFreePricingStatus(t *testing.T) {
 	p, status := pricingFromOpenRouter("0", "0", "0", "0", "", "", "", "", "", "", "", "")

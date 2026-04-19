@@ -1,0 +1,76 @@
+{
+  "service_id": "openai",
+  "wire_model_id": "gpt-5.2",
+  "api_type": "openai-responses",
+  "model_caching": {
+    "available": true
+  },
+  "exposure_caching": {
+    "available": true,
+    "mode": "mixed",
+    "configurable": true,
+    "prompt_cache_retention": true,
+    "prompt_cache_key": true,
+    "retention_values": [
+      "in_memory",
+      "24h"
+    ]
+  },
+  "supported_parameters": [
+    "tools",
+    "response_format",
+    "thinking",
+    "reasoning_effort",
+    "reasoning_summary",
+    "prompt_cache_retention",
+    "prompt_cache_key"
+  ],
+  "parameter_mappings": [
+    {
+      "normalized": "tools",
+      "wire_name": "tools"
+    },
+    {
+      "normalized": "response_format",
+      "wire_name": "response_format"
+    },
+    {
+      "normalized": "thinking",
+      "wire_name": "reasoning"
+    },
+    {
+      "normalized": "reasoning_effort",
+      "wire_name": "reasoning.effort"
+    },
+    {
+      "normalized": "reasoning_summary",
+      "wire_name": "reasoning.summary"
+    },
+    {
+      "normalized": "prompt_cache_retention",
+      "wire_name": "prompt_cache_retention"
+    },
+    {
+      "normalized": "prompt_cache_key",
+      "wire_name": "prompt_cache_key"
+    }
+  ],
+  "parameter_values": {
+    "prompt_cache_retention": [
+      "in_memory",
+      "24h"
+    ],
+    "reasoning_effort": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "reasoning_summary": [
+      "auto",
+      "concise",
+      "detailed"
+    ]
+  }
+}

@@ -139,7 +139,7 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 			Name:             item.Name,
 			Description:      item.Description,
 			Canonical:        false,
-			Capabilities:     capabilitiesFromOpenRouter(item.SupportedParameters, item.Architecture.InputModalities, item.Pricing.InputCacheRead != ""),
+			Capabilities:     capabilitiesFromOpenRouter(item.SupportedParameters, item.Architecture.InputModalities),
 			InputModalities:  normalizeStrings(item.Architecture.InputModalities),
 			OutputModalities: normalizeStrings(item.Architecture.OutputModalities),
 			KnowledgeCutoff:  normalizeDate(item.KnowledgeCutoff),
@@ -154,7 +154,7 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 				RawID:      item.ID,
 			}},
 		})
-		caps := capabilitiesFromOpenRouter(item.SupportedParameters, item.Architecture.InputModalities, item.Pricing.InputCacheRead != "")
+		caps := capabilitiesFromOpenRouter(item.SupportedParameters, item.Architecture.InputModalities)
 		pricing, pricingStatus := pricingFromOpenRouter(
 			item.Pricing.Prompt,
 			item.Pricing.Completion,
@@ -170,9 +170,9 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 			item.Pricing.WebSearch,
 		)
 		offering := Offering{
-			ServiceID:     "openrouter",
-			WireModelID:   item.ID,
-			ModelKey:      key,
+			ServiceID:   "openrouter",
+			WireModelID: item.ID,
+			ModelKey:    key,
 			Exposures: openRouterExposures(
 				s.ID(),
 				observedAt,
@@ -181,8 +181,8 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 				item.SupportedParameters,
 				item.DefaultParameters,
 			),
-			Pricing:       pricing,
-			PricingStatus: pricingStatus,
+			Pricing:          pricing,
+			PricingStatus:    pricingStatus,
 			LimitsOverride:   limitsPtr(item.TopProvider.ContextLength, item.TopProvider.MaxCompletionTokens),
 			PerRequestLimits: convertPerRequestLimits(item.PerRequestLimits),
 			IsModerated:      item.TopProvider.IsModerated,
@@ -202,7 +202,7 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 	return fragment, nil
 }
 
-func capabilitiesFromOpenRouter(params []string, inputModalities []string, hasCacheReadPricing bool) Capabilities {
+func capabilitiesFromOpenRouter(params []string, inputModalities []string) Capabilities {
 	return Capabilities{
 		Reasoning:         reasoningFromOpenRouter(params),
 		ToolUse:           containsString(params, "tools") || containsString(params, "tool_choice"),
@@ -211,7 +211,6 @@ func capabilitiesFromOpenRouter(params []string, inputModalities []string, hasCa
 		StructuredOutputs: containsString(params, "structured_outputs"),
 		Vision:            containsString(inputModalities, "image") || containsString(inputModalities, "video"),
 		Streaming:         true,
-		Caching:           hasCacheReadPricing,
 		Temperature:       containsString(params, "temperature"),
 		Logprobs:          containsString(params, "logprobs"),
 		Seed:              containsString(params, "seed"),

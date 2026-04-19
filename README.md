@@ -147,6 +147,27 @@ known:
 Parameters are normalized per exposure and remain API-type-specific. A
 normalized parameter is only valid for the exposure that declares it.
 
+Caching is also structured rather than boolean-only. The catalog records, when
+known:
+
+- whether caching is available
+- whether it is caller-configurable
+- whether it is `explicit`, `implicit`, or `mixed`
+- prompt-caching controls such as `prompt_cache_retention` and `prompt_cache_key`
+- request-level vs per-message caching semantics
+- cache-control types such as `ephemeral`
+
+Normalized caching parameters currently include:
+
+- `prompt_cache_retention`
+- `prompt_cache_key`
+- `cache_control`
+- `top_level_cache_control`
+- `block_cache_control`
+
+As with reasoning, detailed caching semantics are authoritative at the exposure
+level via `Offering.Exposures[*].ExposedCapabilities`.
+
 ### Browse one service view
 
 ```go

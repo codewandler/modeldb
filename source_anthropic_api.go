@@ -79,7 +79,7 @@ func (s AnthropicAPISource) Fetch(ctx context.Context) (*Fragment, error) {
 			Name:             item.DisplayName,
 			Aliases:          anthropicModelAliases(item, key, seriesLatest),
 			Canonical:        true,
-			Capabilities:     capabilitiesFromAnthropicAPI(item),
+			Capabilities:     anthropicModelCapabilities(item),
 			Limits:           Limits{ContextWindow: item.MaxInputTokens, MaxOutput: item.MaxTokens},
 			InputModalities:  anthropicInputModalities(item),
 			OutputModalities: []string{"text"},
@@ -93,7 +93,7 @@ func (s AnthropicAPISource) Fetch(ctx context.Context) (*Fragment, error) {
 			}},
 		}
 		fragment.Models = append(fragment.Models, model)
-		caps := capabilitiesFromAnthropicAPI(item)
+		caps := anthropicExposureCapabilities(item)
 		fragment.Offerings = append(fragment.Offerings, Offering{
 			ServiceID:   service.ID,
 			WireModelID: item.ID,
@@ -238,16 +238,22 @@ func (s AnthropicAPISource) loadPayload(ctx context.Context) (anthropicModelsPay
 	return payload, nil
 }
 
-func capabilitiesFromAnthropicAPI(item anthropicModelEntry) Capabilities {
+func anthropicModelCapabilities(item anthropicModelEntry) Capabilities {
 	return Capabilities{
 		Reasoning:        reasoningFromAnthropicAPI(item),
 		ToolUse:          true,
 		StructuredOutput: item.Capabilities.StructuredOutputs.Supported,
 		Vision:           item.Capabilities.ImageInput.Supported,
 		Streaming:        true,
-		Caching:          false,
+		Caching:          &CachingCapability{Available: true},
 		Temperature:      true,
 	}
+}
+
+func anthropicExposureCapabilities(item anthropicModelEntry) Capabilities {
+	caps := anthropicModelCapabilities(item)
+	caps.Caching = &CachingCapability{Available: true, Mode: CachingModeExplicit, Configurable: true, TopLevelRequestCaching: true, PerMessageCaching: true, CacheControlTypes: []string{"ephemeral"}}
+	return caps
 }
 
 func reasoningFromAnthropicAPI(item anthropicModelEntry) *ReasoningCapability {
@@ -460,7 +466,7 @@ func anthropicPricing(id string, key ModelKey) *Pricing {
 }
 
 func anthropicSupportedParameters(item anthropicModelEntry) []NormalizedParameter {
-	params := []NormalizedParameter{ParamMessages, ParamTools, ParamToolChoice, ParamTemperature}
+	params := []NormalizedParameter{ParamMessages, ParamTools, ParamToolChoice, ParamTemperature, ParamTopLevelCacheControl, ParamBlockCacheControl}
 	if item.Capabilities.Thinking.Supported {
 		params = append(params, ParamThinking)
 		if item.Capabilities.Thinking.Types.Enabled.Supported || item.Capabilities.Thinking.Types.Adaptive.Supported {
@@ -477,7 +483,7 @@ func anthropicSupportedParameters(item anthropicModelEntry) []NormalizedParamete
 }
 
 func anthropicParameterValues(item anthropicModelEntry) map[string][]string {
-	values := map[string][]string{}
+	values := map[string][]string{string(ParamTopLevelCacheControl): {"ephemeral"}, string(ParamBlockCacheControl): {"ephemeral"}}
 	if item.Capabilities.Effort.Supported {
 		efforts := make([]string, 0, 4)
 		if item.Capabilities.Effort.Low.Supported {
@@ -526,6 +532,8 @@ func anthropicParameterMappings(item anthropicModelEntry) []ParameterMapping {
 		{Normalized: ParamTools, WireName: "tools"},
 		{Normalized: ParamToolChoice, WireName: "tool_choice"},
 		{Normalized: ParamTemperature, WireName: "temperature"},
+		{Normalized: ParamTopLevelCacheControl, WireName: "cache_control"},
+		{Normalized: ParamBlockCacheControl, WireName: "messages[*].content[*].cache_control"},
 	}
 	if item.Capabilities.Thinking.Supported {
 		mappings = append(mappings, ParameterMapping{Normalized: ParamThinking, WireName: "thinking"})

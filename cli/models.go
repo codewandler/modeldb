@@ -301,6 +301,9 @@ func printModelsDetails(out io.Writer, matches []modeldb.ModelMatch, includeOffe
 		if caps := capabilityNames(model.Capabilities); len(caps) > 0 {
 			fmt.Fprintf(out, "  capabilities: %s\n", capabilitySummary(model.Capabilities))
 		}
+		if caching := formatCachingCapability(model.Capabilities.Caching); caching != "" {
+			fmt.Fprintf(out, "  caching: %s\n", caching)
+		}
 		if model.ReferencePricing != nil {
 			fmt.Fprintf(out, "  pricing: input=%s output=%s cached_input=%s cache_write=%s\n",
 				formatPrice(model.ReferencePricing.Input),
@@ -318,6 +321,9 @@ func printModelsDetails(out io.Writer, matches []modeldb.ModelMatch, includeOffe
 					if exposure.ExposedCapabilities != nil {
 						if caps := capabilityNames(*exposure.ExposedCapabilities); len(caps) > 0 {
 							fmt.Fprintf(out, "      capabilities: %s\n", capabilitySummary(*exposure.ExposedCapabilities))
+						}
+						if caching := formatCachingCapability(exposure.ExposedCapabilities.Caching); caching != "" {
+							fmt.Fprintf(out, "      caching: %s\n", caching)
 						}
 					}
 					if len(exposure.SupportedParameters) > 0 {
@@ -415,7 +421,7 @@ func capabilityNames(caps modeldb.Capabilities) []string {
 		{"structured_output", caps.StructuredOutput || caps.StructuredOutputs},
 		{"vision", caps.Vision},
 		{"streaming", caps.Streaming},
-		{"caching", caps.Caching},
+		{"caching", caps.Caching != nil && caps.Caching.Available},
 		{"interleaved_thinking", reasoning != nil && reasoning.Interleaved},
 		{"adaptive_thinking", reasoning != nil && reasoning.Adaptive},
 		{"temperature", caps.Temperature},
@@ -469,6 +475,38 @@ func capabilitySummary(caps modeldb.Capabilities) string {
 		if caps.Reasoning.DefaultDisplay != "" {
 			parts = append(parts, "default_display="+caps.Reasoning.DefaultDisplay)
 		}
+	}
+	return strings.Join(parts, "; ")
+}
+
+func formatCachingCapability(c *modeldb.CachingCapability) string {
+	if c == nil || !c.Available {
+		return ""
+	}
+	parts := []string{"available=true"}
+	if c.Mode != "" {
+		parts = append(parts, "mode="+string(c.Mode))
+	}
+	if c.Configurable {
+		parts = append(parts, "configurable=true")
+	}
+	if c.PromptCacheRetention {
+		parts = append(parts, "prompt_cache_retention=true")
+	}
+	if c.PromptCacheKey {
+		parts = append(parts, "prompt_cache_key=true")
+	}
+	if len(c.RetentionValues) > 0 {
+		parts = append(parts, "retention_values=["+strings.Join(c.RetentionValues, ",")+"]")
+	}
+	if c.TopLevelRequestCaching {
+		parts = append(parts, "top_level_request_caching=true")
+	}
+	if c.PerMessageCaching {
+		parts = append(parts, "per_message_caching=true")
+	}
+	if len(c.CacheControlTypes) > 0 {
+		parts = append(parts, "cache_control_types=["+strings.Join(c.CacheControlTypes, ",")+"]")
 	}
 	return strings.Join(parts, "; ")
 }

@@ -1,0 +1,70 @@
+{
+  "service_id": "codex",
+  "wire_model_id": "gpt-5.4",
+  "api_type": "openai-responses",
+  "model_caching": {
+    "available": true
+  },
+  "exposure_caching": {
+    "available": true,
+    "mode": "implicit"
+  },
+  "supported_parameters": [
+    "response_format",
+    "tools",
+    "temperature",
+    "parallel_tool_calls",
+    "thinking",
+    "reasoning_effort",
+    "reasoning_summary"
+  ],
+  "parameter_mappings": [
+    {
+      "normalized": "response_format",
+      "wire_name": "response_format"
+    },
+    {
+      "normalized": "tools",
+      "wire_name": "tools"
+    },
+    {
+      "normalized": "temperature",
+      "wire_name": "temperature"
+    },
+    {
+      "normalized": "parallel_tool_calls",
+      "wire_name": "parallel_tool_calls"
+    },
+    {
+      "normalized": "thinking",
+      "wire_name": "reasoning"
+    },
+    {
+      "normalized": "reasoning_effort",
+      "wire_name": "reasoning.effort"
+    },
+    {
+      "normalized": "reasoning_summary",
+      "wire_name": "reasoning.summary"
+    }
+  ],
+  "parameter_values": {
+    "reasoning_effort": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "reasoning_summary": [
+      "auto",
+      "concise",
+      "detailed"
+    ],
+    "verbosity": [
+      "low",
+      "medium",
+      "high"
+    ]
+  }
+}

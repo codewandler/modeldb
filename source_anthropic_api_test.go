@@ -67,7 +67,12 @@ func TestAnthropicAPISourceFetch(t *testing.T) {
 	assert.Equal(t, 128000, latest.Limits.MaxOutput)
 	assert.Equal(t, "2026-02-17", latest.LastUpdated)
 	if assert.NotNil(t, latest.ReferencePricing) {
-		assert.False(t, latest.Capabilities.Caching)
+		if assert.NotNil(t, latest.Capabilities.Caching) {
+			assert.True(t, latest.Capabilities.Caching.Available)
+			assert.Empty(t, latest.Capabilities.Caching.Mode)
+			assert.False(t, latest.Capabilities.Caching.TopLevelRequestCaching)
+			assert.False(t, latest.Capabilities.Caching.PerMessageCaching)
+		}
 		assert.Equal(t, 3.0, latest.ReferencePricing.Input)
 		assert.Equal(t, 15.0, latest.ReferencePricing.Output)
 	}
@@ -93,12 +98,18 @@ func TestAnthropicAPISourceFetch(t *testing.T) {
 	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamTools)
 	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamToolChoice)
 	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamTemperature)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamTopLevelCacheControl)
+	assert.Contains(t, offering.Exposures[0].SupportedParameters, ParamBlockCacheControl)
 	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamThinkingMode, WireName: "thinking.type"})
 	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamTools, WireName: "tools"})
 	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamToolChoice, WireName: "tool_choice"})
 	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamTemperature, WireName: "temperature"})
+	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamTopLevelCacheControl, WireName: "cache_control"})
+	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamBlockCacheControl, WireName: "messages[*].content[*].cache_control"})
 	assert.Contains(t, offering.Exposures[0].ParameterValues["thinking.mode"], "adaptive")
 	assert.NotContains(t, offering.Exposures[0].ParameterValues["reasoning_effort"], "xhigh")
+	assert.Contains(t, offering.Exposures[0].ParameterValues[string(ParamTopLevelCacheControl)], "ephemeral")
+	assert.Contains(t, offering.Exposures[0].ParameterValues[string(ParamBlockCacheControl)], "ephemeral")
 	assert.Empty(t, offering.Aliases)
 	if assert.NotNil(t, offering.Pricing) {
 		assert.Equal(t, 0.30, offering.Pricing.CachedInput)

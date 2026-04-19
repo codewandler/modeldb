@@ -1,0 +1,14 @@
+{
+  "service_id": "minimax",
+  "wire_model_id": "MiniMax-M2.7",
+  "api_type": "anthropic-messages",
+  "model_caching": {
+    "available": true
+  },
+  "exposure_caching": {
+    "available": true,
+    "mode": "explicit",
+    "configurable": true,
+    "top_level_request_caching": true
+  }
+}

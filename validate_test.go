@@ -54,7 +54,6 @@ func TestValidateResolvedCatalogMissingRuntimeOffering(t *testing.T) {
 	assert.Contains(t, err.Error(), "unknown offering")
 }
 
-
 func TestValidateCatalogRejectsFreeWithoutExplicitPricing(t *testing.T) {
 	c := NewCatalog()
 	key := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "5"})
@@ -80,7 +79,6 @@ func TestAuditPricingClassifiesStatuses(t *testing.T) {
 	assert.Len(t, report.Unknown, 1)
 }
 
-
 func TestAuditPricingIgnoresNonTextOfferings(t *testing.T) {
 	c := NewCatalog()
 	textKey := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "5"})
@@ -92,4 +90,56 @@ func TestAuditPricingIgnoresNonTextOfferings(t *testing.T) {
 	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "gpt-audio-1.5"}] = Offering{ServiceID: "openai", WireModelID: "gpt-audio-1.5", ModelKey: audioKey, PricingStatus: "unknown"}
 	report := AuditPricing(c)
 	assert.Equal(t, []string{"openai/gpt-5"}, report.Unknown)
+}
+
+func TestValidateCatalogRejectsInvalidCachingMode(t *testing.T) {
+	c := NewCatalog()
+	key := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "5"})
+	c.Services["openai"] = Service{ID: "openai"}
+	c.Models[key] = ModelRecord{Key: key, Capabilities: Capabilities{Caching: &CachingCapability{Available: true, Mode: CachingMode("nope")}}}
+	err := ValidateCatalog(c)
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "invalid caching mode")
+}
+
+func TestValidateCatalogRejectsImplicitConfigurableCaching(t *testing.T) {
+	c := NewCatalog()
+	key := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "5"})
+	c.Services["openai"] = Service{ID: "openai"}
+	c.Models[key] = ModelRecord{Key: key}
+	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "gpt-5"}] = Offering{ServiceID: "openai", WireModelID: "gpt-5", ModelKey: key, Exposures: []OfferingExposure{{APIType: APITypeOpenAIResponses, ExposedCapabilities: &Capabilities{Caching: &CachingCapability{Available: true, Mode: CachingModeImplicit, Configurable: true}}}}}
+	err := ValidateCatalog(c)
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "implicit caching marked configurable")
+}
+
+func TestValidateCatalogRejectsRetentionValuesWithoutPromptCacheRetention(t *testing.T) {
+	c := NewCatalog()
+	key := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "5"})
+	c.Services["openai"] = Service{ID: "openai"}
+	c.Models[key] = ModelRecord{Key: key, Capabilities: Capabilities{Caching: &CachingCapability{Available: true, Configurable: true, RetentionValues: []string{"24h"}}}}
+	err := ValidateCatalog(c)
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "retention_values without prompt_cache_retention")
+}
+
+func TestValidateCatalogRejectsCacheControlTypesWithoutCacheSupport(t *testing.T) {
+	c := NewCatalog()
+	key := NormalizeKey(ModelKey{Creator: "anthropic", Family: "claude", Series: "sonnet", Version: "4.6"})
+	c.Services["anthropic"] = Service{ID: "anthropic"}
+	c.Models[key] = ModelRecord{Key: key, Capabilities: Capabilities{Caching: &CachingCapability{Available: true, CacheControlTypes: []string{"ephemeral"}}}}
+	err := ValidateCatalog(c)
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "cache_control_types without cache control support")
+}
+
+func TestValidateCatalogRejectsMixedCachingMarkedNonConfigurable(t *testing.T) {
+	c := NewCatalog()
+	key := NormalizeKey(ModelKey{Creator: "openai", Family: "gpt", Version: "5"})
+	c.Services["openai"] = Service{ID: "openai"}
+	c.Models[key] = ModelRecord{Key: key}
+	c.Offerings[OfferingRef{ServiceID: "openai", WireModelID: "gpt-5"}] = Offering{ServiceID: "openai", WireModelID: "gpt-5", ModelKey: key, Exposures: []OfferingExposure{{APIType: APITypeOpenAIResponses, ExposedCapabilities: &Capabilities{Caching: &CachingCapability{Available: true, Mode: CachingModeMixed, Configurable: false}}}}}
+	err := ValidateCatalog(c)
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "mixed caching marked non-configurable")
 }
