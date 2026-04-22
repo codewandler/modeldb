@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+## v0.12.0 - 2025-04-23
+
+### Added
+
+- Added `modeldb version` command to display the embedded build version information.
+- Added `Taskfile.yaml` for automated development tasks: `install`, `build`, `test`, `clean`, and `dev` workflows.
+- Build and install tasks now automatically embed version information from git tags (with `git describe`) or use "dev" as fallback.
+
+### Changed
+
+- Updated `AGENTS.md` with a new Development section documenting the Taskfile-based development workflow.
+- CLI root command now includes the new `version` subcommand alongside existing `build`, `validate`, `models`, and `skill` commands.
+
 ## v0.11.9 - 2026-04-22
 
 ### Added

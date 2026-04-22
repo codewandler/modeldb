@@ -34,6 +34,7 @@ func NewRootCommand(opts RootCommandOptions) *cobra.Command {
 	root.AddCommand(NewValidateCommand(ValidateCommandOptions{IO: ioCfg, DefaultCatalogPath: opts.DefaultCatalogPath}))
 	root.AddCommand(NewModelsCommand(ModelsCommandOptions{IO: ioCfg, LoadBaseCatalog: opts.LoadBaseCatalog}))
 	root.AddCommand(NewSkillCommand(SkillCommandOptions{IO: ioCfg}))
+	root.AddCommand(NewVersionCommand(VersionCommandOptions{IO: ioCfg}))
 	root.InitDefaultCompletionCmd()
 	return root
 }

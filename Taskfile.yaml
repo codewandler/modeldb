@@ -1,0 +1,37 @@
+version: '3'
+
+vars:
+  VERSION:
+    sh: git describe --tags --always --dirty 2>/dev/null || echo "dev"
+
+tasks:
+  install:
+    desc: Install the modeldb binary
+    cmds:
+      - go install -ldflags "-X 'github.com/codewandler/modeldb/cli.Version={{.VERSION}}'" ./cmd/modeldb
+    silent: false
+
+  build:
+    desc: Build the modeldb binary
+    cmds:
+      - go build -ldflags "-X 'github.com/codewandler/modeldb/cli.Version={{.VERSION}}'" -o ./bin/modeldb ./cmd/modeldb
+    silent: false
+
+  test:
+    desc: Run tests
+    cmds:
+      - go test ./...
+    silent: false
+
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - rm -rf ./bin/modeldb
+    silent: false
+
+  dev:
+    desc: Build and install for development
+    cmds:
+      - task: clean
+      - task: install
+    silent: false
