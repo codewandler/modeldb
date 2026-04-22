@@ -1,0 +1,19 @@
+{
+  "service_id": "kimi",
+  "wire_model_id": "kimi-k2.6",
+  "api_type": "openai-messages",
+  "model_caching": {
+    "available": true,
+    "mode": "implicit"
+  },
+  "exposure_caching": {
+    "available": true,
+    "mode": "implicit"
+  },
+  "supported_parameters": [
+    "messages",
+    "tools",
+    "tool_choice",
+    "temperature"
+  ]
+}

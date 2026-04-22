@@ -2,6 +2,39 @@
 
 ## Unreleased
 
+## v0.13.0 - 2026-04-23
+
+### Added
+
+- Added Kimi K2.6 (Moonshot AI) as a new canonical static source (`source_kimi_static.go`).
+  - New `kimi` direct service entry with OpenAI-compatible API (`https://api.moonshot.ai/v1`).
+  - New model key `moonshot/kimi@2.6` with vision (text/image/video input), reasoning (thinking/instant modes), tool use, streaming, and implicit prompt caching.
+  - Limits: 262,144-token context window, 32,768 max output tokens.
+  - Reference pricing: $0.95/M input, $4.00/M output, $0.16/M cached input.
+  - Wire model ID: `kimi-k2.6`; alias: `kimi-k2-6`.
+- Added `NewOpenRouterSourceFromFile(path string)` constructor — reads a raw OpenRouter `/v1/models` JSON payload from disk instead of making an HTTP request, matching the file-based pattern used by all other sources.
+- Added `internal/source/openrouter/testdata/api.json` — live-fetched OpenRouter models fixture (349 models), making `go generate ./...` fully self-contained without a live API key.
+- Added `--openrouter-file` flag to `modeldb build` CLI.
+- Updated `generate.go` to use `--openrouter-file internal/source/openrouter/testdata/api.json`.
+
+### Fixed
+
+- Fixed `inferMoonshotModelKey` to correctly parse dotted version strings (e.g. `kimi-k2.6` → version `2.6`); previously fell back to `"2"`.
+- Added `isVersionDotted` helper to `infer.go` for dotted version validation.
+
+### Model Changes
+
+- `catalog.json`: Rebuilt from fresh OpenRouter fixture (349 models).
+  - Added `kimi` service, `moonshot/kimi@2.6` canonical model, and `kimi/kimi-k2.6` direct offering.
+  - OpenRouter `moonshotai/kimi-k2.6` offering now correctly rebinds to `moonshot/kimi@2.6`.
+  - Kimi K2.5 now correctly keyed at `moonshot/kimi@2.5` (previously shared `version: "2"` with K2 due to the inference bug).
+  - New models: GPT-5.4 Image 2, GPT Image 2, Xiaomi MiMo-V2.5/V2.5-Pro, inclusionAI Ling-2.6-flash, Anthropic Claude Opus Latest router, OpenRouter Pareto Code Router, Mistral Devstral Small/Ministral-14b-2512, Arcee Trinity Large Preview (paid).
+  - Removed: OpenRouter Elephant Alpha (no longer listed by OpenRouter).
+  - Updated pricing and limits for Deepseek R1 0528, Mistral Devstral Medium, Qwen3, and several OpenAI models.
+  - Added `web_search` pricing to applicable OpenAI models.
+  - Added `seed` parameter to newly supporting models.
+
+
 ## v0.12.0 - 2025-04-23
 
 ### Added

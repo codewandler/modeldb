@@ -512,6 +512,24 @@ func TestInferMoonshotModelKey(t *testing.T) {
 				Variant: "thinking",
 			},
 		},
+		{
+			name:  "kimi-k2.6",
+			input: "moonshotai/kimi-k2.6",
+			expected: ModelKey{
+				Creator: "moonshot",
+				Family:  "kimi",
+				Version: "2.6",
+			},
+		},
+		{
+			name:  "kimi-k2",
+			input: "moonshotai/kimi-k2",
+			expected: ModelKey{
+				Creator: "moonshot",
+				Family:  "kimi",
+				Version: "2",
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

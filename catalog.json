@@ -1064,6 +1064,7 @@
         "text"
       ],
       "knowledge_cutoff": "2025-06-30",
+      "expiration_date": "2026-04-22",
       "instruct_type": "qwen3",
       "tokenizer": "Qwen3",
       "modality": "text-\u003etext",
@@ -2493,6 +2494,7 @@
         "text"
       ],
       "knowledge_cutoff": "2024-06-30",
+      "expiration_date": "2026-04-29",
       "instruct_type": "qwq",
       "tokenizer": "Qwen",
       "modality": "text-\u003etext",
@@ -4510,6 +4512,12 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "arcee-ai/trinity-large-preview:free"
+        },
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "arcee-ai/trinity-large-preview"
         }
       ]
     },
@@ -6009,7 +6017,8 @@
         "structured_outputs": true,
         "streaming": true,
         "temperature": true,
-        "logprobs": true
+        "logprobs": true,
+        "seed": true
       },
       "limits": {},
       "input_modalities": [
@@ -7153,7 +7162,8 @@
         "structured_output": true,
         "structured_outputs": true,
         "streaming": true,
-        "temperature": true
+        "temperature": true,
+        "seed": true
       },
       "limits": {},
       "input_modalities": [
@@ -7819,6 +7829,41 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "inception/mercury-2"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "inclusionai",
+        "family": "ling",
+        "variant": "2.6-flash"
+      },
+      "name": "inclusionAI: Ling-2.6-flash (free)",
+      "description": "Ling-2.6-flash is an instant (instruct) model from inclusionAI with 104B total parameters and 7.4B active parameters, designed for real-world agents that require fast responses, strong execution, and high token efficiency....",
+      "capabilities": {
+        "tool_use": true,
+        "structured_output": true,
+        "structured_outputs": true,
+        "streaming": true,
+        "temperature": true,
+        "seed": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "expiration_date": "2026-04-29",
+      "tokenizer": "Other",
+      "modality": "text-\u003etext",
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "inclusionai/ling-2.6-flash:free"
         }
       ]
     },
@@ -10723,6 +10768,39 @@
         "family": "kimi",
         "version": "2"
       },
+      "name": "MoonshotAI: Kimi K2 0711",
+      "description": "Kimi K2 Instruct is a large-scale Mixture-of-Experts (MoE) language model developed by Moonshot AI, featuring 1 trillion total parameters with 32 billion active per forward pass. It is optimized for...",
+      "capabilities": {
+        "tool_use": true,
+        "streaming": true,
+        "temperature": true,
+        "seed": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-12-31",
+      "tokenizer": "Other",
+      "modality": "text-\u003etext",
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "moonshotai/kimi-k2"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "moonshot",
+        "family": "kimi",
+        "version": "2.5"
+      },
       "name": "MoonshotAI: Kimi K2.5",
       "description": "Kimi K2.5 is Moonshot AI's native multimodal model, delivering state-of-the-art visual coding capability and a self-directed agent swarm paradigm. Built on Kimi K2 with continued pretraining over approximately 15T mixed...",
       "capabilities": {
@@ -10751,7 +10829,6 @@
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-12-31",
       "tokenizer": "Other",
       "modality": "text+image-\u003etext",
       "provenance": [
@@ -10760,12 +10837,100 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "moonshotai/kimi-k2.5"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "moonshot",
+        "family": "kimi",
+        "version": "2.5",
+        "release_date": "2026-01-27"
+      },
+      "attachment": true,
+      "open_weights": true,
+      "capabilities": {},
+      "limits": {},
+      "knowledge_cutoff": "2025-01",
+      "last_updated": "2026-01-27",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "moonshotai/kimi-k2.5"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "moonshot",
+        "family": "kimi",
+        "version": "2.6"
+      },
+      "name": "Kimi K2.6",
+      "aliases": [
+        "kimi-k2-6"
+      ],
+      "description": "Kimi K2.6 is Moonshot AI's next-generation multimodal model, designed for long-horizon coding, coding-driven UI/UX generation, and multi-agent orchestration. It handles complex end-to-end coding tasks across Python, Rust, and Go, and...",
+      "canonical": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "efforts": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "structured_outputs": true,
+        "vision": true,
+        "streaming": true,
+        "caching": {
+          "available": true,
+          "mode": "implicit"
+        },
+        "temperature": true,
+        "seed": true
+      },
+      "limits": {
+        "context_window": 262144,
+        "max_output": 32768
+      },
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "tokenizer": "Other",
+      "modality": "text+image-\u003etext",
+      "reference_pricing": {
+        "input": 0.95,
+        "output": 4,
+        "cached_input": 0.16,
+        "cache_write": 0
+      },
+      "provenance": [
+        {
+          "source_id": "kimi-static",
+          "authority": "canonical",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "kimi-k2.6"
         },
         {
           "source_id": "openrouter-api",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "moonshotai/kimi-k2"
+          "raw_id": "moonshotai/kimi-k2.6"
         }
       ]
     },
@@ -10921,28 +11086,6 @@
           "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "moonshotai/kimi-k2:free"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "moonshot",
-        "family": "kimi",
-        "version": "2",
-        "release_date": "2026-01-27"
-      },
-      "attachment": true,
-      "open_weights": true,
-      "capabilities": {},
-      "limits": {},
-      "knowledge_cutoff": "2025-01",
-      "last_updated": "2026-01-27",
-      "provenance": [
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "moonshotai/kimi-k2.5"
         }
       ]
     },
@@ -15232,6 +15375,51 @@
         "creator": "openai",
         "family": "gpt",
         "version": "5.4",
+        "variant": "image-2"
+      },
+      "name": "OpenAI: GPT-5.4 Image 2",
+      "description": "[GPT-5.4](https://openrouter.ai/openai/gpt-5.4) Image 2 combines OpenAI's GPT-5.4 model with state-of-the-art image generation capabilities from GPT Image 2. It enables rich multimodal workflows, allowing users to seamlessly move between reasoning, coding, and...",
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "structured_output": true,
+        "structured_outputs": true,
+        "vision": true,
+        "streaming": true,
+        "logprobs": true,
+        "seed": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "image",
+        "text",
+        "file"
+      ],
+      "output_modalities": [
+        "image",
+        "text"
+      ],
+      "tokenizer": "GPT",
+      "modality": "text+image+file-\u003etext+image",
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5.4-image-2"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.4",
         "variant": "mini"
       },
       "name": "GPT-5.4-Mini",
@@ -15937,7 +16125,6 @@
             "off"
           ]
         },
-        "tool_use": true,
         "structured_output": true,
         "structured_outputs": true,
         "vision": true,
@@ -15984,7 +16171,6 @@
             "off"
           ]
         },
-        "tool_use": true,
         "structured_output": true,
         "structured_outputs": true,
         "vision": true,
@@ -16816,6 +17002,42 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-image-1.5"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "image",
+        "variant": "2"
+      },
+      "capabilities": {},
+      "limits": {},
+      "provenance": [
+        {
+          "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-image-2"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "image",
+        "variant": "2-2026-04-21"
+      },
+      "capabilities": {},
+      "limits": {},
+      "provenance": [
+        {
+          "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-image-2-2026-04-21"
         }
       ]
     },
@@ -18576,7 +18798,7 @@
         "family": "auto"
       },
       "name": "Auto Router",
-      "description": "Your prompt will be processed by a meta-model and routed to one of dozens of models (see below), optimizing for the best possible output. To see which model was used,...",
+      "description": "\"Your prompt will be processed by a meta-model and routed to one of dozens of models (see below), optimizing for the best possible output. To see which model was used,...",
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -18649,39 +18871,6 @@
     {
       "key": {
         "creator": "openrouter",
-        "family": "elephant",
-        "variant": "alpha"
-      },
-      "name": "Elephant",
-      "description": "Elephant Alpha is a 100B-parameter text model focused on intelligence efficiency, delivering strong performance while minimizing token usage. It supports a 256K context window with up to 32K output tokens,...",
-      "capabilities": {
-        "tool_use": true,
-        "structured_output": true,
-        "structured_outputs": true,
-        "streaming": true,
-        "temperature": true
-      },
-      "limits": {},
-      "input_modalities": [
-        "text"
-      ],
-      "output_modalities": [
-        "text"
-      ],
-      "tokenizer": "Other",
-      "modality": "text-\u003etext",
-      "provenance": [
-        {
-          "source_id": "openrouter-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openrouter/elephant-alpha"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openrouter",
         "family": "free"
       },
       "name": "Free Models Router",
@@ -18718,6 +18907,35 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "openrouter/free"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openrouter",
+        "family": "pareto",
+        "variant": "code"
+      },
+      "name": "Pareto Code Router",
+      "description": "The Pareto Router is a way to have OpenRouter always pick a strong coding model for your needs without committing to a specific one. You express a single `min_coding_score` preference...",
+      "capabilities": {
+        "streaming": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "tokenizer": "Router",
+      "modality": "text-\u003etext",
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openrouter/pareto-code"
         }
       ]
     },
@@ -19435,11 +19653,6 @@
       "capabilities": {
         "reasoning": {
           "available": true,
-          "efforts": [
-            "low",
-            "medium",
-            "high"
-          ],
           "modes": [
             "enabled",
             "off"
@@ -20668,6 +20881,88 @@
     },
     {
       "key": {
+        "creator": "xiaomi",
+        "family": "mimo",
+        "variant": "v2.5"
+      },
+      "name": "Xiaomi: MiMo-V2.5",
+      "description": "MiMo-V2.5 is a native omnimodal model by Xiaomi. It delivers Pro-level agentic performance at roughly half the inference cost, while surpassing MiMo-V2-Omni in multimodal perception across image and video understanding...",
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "streaming": true,
+        "temperature": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "audio",
+        "image",
+        "video"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "tokenizer": "Other",
+      "modality": "text+image+audio+video-\u003etext",
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "xiaomi/mimo-v2.5"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "xiaomi",
+        "family": "mimo",
+        "variant": "v2.5-pro"
+      },
+      "name": "Xiaomi: MiMo-V2.5-Pro",
+      "description": "MiMo-V2.5-Pro is Xiaomi’s flagship model, delivering strong performance in general agentic capabilities, complex software engineering, and long-horizon tasks, with top rankings on benchmarks such as ClawEval, GDPVal, and SWE-bench Pro....",
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "streaming": true,
+        "temperature": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "tokenizer": "Other",
+      "modality": "text-\u003etext",
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "xiaomi/mimo-v2.5-pro"
+        }
+      ]
+    },
+    {
+      "key": {
         "creator": "zhipu",
         "family": "glm",
         "version": "4.5"
@@ -21332,6 +21627,47 @@
           "raw_id": "z-ai/glm-5v-turbo"
         }
       ]
+    },
+    {
+      "key": {
+        "creator": "~anthropic",
+        "family": "claude",
+        "variant": "opus-latest"
+      },
+      "name": "Anthropic: Claude Opus Latest",
+      "description": "This model always redirects to the latest model in the Claude Opus family.",
+      "capabilities": {
+        "reasoning": {
+          "available": true,
+          "modes": [
+            "enabled",
+            "off"
+          ]
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "structured_outputs": true,
+        "vision": true,
+        "streaming": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "tokenizer": "Router",
+      "modality": "text+image-\u003etext",
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "~anthropic/claude-opus-latest"
+        }
+      ]
     }
   ],
   "services": [
@@ -21388,6 +21724,24 @@
         {
           "source_id": "codex-api",
           "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "kimi",
+      "name": "Kimi",
+      "kind": "direct",
+      "operator": "moonshot",
+      "api_url": "https://api.moonshot.ai/v1",
+      "docs_url": "https://platform.kimi.ai/docs/api/overview",
+      "env_vars": [
+        "MOONSHOT_API_KEY"
+      ],
+      "provenance": [
+        {
+          "source_id": "kimi-static",
+          "authority": "canonical",
           "observed_at": "0001-01-01T00:00:00Z"
         }
       ]
@@ -24345,6 +24699,68 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.4-mini"
+        }
+      ]
+    },
+    {
+      "service_id": "kimi",
+      "wire_model_id": "kimi-k2.6",
+      "model_key": {
+        "creator": "moonshot",
+        "family": "kimi",
+        "version": "2.6"
+      },
+      "aliases": [
+        "kimi-k2-6"
+      ],
+      "exposures": [
+        {
+          "api_type": "openai-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "implicit"
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "tools",
+            "tool_choice",
+            "temperature"
+          ],
+          "provenance": [
+            {
+              "source_id": "kimi-static",
+              "authority": "canonical",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "kimi-k2.6"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 0.95,
+        "output": 4,
+        "cached_input": 0.16,
+        "cache_write": 0
+      },
+      "provenance": [
+        {
+          "source_id": "kimi-static",
+          "authority": "canonical",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "kimi-k2.6"
         }
       ]
     },
@@ -32001,6 +32417,42 @@
     },
     {
       "service_id": "openai",
+      "wire_model_id": "gpt-image-2",
+      "model_key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "image",
+        "variant": "2"
+      },
+      "provenance": [
+        {
+          "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-image-2"
+        }
+      ]
+    },
+    {
+      "service_id": "openai",
+      "wire_model_id": "gpt-image-2-2026-04-21",
+      "model_key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "image",
+        "variant": "2-2026-04-21"
+      },
+      "provenance": [
+        {
+          "source_id": "openai-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-image-2-2026-04-21"
+        }
+      ]
+    },
+    {
+      "service_id": "openai",
       "wire_model_id": "gpt-realtime",
       "model_key": {
         "creator": "openai",
@@ -39343,6 +39795,139 @@
     },
     {
       "service_id": "openrouter",
+      "wire_model_id": "arcee-ai/trinity-large-preview",
+      "model_key": {
+        "creator": "arcee",
+        "family": "trinity",
+        "variant": "large-preview"
+      },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
+            "streaming": true,
+            "temperature": true
+          },
+          "supported_parameters": [
+            "tools",
+            "temperature",
+            "response_format",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "minimal",
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "default_parameters": {
+            "temperature": 0.8,
+            "top_p": 0.8
+          },
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "arcee-ai/trinity-large-preview"
+            }
+          ]
+        },
+        {
+          "api_type": "openai-messages",
+          "exposed_capabilities": {
+            "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
+            "streaming": true,
+            "temperature": true
+          },
+          "supported_parameters": [
+            "tools",
+            "temperature",
+            "response_format"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            }
+          ],
+          "default_parameters": {
+            "temperature": 0.8,
+            "top_p": 0.8
+          },
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "arcee-ai/trinity-large-preview"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 0.15,
+        "output": 0.44999999999999996,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
+      "limits_override": {
+        "context_window": 131000
+      },
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "arcee-ai/trinity-large-preview"
+        }
+      ]
+    },
+    {
+      "service_id": "openrouter",
       "wire_model_id": "arcee-ai/trinity-large-preview:free",
       "model_key": {
         "creator": "arcee",
@@ -43398,13 +43983,15 @@
             "structured_outputs": true,
             "streaming": true,
             "temperature": true,
-            "logprobs": true
+            "logprobs": true,
+            "seed": true
           },
           "supported_parameters": [
             "temperature",
             "response_format",
             "thinking",
             "logprobs",
+            "seed",
             "reasoning_effort",
             "reasoning_summary"
           ],
@@ -43428,6 +44015,10 @@
             {
               "normalized": "logprobs",
               "wire_name": "logprobs"
+            },
+            {
+              "normalized": "seed",
+              "wire_name": "seed"
             },
             {
               "normalized": "reasoning_effort",
@@ -43475,13 +44066,15 @@
             "structured_outputs": true,
             "streaming": true,
             "temperature": true,
-            "logprobs": true
+            "logprobs": true,
+            "seed": true
           },
           "supported_parameters": [
             "temperature",
             "response_format",
             "thinking",
-            "logprobs"
+            "logprobs",
+            "seed"
           ],
           "parameter_mappings": [
             {
@@ -43503,6 +44096,10 @@
             {
               "normalized": "logprobs",
               "wire_name": "logprobs"
+            },
+            {
+              "normalized": "seed",
+              "wire_name": "seed"
             }
           ],
           "default_parameters": {},
@@ -43903,15 +44500,15 @@
         }
       ],
       "pricing": {
-        "input": 0.25899999999999995,
-        "output": 0.42,
-        "cached_input": 0.135,
+        "input": 0.252,
+        "output": 0.378,
+        "cached_input": 0.0252,
         "cache_write": 0
       },
       "pricing_status": "known",
       "limits_override": {
-        "context_window": 163840,
-        "max_output": 163840
+        "context_window": 131072,
+        "max_output": 65536
       },
       "provenance": [
         {
@@ -44561,7 +45158,8 @@
         "cache_write": 0.08333333333333334,
         "reasoning": 0.39999999999999997,
         "image": 0.09999999999999999,
-        "audio": 0.7
+        "audio": 0.7,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -44718,7 +45316,8 @@
         "cache_write": 0,
         "reasoning": 0.3,
         "image": 0.075,
-        "audio": 0.075
+        "audio": 0.075,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -44907,7 +45506,8 @@
         "cache_write": 0.08333333333333334,
         "reasoning": 2.5,
         "image": 0.3,
-        "audio": 1
+        "audio": 1,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -45043,7 +45643,8 @@
         "cache_write": 0.08333333333333334,
         "reasoning": 2.5,
         "image": 0.3,
-        "audio": 1
+        "audio": 1,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -45233,7 +45834,8 @@
         "cache_write": 0.08333333333333334,
         "reasoning": 0.39999999999999997,
         "image": 0.09999999999999999,
-        "audio": 0.3
+        "audio": 0.3,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -45423,7 +46025,8 @@
         "cache_write": 0.08333333333333334,
         "reasoning": 0.39999999999999997,
         "image": 0.09999999999999999,
-        "audio": 0.3
+        "audio": 0.3,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -45612,7 +46215,8 @@
         "cache_write": 0.375,
         "reasoning": 10,
         "image": 1.25,
-        "audio": 1.25
+        "audio": 1.25,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -45805,7 +46409,8 @@
         "cache_write": 0.375,
         "reasoning": 10,
         "image": 1.25,
-        "audio": 1.25
+        "audio": 1.25,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -45999,7 +46604,8 @@
         "cache_write": 0.375,
         "reasoning": 10,
         "image": 1.25,
-        "audio": 1.25
+        "audio": 1.25,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -46192,7 +46798,8 @@
         "cache_write": 0.08333333333333334,
         "reasoning": 3,
         "image": 0.5,
-        "audio": 1
+        "audio": 1,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -46363,7 +46970,8 @@
         "cache_write": 0.375,
         "reasoning": 12,
         "image": 2,
-        "audio": 2
+        "audio": 2,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -46530,7 +47138,8 @@
       "pricing": {
         "input": 0.5,
         "output": 3,
-        "cache_write": 0
+        "cache_write": 0,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -46723,7 +47332,8 @@
         "cache_write": 0.08333333333333334,
         "reasoning": 1.5,
         "image": 0.25,
-        "audio": 0.5
+        "audio": 0.5,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -46916,7 +47526,8 @@
         "cache_write": 0.375,
         "reasoning": 12,
         "image": 2,
-        "audio": 2
+        "audio": 2,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -47109,7 +47720,8 @@
         "cache_write": 0.375,
         "reasoning": 12,
         "image": 2,
-        "audio": 2
+        "audio": 2,
+        "web_search": 14000
       },
       "pricing_status": "known",
       "limits_override": {
@@ -47141,11 +47753,13 @@
             "structured_output": true,
             "structured_outputs": true,
             "streaming": true,
-            "temperature": true
+            "temperature": true,
+            "seed": true
           },
           "supported_parameters": [
             "temperature",
             "response_format",
+            "seed",
             "reasoning_effort",
             "reasoning_summary"
           ],
@@ -47157,6 +47771,10 @@
             {
               "normalized": "response_format",
               "wire_name": "response_format"
+            },
+            {
+              "normalized": "seed",
+              "wire_name": "seed"
             },
             {
               "normalized": "reasoning_effort",
@@ -47196,11 +47814,13 @@
             "structured_output": true,
             "structured_outputs": true,
             "streaming": true,
-            "temperature": true
+            "temperature": true,
+            "seed": true
           },
           "supported_parameters": [
             "temperature",
-            "response_format"
+            "response_format",
+            "seed"
           ],
           "parameter_mappings": [
             {
@@ -47210,6 +47830,10 @@
             {
               "normalized": "response_format",
               "wire_name": "response_format"
+            },
+            {
+              "normalized": "seed",
+              "wire_name": "seed"
             }
           ],
           "default_parameters": {},
@@ -48555,14 +49179,15 @@
         }
       ],
       "pricing": {
-        "input": 0.08,
+        "input": 0.07,
         "output": 0.35,
-        "cached_input": 0.01,
+        "cached_input": 0.04,
         "cache_write": 0
       },
       "pricing_status": "known",
       "limits_override": {
-        "context_window": 262144
+        "context_window": 262144,
+        "max_output": 262144
       },
       "provenance": [
         {
@@ -49841,6 +50466,157 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "inception/mercury-2"
+        }
+      ]
+    },
+    {
+      "service_id": "openrouter",
+      "wire_model_id": "inclusionai/ling-2.6-flash:free",
+      "model_key": {
+        "creator": "inclusionai",
+        "family": "ling",
+        "variant": "2.6-flash"
+      },
+      "aliases": [
+        "inclusionai/ling-2.6-flash-20260421"
+      ],
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
+            "streaming": true,
+            "temperature": true,
+            "seed": true
+          },
+          "supported_parameters": [
+            "tools",
+            "tool_choice",
+            "temperature",
+            "response_format",
+            "seed",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "seed",
+              "wire_name": "seed"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "minimal",
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "inclusionai/ling-2.6-flash:free"
+            }
+          ]
+        },
+        {
+          "api_type": "openai-messages",
+          "exposed_capabilities": {
+            "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
+            "streaming": true,
+            "temperature": true,
+            "seed": true
+          },
+          "supported_parameters": [
+            "tools",
+            "tool_choice",
+            "temperature",
+            "response_format",
+            "seed"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "seed",
+              "wire_name": "seed"
+            }
+          ],
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "inclusionai/ling-2.6-flash:free"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "cache_write": 0
+      },
+      "pricing_status": "free",
+      "limits_override": {
+        "context_window": 262144,
+        "max_output": 32768
+      },
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "inclusionai/ling-2.6-flash:free"
         }
       ]
     },
@@ -51881,14 +52657,14 @@
         }
       ],
       "pricing": {
-        "input": 0.12,
-        "output": 0.38,
+        "input": 0.09999999999999999,
+        "output": 0.32,
         "cache_write": 0
       },
       "pricing_status": "known",
       "limits_override": {
         "context_window": 131072,
-        "max_output": 131072
+        "max_output": 16384
       },
       "provenance": [
         {
@@ -53808,9 +54584,9 @@
         }
       ],
       "pricing": {
-        "input": 0.118,
-        "output": 0.9900000000000001,
-        "cached_input": 0.059,
+        "input": 0.15,
+        "output": 1.2,
+        "cached_input": 0.075,
         "cache_write": 0
       },
       "pricing_status": "known",
@@ -58517,7 +59293,7 @@
       "model_key": {
         "creator": "moonshot",
         "family": "kimi",
-        "version": "2"
+        "version": "2.5"
       },
       "aliases": [
         "moonshotai/kimi-k2.5-0127"
@@ -58704,9 +59480,9 @@
         }
       ],
       "pricing": {
-        "input": 0.3827,
-        "output": 1.72,
-        "cached_input": 0.19135,
+        "input": 0.44,
+        "output": 2,
+        "cached_input": 0.22,
         "cache_write": 0
       },
       "pricing_status": "known",
@@ -58720,6 +59496,226 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "moonshotai/kimi-k2.5"
+        }
+      ]
+    },
+    {
+      "service_id": "openrouter",
+      "wire_model_id": "moonshotai/kimi-k2.6",
+      "model_key": {
+        "creator": "moonshot",
+        "family": "kimi",
+        "version": "2.6"
+      },
+      "aliases": [
+        "moonshotai/kimi-k2.6-20260420"
+      ],
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
+            "vision": true,
+            "streaming": true,
+            "temperature": true,
+            "seed": true
+          },
+          "supported_parameters": [
+            "tools",
+            "tool_choice",
+            "temperature",
+            "response_format",
+            "reasoning_effort",
+            "thinking",
+            "seed",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning_effort"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "include_reasoning"
+            },
+            {
+              "normalized": "seed",
+              "wire_name": "seed"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "minimal",
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "moonshotai/kimi-k2.6"
+            }
+          ]
+        },
+        {
+          "api_type": "openai-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
+            "vision": true,
+            "streaming": true,
+            "temperature": true,
+            "seed": true
+          },
+          "supported_parameters": [
+            "tools",
+            "tool_choice",
+            "temperature",
+            "response_format",
+            "reasoning_effort",
+            "thinking",
+            "seed"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning_effort"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "include_reasoning"
+            },
+            {
+              "normalized": "seed",
+              "wire_name": "seed"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "minimal",
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "moonshotai/kimi-k2.6"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 0.7999999999999999,
+        "output": 3.5,
+        "cached_input": 0.19999999999999998,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
+      "limits_override": {
+        "context_window": 262144,
+        "max_output": 262144
+      },
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "moonshotai/kimi-k2.6"
         }
       ]
     },
@@ -65481,7 +66477,6 @@
                 "off"
               ]
             },
-            "tool_use": true,
             "structured_output": true,
             "structured_outputs": true,
             "vision": true,
@@ -65491,8 +66486,6 @@
             "seed": true
           },
           "supported_parameters": [
-            "tools",
-            "tool_choice",
             "temperature",
             "response_format",
             "thinking",
@@ -65502,14 +66495,6 @@
             "reasoning_summary"
           ],
           "parameter_mappings": [
-            {
-              "normalized": "tools",
-              "wire_name": "tools"
-            },
-            {
-              "normalized": "tool_choice",
-              "wire_name": "tool_choice"
-            },
             {
               "normalized": "temperature",
               "wire_name": "temperature"
@@ -65576,7 +66561,6 @@
                 "off"
               ]
             },
-            "tool_use": true,
             "structured_output": true,
             "structured_outputs": true,
             "vision": true,
@@ -65586,8 +66570,6 @@
             "seed": true
           },
           "supported_parameters": [
-            "tools",
-            "tool_choice",
             "temperature",
             "response_format",
             "thinking",
@@ -65595,14 +66577,6 @@
             "seed"
           ],
           "parameter_mappings": [
-            {
-              "normalized": "tools",
-              "wire_name": "tools"
-            },
-            {
-              "normalized": "tool_choice",
-              "wire_name": "tool_choice"
-            },
             {
               "normalized": "temperature",
               "wire_name": "temperature"
@@ -65681,7 +66655,6 @@
                 "off"
               ]
             },
-            "tool_use": true,
             "structured_output": true,
             "structured_outputs": true,
             "vision": true,
@@ -65691,8 +66664,6 @@
             "seed": true
           },
           "supported_parameters": [
-            "tools",
-            "tool_choice",
             "temperature",
             "response_format",
             "thinking",
@@ -65702,14 +66673,6 @@
             "reasoning_summary"
           ],
           "parameter_mappings": [
-            {
-              "normalized": "tools",
-              "wire_name": "tools"
-            },
-            {
-              "normalized": "tool_choice",
-              "wire_name": "tool_choice"
-            },
             {
               "normalized": "temperature",
               "wire_name": "temperature"
@@ -65776,7 +66739,6 @@
                 "off"
               ]
             },
-            "tool_use": true,
             "structured_output": true,
             "structured_outputs": true,
             "vision": true,
@@ -65786,8 +66748,6 @@
             "seed": true
           },
           "supported_parameters": [
-            "tools",
-            "tool_choice",
             "temperature",
             "response_format",
             "thinking",
@@ -65795,14 +66755,6 @@
             "seed"
           ],
           "parameter_mappings": [
-            {
-              "normalized": "tools",
-              "wire_name": "tools"
-            },
-            {
-              "normalized": "tool_choice",
-              "wire_name": "tool_choice"
-            },
             {
               "normalized": "temperature",
               "wire_name": "temperature"
@@ -68427,6 +69379,175 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "openai/gpt-5.4"
+        }
+      ]
+    },
+    {
+      "service_id": "openrouter",
+      "wire_model_id": "openai/gpt-5.4-image-2",
+      "model_key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.4",
+        "variant": "image-2"
+      },
+      "aliases": [
+        "openai/gpt-5.4-image-2-20260421"
+      ],
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "structured_output": true,
+            "structured_outputs": true,
+            "vision": true,
+            "streaming": true,
+            "logprobs": true,
+            "seed": true
+          },
+          "supported_parameters": [
+            "response_format",
+            "thinking",
+            "logprobs",
+            "seed",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "include_reasoning"
+            },
+            {
+              "normalized": "logprobs",
+              "wire_name": "logprobs"
+            },
+            {
+              "normalized": "seed",
+              "wire_name": "seed"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "minimal",
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "openai/gpt-5.4-image-2"
+            }
+          ]
+        },
+        {
+          "api_type": "openai-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "structured_output": true,
+            "structured_outputs": true,
+            "vision": true,
+            "streaming": true,
+            "logprobs": true,
+            "seed": true
+          },
+          "supported_parameters": [
+            "response_format",
+            "thinking",
+            "logprobs",
+            "seed"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "include_reasoning"
+            },
+            {
+              "normalized": "logprobs",
+              "wire_name": "logprobs"
+            },
+            {
+              "normalized": "seed",
+              "wire_name": "seed"
+            }
+          ],
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "openai/gpt-5.4-image-2"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 8,
+        "output": 15,
+        "cached_input": 2,
+        "cache_write": 0,
+        "web_search": 10000
+      },
+      "pricing_status": "known",
+      "limits_override": {
+        "context_window": 272000,
+        "max_output": 128000
+      },
+      "is_moderated": true,
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5.4-image-2"
         }
       ]
     },
@@ -72323,142 +73444,6 @@
     },
     {
       "service_id": "openrouter",
-      "wire_model_id": "openrouter/elephant-alpha",
-      "model_key": {
-        "creator": "openrouter",
-        "family": "elephant",
-        "variant": "alpha"
-      },
-      "exposures": [
-        {
-          "api_type": "openai-responses",
-          "exposed_capabilities": {
-            "tool_use": true,
-            "structured_output": true,
-            "structured_outputs": true,
-            "streaming": true,
-            "temperature": true
-          },
-          "supported_parameters": [
-            "tools",
-            "tool_choice",
-            "temperature",
-            "response_format",
-            "reasoning_effort",
-            "reasoning_summary"
-          ],
-          "parameter_mappings": [
-            {
-              "normalized": "tools",
-              "wire_name": "tools"
-            },
-            {
-              "normalized": "tool_choice",
-              "wire_name": "tool_choice"
-            },
-            {
-              "normalized": "temperature",
-              "wire_name": "temperature"
-            },
-            {
-              "normalized": "response_format",
-              "wire_name": "response_format"
-            },
-            {
-              "normalized": "reasoning_effort",
-              "wire_name": "reasoning.effort"
-            },
-            {
-              "normalized": "reasoning_summary",
-              "wire_name": "reasoning.summary"
-            }
-          ],
-          "parameter_values": {
-            "reasoning_effort": [
-              "minimal",
-              "low",
-              "medium",
-              "high"
-            ],
-            "reasoning_summary": [
-              "auto",
-              "concise",
-              "detailed"
-            ]
-          },
-          "default_parameters": {},
-          "provenance": [
-            {
-              "source_id": "openrouter-api",
-              "authority": "trusted",
-              "observed_at": "0001-01-01T00:00:00Z",
-              "raw_id": "openrouter/elephant-alpha"
-            }
-          ]
-        },
-        {
-          "api_type": "openai-messages",
-          "exposed_capabilities": {
-            "tool_use": true,
-            "structured_output": true,
-            "structured_outputs": true,
-            "streaming": true,
-            "temperature": true
-          },
-          "supported_parameters": [
-            "tools",
-            "tool_choice",
-            "temperature",
-            "response_format"
-          ],
-          "parameter_mappings": [
-            {
-              "normalized": "tools",
-              "wire_name": "tools"
-            },
-            {
-              "normalized": "tool_choice",
-              "wire_name": "tool_choice"
-            },
-            {
-              "normalized": "temperature",
-              "wire_name": "temperature"
-            },
-            {
-              "normalized": "response_format",
-              "wire_name": "response_format"
-            }
-          ],
-          "default_parameters": {},
-          "provenance": [
-            {
-              "source_id": "openrouter-api",
-              "authority": "trusted",
-              "observed_at": "0001-01-01T00:00:00Z",
-              "raw_id": "openrouter/elephant-alpha"
-            }
-          ]
-        }
-      ],
-      "pricing": {
-        "cache_write": 0
-      },
-      "pricing_status": "free",
-      "limits_override": {
-        "context_window": 262144,
-        "max_output": 32768
-      },
-      "provenance": [
-        {
-          "source_id": "openrouter-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openrouter/elephant-alpha"
-        }
-      ]
-    },
-    {
-      "service_id": "openrouter",
       "wire_model_id": "openrouter/free",
       "model_key": {
         "creator": "openrouter",
@@ -72631,6 +73616,88 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "openrouter/free"
+        }
+      ]
+    },
+    {
+      "service_id": "openrouter",
+      "wire_model_id": "openrouter/pareto-code",
+      "model_key": {
+        "creator": "openrouter",
+        "family": "pareto",
+        "variant": "code"
+      },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "streaming": true
+          },
+          "supported_parameters": [
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "minimal",
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "openrouter/pareto-code"
+            }
+          ]
+        },
+        {
+          "api_type": "openai-messages",
+          "exposed_capabilities": {
+            "streaming": true
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "openrouter/pareto-code"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": -1000000,
+        "output": -1000000,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openrouter/pareto-code"
         }
       ]
     },
@@ -77354,7 +78421,7 @@
       "pricing": {
         "input": 0.15,
         "output": 0.7999999999999999,
-        "cached_input": 0.12,
+        "cached_input": 0.11,
         "cache_write": 0
       },
       "pricing_status": "known",
@@ -82643,11 +83710,6 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "efforts": [
-                "low",
-                "medium",
-                "high"
-              ],
               "modes": [
                 "enabled",
                 "off"
@@ -82664,9 +83726,9 @@
             "tool_choice",
             "temperature",
             "response_format",
-            "reasoning_effort",
             "thinking",
             "seed",
+            "reasoning_effort",
             "reasoning_summary"
           ],
           "parameter_mappings": [
@@ -82685,10 +83747,6 @@
             {
               "normalized": "response_format",
               "wire_name": "response_format"
-            },
-            {
-              "normalized": "reasoning_effort",
-              "wire_name": "reasoning_effort"
             },
             {
               "normalized": "thinking",
@@ -82739,11 +83797,6 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "efforts": [
-                "low",
-                "medium",
-                "high"
-              ],
               "modes": [
                 "enabled",
                 "off"
@@ -82760,7 +83813,6 @@
             "tool_choice",
             "temperature",
             "response_format",
-            "reasoning_effort",
             "thinking",
             "seed"
           ],
@@ -82782,10 +83834,6 @@
               "wire_name": "response_format"
             },
             {
-              "normalized": "reasoning_effort",
-              "wire_name": "reasoning_effort"
-            },
-            {
               "normalized": "thinking",
               "wire_name": "reasoning"
             },
@@ -82798,19 +83846,6 @@
               "wire_name": "seed"
             }
           ],
-          "parameter_values": {
-            "reasoning_effort": [
-              "minimal",
-              "low",
-              "medium",
-              "high"
-            ],
-            "reasoning_summary": [
-              "auto",
-              "concise",
-              "detailed"
-            ]
-          },
           "default_parameters": {},
           "provenance": [
             {
@@ -86731,6 +87766,364 @@
     },
     {
       "service_id": "openrouter",
+      "wire_model_id": "xiaomi/mimo-v2.5",
+      "model_key": {
+        "creator": "xiaomi",
+        "family": "mimo",
+        "variant": "v2.5"
+      },
+      "aliases": [
+        "xiaomi/mimo-v2.5-20260422"
+      ],
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true,
+            "temperature": true
+          },
+          "supported_parameters": [
+            "tools",
+            "tool_choice",
+            "temperature",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "include_reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "minimal",
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "default_parameters": {
+            "temperature": 1,
+            "top_p": 0.95
+          },
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "xiaomi/mimo-v2.5"
+            }
+          ]
+        },
+        {
+          "api_type": "openai-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true,
+            "temperature": true
+          },
+          "supported_parameters": [
+            "tools",
+            "tool_choice",
+            "temperature",
+            "response_format",
+            "thinking"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "include_reasoning"
+            }
+          ],
+          "default_parameters": {
+            "temperature": 1,
+            "top_p": 0.95
+          },
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "xiaomi/mimo-v2.5"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 0.39999999999999997,
+        "output": 2,
+        "cached_input": 0.08,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
+      "limits_override": {
+        "context_window": 1048576,
+        "max_output": 131072
+      },
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "xiaomi/mimo-v2.5"
+        }
+      ]
+    },
+    {
+      "service_id": "openrouter",
+      "wire_model_id": "xiaomi/mimo-v2.5-pro",
+      "model_key": {
+        "creator": "xiaomi",
+        "family": "mimo",
+        "variant": "v2.5-pro"
+      },
+      "aliases": [
+        "xiaomi/mimo-v2.5-pro-20260422"
+      ],
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "streaming": true,
+            "temperature": true
+          },
+          "supported_parameters": [
+            "tools",
+            "tool_choice",
+            "temperature",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "include_reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "minimal",
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "default_parameters": {
+            "temperature": 1,
+            "top_p": 0.95
+          },
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "xiaomi/mimo-v2.5-pro"
+            }
+          ]
+        },
+        {
+          "api_type": "openai-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "streaming": true,
+            "temperature": true
+          },
+          "supported_parameters": [
+            "tools",
+            "tool_choice",
+            "temperature",
+            "response_format",
+            "thinking"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "include_reasoning"
+            }
+          ],
+          "default_parameters": {
+            "temperature": 1,
+            "top_p": 0.95
+          },
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "xiaomi/mimo-v2.5-pro"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 1,
+        "output": 3,
+        "cached_input": 0.19999999999999998,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
+      "limits_override": {
+        "context_window": 1048576,
+        "max_output": 131072
+      },
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "xiaomi/mimo-v2.5-pro"
+        }
+      ]
+    },
+    {
+      "service_id": "openrouter",
       "wire_model_id": "z-ai/glm-4-32b",
       "model_key": {
         "creator": "zhipu",
@@ -88120,15 +89513,13 @@
         }
       ],
       "pricing": {
-        "input": 0.39,
-        "output": 1.75,
-        "cached_input": 0.195,
+        "input": 0.38,
+        "output": 1.74,
         "cache_write": 0
       },
       "pricing_status": "known",
       "limits_override": {
-        "context_window": 202752,
-        "max_output": 65535
+        "context_window": 202752
       },
       "provenance": [
         {
@@ -88516,14 +89907,14 @@
         }
       ],
       "pricing": {
-        "input": 0.72,
-        "output": 2.3,
+        "input": 0.65,
+        "output": 2.08,
+        "cached_input": 0.13,
         "cache_write": 0
       },
       "pricing_status": "known",
       "limits_override": {
-        "context_window": 80000,
-        "max_output": 131072
+        "context_window": 202752
       },
       "provenance": [
         {
@@ -88954,9 +90345,9 @@
         }
       ],
       "pricing": {
-        "input": 0.95,
-        "output": 3.15,
-        "cached_input": 0.475,
+        "input": 1.0499999999999998,
+        "output": 3.5,
+        "cached_input": 0.5249999999999999,
         "cache_write": 0
       },
       "pricing_status": "known",
@@ -89151,6 +90542,169 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "z-ai/glm-5v-turbo"
+        }
+      ]
+    },
+    {
+      "service_id": "openrouter",
+      "wire_model_id": "~anthropic/claude-opus-latest",
+      "model_key": {
+        "creator": "~anthropic",
+        "family": "claude",
+        "variant": "opus-latest"
+      },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "tool_choice",
+            "response_format",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "include_reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "minimal",
+              "low",
+              "medium",
+              "high"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "~anthropic/claude-opus-latest"
+            }
+          ]
+        },
+        {
+          "api_type": "openai-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            },
+            "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
+            "vision": true,
+            "streaming": true
+          },
+          "supported_parameters": [
+            "tools",
+            "tool_choice",
+            "response_format",
+            "thinking"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "include_reasoning"
+            }
+          ],
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "~anthropic/claude-opus-latest"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 5,
+        "output": 25,
+        "cached_input": 0.5,
+        "cache_write": 6.25,
+        "web_search": 10000
+      },
+      "pricing_status": "known",
+      "limits_override": {
+        "context_window": 1000000,
+        "max_output": 128000
+      },
+      "is_moderated": true,
+      "provenance": [
+        {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "~anthropic/claude-opus-latest"
         }
       ]
     }

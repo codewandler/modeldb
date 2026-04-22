@@ -13,10 +13,13 @@ import (
 
 const defaultOpenRouterBaseURL = "https://openrouter.ai/api"
 
+const DefaultOpenRouterFixturePath = "internal/source/openrouter/testdata/api.json"
+
 type OpenRouterSource struct {
-	APIKey  string
-	BaseURL string
-	Client  *http.Client
+	APIKey   string
+	BaseURL  string
+	Client   *http.Client
+	FilePath string // if set, read from file instead of making an HTTP request
 }
 
 func NewOpenRouterSource(apiKey string) OpenRouterSource {
@@ -27,35 +30,54 @@ func NewOpenRouterSourceFromEnv() OpenRouterSource {
 	return NewOpenRouterSource(os.Getenv("OPENROUTER_API_KEY"))
 }
 
+func NewOpenRouterSourceFromFile(path string) OpenRouterSource {
+	return OpenRouterSource{FilePath: path}
+}
+
 func (OpenRouterSource) ID() string { return "openrouter-api" }
 
 func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
-	if s.APIKey == "" {
-		return nil, fmt.Errorf("openrouter source: missing API key")
-	}
-	baseURL := s.BaseURL
-	if baseURL == "" {
-		baseURL = defaultOpenRouterBaseURL
-	}
-	client := s.Client
-	if client == nil {
-		client = http.DefaultClient
-	}
+	var body []byte
 
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, baseURL+"/v1/models", nil)
-	if err != nil {
-		return nil, err
-	}
-	req.Header.Set("Authorization", "Bearer "+s.APIKey)
+	if s.FilePath != "" {
+		data, err := os.ReadFile(s.FilePath)
+		if err != nil {
+			return nil, fmt.Errorf("openrouter source: read file: %w", err)
+		}
+		body = data
+	} else {
+		if s.APIKey == "" {
+			return nil, fmt.Errorf("openrouter source: missing API key")
+		}
+		baseURL := s.BaseURL
+		if baseURL == "" {
+			baseURL = defaultOpenRouterBaseURL
+		}
+		client := s.Client
+		if client == nil {
+			client = http.DefaultClient
+		}
 
-	resp, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("openrouter source: %w", err)
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		body, _ := io.ReadAll(resp.Body)
-		return nil, fmt.Errorf("openrouter source: HTTP %d: %s", resp.StatusCode, string(body))
+		req, err := http.NewRequestWithContext(ctx, http.MethodGet, baseURL+"/v1/models", nil)
+		if err != nil {
+			return nil, err
+		}
+		req.Header.Set("Authorization", "Bearer "+s.APIKey)
+
+		resp, err := client.Do(req)
+		if err != nil {
+			return nil, fmt.Errorf("openrouter source: %w", err)
+		}
+		defer resp.Body.Close()
+		if resp.StatusCode != http.StatusOK {
+			b, _ := io.ReadAll(resp.Body)
+			return nil, fmt.Errorf("openrouter source: HTTP %d: %s", resp.StatusCode, string(b))
+		}
+		data, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return nil, fmt.Errorf("openrouter source: read response: %w", err)
+		}
+		body = data
 	}
 
 	var payload struct {
@@ -112,7 +134,7 @@ func (s OpenRouterSource) Fetch(ctx context.Context) (*Fragment, error) {
 			} `json:"links"`
 		} `json:"data"`
 	}
-	if err := json.NewDecoder(resp.Body).Decode(&payload); err != nil {
+	if err := json.Unmarshal(body, &payload); err != nil {
 		return nil, err
 	}
 

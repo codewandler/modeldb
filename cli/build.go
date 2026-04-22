@@ -25,6 +25,7 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 	var modelsDevFile string
 	var codexFile string
 	var openAIStaticFile string
+	var openRouterFile string
 	var useFixture bool
 	var failOnUnknownPricing bool
 	var excludeUnknownPricing bool
@@ -65,6 +66,18 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 					}
 				}
 			}
+			if openRouterFile != "" {
+				replaced := false
+				for i := range sources {
+					if _, ok := sources[i].Source.(modeldb.OpenRouterSource); ok {
+						sources[i].Source = modeldb.NewOpenRouterSourceFromFile(openRouterFile)
+						replaced = true
+					}
+				}
+				if !replaced {
+					sources = append(sources, modeldb.RegisteredSource{Stage: modeldb.StageBuild, Authority: modeldb.AuthorityTrusted, Source: modeldb.NewOpenRouterSourceFromFile(openRouterFile)})
+				}
+			}
 			builder := modeldb.Builder{Sources: sources}
 			built, err := builder.Build(context.Background())
 			if err != nil {
@@ -96,6 +109,7 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 	cmd.Flags().StringVar(&modelsDevFile, "modelsdev-file", "", "optional local models.dev payload path")
 	cmd.Flags().StringVar(&codexFile, "codex-file", "", "optional local codex models payload path")
 	cmd.Flags().StringVar(&openAIStaticFile, "openai-static-file", "", "optional local OpenAI static manifest path")
+	cmd.Flags().StringVar(&openRouterFile, "openrouter-file", "", "optional local OpenRouter models payload path")
 	cmd.Flags().BoolVar(&useFixture, "modelsdev-fixture", false, "use bundled models.dev fixture instead of live fetch")
 	cmd.Flags().BoolVar(&failOnUnknownPricing, "fail-on-unknown-pricing", false, "fail build when any offering has unknown pricing")
 	cmd.Flags().BoolVar(&excludeUnknownPricing, "exclude-unknown-pricing", false, "exclude offerings with unknown pricing from output")

@@ -632,6 +632,23 @@ func isVersionStart(s string) bool {
 	return len(s) > 0 && (s[0] >= '0' && s[0] <= '9')
 }
 
+// isVersionDotted reports whether s looks like a dotted version number (e.g. "2.6", "1.0").
+func isVersionDotted(s string) bool {
+	if s == "" {
+		return false
+	}
+	for i, c := range s {
+		if c >= '0' && c <= '9' {
+			continue
+		}
+		if c == '.' && i > 0 && i < len(s)-1 {
+			continue
+		}
+		return false
+	}
+	return true
+}
+
 func findVersionEnd(s string) int {
 	i := 0
 	for i < len(s) && (s[i] >= '0' && s[i] <= '9' || s[i] == '.') {
@@ -872,11 +889,11 @@ func inferMoonshotModelKey(modelPart string) (ModelKey, bool) {
 	if len(parts) > 1 {
 		variant = parts[1]
 	}
-	// Extract version from kX format (e.g., k2 -> 2)
+	// Extract version from kX format (e.g., k2 -> 2, k2.6 -> 2.6)
 	version := ""
 	if strings.HasPrefix(versionStr, "k") {
 		v := strings.TrimPrefix(versionStr, "k")
-		if isDigits(v) {
+		if isDigits(v) || isVersionDotted(v) {
 			version = v
 		} else {
 			version = "2" // fallback for k2 and similar
