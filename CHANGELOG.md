@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## v0.11.9 - 2026-04-22
+
+### Added
+
+- Added `modeldb skill` command that prints the embedded CLI skill reference
+  (`SKILL.md`) to stdout. The document is baked into the binary at build time
+  via `go:embed` so the command works without any external files.
+- Added `.agents/skills/modeldb/SKILL.md` — a structured skill document
+  covering all commands, flags, concepts, workflows, output formats, and error
+  handling for end-users and agents consuming the `modeldb` CLI.
+
 ## v0.11.8 - 2026-04-19
 
 ### Changed
