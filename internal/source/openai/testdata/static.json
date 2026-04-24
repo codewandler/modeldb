@@ -1620,6 +1620,160 @@
       }
     },
     {
+      "slug": "gpt-5.5-pro",
+      "model_overrides": {
+        "limits": {
+          "context_window": 1050000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "none",
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        },
+        "pricing": {
+          "input": 30,
+          "output": 180,
+          "cache_write": 0
+        }
+      },
+      "exposure_overrides": {
+        "openai-responses": {
+          "capabilities": {
+            "structured_output": true,
+            "vision": true,
+            "tool_use": true,
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "none",
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            }
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "none",
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.5",
+      "family": "gpt-5-5.2plus-codex-backed",
+      "model_overrides": {
+        "limits": {
+          "context_window": 1050000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "streaming": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "none",
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        },
+        "pricing": {
+          "input": 5,
+          "cached_input": 0.5,
+          "output": 30,
+          "cache_write": 0
+        }
+      },
+      "exposure_overrides": {
+        "openai-responses": {
+          "parameter_values": {
+            "reasoning_effort": [
+              "none",
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ]
+          },
+          "capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "none",
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
       "slug": "gpt-5",
       "family": "gpt-5-pre-5.1-reasoning",
       "model_overrides": {
@@ -2334,6 +2488,152 @@
           "input": 30,
           "output": 180,
           "cache_write": 0
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.5-2026-04-23",
+      "family": "gpt-5-5.2plus-codex-backed",
+      "model_overrides": {
+        "limits": {
+          "context_window": 1050000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "none",
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ]
+          }
+        },
+        "pricing": {
+          "input": 5,
+          "cached_input": 0.5,
+          "output": 30,
+          "cache_write": 0
+        }
+      },
+      "exposure_overrides": {
+        "openai-responses": {
+          "parameter_values": {
+            "reasoning_effort": [
+              "none",
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ]
+          },
+          "capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "none",
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "slug": "gpt-5.5-pro-2026-04-23",
+      "model_overrides": {
+        "limits": {
+          "context_window": 1050000,
+          "max_output": 128000
+        },
+        "capabilities": {
+          "structured_output": true,
+          "vision": true,
+          "tool_use": true,
+          "reasoning": {
+            "available": true,
+            "efforts": [
+              "none",
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "modes": [
+              "enabled",
+              "off"
+            ]
+          }
+        },
+        "pricing": {
+          "input": 30,
+          "output": 180,
+          "cache_write": 0
+        }
+      },
+      "exposure_overrides": {
+        "openai-responses": {
+          "capabilities": {
+            "structured_output": true,
+            "vision": true,
+            "tool_use": true,
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "none",
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ]
+            }
+          },
+          "supported_parameters": [
+            "tools",
+            "response_format",
+            "thinking",
+            "reasoning_effort"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "none",
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ]
+          }
         }
       }
     },

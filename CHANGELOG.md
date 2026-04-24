@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+## v0.13.1 - 2026-04-24
+
+### Fixed
+
+- Added required frontmatter to the embedded `modeldb` skill document so Codex
+  can discover and load it as a valid skill.
+- Ignored the local `.codex` marker file.
+
+### Model Changes
+
+- OpenAI static source and `catalog.json` now include `gpt-5.5`,
+  `gpt-5.5-pro`, and their `2026-04-23` snapshots with documented limits,
+  pricing, and Responses reasoning effort values.
+
 ## v0.13.0 - 2026-04-23
 
 ### Added

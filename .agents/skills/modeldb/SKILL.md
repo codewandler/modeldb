@@ -1,3 +1,10 @@
+---
+name: modeldb
+description: Use when working with the modeldb CLI or catalog snapshot, including querying canonical model identities, service offerings, API surfaces, pricing, normalized parameters, and building or validating catalog.json.
+metadata:
+  short-description: Query and build the modeldb catalog
+---
+
 # modeldb CLI Skill
 
 ## What modeldb is

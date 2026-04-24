@@ -17,8 +17,10 @@ func TestSkillCommand_PrintsEmbeddedSkill(t *testing.T) {
 	require.NoError(t, cmd.Execute())
 
 	got := out.String()
-	// Must contain the top-level heading so we know the real file was embedded.
-	assert.True(t, strings.HasPrefix(got, "# modeldb CLI Skill"), "output should start with the skill heading")
+	// Must contain the skill frontmatter and top-level heading so we know the
+	// real file was embedded.
+	assert.True(t, strings.HasPrefix(got, "---\nname: modeldb\n"), "output should start with skill frontmatter")
+	assert.Contains(t, got, "# modeldb CLI Skill")
 	// Spot-check a few stable sections.
 	assert.Contains(t, got, "## Commands")
 	assert.Contains(t, got, "modeldb models")
