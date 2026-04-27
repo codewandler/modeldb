@@ -26,7 +26,7 @@ type cachingGolden struct {
 func TestCachingGoldenSnapshots(t *testing.T) {
 	openAIFrag, err := NewOpenAIStaticSource().Fetch(context.Background())
 	require.NoError(t, err)
-	codexFrag, err := NewCodexSource().Fetch(context.Background())
+	codexFrag, err := NewCodexSourceFromFile(DefaultCodexFixturePath()).Fetch(context.Background())
 	require.NoError(t, err)
 	anthropicFrag, err := NewAnthropicAPISourceFromFile(DefaultAnthropicFixturePath()).Fetch(context.Background())
 	require.NoError(t, err)

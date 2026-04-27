@@ -2,6 +2,8 @@ package modeldb
 
 import (
 	"context"
+	"net/http"
+	"net/http/httptest"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -9,7 +11,7 @@ import (
 )
 
 func TestCodexStaticSourceFetch(t *testing.T) {
-	frag, err := NewCodexSource().Fetch(context.Background())
+	frag, err := NewCodexSourceFromFile(DefaultCodexFixturePath()).Fetch(context.Background())
 	require.NoError(t, err)
 	require.NotEmpty(t, frag.Offerings)
 	c := NewCatalog()
@@ -41,9 +43,45 @@ func TestCodexStaticSourceFetch(t *testing.T) {
 	assert.NotContains(t, exposure.SupportedParameters, ParamPromptCacheKey)
 }
 
+func TestCodexSourceFetchesLiveModels(t *testing.T) {
+	var sawAuth bool
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		assert.Equal(t, "0.124.0", r.URL.Query().Get("client_version"))
+		sawAuth = r.Header.Get("Authorization") == "Bearer test-token"
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"models":[{
+			"slug":"gpt-5.5",
+			"display_name":"GPT-5.5",
+			"description":"Latest frontier agentic coding model.",
+			"default_reasoning_level":"medium",
+			"supported_reasoning_levels":[{"effort":"low"},{"effort":"medium"},{"effort":"high"},{"effort":"xhigh"}],
+			"supported_in_api":true,
+			"support_verbosity":true,
+			"supports_reasoning_summaries":true,
+			"context_window":272000,
+			"input_modalities":["text","image"],
+			"supports_parallel_tool_calls":true
+		}]}`))
+	}))
+	defer server.Close()
+
+	source := CodexSource{
+		AccessToken:   "test-token",
+		ModelsURL:     server.URL,
+		ClientVersion: "0.124.0",
+		Client:        server.Client(),
+	}
+	frag, err := source.Fetch(context.Background())
+	require.NoError(t, err)
+	require.True(t, sawAuth)
+	offering := frag.Offerings[0]
+	assert.Equal(t, "gpt-5.5", offering.WireModelID)
+	assert.Equal(t, "codex", offering.ServiceID)
+}
+
 func TestCodexPricingHydratesFromOpenAIReferencePricing(t *testing.T) {
 	c := NewCatalog()
-	frag, err := NewCodexSource().Fetch(context.Background())
+	frag, err := NewCodexSourceFromFile(DefaultCodexFixturePath()).Fetch(context.Background())
 	require.NoError(t, err)
 	require.NoError(t, MergeCatalogFragment(&c, frag))
 	staticFrag, err := NewOpenAIStaticSource().Fetch(context.Background())

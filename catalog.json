@@ -14447,7 +14447,7 @@
         "version": "5.2"
       },
       "name": "gpt-5.2",
-      "description": "Optimized for professional work and long-running agents",
+      "description": "Optimized for professional work and long-running agents.",
       "attachment": true,
       "capabilities": {
         "reasoning": {
@@ -15092,7 +15092,7 @@
         "variant": "codex"
       },
       "name": "gpt-5.3-codex",
-      "description": "Frontier Codex-optimized agentic coding model.",
+      "description": "Coding-optimized model.",
       "attachment": true,
       "capabilities": {
         "reasoning": {
@@ -15228,7 +15228,7 @@
         "version": "5.4"
       },
       "name": "gpt-5.4",
-      "description": "Latest frontier agentic coding model.",
+      "description": "Strong model for everyday coding.",
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -15423,7 +15423,7 @@
         "variant": "mini"
       },
       "name": "GPT-5.4-Mini",
-      "description": "Smaller frontier agentic coding model.",
+      "description": "Small, fast, and cost-efficient model for simpler coding tasks.",
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -15850,17 +15850,20 @@
         "family": "gpt",
         "version": "5.5"
       },
+      "name": "GPT-5.5",
+      "description": "Frontier model for complex coding, research, and real-world work.",
       "capabilities": {
         "reasoning": {
           "available": true,
           "efforts": [
+            "none",
             "low",
             "medium",
             "high",
-            "xhigh",
-            "none"
+            "xhigh"
           ],
           "summaries": [
+            "none",
             "auto",
             "concise",
             "detailed"
@@ -15872,17 +15875,23 @@
           "visible_summary": true
         },
         "tool_use": true,
+        "parallel_tool_calls": true,
         "structured_output": true,
         "vision": true,
         "streaming": true,
         "caching": {
           "available": true
-        }
+        },
+        "temperature": true
       },
       "limits": {
         "context_window": 1050000,
         "max_output": 128000
       },
+      "input_modalities": [
+        "text",
+        "image"
+      ],
       "reference_pricing": {
         "input": 5,
         "output": 30,
@@ -15890,6 +15899,12 @@
         "cache_write": 0
       },
       "provenance": [
+        {
+          "source_id": "codex-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.5"
+        },
         {
           "source_id": "openai-api",
           "authority": "trusted",
@@ -24920,6 +24935,134 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.4-mini"
+        }
+      ]
+    },
+    {
+      "service_id": "codex",
+      "wire_model_id": "gpt-5.5",
+      "model_key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.5"
+      },
+      "exposures": [
+        {
+          "api_type": "openai-responses",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "efforts": [
+                "none",
+                "low",
+                "medium",
+                "high",
+                "xhigh"
+              ],
+              "summaries": [
+                "none",
+                "auto",
+                "concise",
+                "detailed"
+              ],
+              "modes": [
+                "enabled",
+                "off"
+              ],
+              "visible_summary": true
+            },
+            "tool_use": true,
+            "parallel_tool_calls": true,
+            "structured_output": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "implicit"
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "response_format",
+            "tools",
+            "temperature",
+            "parallel_tool_calls",
+            "thinking",
+            "reasoning_effort",
+            "reasoning_summary"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "response_format",
+              "wire_name": "response_format"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "parallel_tool_calls",
+              "wire_name": "parallel_tool_calls"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "reasoning"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "reasoning.effort"
+            },
+            {
+              "normalized": "reasoning_summary",
+              "wire_name": "reasoning.summary"
+            }
+          ],
+          "parameter_values": {
+            "reasoning_effort": [
+              "none",
+              "low",
+              "medium",
+              "high",
+              "xhigh"
+            ],
+            "reasoning_summary": [
+              "auto",
+              "concise",
+              "detailed"
+            ],
+            "verbosity": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "provenance": [
+            {
+              "source_id": "codex-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "gpt-5.5"
+            }
+          ]
+        }
+      ],
+      "pricing": {
+        "input": 5,
+        "output": 30,
+        "cached_input": 0.5,
+        "cache_write": 0
+      },
+      "pricing_status": "known",
+      "provenance": [
+        {
+          "source_id": "codex-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.5"
         }
       ]
     },

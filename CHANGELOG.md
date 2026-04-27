@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+## v0.13.2 - 2026-04-27
+
+### Changed
+
+- Codex catalog builds now fetch the live Codex backend model list by default
+  when local Codex credentials are available; `--codex-file` remains the
+  fixture-backed offline override.
+
+### Model Changes
+
+- Regenerated `catalog.json` with the live Codex model list, adding the Codex
+  `gpt-5.5` offering.
+
 ## v0.13.1 - 2026-04-24
 
 ### Fixed
