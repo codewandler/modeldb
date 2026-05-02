@@ -42,6 +42,14 @@ func ValidateCatalog(c Catalog) error {
 					return fmt.Errorf("offering %s/%s exposure %s has invalid parameter mapping %q", ref.ServiceID, ref.WireModelID, exposure.APIType, mapping.Normalized)
 				}
 			}
+			for _, mapping := range exposure.ParameterValueMappings {
+				if !validateNormalizedParameter(mapping.Parameter) {
+					return fmt.Errorf("offering %s/%s exposure %s has invalid parameter value mapping %q", ref.ServiceID, ref.WireModelID, exposure.APIType, mapping.Parameter)
+				}
+				if strings.TrimSpace(mapping.Canonical) == "" || strings.TrimSpace(mapping.WireValue) == "" {
+					return fmt.Errorf("offering %s/%s exposure %s has empty parameter value mapping for %q", ref.ServiceID, ref.WireModelID, exposure.APIType, mapping.Parameter)
+				}
+			}
 			if exposure.ExposedCapabilities != nil {
 				if err := validateCapabilities(*exposure.ExposedCapabilities, "offering "+ref.ServiceID+"/"+ref.WireModelID+" exposure "+string(exposure.APIType)); err != nil {
 					return err

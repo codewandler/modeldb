@@ -8,13 +8,25 @@ import (
 )
 
 func TestOfferingExposureHelpers(t *testing.T) {
-	o := Offering{Exposures: []OfferingExposure{{APIType: APITypeOpenAIResponses, SupportedParameters: []NormalizedParameter{ParamTools}, ParameterValues: map[string][]string{"reasoning_effort": {"low", "high"}}}}}
+	o := Offering{Exposures: []OfferingExposure{{
+		APIType:             APITypeOpenAIResponses,
+		SupportedParameters: []NormalizedParameter{ParamTools},
+		ParameterValues:     map[string][]string{"reasoning_effort": {"low", "high"}},
+		ParameterValueMappings: []ParameterValueMapping{{
+			Parameter: ParamReasoningEffort,
+			Canonical: string(ReasoningEffortMax),
+			WireValue: string(ReasoningEffortXHigh),
+		}},
+	}}}
 	require.True(t, o.HasExposure(APITypeOpenAIResponses))
 	exp := o.Exposure(APITypeOpenAIResponses)
 	require.NotNil(t, exp)
 	assert.True(t, exp.SupportsParameter("tools"))
 	assert.True(t, exp.SupportsParameterValue("reasoning_effort", "low"))
 	assert.False(t, exp.SupportsParameterValue("reasoning_effort", "medium"))
+	wire, ok := exp.WireValueForParameterValue("reasoning_effort", "max")
+	assert.True(t, ok)
+	assert.Equal(t, "xhigh", wire)
 }
 
 func TestValidateCatalogRejectsDuplicateExposureAPIType(t *testing.T) {

@@ -1,6 +1,20 @@
 # Changelog
 
-## Unreleased
+## v0.14.0 - 2026-05-02
+
+### Added
+
+- Added exposure-level `parameter_value_mappings` metadata so providers can
+  model canonical normalized values that must be sent with a provider-specific
+  wire value.
+- `modeldb models --details` now prints parameter value mappings and search
+  queries include mapped wire values.
+
+### Model Changes
+
+- Regenerated `catalog.json` with Anthropic Opus 4.7 mapping canonical
+  `reasoning_effort=max` to wire value `xhigh` on the Anthropic Messages
+  exposure.
 
 ## v0.13.2 - 2026-04-27
 

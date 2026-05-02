@@ -22807,6 +22807,13 @@
               "ephemeral"
             ]
           },
+          "parameter_value_mappings": [
+            {
+              "parameter": "reasoning_effort",
+              "canonical": "max",
+              "wire_value": "xhigh"
+            }
+          ],
           "provenance": [
             {
               "source_id": "anthropic-api",

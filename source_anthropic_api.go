@@ -99,11 +99,12 @@ func (s AnthropicAPISource) Fetch(ctx context.Context) (*Fragment, error) {
 			WireModelID: item.ID,
 			ModelKey:    key,
 			Exposures: []OfferingExposure{{
-				APIType:             APITypeAnthropicMessages,
-				ExposedCapabilities: capabilitiesPtr(caps),
-				SupportedParameters: anthropicSupportedParameters(item),
-				ParameterMappings:   anthropicParameterMappings(item),
-				ParameterValues:     anthropicParameterValues(item),
+				APIType:                APITypeAnthropicMessages,
+				ExposedCapabilities:    capabilitiesPtr(caps),
+				SupportedParameters:    anthropicSupportedParameters(item),
+				ParameterMappings:      anthropicParameterMappings(item),
+				ParameterValues:        anthropicParameterValues(item),
+				ParameterValueMappings: anthropicParameterValueMappings(item),
 				Provenance: []Provenance{{
 					SourceID:   anthropicSourceID,
 					Authority:  string(AuthorityCanonical),
@@ -524,6 +525,17 @@ func anthropicParameterValues(item anthropicModelEntry) map[string][]string {
 		return nil
 	}
 	return values
+}
+
+func anthropicParameterValueMappings(item anthropicModelEntry) []ParameterValueMapping {
+	if strings.TrimSpace(item.ID) != "claude-opus-4-7" {
+		return nil
+	}
+	return []ParameterValueMapping{{
+		Parameter: ParamReasoningEffort,
+		Canonical: string(ReasoningEffortMax),
+		WireValue: string(ReasoningEffortXHigh),
+	}}
 }
 
 func anthropicParameterMappings(item anthropicModelEntry) []ParameterMapping {

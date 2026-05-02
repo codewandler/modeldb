@@ -67,6 +67,15 @@ func (e OfferingExposure) SupportsParameterValue(name, value string) bool {
 	return false
 }
 
+func (e OfferingExposure) WireValueForParameterValue(name, value string) (string, bool) {
+	for _, mapping := range e.ParameterValueMappings {
+		if mapping.Parameter == NormalizedParameter(name) && mapping.Canonical == value {
+			return mapping.WireValue, true
+		}
+	}
+	return "", false
+}
+
 func (o Offering) ExposureRef(apiType APIType) ExposureRef {
 	return ExposureRef{ServiceID: o.ServiceID, WireModelID: o.WireModelID, APIType: apiType}
 }

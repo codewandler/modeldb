@@ -127,6 +127,7 @@ exposure is scoped to exactly one API type and carries:
 - exposed capabilities
 - normalized supported parameters
 - wire parameter mappings
+- canonical-to-wire parameter value mappings
 - valid parameter values
 
 That means capabilities exist at two levels:

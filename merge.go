@@ -459,6 +459,7 @@ func mergeReasoningModes(a, b []ReasoningMode) []ReasoningMode {
 func normalizeOfferingExposures(exposures []OfferingExposure) []OfferingExposure {
 	for i := range exposures {
 		exposures[i].SupportedParameters = normalizeNormalizedParameters(exposures[i].SupportedParameters)
+		exposures[i].ParameterValueMappings = normalizeParameterValueMappings(exposures[i].ParameterValueMappings)
 		if exposures[i].ParameterValues != nil {
 			for k, v := range exposures[i].ParameterValues {
 				exposures[i].ParameterValues[k] = normalizeStrings(v)
@@ -488,6 +489,7 @@ func mergeOfferingExposures(a, b []OfferingExposure, id string) ([]OfferingExpos
 		var err error
 		existing.SupportedParameters = mergeNormalizedParameters(existing.SupportedParameters, exposure.SupportedParameters)
 		existing.ParameterMappings = mergeParameterMappings(existing.ParameterMappings, exposure.ParameterMappings)
+		existing.ParameterValueMappings = mergeParameterValueMappings(existing.ParameterValueMappings, exposure.ParameterValueMappings)
 		if existing.DefaultParameters, err = mergePointerField(existing.DefaultParameters, exposure.DefaultParameters, "offering.exposure.default_parameters", id+"/"+string(exposure.APIType)); err != nil {
 			return nil, err
 		}
@@ -690,6 +692,31 @@ func mergeParameterMappings(a, b []ParameterMapping) []ParameterMapping {
 		}
 		seen[key] = true
 		out = append(out, m)
+	}
+	return out
+}
+
+func normalizeParameterValueMappings(mappings []ParameterValueMapping) []ParameterValueMapping {
+	out := make([]ParameterValueMapping, 0, len(mappings))
+	for _, mapping := range mappings {
+		mapping.Parameter = normalizeNormalizedParameter(mapping.Parameter)
+		mapping.Canonical = strings.TrimSpace(mapping.Canonical)
+		mapping.WireValue = strings.TrimSpace(mapping.WireValue)
+		out = append(out, mapping)
+	}
+	return out
+}
+
+func mergeParameterValueMappings(a, b []ParameterValueMapping) []ParameterValueMapping {
+	seen := map[string]bool{}
+	out := make([]ParameterValueMapping, 0, len(a)+len(b))
+	for _, mapping := range append(append([]ParameterValueMapping{}, a...), b...) {
+		key := string(mapping.Parameter) + "|" + mapping.Canonical + "|" + mapping.WireValue
+		if seen[key] {
+			continue
+		}
+		seen[key] = true
+		out = append(out, mapping)
 	}
 	return out
 }

@@ -208,14 +208,21 @@ type ParameterMapping struct {
 	WireName   string              `json:"wire_name,omitempty"`
 }
 
+type ParameterValueMapping struct {
+	Parameter NormalizedParameter `json:"parameter"`
+	Canonical string              `json:"canonical"`
+	WireValue string              `json:"wire_value"`
+}
+
 type OfferingExposure struct {
-	APIType             APIType               `json:"api_type"`
-	ExposedCapabilities *Capabilities         `json:"exposed_capabilities,omitempty"`
-	SupportedParameters []NormalizedParameter `json:"supported_parameters,omitempty"`
-	ParameterMappings   []ParameterMapping    `json:"parameter_mappings,omitempty"`
-	ParameterValues     map[string][]string   `json:"parameter_values,omitempty"`
-	DefaultParameters   *DefaultParameters    `json:"default_parameters,omitempty"`
-	Provenance          []Provenance          `json:"provenance,omitempty"`
+	APIType                APIType                 `json:"api_type"`
+	ExposedCapabilities    *Capabilities           `json:"exposed_capabilities,omitempty"`
+	SupportedParameters    []NormalizedParameter   `json:"supported_parameters,omitempty"`
+	ParameterMappings      []ParameterMapping      `json:"parameter_mappings,omitempty"`
+	ParameterValues        map[string][]string     `json:"parameter_values,omitempty"`
+	ParameterValueMappings []ParameterValueMapping `json:"parameter_value_mappings,omitempty"`
+	DefaultParameters      *DefaultParameters      `json:"default_parameters,omitempty"`
+	Provenance             []Provenance            `json:"provenance,omitempty"`
 }
 
 type Runtime struct {

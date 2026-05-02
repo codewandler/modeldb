@@ -13,14 +13,15 @@ import (
 )
 
 type cachingGolden struct {
-	ServiceID           string                `json:"service_id"`
-	WireModelID         string                `json:"wire_model_id"`
-	APIType             APIType               `json:"api_type"`
-	ModelCaching        *CachingCapability    `json:"model_caching,omitempty"`
-	ExposureCaching     *CachingCapability    `json:"exposure_caching,omitempty"`
-	SupportedParameters []NormalizedParameter `json:"supported_parameters,omitempty"`
-	ParameterMappings   []ParameterMapping    `json:"parameter_mappings,omitempty"`
-	ParameterValues     map[string][]string   `json:"parameter_values,omitempty"`
+	ServiceID              string                  `json:"service_id"`
+	WireModelID            string                  `json:"wire_model_id"`
+	APIType                APIType                 `json:"api_type"`
+	ModelCaching           *CachingCapability      `json:"model_caching,omitempty"`
+	ExposureCaching        *CachingCapability      `json:"exposure_caching,omitempty"`
+	SupportedParameters    []NormalizedParameter   `json:"supported_parameters,omitempty"`
+	ParameterMappings      []ParameterMapping      `json:"parameter_mappings,omitempty"`
+	ParameterValues        map[string][]string     `json:"parameter_values,omitempty"`
+	ParameterValueMappings []ParameterValueMapping `json:"parameter_value_mappings,omitempty"`
 }
 
 func TestCachingGoldenSnapshots(t *testing.T) {
@@ -72,14 +73,15 @@ func goldenFromCatalog(c Catalog, serviceID, wireModelID string, apiType APIType
 	exp := off.Exposure(apiType)
 	model := c.Models[off.ModelKey]
 	return cachingGolden{
-		ServiceID:           serviceID,
-		WireModelID:         wireModelID,
-		APIType:             apiType,
-		ModelCaching:        model.Capabilities.Caching,
-		ExposureCaching:     exp.ExposedCapabilities.Caching,
-		SupportedParameters: exp.SupportedParameters,
-		ParameterMappings:   exp.ParameterMappings,
-		ParameterValues:     exp.ParameterValues,
+		ServiceID:              serviceID,
+		WireModelID:            wireModelID,
+		APIType:                apiType,
+		ModelCaching:           model.Capabilities.Caching,
+		ExposureCaching:        exp.ExposedCapabilities.Caching,
+		SupportedParameters:    exp.SupportedParameters,
+		ParameterMappings:      exp.ParameterMappings,
+		ParameterValues:        exp.ParameterValues,
+		ParameterValueMappings: exp.ParameterValueMappings,
 	}
 }
 

@@ -114,6 +114,14 @@ func TestAnthropicAPISourceFetch(t *testing.T) {
 	if assert.NotNil(t, offering.Pricing) {
 		assert.Equal(t, 0.30, offering.Pricing.CachedInput)
 	}
+
+	opusOffering, ok := c.Offerings[OfferingRef{ServiceID: "anthropic", WireModelID: "claude-opus-4-7"}]
+	require.True(t, ok)
+	opusExposure := opusOffering.Exposure(APITypeAnthropicMessages)
+	require.NotNil(t, opusExposure)
+	wire, ok := opusExposure.WireValueForParameterValue(string(ParamReasoningEffort), string(ReasoningEffortMax))
+	assert.True(t, ok)
+	assert.Equal(t, string(ReasoningEffortXHigh), wire)
 }
 
 func TestAnthropicAPISourceFetchFromFile(t *testing.T) {

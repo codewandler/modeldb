@@ -180,6 +180,9 @@ func matchModelQuery(match modeldb.ModelMatch, query string) bool {
 			for _, m := range exposure.ParameterMappings {
 				search = append(search, m.WireName)
 			}
+			for _, m := range exposure.ParameterValueMappings {
+				search = append(search, string(m.Parameter), m.Canonical, m.WireValue)
+			}
 		}
 		for _, alias := range offering.Offering.Aliases {
 			search = append(search, alias)
@@ -332,6 +335,11 @@ func printModelsDetails(out io.Writer, matches []modeldb.ModelMatch, includeOffe
 					if len(exposure.ParameterMappings) > 0 {
 						for _, m := range exposure.ParameterMappings {
 							fmt.Fprintf(out, "      parameter_mapping: %s -> %s\n", m.Normalized, m.WireName)
+						}
+					}
+					if len(exposure.ParameterValueMappings) > 0 {
+						for _, m := range exposure.ParameterValueMappings {
+							fmt.Fprintf(out, "      parameter_value_mapping[%s]: %s -> %s\n", m.Parameter, m.Canonical, m.WireValue)
 						}
 					}
 					if len(exposure.ParameterValues) > 0 {

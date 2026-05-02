@@ -31,11 +31,12 @@ type openAIStaticManifest struct {
 }
 
 type openAIStaticExposureTemplate struct {
-	APIType             APIType               `json:"api_type"`
-	Capabilities        *Capabilities         `json:"capabilities,omitempty"`
-	SupportedParameters []NormalizedParameter `json:"supported_parameters,omitempty"`
-	ParameterMappings   []ParameterMapping    `json:"parameter_mappings,omitempty"`
-	ParameterValues     map[string][]string   `json:"parameter_values,omitempty"`
+	APIType                APIType                 `json:"api_type"`
+	Capabilities           *Capabilities           `json:"capabilities,omitempty"`
+	SupportedParameters    []NormalizedParameter   `json:"supported_parameters,omitempty"`
+	ParameterMappings      []ParameterMapping      `json:"parameter_mappings,omitempty"`
+	ParameterValues        map[string][]string     `json:"parameter_values,omitempty"`
+	ParameterValueMappings []ParameterValueMapping `json:"parameter_value_mappings,omitempty"`
 }
 
 type openAIStaticFamilyTemplate struct {
@@ -64,12 +65,13 @@ type openAIStaticModelTemplate struct {
 }
 
 type openAIStaticExposurePatch struct {
-	ReplaceProfiles     bool                  `json:"replace_profiles,omitempty"`
-	Profiles            []string              `json:"profiles,omitempty"`
-	Capabilities        *Capabilities         `json:"capabilities,omitempty"`
-	SupportedParameters []NormalizedParameter `json:"supported_parameters,omitempty"`
-	ParameterMappings   []ParameterMapping    `json:"parameter_mappings,omitempty"`
-	ParameterValues     map[string][]string   `json:"parameter_values,omitempty"`
+	ReplaceProfiles        bool                    `json:"replace_profiles,omitempty"`
+	Profiles               []string                `json:"profiles,omitempty"`
+	Capabilities           *Capabilities           `json:"capabilities,omitempty"`
+	SupportedParameters    []NormalizedParameter   `json:"supported_parameters,omitempty"`
+	ParameterMappings      []ParameterMapping      `json:"parameter_mappings,omitempty"`
+	ParameterValues        map[string][]string     `json:"parameter_values,omitempty"`
+	ParameterValueMappings []ParameterValueMapping `json:"parameter_value_mappings,omitempty"`
 }
 
 func (s OpenAIStaticSource) Fetch(context.Context) (*Fragment, error) {
@@ -112,12 +114,13 @@ func (s OpenAIStaticSource) Fetch(context.Context) (*Fragment, error) {
 		for _, exp := range resolvedExposures {
 			exp = applyOpenAICachingDefaults(item, exp)
 			offExposures = append(offExposures, OfferingExposure{
-				APIType:             exp.APIType,
-				ExposedCapabilities: capabilitiesPtr(exp.Capabilities),
-				SupportedParameters: exp.SupportedParameters,
-				ParameterMappings:   exp.ParameterMappings,
-				ParameterValues:     exp.ParameterValues,
-				Provenance:          []Provenance{{SourceID: openAIStaticSourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: item.Slug}},
+				APIType:                exp.APIType,
+				ExposedCapabilities:    capabilitiesPtr(exp.Capabilities),
+				SupportedParameters:    exp.SupportedParameters,
+				ParameterMappings:      exp.ParameterMappings,
+				ParameterValues:        exp.ParameterValues,
+				ParameterValueMappings: exp.ParameterValueMappings,
+				Provenance:             []Provenance{{SourceID: openAIStaticSourceID, Authority: string(AuthorityTrusted), ObservedAt: observedAt, RawID: item.Slug}},
 			})
 		}
 		sort.Slice(offExposures, func(i, j int) bool { return offExposures[i].APIType < offExposures[j].APIType })
@@ -152,11 +155,12 @@ type resolvedOpenAIStaticModel struct {
 }
 
 type resolvedOpenAIStaticExposure struct {
-	APIType             APIType
-	Capabilities        Capabilities
-	SupportedParameters []NormalizedParameter
-	ParameterMappings   []ParameterMapping
-	ParameterValues     map[string][]string
+	APIType                APIType
+	Capabilities           Capabilities
+	SupportedParameters    []NormalizedParameter
+	ParameterMappings      []ParameterMapping
+	ParameterValues        map[string][]string
+	ParameterValueMappings []ParameterValueMapping
 }
 
 func resolveOpenAIStaticModel(manifest openAIStaticManifest, item openAIStaticModelEntry) (resolvedOpenAIStaticModel, []resolvedOpenAIStaticExposure) {
@@ -231,6 +235,7 @@ func applyOpenAIStaticExposurePatch(dst *resolvedOpenAIStaticExposure, manifest 
 		dst.SupportedParameters = nil
 		dst.ParameterMappings = nil
 		dst.ParameterValues = nil
+		dst.ParameterValueMappings = nil
 	}
 	for _, profileID := range patch.Profiles {
 		applyOpenAIStaticExposureTemplate(dst, manifest.Profiles[profileID])
@@ -243,6 +248,9 @@ func applyOpenAIStaticExposurePatch(dst *resolvedOpenAIStaticExposure, manifest 
 	}
 	if patch.ParameterMappings != nil {
 		dst.ParameterMappings = mergeParameterMappings(dst.ParameterMappings, patch.ParameterMappings)
+	}
+	if patch.ParameterValueMappings != nil {
+		dst.ParameterValueMappings = mergeParameterValueMappings(dst.ParameterValueMappings, patch.ParameterValueMappings)
 	}
 	if patch.ParameterValues != nil {
 		if dst.ParameterValues == nil {
@@ -311,6 +319,9 @@ func applyOpenAIStaticExposureTemplate(dst *resolvedOpenAIStaticExposure, tpl op
 	}
 	if tpl.ParameterMappings != nil {
 		dst.ParameterMappings = mergeParameterMappings(dst.ParameterMappings, tpl.ParameterMappings)
+	}
+	if tpl.ParameterValueMappings != nil {
+		dst.ParameterValueMappings = mergeParameterValueMappings(dst.ParameterValueMappings, tpl.ParameterValueMappings)
 	}
 	if tpl.ParameterValues != nil {
 		if dst.ParameterValues == nil {

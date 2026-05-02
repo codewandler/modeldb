@@ -45,6 +45,44 @@ func TestMergeCatalogFragmentUnionsAliases(t *testing.T) {
 	assert.Equal(t, []string{"opus", "powerful", "flagship"}, c.Models[key].Aliases)
 }
 
+func TestMergeCatalogFragmentUnionsParameterValueMappings(t *testing.T) {
+	key := NormalizeKey(ModelKey{Creator: "anthropic", Family: "claude", Series: "opus", Version: "4.7"})
+	c := NewCatalog()
+	c.Services["anthropic"] = Service{ID: "anthropic"}
+	c.Models[key] = ModelRecord{Key: key}
+
+	require.NoError(t, MergeCatalogFragment(&c, &Fragment{Offerings: []Offering{{
+		ServiceID:   "anthropic",
+		WireModelID: "claude-opus-4-7",
+		ModelKey:    key,
+		Exposures: []OfferingExposure{{
+			APIType: APITypeAnthropicMessages,
+			ParameterValueMappings: []ParameterValueMapping{{
+				Parameter: ParamReasoningEffort,
+				Canonical: string(ReasoningEffortMax),
+				WireValue: string(ReasoningEffortXHigh),
+			}},
+		}},
+	}}}))
+	require.NoError(t, MergeCatalogFragment(&c, &Fragment{Offerings: []Offering{{
+		ServiceID:   "anthropic",
+		WireModelID: "claude-opus-4-7",
+		ModelKey:    key,
+		Exposures: []OfferingExposure{{
+			APIType: APITypeAnthropicMessages,
+			ParameterValueMappings: []ParameterValueMapping{{
+				Parameter: ParamReasoningEffort,
+				Canonical: string(ReasoningEffortHigh),
+				WireValue: string(ReasoningEffortHigh),
+			}},
+		}},
+	}}}))
+
+	exp := c.Offerings[OfferingRef{ServiceID: "anthropic", WireModelID: "claude-opus-4-7"}].Exposure(APITypeAnthropicMessages)
+	require.NotNil(t, exp)
+	assert.Len(t, exp.ParameterValueMappings, 2)
+}
+
 func TestMergeCatalogFragmentRejectsConflictingOfferingMapping(t *testing.T) {
 	keyA := NormalizeKey(ModelKey{Creator: "anthropic", Family: "claude", Series: "sonnet", Version: "4.6"})
 	keyB := NormalizeKey(ModelKey{Creator: "anthropic", Family: "claude", Series: "opus", Version: "4.6"})
