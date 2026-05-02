@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.14.2 - 2026-05-02
+
+### Model Changes
+
+- Added `reasoning_effort` metadata for OpenRouter `anthropic-messages` exposures, mapped to the documented Anthropic Messages wire field `output_config.effort` with values `low`, `medium`, `high`, `xhigh`, and `max`.
+
 ## v0.14.1 - 2026-05-02
 
 ### Model Changes
