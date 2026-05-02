@@ -38517,10 +38517,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -38543,7 +38552,8 @@
             "tool_choice",
             "temperature",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -38573,14 +38583,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {},
@@ -38769,10 +38791,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -38795,7 +38826,8 @@
             "tool_choice",
             "temperature",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -38825,14 +38857,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {},
@@ -39035,10 +39079,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -39061,7 +39114,8 @@
             "tool_choice",
             "temperature",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -39091,14 +39145,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {},
@@ -39288,10 +39354,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -39314,7 +39389,8 @@
             "tool_choice",
             "temperature",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -39344,14 +39420,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {},
@@ -39554,10 +39642,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -39580,7 +39677,8 @@
             "tool_choice",
             "temperature",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -39610,14 +39708,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {},
@@ -39820,10 +39930,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -39846,7 +39965,8 @@
             "tool_choice",
             "temperature",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -39876,14 +39996,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {},
@@ -40086,10 +40218,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -40112,7 +40253,8 @@
             "tool_choice",
             "temperature",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -40142,14 +40284,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {},
@@ -40352,10 +40506,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -40378,7 +40541,8 @@
             "tool_choice",
             "temperature",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -40408,14 +40572,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {},
@@ -40606,10 +40782,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -40630,7 +40815,8 @@
             "tools",
             "tool_choice",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -40656,14 +40842,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {},
@@ -40853,10 +41051,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -40879,7 +41086,8 @@
             "tool_choice",
             "temperature",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -40909,14 +41117,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {},
@@ -41125,10 +41345,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -41151,7 +41380,8 @@
             "tool_choice",
             "temperature",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -41181,14 +41411,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {
@@ -41393,10 +41635,19 @@
           "exposed_capabilities": {
             "reasoning": {
               "available": true,
-              "modes": [
-                "enabled"
+              "efforts": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
               ],
-              "interleaved": true
+              "modes": [
+                "enabled",
+                "adaptive"
+              ],
+              "interleaved": true,
+              "adaptive": true
             },
             "tool_use": true,
             "vision": true,
@@ -41419,7 +41670,8 @@
             "tool_choice",
             "temperature",
             "thinking",
-            "thinking.mode"
+            "thinking.mode",
+            "reasoning_effort"
           ],
           "parameter_mappings": [
             {
@@ -41449,14 +41701,26 @@
             {
               "normalized": "thinking.mode",
               "wire_name": "thinking.type"
+            },
+            {
+              "normalized": "reasoning_effort",
+              "wire_name": "output_config.effort"
             }
           ],
           "parameter_values": {
             "block_cache_control": [
               "ephemeral"
             ],
+            "reasoning_effort": [
+              "low",
+              "medium",
+              "high",
+              "xhigh",
+              "max"
+            ],
             "thinking.mode": [
-              "enabled"
+              "enabled",
+              "adaptive"
             ]
           },
           "default_parameters": {},

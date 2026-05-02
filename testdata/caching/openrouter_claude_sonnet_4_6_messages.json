@@ -21,7 +21,8 @@
     "tool_choice",
     "temperature",
     "thinking",
-    "thinking.mode"
+    "thinking.mode",
+    "reasoning_effort"
   ],
   "parameter_mappings": [
     {
@@ -51,6 +52,10 @@
     {
       "normalized": "thinking.mode",
       "wire_name": "thinking.type"
+    },
+    {
+      "normalized": "reasoning_effort",
+      "wire_name": "output_config.effort"
     }
   ],
   "parameter_values": {
@@ -58,7 +63,15 @@
       "ephemeral"
     ],
     "thinking.mode": [
-      "enabled"
+      "enabled",
+      "adaptive"
+    ],
+    "reasoning_effort": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
     ]
   }
 }

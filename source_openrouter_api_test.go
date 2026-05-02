@@ -76,10 +76,12 @@ func TestOpenRouterSourceFetch(t *testing.T) {
 	assert.Contains(t, offering.Exposures[2].SupportedParameters, ParamToolChoice)
 	assert.Contains(t, offering.Exposures[2].SupportedParameters, ParamThinking)
 	assert.Contains(t, offering.Exposures[2].SupportedParameters, ParamThinkingMode)
+	assert.Contains(t, offering.Exposures[2].SupportedParameters, ParamReasoningEffort)
 	assert.Contains(t, offering.Exposures[2].SupportedParameters, ParamBlockCacheControl)
 	assert.Contains(t, offering.Exposures[0].ParameterMappings, ParameterMapping{Normalized: ParamTools, WireName: "tools"})
 	assert.Contains(t, offering.Exposures[2].ParameterMappings, ParameterMapping{Normalized: ParamThinking, WireName: "thinking"})
 	assert.Contains(t, offering.Exposures[2].ParameterMappings, ParameterMapping{Normalized: ParamThinkingMode, WireName: "thinking.type"})
+	assert.Contains(t, offering.Exposures[2].ParameterMappings, ParameterMapping{Normalized: ParamReasoningEffort, WireName: "output_config.effort"})
 	assert.Contains(t, offering.Exposures[2].ParameterMappings, ParameterMapping{Normalized: ParamBlockCacheControl, WireName: "messages[*].content[*].cache_control"})
 	assert.Nil(t, offering.Exposures[0].ExposedCapabilities.Caching)
 	assert.Nil(t, offering.Exposures[1].ExposedCapabilities.Caching)
@@ -90,7 +92,8 @@ func TestOpenRouterSourceFetch(t *testing.T) {
 	assert.True(t, offering.Exposures[0].SupportsParameterValue(string(ParamReasoningEffort), string(ReasoningEffortMinimal)))
 	assert.True(t, offering.Exposures[0].SupportsParameterValue(string(ParamReasoningSummary), string(ReasoningSummaryConcise)))
 	assert.True(t, offering.Exposures[2].SupportsParameterValue(string(ParamThinkingMode), string(ReasoningModeEnabled)))
-	assert.False(t, offering.Exposures[2].SupportsParameter(ParamReasoningEffort))
+	assert.True(t, offering.Exposures[2].SupportsParameterValue(string(ParamThinkingMode), string(ReasoningModeAdaptive)))
+	assert.True(t, offering.Exposures[2].SupportsParameterValue(string(ParamReasoningEffort), string(ReasoningEffortXHigh)))
 }
 
 func TestOpenRouterSourceFetch_LogUnhandledModels(t *testing.T) {

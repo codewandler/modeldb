@@ -496,7 +496,7 @@ func openRouterAnthropicMessagesExposure(sourceID string, observedAt time.Time, 
 		Caching:     &CachingCapability{Available: true, Mode: CachingModeExplicit, Configurable: true, PerMessageCaching: true, CacheControlTypes: []string{"ephemeral"}},
 	}
 	if caps.Reasoning != nil && caps.Reasoning.Available {
-		anthropicCaps.Reasoning = &ReasoningCapability{Available: true, Modes: []ReasoningMode{ReasoningModeEnabled}, Interleaved: true}
+		anthropicCaps.Reasoning = &ReasoningCapability{Available: true, Modes: []ReasoningMode{ReasoningModeEnabled, ReasoningModeAdaptive}, Efforts: []ReasoningEffortLevel{ReasoningEffortLow, ReasoningEffortMedium, ReasoningEffortHigh, ReasoningEffortXHigh, ReasoningEffortMax}, Interleaved: true, Adaptive: true}
 	}
 	anthropicParams := []NormalizedParameter{ParamMessages, ParamBlockCacheControl}
 	if containsNormalizedParameter(params, ParamTools) {
@@ -509,7 +509,7 @@ func openRouterAnthropicMessagesExposure(sourceID string, observedAt time.Time, 
 		anthropicParams = append(anthropicParams, ParamTemperature)
 	}
 	if anthropicCaps.Reasoning != nil {
-		anthropicParams = append(anthropicParams, ParamThinking, ParamThinkingMode)
+		anthropicParams = append(anthropicParams, ParamThinking, ParamThinkingMode, ParamReasoningEffort)
 	}
 	anthropicParams = normalizeNormalizedParameters(anthropicParams)
 	mappings := []ParameterMapping{
@@ -528,11 +528,15 @@ func openRouterAnthropicMessagesExposure(sourceID string, observedAt time.Time, 
 	if containsNormalizedParameter(anthropicParams, ParamThinking) {
 		mappings = append(mappings, ParameterMapping{Normalized: ParamThinking, WireName: "thinking"}, ParameterMapping{Normalized: ParamThinkingMode, WireName: "thinking.type"})
 	}
+	if containsNormalizedParameter(anthropicParams, ParamReasoningEffort) {
+		mappings = append(mappings, ParameterMapping{Normalized: ParamReasoningEffort, WireName: "output_config.effort"})
+	}
 	values := map[string][]string{
 		string(ParamBlockCacheControl): {"ephemeral"},
 	}
 	if anthropicCaps.Reasoning != nil {
-		values[string(ParamThinkingMode)] = []string{string(ReasoningModeEnabled)}
+		values[string(ParamThinkingMode)] = []string{string(ReasoningModeEnabled), string(ReasoningModeAdaptive)}
+		values[string(ParamReasoningEffort)] = []string{string(ReasoningEffortLow), string(ReasoningEffortMedium), string(ReasoningEffortHigh), string(ReasoningEffortXHigh), string(ReasoningEffortMax)}
 	}
 	return &OfferingExposure{
 		APIType:             APITypeAnthropicMessages,
