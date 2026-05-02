@@ -38091,6 +38091,7 @@
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -38100,6 +38101,7 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
@@ -38109,6 +38111,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -38129,6 +38135,9 @@
           ],
           "parameter_values": {
             "block_cache_control": [
+              "ephemeral"
+            ],
+            "top_level_cache_control": [
               "ephemeral"
             ]
           },
@@ -38290,6 +38299,7 @@
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -38299,6 +38309,7 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
@@ -38308,6 +38319,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -38328,6 +38343,9 @@
           ],
           "parameter_values": {
             "block_cache_control": [
+              "ephemeral"
+            ],
+            "top_level_cache_control": [
               "ephemeral"
             ]
           },
@@ -38538,6 +38556,7 @@
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -38547,6 +38566,7 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
@@ -38559,6 +38579,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -38603,6 +38627,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {},
@@ -38812,6 +38839,7 @@
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -38821,6 +38849,7 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
@@ -38833,6 +38862,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -38877,6 +38910,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {},
@@ -39094,12 +39130,15 @@
               "adaptive": true
             },
             "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
             "vision": true,
             "streaming": true,
             "caching": {
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -39109,10 +39148,12 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
             "temperature",
+            "response_format",
             "thinking",
             "thinking.mode",
             "reasoning_effort"
@@ -39121,6 +39162,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -39137,6 +39182,10 @@
             {
               "normalized": "temperature",
               "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "output_config.format"
             },
             {
               "normalized": "thinking",
@@ -39165,6 +39214,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {},
@@ -39375,6 +39427,7 @@
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -39384,6 +39437,7 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
@@ -39396,6 +39450,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -39440,6 +39498,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {},
@@ -39657,12 +39718,15 @@
               "adaptive": true
             },
             "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
             "vision": true,
             "streaming": true,
             "caching": {
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -39672,10 +39736,12 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
             "temperature",
+            "response_format",
             "thinking",
             "thinking.mode",
             "reasoning_effort"
@@ -39684,6 +39750,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -39700,6 +39770,10 @@
             {
               "normalized": "temperature",
               "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "output_config.format"
             },
             {
               "normalized": "thinking",
@@ -39728,6 +39802,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {},
@@ -39945,12 +40022,15 @@
               "adaptive": true
             },
             "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
             "vision": true,
             "streaming": true,
             "caching": {
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -39960,10 +40040,12 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
             "temperature",
+            "response_format",
             "thinking",
             "thinking.mode",
             "reasoning_effort"
@@ -39972,6 +40054,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -39988,6 +40074,10 @@
             {
               "normalized": "temperature",
               "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "output_config.format"
             },
             {
               "normalized": "thinking",
@@ -40016,6 +40106,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {},
@@ -40233,12 +40326,15 @@
               "adaptive": true
             },
             "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
             "vision": true,
             "streaming": true,
             "caching": {
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -40248,10 +40344,12 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
             "temperature",
+            "response_format",
             "thinking",
             "thinking.mode",
             "reasoning_effort"
@@ -40260,6 +40358,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -40276,6 +40378,10 @@
             {
               "normalized": "temperature",
               "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "output_config.format"
             },
             {
               "normalized": "thinking",
@@ -40304,6 +40410,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {},
@@ -40521,12 +40630,15 @@
               "adaptive": true
             },
             "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
             "vision": true,
             "streaming": true,
             "caching": {
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -40536,10 +40648,12 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
             "temperature",
+            "response_format",
             "thinking",
             "thinking.mode",
             "reasoning_effort"
@@ -40548,6 +40662,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -40564,6 +40682,10 @@
             {
               "normalized": "temperature",
               "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "output_config.format"
             },
             {
               "normalized": "thinking",
@@ -40592,6 +40714,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {},
@@ -40797,12 +40922,15 @@
               "adaptive": true
             },
             "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
             "vision": true,
             "streaming": true,
             "caching": {
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -40811,9 +40939,11 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
+            "response_format",
             "thinking",
             "thinking.mode",
             "reasoning_effort"
@@ -40822,6 +40952,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -40834,6 +40968,10 @@
             {
               "normalized": "tool_choice",
               "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "output_config.format"
             },
             {
               "normalized": "thinking",
@@ -40862,6 +41000,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {},
@@ -41072,6 +41213,7 @@
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -41081,6 +41223,7 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
@@ -41093,6 +41236,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -41137,6 +41284,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {},
@@ -41360,12 +41510,15 @@
               "adaptive": true
             },
             "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
             "vision": true,
             "streaming": true,
             "caching": {
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -41375,10 +41528,12 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
             "temperature",
+            "response_format",
             "thinking",
             "thinking.mode",
             "reasoning_effort"
@@ -41387,6 +41542,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -41403,6 +41562,10 @@
             {
               "normalized": "temperature",
               "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "output_config.format"
             },
             {
               "normalized": "thinking",
@@ -41431,6 +41594,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {
@@ -41650,12 +41816,15 @@
               "adaptive": true
             },
             "tool_use": true,
+            "structured_output": true,
+            "structured_outputs": true,
             "vision": true,
             "streaming": true,
             "caching": {
               "available": true,
               "mode": "explicit",
               "configurable": true,
+              "top_level_request_caching": true,
               "per_message_caching": true,
               "cache_control_types": [
                 "ephemeral"
@@ -41665,10 +41834,12 @@
           },
           "supported_parameters": [
             "messages",
+            "top_level_cache_control",
             "block_cache_control",
             "tools",
             "tool_choice",
             "temperature",
+            "response_format",
             "thinking",
             "thinking.mode",
             "reasoning_effort"
@@ -41677,6 +41848,10 @@
             {
               "normalized": "messages",
               "wire_name": "messages"
+            },
+            {
+              "normalized": "top_level_cache_control",
+              "wire_name": "cache_control"
             },
             {
               "normalized": "block_cache_control",
@@ -41693,6 +41868,10 @@
             {
               "normalized": "temperature",
               "wire_name": "temperature"
+            },
+            {
+              "normalized": "response_format",
+              "wire_name": "output_config.format"
             },
             {
               "normalized": "thinking",
@@ -41721,6 +41900,9 @@
             "thinking.mode": [
               "enabled",
               "adaptive"
+            ],
+            "top_level_cache_control": [
+              "ephemeral"
             ]
           },
           "default_parameters": {},

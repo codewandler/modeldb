@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.14.3 - 2026-05-02
+
+### Model Changes
+
+- Completed OpenRouter `anthropic-messages` metadata for verified request fields by adding top-level `cache_control` support and JSON-schema structured output via `output_config.format`.
+
 ## v0.14.2 - 2026-05-02
 
 ### Model Changes

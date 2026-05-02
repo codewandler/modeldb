@@ -489,16 +489,18 @@ func openRouterAnthropicMessagesExposure(sourceID string, observedAt time.Time, 
 		return nil
 	}
 	anthropicCaps := Capabilities{
-		ToolUse:     caps.ToolUse,
-		Vision:      caps.Vision,
-		Streaming:   caps.Streaming,
-		Temperature: caps.Temperature,
-		Caching:     &CachingCapability{Available: true, Mode: CachingModeExplicit, Configurable: true, PerMessageCaching: true, CacheControlTypes: []string{"ephemeral"}},
+		ToolUse:           caps.ToolUse,
+		StructuredOutput:  caps.StructuredOutput,
+		StructuredOutputs: caps.StructuredOutputs,
+		Vision:            caps.Vision,
+		Streaming:         caps.Streaming,
+		Temperature:       caps.Temperature,
+		Caching:           &CachingCapability{Available: true, Mode: CachingModeExplicit, Configurable: true, TopLevelRequestCaching: true, PerMessageCaching: true, CacheControlTypes: []string{"ephemeral"}},
 	}
 	if caps.Reasoning != nil && caps.Reasoning.Available {
 		anthropicCaps.Reasoning = &ReasoningCapability{Available: true, Modes: []ReasoningMode{ReasoningModeEnabled, ReasoningModeAdaptive}, Efforts: []ReasoningEffortLevel{ReasoningEffortLow, ReasoningEffortMedium, ReasoningEffortHigh, ReasoningEffortXHigh, ReasoningEffortMax}, Interleaved: true, Adaptive: true}
 	}
-	anthropicParams := []NormalizedParameter{ParamMessages, ParamBlockCacheControl}
+	anthropicParams := []NormalizedParameter{ParamMessages, ParamTopLevelCacheControl, ParamBlockCacheControl}
 	if containsNormalizedParameter(params, ParamTools) {
 		anthropicParams = append(anthropicParams, ParamTools)
 	}
@@ -508,12 +510,16 @@ func openRouterAnthropicMessagesExposure(sourceID string, observedAt time.Time, 
 	if containsNormalizedParameter(params, ParamTemperature) {
 		anthropicParams = append(anthropicParams, ParamTemperature)
 	}
+	if containsNormalizedParameter(params, ParamResponseFormat) {
+		anthropicParams = append(anthropicParams, ParamResponseFormat)
+	}
 	if anthropicCaps.Reasoning != nil {
 		anthropicParams = append(anthropicParams, ParamThinking, ParamThinkingMode, ParamReasoningEffort)
 	}
 	anthropicParams = normalizeNormalizedParameters(anthropicParams)
 	mappings := []ParameterMapping{
 		{Normalized: ParamMessages, WireName: "messages"},
+		{Normalized: ParamTopLevelCacheControl, WireName: "cache_control"},
 		{Normalized: ParamBlockCacheControl, WireName: "messages[*].content[*].cache_control"},
 	}
 	if containsNormalizedParameter(anthropicParams, ParamTools) {
@@ -525,6 +531,9 @@ func openRouterAnthropicMessagesExposure(sourceID string, observedAt time.Time, 
 	if containsNormalizedParameter(anthropicParams, ParamTemperature) {
 		mappings = append(mappings, ParameterMapping{Normalized: ParamTemperature, WireName: "temperature"})
 	}
+	if containsNormalizedParameter(anthropicParams, ParamResponseFormat) {
+		mappings = append(mappings, ParameterMapping{Normalized: ParamResponseFormat, WireName: "output_config.format"})
+	}
 	if containsNormalizedParameter(anthropicParams, ParamThinking) {
 		mappings = append(mappings, ParameterMapping{Normalized: ParamThinking, WireName: "thinking"}, ParameterMapping{Normalized: ParamThinkingMode, WireName: "thinking.type"})
 	}
@@ -532,6 +541,7 @@ func openRouterAnthropicMessagesExposure(sourceID string, observedAt time.Time, 
 		mappings = append(mappings, ParameterMapping{Normalized: ParamReasoningEffort, WireName: "output_config.effort"})
 	}
 	values := map[string][]string{
+		string(ParamTopLevelCacheControl): {"ephemeral"},
 		string(ParamBlockCacheControl): {"ephemeral"},
 	}
 	if anthropicCaps.Reasoning != nil {
