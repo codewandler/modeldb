@@ -55,6 +55,7 @@ func TestCachingGoldenSnapshots(t *testing.T) {
 		{name: "minimax", path: filepath.Join("testdata", "caching", "minimax_m2_7.json"), data: goldenFromCatalog(c, "minimax", "MiniMax-M2.7", APITypeAnthropicMessages)},
 		{name: "kimi", path: filepath.Join("testdata", "caching", "kimi_k2_6.json"), data: goldenFromCatalog(c, "kimi", "kimi-k2.6", APITypeOpenAIMessages)},
 		{name: "openrouter", path: filepath.Join("testdata", "caching", "openrouter_claude_sonnet_4_6.json"), data: goldenFromCatalog(c, "openrouter", "anthropic/claude-sonnet-4-6", APITypeOpenAIResponses)},
+		{name: "openrouter_anthropic_messages", path: filepath.Join("testdata", "caching", "openrouter_claude_sonnet_4_6_messages.json"), data: goldenFromCatalog(c, "openrouter", "anthropic/claude-sonnet-4-6", APITypeAnthropicMessages)},
 	}
 
 	for _, tc := range cases {

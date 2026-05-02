@@ -38080,6 +38080,73 @@
               "raw_id": "anthropic/claude-3-haiku"
             }
           ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-3-haiku"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-3-haiku /api/v1/messages live probes 2026-05-02"
+            }
+          ]
         }
       ],
       "pricing": {
@@ -38210,6 +38277,73 @@
               "authority": "trusted",
               "observed_at": "0001-01-01T00:00:00Z",
               "raw_id": "anthropic/claude-3.5-haiku"
+            }
+          ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-3.5-haiku"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-3.5-haiku /api/v1/messages live probes 2026-05-02"
             }
           ]
         }
@@ -38377,6 +38511,93 @@
               "raw_id": "anthropic/claude-3.7-sonnet"
             }
           ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-3.7-sonnet"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-3.7-sonnet /api/v1/messages live probes 2026-05-02"
+            }
+          ]
         }
       ],
       "pricing": {
@@ -38540,6 +38761,93 @@
               "authority": "trusted",
               "observed_at": "0001-01-01T00:00:00Z",
               "raw_id": "anthropic/claude-3.7-sonnet:thinking"
+            }
+          ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-3.7-sonnet:thinking"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-3.7-sonnet:thinking /api/v1/messages live probes 2026-05-02"
             }
           ]
         }
@@ -38721,6 +39029,93 @@
               "raw_id": "anthropic/claude-haiku-4.5"
             }
           ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-haiku-4.5"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-haiku-4.5 /api/v1/messages live probes 2026-05-02"
+            }
+          ]
         }
       ],
       "pricing": {
@@ -38885,6 +39280,93 @@
               "authority": "trusted",
               "observed_at": "0001-01-01T00:00:00Z",
               "raw_id": "anthropic/claude-opus-4"
+            }
+          ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4 /api/v1/messages live probes 2026-05-02"
             }
           ]
         }
@@ -39066,6 +39548,93 @@
               "raw_id": "anthropic/claude-opus-4.1"
             }
           ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4.1"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4.1 /api/v1/messages live probes 2026-05-02"
+            }
+          ]
         }
       ],
       "pricing": {
@@ -39243,6 +39812,93 @@
               "authority": "trusted",
               "observed_at": "0001-01-01T00:00:00Z",
               "raw_id": "anthropic/claude-opus-4.5"
+            }
+          ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4.5"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4.5 /api/v1/messages live probes 2026-05-02"
             }
           ]
         }
@@ -39424,6 +40080,93 @@
               "raw_id": "anthropic/claude-opus-4.6"
             }
           ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4.6"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4.6 /api/v1/messages live probes 2026-05-02"
+            }
+          ]
         }
       ],
       "pricing": {
@@ -39603,6 +40346,93 @@
               "raw_id": "anthropic/claude-opus-4.6-fast"
             }
           ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4.6-fast"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4.6-fast /api/v1/messages live probes 2026-05-02"
+            }
+          ]
         }
       ],
       "pricing": {
@@ -39770,6 +40600,87 @@
               "raw_id": "anthropic/claude-opus-4.7"
             }
           ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            }
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4.7"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-opus-4.7 /api/v1/messages live probes 2026-05-02"
+            }
+          ]
         }
       ],
       "pricing": {
@@ -39934,6 +40845,93 @@
               "authority": "trusted",
               "observed_at": "0001-01-01T00:00:00Z",
               "raw_id": "anthropic/claude-sonnet-4"
+            }
+          ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-sonnet-4"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-sonnet-4 /api/v1/messages live probes 2026-05-02"
             }
           ]
         }
@@ -40121,6 +41119,96 @@
               "raw_id": "anthropic/claude-sonnet-4.5"
             }
           ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {
+            "temperature": 1,
+            "top_p": 1
+          },
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-sonnet-4.5"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-sonnet-4.5 /api/v1/messages live probes 2026-05-02"
+            }
+          ]
         }
       ],
       "pricing": {
@@ -40297,6 +41385,93 @@
               "authority": "trusted",
               "observed_at": "0001-01-01T00:00:00Z",
               "raw_id": "anthropic/claude-sonnet-4.6"
+            }
+          ]
+        },
+        {
+          "api_type": "anthropic-messages",
+          "exposed_capabilities": {
+            "reasoning": {
+              "available": true,
+              "modes": [
+                "enabled"
+              ],
+              "interleaved": true
+            },
+            "tool_use": true,
+            "vision": true,
+            "streaming": true,
+            "caching": {
+              "available": true,
+              "mode": "explicit",
+              "configurable": true,
+              "per_message_caching": true,
+              "cache_control_types": [
+                "ephemeral"
+              ]
+            },
+            "temperature": true
+          },
+          "supported_parameters": [
+            "messages",
+            "block_cache_control",
+            "tools",
+            "tool_choice",
+            "temperature",
+            "thinking",
+            "thinking.mode"
+          ],
+          "parameter_mappings": [
+            {
+              "normalized": "messages",
+              "wire_name": "messages"
+            },
+            {
+              "normalized": "block_cache_control",
+              "wire_name": "messages[*].content[*].cache_control"
+            },
+            {
+              "normalized": "tools",
+              "wire_name": "tools"
+            },
+            {
+              "normalized": "tool_choice",
+              "wire_name": "tool_choice"
+            },
+            {
+              "normalized": "temperature",
+              "wire_name": "temperature"
+            },
+            {
+              "normalized": "thinking",
+              "wire_name": "thinking"
+            },
+            {
+              "normalized": "thinking.mode",
+              "wire_name": "thinking.type"
+            }
+          ],
+          "parameter_values": {
+            "block_cache_control": [
+              "ephemeral"
+            ],
+            "thinking.mode": [
+              "enabled"
+            ]
+          },
+          "default_parameters": {},
+          "provenance": [
+            {
+              "source_id": "openrouter-api",
+              "authority": "trusted",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-sonnet-4.6"
+            },
+            {
+              "source_id": "openrouter-api",
+              "authority": "provisional",
+              "observed_at": "0001-01-01T00:00:00Z",
+              "raw_id": "anthropic/claude-sonnet-4.6 /api/v1/messages live probes 2026-05-02"
             }
           ]
         }

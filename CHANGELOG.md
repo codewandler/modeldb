@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.14.1 - 2026-05-02
+
+### Model Changes
+
+- Added OpenRouter `anthropic-messages` exposure metadata for Anthropic model offerings, grounded by live `/api/v1/messages` probes for basic messages, tool use, block cache controls, and enabled thinking.
+- Regenerated `catalog.json` so OpenRouter Claude offerings expose distinct OpenAI Responses, OpenAI Messages, and Anthropic Messages API surfaces.
+
 ## v0.14.0 - 2026-05-02
 
 ### Added

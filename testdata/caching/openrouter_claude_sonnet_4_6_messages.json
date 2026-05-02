@@ -1,0 +1,64 @@
+{
+  "service_id": "openrouter",
+  "wire_model_id": "anthropic/claude-sonnet-4-6",
+  "api_type": "anthropic-messages",
+  "model_caching": {
+    "available": true
+  },
+  "exposure_caching": {
+    "available": true,
+    "mode": "explicit",
+    "configurable": true,
+    "per_message_caching": true,
+    "cache_control_types": [
+      "ephemeral"
+    ]
+  },
+  "supported_parameters": [
+    "messages",
+    "block_cache_control",
+    "tools",
+    "tool_choice",
+    "temperature",
+    "thinking",
+    "thinking.mode"
+  ],
+  "parameter_mappings": [
+    {
+      "normalized": "messages",
+      "wire_name": "messages"
+    },
+    {
+      "normalized": "block_cache_control",
+      "wire_name": "messages[*].content[*].cache_control"
+    },
+    {
+      "normalized": "tools",
+      "wire_name": "tools"
+    },
+    {
+      "normalized": "tool_choice",
+      "wire_name": "tool_choice"
+    },
+    {
+      "normalized": "temperature",
+      "wire_name": "temperature"
+    },
+    {
+      "normalized": "thinking",
+      "wire_name": "thinking"
+    },
+    {
+      "normalized": "thinking.mode",
+      "wire_name": "thinking.type"
+    }
+  ],
+  "parameter_values": {
+    "block_cache_control": [
+      "ephemeral"
+    ],
+    "thinking.mode": [
+      "enabled"
+    ]
+  }
+}

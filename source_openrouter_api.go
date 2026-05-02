@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -473,8 +474,87 @@ func openRouterExposures(sourceID string, observedAt time.Time, rawID string, ca
 	if _, ok := responsesValues[string(ParamReasoningSummary)]; !ok {
 		responsesValues[string(ParamReasoningSummary)] = []string{string(ReasoningSummaryAuto), string(ReasoningSummaryConcise), string(ReasoningSummaryDetailed)}
 	}
-	return []OfferingExposure{
+	exposures := []OfferingExposure{
 		{APIType: APITypeOpenAIResponses, ExposedCapabilities: capabilitiesPtr(caps), SupportedParameters: responsesParams, ParameterMappings: responsesMappings, ParameterValues: responsesValues, DefaultParameters: def, Provenance: prov},
 		{APIType: APITypeOpenAIMessages, ExposedCapabilities: capabilitiesPtr(caps), SupportedParameters: params, ParameterMappings: mappings, ParameterValues: values, DefaultParameters: def, Provenance: prov},
 	}
+	if exp := openRouterAnthropicMessagesExposure(sourceID, observedAt, rawID, caps, params, def, prov); exp != nil {
+		exposures = append(exposures, *exp)
+	}
+	return exposures
+}
+
+func openRouterAnthropicMessagesExposure(sourceID string, observedAt time.Time, rawID string, caps Capabilities, params []NormalizedParameter, def *DefaultParameters, prov []Provenance) *OfferingExposure {
+	if !strings.HasPrefix(rawID, "anthropic/") {
+		return nil
+	}
+	anthropicCaps := Capabilities{
+		ToolUse:     caps.ToolUse,
+		Vision:      caps.Vision,
+		Streaming:   caps.Streaming,
+		Temperature: caps.Temperature,
+		Caching:     &CachingCapability{Available: true, Mode: CachingModeExplicit, Configurable: true, PerMessageCaching: true, CacheControlTypes: []string{"ephemeral"}},
+	}
+	if caps.Reasoning != nil && caps.Reasoning.Available {
+		anthropicCaps.Reasoning = &ReasoningCapability{Available: true, Modes: []ReasoningMode{ReasoningModeEnabled}, Interleaved: true}
+	}
+	anthropicParams := []NormalizedParameter{ParamMessages, ParamBlockCacheControl}
+	if containsNormalizedParameter(params, ParamTools) {
+		anthropicParams = append(anthropicParams, ParamTools)
+	}
+	if containsNormalizedParameter(params, ParamToolChoice) {
+		anthropicParams = append(anthropicParams, ParamToolChoice)
+	}
+	if containsNormalizedParameter(params, ParamTemperature) {
+		anthropicParams = append(anthropicParams, ParamTemperature)
+	}
+	if anthropicCaps.Reasoning != nil {
+		anthropicParams = append(anthropicParams, ParamThinking, ParamThinkingMode)
+	}
+	anthropicParams = normalizeNormalizedParameters(anthropicParams)
+	mappings := []ParameterMapping{
+		{Normalized: ParamMessages, WireName: "messages"},
+		{Normalized: ParamBlockCacheControl, WireName: "messages[*].content[*].cache_control"},
+	}
+	if containsNormalizedParameter(anthropicParams, ParamTools) {
+		mappings = append(mappings, ParameterMapping{Normalized: ParamTools, WireName: "tools"})
+	}
+	if containsNormalizedParameter(anthropicParams, ParamToolChoice) {
+		mappings = append(mappings, ParameterMapping{Normalized: ParamToolChoice, WireName: "tool_choice"})
+	}
+	if containsNormalizedParameter(anthropicParams, ParamTemperature) {
+		mappings = append(mappings, ParameterMapping{Normalized: ParamTemperature, WireName: "temperature"})
+	}
+	if containsNormalizedParameter(anthropicParams, ParamThinking) {
+		mappings = append(mappings, ParameterMapping{Normalized: ParamThinking, WireName: "thinking"}, ParameterMapping{Normalized: ParamThinkingMode, WireName: "thinking.type"})
+	}
+	values := map[string][]string{
+		string(ParamBlockCacheControl): {"ephemeral"},
+	}
+	if anthropicCaps.Reasoning != nil {
+		values[string(ParamThinkingMode)] = []string{string(ReasoningModeEnabled)}
+	}
+	return &OfferingExposure{
+		APIType:             APITypeAnthropicMessages,
+		ExposedCapabilities: &anthropicCaps,
+		SupportedParameters: anthropicParams,
+		ParameterMappings:   mappings,
+		ParameterValues:     values,
+		DefaultParameters:   def,
+		Provenance: append(prov, Provenance{
+			SourceID:   sourceID,
+			Authority:  string(AuthorityProvisional),
+			ObservedAt: observedAt,
+			RawID:      rawID + " /api/v1/messages live probes 2026-05-02",
+		}),
+	}
+}
+
+func containsNormalizedParameter(params []NormalizedParameter, target NormalizedParameter) bool {
+	for _, param := range params {
+		if param == target {
+			return true
+		}
+	}
+	return false
 }
