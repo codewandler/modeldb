@@ -28,6 +28,9 @@ func TestCodexStaticSourceFetch(t *testing.T) {
 	offering, exposure, ok := c.ResolveOfferingExposure("codex", "gpt-5.4", APITypeOpenAIResponses)
 	require.True(t, ok)
 	assert.Equal(t, "codex", offering.ServiceID)
+	if assert.NotNil(t, offering.LimitsOverride) {
+		assert.Equal(t, 272000, offering.LimitsOverride.ContextWindow)
+	}
 	assert.Contains(t, exposure.SupportedParameters, ParamReasoningEffort)
 	if assert.NotNil(t, exposure.ExposedCapabilities.Reasoning) {
 		assert.Contains(t, exposure.ExposedCapabilities.Reasoning.Efforts, ReasoningEffortNone)
@@ -77,6 +80,9 @@ func TestCodexSourceFetchesLiveModels(t *testing.T) {
 	offering := frag.Offerings[0]
 	assert.Equal(t, "gpt-5.5", offering.WireModelID)
 	assert.Equal(t, "codex", offering.ServiceID)
+	if assert.NotNil(t, offering.LimitsOverride) {
+		assert.Equal(t, 272000, offering.LimitsOverride.ContextWindow)
+	}
 }
 
 func TestCodexPricingHydratesFromOpenAIReferencePricing(t *testing.T) {
@@ -96,6 +102,25 @@ func TestCodexPricingHydratesFromOpenAIReferencePricing(t *testing.T) {
 		assert.Equal(t, 15.0, offering.Pricing.Output)
 		assert.Equal(t, 0.0, offering.Pricing.CacheWrite)
 	}
+}
+
+func TestCodexLimitsOverrideSurvivesOpenAIModelMerge(t *testing.T) {
+	c := NewCatalog()
+	frag, err := NewCodexSourceFromFile(DefaultCodexFixturePath()).Fetch(context.Background())
+	require.NoError(t, err)
+	require.NoError(t, MergeCatalogFragment(&c, frag))
+	staticFrag, err := NewOpenAIStaticSource().Fetch(context.Background())
+	require.NoError(t, err)
+	require.NoError(t, MergeCatalogFragment(&c, staticFrag))
+	require.NoError(t, ValidateCatalog(c))
+
+	offering, _, ok := c.ResolveOfferingExposure("codex", "gpt-5.5", APITypeOpenAIResponses)
+	require.True(t, ok)
+	if assert.NotNil(t, offering.LimitsOverride) {
+		assert.Equal(t, 272000, offering.LimitsOverride.ContextWindow)
+	}
+	model := c.Models[offering.ModelKey]
+	assert.Equal(t, 1050000, model.Limits.ContextWindow)
 }
 
 func offeringModelKey(c Catalog, serviceID, wireModelID string) ModelKey {

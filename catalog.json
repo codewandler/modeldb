@@ -24552,6 +24552,9 @@
         "cache_write": 0
       },
       "pricing_status": "known",
+      "limits_override": {
+        "context_window": 272000
+      },
       "provenance": [
         {
           "source_id": "codex-api",
@@ -24681,6 +24684,9 @@
         "cache_write": 0
       },
       "pricing_status": "known",
+      "limits_override": {
+        "context_window": 272000
+      },
       "provenance": [
         {
           "source_id": "codex-api",
@@ -24809,6 +24815,9 @@
         "cache_write": 0
       },
       "pricing_status": "known",
+      "limits_override": {
+        "context_window": 272000
+      },
       "provenance": [
         {
           "source_id": "codex-api",
@@ -24936,6 +24945,9 @@
         "cache_write": 0
       },
       "pricing_status": "known",
+      "limits_override": {
+        "context_window": 272000
+      },
       "provenance": [
         {
           "source_id": "codex-api",
@@ -25064,6 +25076,9 @@
         "cache_write": 0
       },
       "pricing_status": "known",
+      "limits_override": {
+        "context_window": 272000
+      },
       "provenance": [
         {
           "source_id": "codex-api",

@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.14.4 - 2026-05-03
+
+### Fixed
+
+- Preserved Codex serving-surface context windows as offering-level limits so
+  Codex `gpt-5.5` and other Codex offerings do not inherit larger OpenAI
+  platform model windows during catalog merge.
+
+### Model Changes
+
+- Refreshed the Codex models fixture from the live Codex models endpoint,
+  including `gpt-5.5` with `context_window=272000`, and regenerated
+  `catalog.json` with Codex offering `limits_override` values.
+
 ## v0.14.3 - 2026-05-02
 
 ### Model Changes
