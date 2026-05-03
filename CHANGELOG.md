@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.14.5 - 2026-05-03
+
+### Model Changes
+
+- Kept the short Anthropic `opus` alias pinned to `claude-opus-4-6` while
+  retaining `claude-opus-4-7` as an explicit model ID in the generated catalog.
+
 ## v0.14.4 - 2026-05-03
 
 ### Fixed

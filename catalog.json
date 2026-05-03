@@ -3650,7 +3650,8 @@
       },
       "name": "Claude Opus 4.6",
       "aliases": [
-        "claude-opus-4-6"
+        "claude-opus-4-6",
+        "opus"
       ],
       "description": "Opus 4.6 is Anthropic’s strongest model for coding and long-running professional tasks. It is built for agents that operate across entire workflows rather than single prompts, making it especially effective...",
       "canonical": true,
@@ -3807,8 +3808,7 @@
       },
       "name": "Claude Opus 4.7",
       "aliases": [
-        "claude-opus-4-7",
-        "opus"
+        "claude-opus-4-7"
       ],
       "description": "Opus 4.7 is the next generation of Anthropic's Opus family, built for long-running, asynchronous agents. Building on the coding and agentic strengths of Opus 4.6, it delivers stronger performance on...",
       "canonical": true,
