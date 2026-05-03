@@ -143,7 +143,7 @@ func TestAnthropicAPISourceFetchFromFile(t *testing.T) {
 	opusKey := NormalizeKey(ModelKey{Creator: "anthropic", Family: "claude", Series: "opus", Version: "4.7"})
 	opus, ok := c.Models[opusKey]
 	require.True(t, ok)
-	assert.NotContains(t, opus.Aliases, "opus")
+	assert.Contains(t, opus.Aliases, "opus")
 	assert.NotContains(t, opus.Aliases, "powerful")
 	assert.NotContains(t, opus.Aliases, "default")
 	assert.NotContains(t, opus.Aliases, "fast")
@@ -157,9 +157,4 @@ func TestAnthropicAPISourceFetchFromFile(t *testing.T) {
 		assert.Equal(t, "summarized", sonnet.Capabilities.Reasoning.DefaultDisplay)
 		assert.False(t, sonnet.Capabilities.Reasoning.AdaptiveOnly)
 	}
-
-	opus46Key := NormalizeKey(ModelKey{Creator: "anthropic", Family: "claude", Series: "opus", Version: "4.6"})
-	opus46, ok := c.Models[opus46Key]
-	require.True(t, ok)
-	assert.Contains(t, opus46.Aliases, "opus")
 }

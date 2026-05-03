@@ -340,21 +340,10 @@ func anthropicModelAliases(item anthropicModelEntry, key ModelKey, latest map[st
 			aliases = append(aliases, undated)
 		}
 	}
-	if anthropicModelHasSeriesAlias(item, key, latest) {
+	if latestItem, ok := latest[key.Series]; ok && latestItem.ID == item.ID && key.Series != "" {
 		aliases = append(aliases, key.Series)
 	}
 	return normalizeStrings(aliases)
-}
-
-func anthropicModelHasSeriesAlias(item anthropicModelEntry, key ModelKey, latest map[string]anthropicModelEntry) bool {
-	if key.Series == "" {
-		return false
-	}
-	if key.Series == "opus" {
-		return item.ID == "claude-opus-4-6"
-	}
-	latestItem, ok := latest[key.Series]
-	return ok && latestItem.ID == item.ID
 }
 
 func anthropicUndatedAlias(id string) string {
