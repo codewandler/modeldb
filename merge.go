@@ -27,6 +27,21 @@ func MergeCatalogFragment(dst *Catalog, frag *Fragment) error {
 			return err
 		}
 	}
+	for _, runtime := range frag.Runtimes {
+		if err := mergeRuntime(dst, runtime); err != nil {
+			return err
+		}
+	}
+	for _, access := range frag.RuntimeAccess {
+		if err := mergeRuntimeAccess(dst, access); err != nil {
+			return err
+		}
+	}
+	for _, acquisition := range frag.RuntimeAcquisition {
+		if err := mergeRuntimeAcquisition(dst, acquisition); err != nil {
+			return err
+		}
+	}
 	hydrateOfferingPricingFromModels(dst)
 	return nil
 }
@@ -73,23 +88,6 @@ func MergeResolvedFragment(dst *ResolvedCatalog, frag *Fragment) error {
 	}
 	if err := MergeCatalogFragment(&dst.Catalog, frag); err != nil {
 		return err
-	}
-	ensureResolvedMaps(dst)
-
-	for _, runtime := range frag.Runtimes {
-		if err := mergeRuntime(dst, runtime); err != nil {
-			return err
-		}
-	}
-	for _, access := range frag.RuntimeAccess {
-		if err := mergeRuntimeAccess(dst, access); err != nil {
-			return err
-		}
-	}
-	for _, acquisition := range frag.RuntimeAcquisition {
-		if err := mergeRuntimeAcquisition(dst, acquisition); err != nil {
-			return err
-		}
 	}
 	return nil
 }
@@ -244,7 +242,7 @@ func mergeOffering(dst *Catalog, offering Offering) error {
 	return nil
 }
 
-func mergeRuntime(dst *ResolvedCatalog, runtime Runtime) error {
+func mergeRuntime(dst *Catalog, runtime Runtime) error {
 	runtime.ID = normalizeKeyPart(runtime.ID)
 	runtime.ServiceID = normalizeKeyPart(runtime.ServiceID)
 	runtime.Name = strings.TrimSpace(runtime.Name)
@@ -283,7 +281,7 @@ func mergeRuntime(dst *ResolvedCatalog, runtime Runtime) error {
 	return nil
 }
 
-func mergeRuntimeAccess(dst *ResolvedCatalog, access RuntimeAccess) error {
+func mergeRuntimeAccess(dst *Catalog, access RuntimeAccess) error {
 	key := RuntimeAccessKey{
 		RuntimeID:   normalizeKeyPart(access.RuntimeID),
 		ServiceID:   normalizeKeyPart(access.Offering.ServiceID),
@@ -314,7 +312,7 @@ func mergeRuntimeAccess(dst *ResolvedCatalog, access RuntimeAccess) error {
 	return nil
 }
 
-func mergeRuntimeAcquisition(dst *ResolvedCatalog, acquisition RuntimeAcquisition) error {
+func mergeRuntimeAcquisition(dst *Catalog, acquisition RuntimeAcquisition) error {
 	key := RuntimeAcquisitionKey{
 		RuntimeID:   normalizeKeyPart(acquisition.RuntimeID),
 		ServiceID:   normalizeKeyPart(acquisition.Offering.ServiceID),
@@ -643,9 +641,6 @@ func ensureCatalogMaps(dst *Catalog) {
 	if dst.Offerings == nil {
 		dst.Offerings = make(map[OfferingRef]Offering)
 	}
-}
-
-func ensureResolvedMaps(dst *ResolvedCatalog) {
 	if dst.Runtimes == nil {
 		dst.Runtimes = make(map[string]Runtime)
 	}

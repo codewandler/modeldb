@@ -287,6 +287,15 @@ modeldb build \
 	--modelsdev-file internal/source/modelsdev/testdata/api.json
 ```
 
+Include live Amazon Bedrock model and inference-profile availability when local
+AWS credentials are configured:
+
+```bash
+AWS_PROFILE=<profile> AWS_REGION=us-east-1 modeldb build \
+	--out catalog.json \
+	--bedrock-runtime
+```
+
 ## Core Concepts
 
 ### `ModelKey`
@@ -402,6 +411,10 @@ Current source quality differs by upstream:
 - Codex: fixture-backed source with rich reasoning and parameter metadata
 - OpenRouter: broker-native exposure metadata with normalized parameters and
   mappings
+- Amazon Bedrock: stable service metadata by default; optional
+  `--bedrock-runtime` live discovery records Bedrock Converse offerings and
+  region-specific inference-profile runtime access from the AWS Bedrock control
+  plane
 - MiniMax: currently still weaker on per-exposure capability completeness than
   the other major sources above; treat it as partially modeled until a richer
   source is added

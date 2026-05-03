@@ -164,6 +164,7 @@ const (
 	APITypeOpenAIMessages    APIType = "openai-messages"
 	APITypeOpenAIChat        APIType = "openai-chat"
 	APITypeOpenAIResponses   APIType = "openai-responses"
+	APITypeBedrockConverse   APIType = "bedrock-converse"
 )
 
 type Offering struct {

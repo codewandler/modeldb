@@ -26,6 +26,8 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 	var codexFile string
 	var openAIStaticFile string
 	var openRouterFile string
+	var bedrockRuntime bool
+	var bedrockRegion string
 	var useFixture bool
 	var failOnUnknownPricing bool
 	var excludeUnknownPricing bool
@@ -78,6 +80,13 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 					sources = append(sources, modeldb.RegisteredSource{Stage: modeldb.StageBuild, Authority: modeldb.AuthorityTrusted, Source: modeldb.NewOpenRouterSourceFromFile(openRouterFile)})
 				}
 			}
+			if bedrockRuntime || bedrockRegion != "" {
+				src := modeldb.NewBedrockRuntimeSourceFromEnv()
+				if bedrockRegion != "" {
+					src.Region = bedrockRegion
+				}
+				sources = append(sources, modeldb.RegisteredSource{Stage: modeldb.StageBuild, Authority: modeldb.AuthorityTrusted, Source: src})
+			}
 			builder := modeldb.Builder{Sources: sources}
 			built, err := builder.Build(context.Background())
 			if err != nil {
@@ -110,6 +119,8 @@ func NewBuildCommand(opts BuildCommandOptions) *cobra.Command {
 	cmd.Flags().StringVar(&codexFile, "codex-file", "", "optional local codex models payload path")
 	cmd.Flags().StringVar(&openAIStaticFile, "openai-static-file", "", "optional local OpenAI static manifest path")
 	cmd.Flags().StringVar(&openRouterFile, "openrouter-file", "", "optional local OpenRouter models payload path")
+	cmd.Flags().BoolVar(&bedrockRuntime, "bedrock-runtime", false, "include live Amazon Bedrock runtime model/profile discovery")
+	cmd.Flags().StringVar(&bedrockRegion, "bedrock-region", "", "AWS region for --bedrock-runtime; defaults to AWS_REGION, AWS_DEFAULT_REGION, then us-east-1")
 	cmd.Flags().BoolVar(&useFixture, "modelsdev-fixture", false, "use bundled models.dev fixture instead of live fetch")
 	cmd.Flags().BoolVar(&failOnUnknownPricing, "fail-on-unknown-pricing", false, "fail build when any offering has unknown pricing")
 	cmd.Flags().BoolVar(&excludeUnknownPricing, "exclude-unknown-pricing", false, "exclude offerings with unknown pricing from output")

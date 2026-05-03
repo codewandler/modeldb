@@ -11791,7 +11791,6 @@
         "text"
       ],
       "knowledge_cutoff": "2021-09-30",
-      "last_updated": "2023-11-06",
       "tokenizer": "GPT",
       "modality": "text-\u003etext",
       "reference_pricing": {
@@ -11801,20 +11800,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-3.5-turbo"
         },
@@ -11853,12 +11840,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo-0125"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -11932,12 +11913,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo-1106"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -11989,12 +11964,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo-16k"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -12057,12 +12026,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo-instruct"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -12104,12 +12067,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo-instruct-0914"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -12121,11 +12078,39 @@
       "key": {
         "creator": "openai",
         "family": "gpt",
+        "version": "3.5",
+        "variant": "turbo",
+        "release_date": "2023-03-01"
+      },
+      "capabilities": {
+        "temperature": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2021-09-01",
+      "last_updated": "2023-11-06",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-3.5-turbo"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
         "version": "4"
       },
       "name": "OpenAI: GPT-4",
       "description": "OpenAI's flagship model, GPT-4 is a large-scale multimodal language model capable of solving difficult problems with greater accuracy than previous models due to its broader general knowledge and advanced reasoning...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -12155,8 +12140,7 @@
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2023-11",
-      "last_updated": "2024-04-09",
+      "knowledge_cutoff": "2021-09-30",
       "tokenizer": "GPT",
       "modality": "text-\u003etext",
       "reference_pricing": {
@@ -12166,20 +12150,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4"
         },
@@ -12199,7 +12171,6 @@
       },
       "name": "OpenAI: GPT-4.1",
       "description": "GPT-4.1 is a flagship large language model optimized for advanced instruction following, real-world software engineering, and long-context reasoning. It supports a 1 million token context window and outperforms GPT-4o and...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -12229,15 +12200,14 @@
         "max_output": 32768
       },
       "input_modalities": [
-        "text",
         "image",
+        "text",
         "file"
       ],
       "output_modalities": [
         "text"
       ],
       "knowledge_cutoff": "2024-06-30",
-      "last_updated": "2025-04-14",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -12248,28 +12218,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4.1"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-4.1"
         },
         {
           "source_id": "openrouter-api",
@@ -12314,12 +12266,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-2025-04-14"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -12336,7 +12282,6 @@
       },
       "name": "OpenAI: GPT-4.1 Mini",
       "description": "GPT-4.1 Mini is a mid-sized model delivering performance competitive with GPT-4o at substantially lower latency and cost. It retains a 1 million token context window and scores 45.1% on hard...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -12366,15 +12311,14 @@
         "max_output": 32768
       },
       "input_modalities": [
-        "text",
         "image",
+        "text",
         "file"
       ],
       "output_modalities": [
         "text"
       ],
       "knowledge_cutoff": "2024-06-30",
-      "last_updated": "2025-04-14",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -12385,28 +12329,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-mini"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4.1-mini"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-mini"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-4.1-mini"
         },
         {
           "source_id": "openrouter-api",
@@ -12451,12 +12377,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-mini-2025-04-14"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -12469,11 +12389,50 @@
         "creator": "openai",
         "family": "gpt",
         "version": "4.1",
+        "variant": "mini",
+        "release_date": "2025-04-14"
+      },
+      "attachment": true,
+      "capabilities": {
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "temperature": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-04",
+      "last_updated": "2025-04-14",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4.1-mini"
+        },
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-4.1-mini"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "4.1",
         "variant": "nano"
       },
       "name": "OpenAI: GPT-4.1 Nano",
       "description": "For tasks that demand low latency, GPT‑4.1 nano is the fastest and cheapest model in the GPT-4.1 series. It delivers exceptional performance at a small size with its 1 million...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -12503,15 +12462,14 @@
         "max_output": 32768
       },
       "input_modalities": [
-        "text",
         "image",
+        "text",
         "file"
       ],
       "output_modalities": [
         "text"
       ],
       "knowledge_cutoff": "2024-06-30",
-      "last_updated": "2025-04-14",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -12522,20 +12480,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-nano"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-nano"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4.1-nano"
         },
@@ -12582,16 +12528,83 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-nano-2025-04-14"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4.1-nano-2025-04-14"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "4.1",
+        "variant": "nano",
+        "release_date": "2025-04-14"
+      },
+      "attachment": true,
+      "capabilities": {
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "temperature": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-04",
+      "last_updated": "2025-04-14",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4.1-nano"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "4.1",
+        "release_date": "2025-04-14"
+      },
+      "attachment": true,
+      "capabilities": {
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "temperature": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-04",
+      "last_updated": "2025-04-14",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4.1"
+        },
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-4.1"
         }
       ]
     },
@@ -12660,12 +12673,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4-0613"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -12719,7 +12726,6 @@
       },
       "name": "OpenAI: GPT-4 Turbo",
       "description": "The latest GPT-4 Turbo model with vision capabilities. Vision requests can now use JSON mode and function calling.\n\nTraining data: up to December 2023.",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -12751,7 +12757,6 @@
         "text"
       ],
       "knowledge_cutoff": "2023-12-31",
-      "last_updated": "2024-04-09",
       "tokenizer": "GPT",
       "modality": "text+image-\u003etext",
       "reference_pricing": {
@@ -12761,20 +12766,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4-turbo"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4-turbo"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4-turbo"
         },
@@ -12813,12 +12806,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4-turbo-2024-04-09"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -12868,11 +12855,73 @@
       "key": {
         "creator": "openai",
         "family": "gpt",
+        "version": "4",
+        "variant": "turbo",
+        "release_date": "2023-11-06"
+      },
+      "attachment": true,
+      "capabilities": {
+        "tool_use": true,
+        "vision": true,
+        "temperature": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2023-12",
+      "last_updated": "2024-04-09",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4-turbo"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "4",
+        "release_date": "2023-11-06"
+      },
+      "attachment": true,
+      "capabilities": {
+        "tool_use": true,
+        "temperature": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2023-11",
+      "last_updated": "2024-04-09",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
         "version": "4o"
       },
       "name": "OpenAI: GPT-4o",
       "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs. It maintains the intelligence level of [GPT-4 Turbo](/models/openai/gpt-4-turbo) while being twice as...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -12912,7 +12961,6 @@
         "text"
       ],
       "knowledge_cutoff": "2023-10-31",
-      "last_updated": "2024-08-06",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -12923,20 +12971,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o"
         },
@@ -12957,7 +12993,6 @@
       },
       "name": "OpenAI: GPT-4o (2024-05-13)",
       "description": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs. It maintains the intelligence level of [GPT-4 Turbo](/models/openai/gpt-4-turbo) while being twice as...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -12992,7 +13027,6 @@
         "text"
       ],
       "knowledge_cutoff": "2023-10-31",
-      "last_updated": "2024-05-13",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -13002,20 +13036,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-2024-05-13"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-2024-05-13"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-2024-05-13"
         },
@@ -13032,11 +13054,44 @@
         "creator": "openai",
         "family": "gpt",
         "version": "4o",
+        "variant": "2024-05-13",
+        "release_date": "2024-05-13"
+      },
+      "attachment": true,
+      "capabilities": {
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "temperature": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2023-09",
+      "last_updated": "2024-05-13",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4o-2024-05-13"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "4o",
         "variant": "2024-08-06"
       },
       "name": "OpenAI: GPT-4o (2024-08-06)",
       "description": "The 2024-08-06 version of GPT-4o offers improved performance in structured outputs, with the ability to supply a JSON schema in the respone_format. Read more [here](https://openai.com/index/introducing-structured-outputs-in-the-api/). GPT-4o (\"o\" for \"omni\") is...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -13071,7 +13126,6 @@
         "text"
       ],
       "knowledge_cutoff": "2023-10-31",
-      "last_updated": "2024-08-06",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -13082,20 +13136,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-2024-08-06"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-2024-08-06"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-2024-08-06"
         },
@@ -13112,11 +13154,44 @@
         "creator": "openai",
         "family": "gpt",
         "version": "4o",
+        "variant": "2024-08-06",
+        "release_date": "2024-08-06"
+      },
+      "attachment": true,
+      "capabilities": {
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "temperature": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2023-09",
+      "last_updated": "2024-08-06",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4o-2024-08-06"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "4o",
         "variant": "2024-11-20"
       },
       "name": "OpenAI: GPT-4o (2024-11-20)",
       "description": "The 2024-11-20 version of GPT-4o offers a leveled-up creative writing ability with more natural, engaging, and tailored writing to improve relevance \u0026 readability. It’s also better at working with uploaded...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -13151,7 +13226,6 @@
         "text"
       ],
       "knowledge_cutoff": "2023-10-31",
-      "last_updated": "2024-11-20",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -13162,20 +13236,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-2024-11-20"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-2024-11-20"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-2024-11-20"
         },
@@ -13184,6 +13246,40 @@
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "openai/gpt-4o-2024-11-20"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "4o",
+        "variant": "2024-11-20",
+        "release_date": "2024-11-20"
+      },
+      "attachment": true,
+      "capabilities": {
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "temperature": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2023-09",
+      "last_updated": "2024-11-20",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-4o-2024-11-20"
         }
       ]
     },
@@ -13219,12 +13315,6 @@
       "modality": "text+audio-\u003etext+audio",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-audio-preview"
-        },
-        {
           "source_id": "openrouter-api",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -13237,47 +13327,10 @@
         "creator": "openai",
         "family": "gpt",
         "version": "4o",
-        "variant": "audio-preview-2024-12-17"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-audio-preview-2024-12-17"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "audio-preview-2025-06-03"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-audio-preview-2025-06-03"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
         "variant": "mini"
       },
       "name": "OpenAI: GPT-4o-mini",
       "description": "GPT-4o mini is OpenAI's newest model after [GPT-4 Omni](/models/openai/gpt-4o), supporting both text and image inputs with text outputs. As their most advanced small model, it is many multiples more affordable...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -13316,8 +13369,7 @@
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-10",
-      "last_updated": "2024-07-18",
+      "knowledge_cutoff": "2023-10-31",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -13328,28 +13380,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-mini"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-4o-mini"
         },
         {
           "source_id": "openrouter-api",
@@ -13393,88 +13427,10 @@
       "modality": "text+image+file-\u003etext",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-2024-07-18"
-        },
-        {
           "source_id": "openrouter-api",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "openai/gpt-4o-mini-2024-07-18"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-audio-preview"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-audio-preview"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-audio-preview-2024-12-17"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-audio-preview-2024-12-17"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-realtime-preview"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-realtime-preview"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-realtime-preview-2024-12-17"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-realtime-preview-2024-12-17"
         }
       ]
     },
@@ -13505,12 +13461,6 @@
       "modality": "text-\u003etext",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-search-preview"
-        },
-        {
           "source_id": "openrouter-api",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -13523,178 +13473,38 @@
         "creator": "openai",
         "family": "gpt",
         "version": "4o",
-        "variant": "mini-search-preview-2025-03-11"
+        "variant": "mini",
+        "release_date": "2024-07-18"
       },
-      "capabilities": {},
+      "attachment": true,
+      "capabilities": {
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "temperature": true
+      },
       "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-10",
+      "last_updated": "2024-07-18",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
+          "source_id": "modelsdev",
+          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-search-preview-2025-03-11"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-transcribe"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
+          "raw_id": "gpt-4o-mini"
+        },
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
+          "source_id": "modelsdev",
+          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-transcribe"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-transcribe-2025-03-20"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-transcribe-2025-03-20"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-transcribe-2025-12-15"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-transcribe-2025-12-15"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-tts"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-tts"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-tts-2025-03-20"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-tts-2025-03-20"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-tts-2025-12-15"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-tts-2025-12-15"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "realtime-preview"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-realtime-preview"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "realtime-preview-2024-12-17"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-realtime-preview-2024-12-17"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "realtime-preview-2025-06-03"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-realtime-preview-2025-06-03"
+          "raw_id": "openai/gpt-4o-mini"
         }
       ]
     },
@@ -13725,12 +13535,6 @@
       "modality": "text-\u003etext",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-search-preview"
-        },
-        {
           "source_id": "openrouter-api",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -13743,52 +13547,31 @@
         "creator": "openai",
         "family": "gpt",
         "version": "4o",
-        "variant": "search-preview-2025-03-11"
+        "release_date": "2024-05-13"
       },
-      "capabilities": {},
+      "attachment": true,
+      "capabilities": {
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true,
+        "temperature": true
+      },
       "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2023-09",
+      "last_updated": "2024-08-06",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
+          "source_id": "modelsdev",
+          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-search-preview-2025-03-11"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "transcribe"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-transcribe"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "transcribe-diarize"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-transcribe-diarize"
+          "raw_id": "gpt-4o"
         }
       ]
     },
@@ -13800,7 +13583,6 @@
       },
       "name": "OpenAI: GPT-5",
       "description": "GPT-5 is OpenAI’s most advanced model, offering major improvements in reasoning, code quality, and user experience. It is optimized for complex tasks that require step-by-step reasoning, instruction following, and accuracy...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -13836,8 +13618,7 @@
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-10-01",
-      "last_updated": "2025-08-07",
+      "knowledge_cutoff": "2024-09-30",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -13848,28 +13629,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-5"
         },
         {
           "source_id": "openrouter-api",
@@ -13887,7 +13650,6 @@
       },
       "name": "OpenAI: GPT-5.1",
       "description": "GPT-5.1 is the latest frontier-grade model in the GPT-5 series, offering stronger general-purpose reasoning, improved instruction adherence, and a more natural conversational style compared to GPT-5. It uses adaptive reasoning...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -13923,15 +13685,13 @@
         "max_output": 128000
       },
       "input_modalities": [
-        "text",
         "image",
+        "text",
         "file"
       ],
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-09-30",
-      "last_updated": "2025-11-13",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -13942,28 +13702,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.1"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-5.1"
         },
         {
           "source_id": "openrouter-api",
@@ -14013,12 +13755,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-2025-11-13"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -14071,7 +13807,6 @@
         "version": "5.1",
         "variant": "chat-latest"
       },
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -14103,6 +13838,39 @@
         "context_window": 128000,
         "max_output": 16384
       },
+      "reference_pricing": {
+        "input": 1.25,
+        "output": 10,
+        "cached_input": 0.125,
+        "cache_write": 0
+      },
+      "provenance": [
+        {
+          "source_id": "openai-static",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.1-chat-latest"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.1",
+        "variant": "chat-latest",
+        "release_date": "2025-11-13"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
       "input_modalities": [
         "text",
         "image"
@@ -14112,25 +13880,7 @@
       ],
       "knowledge_cutoff": "2024-09-30",
       "last_updated": "2025-11-13",
-      "reference_pricing": {
-        "input": 1.25,
-        "output": 10,
-        "cached_input": 0.125,
-        "cache_write": 0
-      },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-chat-latest"
-        },
-        {
-          "source_id": "openai-static",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-chat-latest"
-        },
         {
           "source_id": "modelsdev",
           "authority": "enrichment",
@@ -14170,7 +13920,6 @@
       },
       "name": "OpenAI: GPT-5.1-Codex",
       "description": "GPT-5.1-Codex is a specialized version of GPT-5.1 optimized for software engineering and coding workflows. It is designed for both interactive development sessions and long, independent execution of complex engineering tasks....",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -14211,8 +13960,6 @@
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-09-30",
-      "last_updated": "2025-11-13",
       "tokenizer": "GPT",
       "modality": "text+image-\u003etext",
       "reference_pricing": {
@@ -14223,28 +13970,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-codex"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.1-codex"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-codex"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-5.1-codex"
         },
         {
           "source_id": "openrouter-api",
@@ -14263,7 +13992,6 @@
       },
       "name": "OpenAI: GPT-5.1-Codex-Max",
       "description": "GPT-5.1-Codex-Max is OpenAI’s latest agentic coding model, designed for long-running, high-context software development tasks. It is based on an updated version of the 5.1 reasoning stack and trained on agentic...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -14304,8 +14032,6 @@
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-09-30",
-      "last_updated": "2025-11-13",
       "tokenizer": "GPT",
       "modality": "text+image-\u003etext",
       "reference_pricing": {
@@ -14316,28 +14042,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-codex-max"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.1-codex-max"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-codex-max"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-5.1-codex-max"
         },
         {
           "source_id": "openrouter-api",
@@ -14352,11 +14060,52 @@
         "creator": "openai",
         "family": "gpt",
         "version": "5.1",
+        "variant": "codex-max",
+        "release_date": "2025-11-13"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-09-30",
+      "last_updated": "2025-11-13",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.1-codex-max"
+        },
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5.1-codex-max"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.1",
         "variant": "codex-mini"
       },
       "name": "OpenAI: GPT-5.1-Codex-Mini",
       "description": "GPT-5.1-Codex-Mini is a smaller and faster version of GPT-5.1-Codex",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -14391,14 +14140,12 @@
         "max_output": 128000
       },
       "input_modalities": [
-        "text",
-        "image"
+        "image",
+        "text"
       ],
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-09-30",
-      "last_updated": "2025-11-13",
       "tokenizer": "GPT",
       "modality": "text+image-\u003etext",
       "reference_pricing": {
@@ -14409,18 +14156,48 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-codex-mini"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.1-codex-mini"
         },
         {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5.1-codex-mini"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.1",
+        "variant": "codex-mini",
+        "release_date": "2025-11-13"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-09-30",
+      "last_updated": "2025-11-13",
+      "provenance": [
+        {
           "source_id": "modelsdev",
           "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -14431,12 +14208,89 @@
           "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "openai/gpt-5.1-codex-mini"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.1",
+        "variant": "codex",
+        "release_date": "2025-11-13"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-09-30",
+      "last_updated": "2025-11-13",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.1-codex"
         },
         {
-          "source_id": "openrouter-api",
-          "authority": "trusted",
+          "source_id": "modelsdev",
+          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-5.1-codex-mini"
+          "raw_id": "openai/gpt-5.1-codex"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.1",
+        "release_date": "2025-11-13"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-09-30",
+      "last_updated": "2025-11-13",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.1"
+        },
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5.1"
         }
       ]
     },
@@ -14508,12 +14362,6 @@
       "provenance": [
         {
           "source_id": "codex-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2"
-        },
-        {
-          "source_id": "openai-api",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.2"
@@ -14591,12 +14439,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-2025-12-11"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -14648,7 +14490,6 @@
         "version": "5.2",
         "variant": "chat-latest"
       },
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -14681,6 +14522,39 @@
         "context_window": 128000,
         "max_output": 16384
       },
+      "reference_pricing": {
+        "input": 1.75,
+        "output": 14,
+        "cached_input": 0.175,
+        "cache_write": 0
+      },
+      "provenance": [
+        {
+          "source_id": "openai-static",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.2-chat-latest"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.2",
+        "variant": "chat-latest",
+        "release_date": "2025-12-11"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
       "input_modalities": [
         "text",
         "image"
@@ -14690,25 +14564,7 @@
       ],
       "knowledge_cutoff": "2025-08-31",
       "last_updated": "2025-12-11",
-      "reference_pricing": {
-        "input": 1.75,
-        "output": 14,
-        "cached_input": 0.175,
-        "cache_write": 0
-      },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-chat-latest"
-        },
-        {
-          "source_id": "openai-static",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-chat-latest"
-        },
         {
           "source_id": "modelsdev",
           "authority": "enrichment",
@@ -14748,7 +14604,6 @@
       },
       "name": "OpenAI: GPT-5.2-Codex",
       "description": "GPT-5.2-Codex is an upgraded version of GPT-5.1-Codex optimized for software engineering and coding workflows. It is designed for both interactive development sessions and long, independent execution of complex engineering tasks....",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -14785,14 +14640,11 @@
       },
       "input_modalities": [
         "text",
-        "image",
-        "pdf"
+        "image"
       ],
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2025-08-31",
-      "last_updated": "2026-01-14",
       "tokenizer": "GPT",
       "modality": "text+image-\u003etext",
       "reference_pricing": {
@@ -14803,28 +14655,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-codex"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.2-codex"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-codex"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-5.2-codex"
         },
         {
           "source_id": "openrouter-api",
@@ -14839,11 +14673,69 @@
         "creator": "openai",
         "family": "gpt",
         "version": "5.2",
+        "variant": "codex",
+        "release_date": "2025-12-11"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2025-08-31",
+      "last_updated": "2025-12-11",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.2-codex"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.2",
+        "variant": "codex",
+        "release_date": "2026-01-14"
+      },
+      "attachment": true,
+      "capabilities": {},
+      "limits": {},
+      "knowledge_cutoff": "2025-08-31",
+      "last_updated": "2026-01-14",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5.2-codex"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.2",
         "variant": "pro"
       },
       "name": "OpenAI: GPT-5.2 Pro",
       "description": "GPT-5.2 Pro is OpenAI’s most advanced model, offering major improvements in agentic coding and long context performance over GPT-5 Pro. It is optimized for complex tasks that require step-by-step reasoning,...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -14879,15 +14771,13 @@
         "max_output": 128000
       },
       "input_modalities": [
-        "text",
         "image",
+        "text",
         "file"
       ],
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2025-08-31",
-      "last_updated": "2025-12-11",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -14897,28 +14787,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-pro"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.2-pro"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-pro"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-5.2-pro"
         },
         {
           "source_id": "openrouter-api",
@@ -14974,16 +14846,51 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-pro-2025-12-11"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.2-pro-2025-12-11"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5.2",
+        "variant": "pro",
+        "release_date": "2025-12-11"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2025-08-31",
+      "last_updated": "2025-12-11",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5.2-pro"
+        },
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5.2-pro"
         }
       ]
     },
@@ -15071,12 +14978,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.3-chat-latest"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -15154,12 +15055,6 @@
       "provenance": [
         {
           "source_id": "codex-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.3-codex"
-        },
-        {
-          "source_id": "openai-api",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.3-codex"
@@ -15291,12 +15186,6 @@
           "raw_id": "gpt-5.4"
         },
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -15356,12 +15245,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-2026-03-05"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -15486,12 +15369,6 @@
           "raw_id": "gpt-5.4-mini"
         },
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-mini"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -15551,12 +15428,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-mini-2026-03-17"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -15627,12 +15498,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-nano"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -15692,12 +15557,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-nano-2026-03-17"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -15766,12 +15625,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-pro"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -15830,12 +15683,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-pro-2026-03-05"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -15906,12 +15753,6 @@
           "raw_id": "gpt-5.5"
         },
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.5"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -15967,12 +15808,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.5-2026-04-23"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -16016,12 +15851,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.5-pro"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -16067,12 +15896,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.5-pro-2026-04-23"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -16114,12 +15937,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-2025-08-07"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -16172,7 +15989,6 @@
         "version": "5",
         "variant": "chat-latest"
       },
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -16192,13 +16008,45 @@
         "streaming": true,
         "caching": {
           "available": true
-        },
-        "temperature": true
+        }
       },
       "limits": {
         "context_window": 128000,
         "max_output": 16384
       },
+      "reference_pricing": {
+        "input": 1.25,
+        "output": 10,
+        "cached_input": 0.125,
+        "cache_write": 0
+      },
+      "provenance": [
+        {
+          "source_id": "openai-static",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-chat-latest"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5",
+        "variant": "chat-latest",
+        "release_date": "2025-08-07"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "structured_output": true,
+        "vision": true,
+        "temperature": true
+      },
+      "limits": {},
       "input_modalities": [
         "text",
         "image"
@@ -16208,25 +16056,7 @@
       ],
       "knowledge_cutoff": "2024-09-30",
       "last_updated": "2025-08-07",
-      "reference_pricing": {
-        "input": 1.25,
-        "output": 10,
-        "cached_input": 0.125,
-        "cache_write": 0
-      },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-chat-latest"
-        },
-        {
-          "source_id": "openai-static",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-chat-latest"
-        },
         {
           "source_id": "modelsdev",
           "authority": "enrichment",
@@ -16266,7 +16096,6 @@
       },
       "name": "OpenAI: GPT-5 Codex",
       "description": "GPT-5-Codex is a specialized version of GPT-5 optimized for software engineering and coding workflows. It is designed for both interactive development sessions and long, independent execution of complex engineering tasks....",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -16301,8 +16130,7 @@
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-10-01",
-      "last_updated": "2025-09-15",
+      "knowledge_cutoff": "2024-09-30",
       "tokenizer": "GPT",
       "modality": "text+image-\u003etext",
       "reference_pricing": {
@@ -16313,18 +16141,48 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-codex"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-codex"
         },
         {
+          "source_id": "openrouter-api",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5-codex"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5",
+        "variant": "codex",
+        "release_date": "2025-09-15"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-10-01",
+      "last_updated": "2025-09-15",
+      "provenance": [
+        {
           "source_id": "modelsdev",
           "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -16333,12 +16191,6 @@
         {
           "source_id": "modelsdev",
           "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-5-codex"
-        },
-        {
-          "source_id": "openrouter-api",
-          "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "openai/gpt-5-codex"
         }
@@ -16467,7 +16319,6 @@
       },
       "name": "OpenAI: GPT-5 Mini",
       "description": "GPT-5 Mini is a compact version of GPT-5, designed to handle lighter-weight reasoning tasks. It provides the same instruction-following and safety-tuning benefits as GPT-5, but with reduced latency and cost....",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -16503,8 +16354,7 @@
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-10-01",
-      "last_updated": "2025-08-07",
+      "knowledge_cutoff": "2024-05-31",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -16515,28 +16365,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-mini"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-mini"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-mini"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-5-mini"
         },
         {
           "source_id": "openrouter-api",
@@ -16581,12 +16413,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-mini-2025-08-07"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -16599,11 +16425,52 @@
         "creator": "openai",
         "family": "gpt",
         "version": "5",
+        "variant": "mini",
+        "release_date": "2025-08-07"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-10-01",
+      "last_updated": "2025-08-07",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-mini"
+        },
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5-mini"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5",
         "variant": "nano"
       },
       "name": "OpenAI: GPT-5 Nano",
       "description": "GPT-5-Nano is the smallest and fastest variant in the GPT-5 system, optimized for developer tools, rapid interactions, and ultra-low latency environments. While limited in reasoning depth compared to its larger...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -16639,8 +16506,7 @@
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-10-01",
-      "last_updated": "2025-08-07",
+      "knowledge_cutoff": "2024-05-31",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -16651,28 +16517,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-nano"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-nano"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-nano"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-5-nano"
         },
         {
           "source_id": "openrouter-api",
@@ -16717,12 +16565,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-nano-2025-08-07"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -16735,11 +16577,52 @@
         "creator": "openai",
         "family": "gpt",
         "version": "5",
+        "variant": "nano",
+        "release_date": "2025-08-07"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-10-01",
+      "last_updated": "2025-08-07",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-nano"
+        },
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5-nano"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5",
         "variant": "pro"
       },
       "name": "OpenAI: GPT-5 Pro",
       "description": "GPT-5 Pro is OpenAI’s most advanced model, offering major improvements in reasoning, code quality, and user experience. It is optimized for complex tasks that require step-by-step reasoning, instruction following, and...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -16766,15 +16649,14 @@
         "max_output": 272000
       },
       "input_modalities": [
-        "text",
         "image",
+        "text",
         "file"
       ],
       "output_modalities": [
         "text"
       ],
       "knowledge_cutoff": "2024-09-30",
-      "last_updated": "2025-10-06",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -16784,28 +16666,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-pro"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-pro"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-pro"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/gpt-5-pro"
         },
         {
           "source_id": "openrouter-api",
@@ -16849,16 +16713,52 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-pro-2025-10-06"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-pro-2025-10-06"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5",
+        "variant": "pro",
+        "release_date": "2025-10-06"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-09-30",
+      "last_updated": "2025-10-06",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5-pro"
+        },
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5-pro"
         }
       ]
     },
@@ -16896,12 +16796,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-search-api"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -16945,16 +16839,51 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-search-api-2025-10-14"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5-search-api-2025-10-14"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "gpt",
+        "version": "5",
+        "release_date": "2025-08-07"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-10-01",
+      "last_updated": "2025-08-07",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "gpt-5"
+        },
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/gpt-5"
         }
       ]
     },
@@ -16987,12 +16916,6 @@
       "tokenizer": "GPT",
       "modality": "text+audio-\u003etext+audio",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio"
-        },
         {
           "source_id": "openrouter-api",
           "authority": "trusted",
@@ -17041,34 +16964,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio-1.5"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-audio-1.5"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "audio",
-        "variant": "2025-08-28"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio-2025-08-28"
         }
       ]
     },
@@ -17103,88 +17002,10 @@
       "modality": "text+audio-\u003etext+audio",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio-mini"
-        },
-        {
           "source_id": "openrouter-api",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "openai/gpt-audio-mini"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "audio",
-        "variant": "mini-2025-10-06"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio-mini-2025-10-06"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "audio",
-        "variant": "mini-2025-12-15"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio-mini-2025-12-15"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "image",
-        "variant": "1"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-image-1"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "image",
-        "variant": "1-mini"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-image-1-mini"
         }
       ]
     },
@@ -17228,52 +17049,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-image-1.5"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-image-1.5"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "image",
-        "variant": "2"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-image-2"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "image",
-        "variant": "2-2026-04-21"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-image-2-2026-04-21"
         }
       ]
     },
@@ -17507,23 +17286,6 @@
       "key": {
         "creator": "openai",
         "family": "gpt",
-        "version": "realtime"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
         "version": "realtime",
         "variant": "1.5"
       },
@@ -17560,88 +17322,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime-1.5"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-realtime-1.5"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "realtime",
-        "variant": "2025-08-28"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime-2025-08-28"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "realtime",
-        "variant": "mini"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime-mini"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "realtime",
-        "variant": "mini-2025-10-06"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime-mini-2025-10-06"
-        }
-      ]
-    },
-    {
-      "key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "realtime",
-        "variant": "mini-2025-12-15"
-      },
-      "capabilities": {},
-      "limits": {},
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime-mini-2025-12-15"
         }
       ]
     },
@@ -17653,7 +17337,6 @@
       },
       "name": "OpenAI: o1",
       "description": "The latest and strongest model family from OpenAI, o1 is designed to spend more time thinking before responding. The o1 model series is trained with large-scale reinforcement learning to reason...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -17690,7 +17373,6 @@
         "text"
       ],
       "knowledge_cutoff": "2023-10-31",
-      "last_updated": "2024-12-05",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -17701,20 +17383,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o1"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o1"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o1"
         },
@@ -17760,12 +17430,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o1-2024-12-17"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -17847,7 +17511,6 @@
       },
       "name": "OpenAI: o1-pro",
       "description": "The o1 series of models are trained with reinforcement learning to think before they answer and perform complex reasoning. The o1-pro model uses more compute to think harder and provide...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -17884,7 +17547,6 @@
         "text"
       ],
       "knowledge_cutoff": "2023-10-31",
-      "last_updated": "2025-03-19",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -17894,20 +17556,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o1-pro"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o1-pro"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o1-pro"
         },
@@ -17953,12 +17603,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o1-pro-2025-03-19"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -17970,11 +17614,81 @@
       "key": {
         "creator": "openai",
         "family": "o",
+        "version": "1",
+        "variant": "pro",
+        "release_date": "2025-03-19"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2023-09",
+      "last_updated": "2025-03-19",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o1-pro"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "o",
+        "version": "1",
+        "release_date": "2024-12-05"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2023-09",
+      "last_updated": "2024-12-05",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o1"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "o",
         "version": "3"
       },
       "name": "OpenAI: o3",
       "description": "o3 is a well-rounded and powerful model across domains. It sets a new standard for math, science, coding, and visual reasoning tasks. It also excels at technical writing and instruction-following....",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -18009,15 +17723,14 @@
         "max_output": 100000
       },
       "input_modalities": [
-        "text",
         "image",
+        "text",
         "file"
       ],
       "output_modalities": [
         "text"
       ],
       "knowledge_cutoff": "2024-06-30",
-      "last_updated": "2025-04-16",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -18028,20 +17741,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3"
         },
@@ -18094,12 +17795,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-2025-04-16"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -18116,7 +17811,6 @@
       },
       "name": "OpenAI: o3 Deep Research",
       "description": "o3-deep-research is OpenAI's advanced model for deep research, designed to tackle complex, multi-step research tasks.\n\nNote: This model always uses the 'web_search' tool which adds additional cost.",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -18153,15 +17847,13 @@
         "max_output": 100000
       },
       "input_modalities": [
-        "text",
         "image",
+        "text",
         "file"
       ],
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-05",
-      "last_updated": "2024-06-26",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -18172,20 +17864,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-deep-research"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-deep-research"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-deep-research"
         },
@@ -18238,16 +17918,45 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-deep-research-2025-06-26"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-deep-research-2025-06-26"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "o",
+        "version": "3",
+        "variant": "deep-research",
+        "release_date": "2024-06-26"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-05",
+      "last_updated": "2024-06-26",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3-deep-research"
         }
       ]
     },
@@ -18300,8 +18009,7 @@
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-05",
-      "last_updated": "2025-01-29",
+      "knowledge_cutoff": "2023-10-31",
       "tokenizer": "GPT",
       "modality": "text+file-\u003etext",
       "reference_pricing": {
@@ -18312,20 +18020,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-mini"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-mini"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-mini"
         },
@@ -18377,12 +18073,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-mini-2025-01-31"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -18439,11 +18129,43 @@
         "creator": "openai",
         "family": "o",
         "version": "3",
+        "variant": "mini",
+        "release_date": "2024-12-20"
+      },
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-05",
+      "last_updated": "2025-01-29",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3-mini"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "o",
+        "version": "3",
         "variant": "pro"
       },
       "name": "OpenAI: o3 Pro",
       "description": "The o-series of models are trained with reinforcement learning to think before they answer and perform complex reasoning. The o3-pro model uses more compute to think harder and provide consistently...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -18479,14 +18201,13 @@
       },
       "input_modalities": [
         "text",
-        "image",
-        "file"
+        "file",
+        "image"
       ],
       "output_modalities": [
         "text"
       ],
       "knowledge_cutoff": "2024-06-30",
-      "last_updated": "2025-06-10",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -18496,20 +18217,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-pro"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-pro"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-pro"
         },
@@ -18561,16 +18270,81 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-pro-2025-06-10"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o3-pro-2025-06-10"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "o",
+        "version": "3",
+        "variant": "pro",
+        "release_date": "2025-06-10"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-05",
+      "last_updated": "2025-06-10",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3-pro"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "o",
+        "version": "3",
+        "release_date": "2025-04-16"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-05",
+      "last_updated": "2025-04-16",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o3"
         }
       ]
     },
@@ -18583,7 +18357,6 @@
       },
       "name": "OpenAI: o4 Mini",
       "description": "OpenAI o4-mini is a compact reasoning model in the o-series, optimized for fast, cost-efficient performance while retaining strong multimodal and agentic capabilities. It supports tool use and demonstrates competitive reasoning...",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -18618,15 +18391,14 @@
         "max_output": 100000
       },
       "input_modalities": [
-        "text",
         "image",
+        "text",
         "file"
       ],
       "output_modalities": [
         "text"
       ],
       "knowledge_cutoff": "2024-06-30",
-      "last_updated": "2025-04-16",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -18637,28 +18409,10 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o4-mini"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o4-mini"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o4-mini"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "openai/o4-mini"
         },
         {
           "source_id": "openrouter-api",
@@ -18709,12 +18463,6 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o4-mini-2025-04-16"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -18731,7 +18479,6 @@
       },
       "name": "OpenAI: o4 Mini Deep Research",
       "description": "o4-mini-deep-research is OpenAI's faster, more affordable deep research model—ideal for tackling complex, multi-step research tasks.\n\nNote: This model always uses the 'web_search' tool which adds additional cost.",
-      "attachment": true,
       "capabilities": {
         "reasoning": {
           "available": true,
@@ -18768,15 +18515,13 @@
         "max_output": 100000
       },
       "input_modalities": [
-        "text",
+        "file",
         "image",
-        "file"
+        "text"
       ],
       "output_modalities": [
         "text"
       ],
-      "knowledge_cutoff": "2024-05",
-      "last_updated": "2024-06-26",
       "tokenizer": "GPT",
       "modality": "text+image+file-\u003etext",
       "reference_pricing": {
@@ -18787,20 +18532,8 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o4-mini-deep-research"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o4-mini-deep-research"
-        },
-        {
-          "source_id": "modelsdev",
-          "authority": "enrichment",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o4-mini-deep-research"
         },
@@ -18853,16 +18586,45 @@
       },
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o4-mini-deep-research-2025-06-26"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "o4-mini-deep-research-2025-06-26"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "o",
+        "version": "4",
+        "variant": "mini-deep-research",
+        "release_date": "2024-06-26"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-05",
+      "last_updated": "2024-06-26",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o4-mini-deep-research"
         }
       ]
     },
@@ -18915,6 +18677,48 @@
       "key": {
         "creator": "openai",
         "family": "o",
+        "version": "4",
+        "variant": "mini",
+        "release_date": "2025-04-16"
+      },
+      "attachment": true,
+      "capabilities": {
+        "reasoning": {
+          "available": true
+        },
+        "tool_use": true,
+        "structured_output": true,
+        "vision": true
+      },
+      "limits": {},
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "knowledge_cutoff": "2024-06",
+      "last_updated": "2025-04-16",
+      "provenance": [
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "o4-mini"
+        },
+        {
+          "source_id": "modelsdev",
+          "authority": "enrichment",
+          "observed_at": "0001-01-01T00:00:00Z",
+          "raw_id": "openai/o4-mini"
+        }
+      ]
+    },
+    {
+      "key": {
+        "creator": "openai",
+        "family": "o",
         "version": "mni",
         "variant": "moderation-2024-09-26"
       },
@@ -18946,12 +18750,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "omni-moderation-2024-09-26"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -18995,12 +18793,6 @@
         "cache_write": 0
       },
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "omni-moderation-latest"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -21937,11 +21729,18 @@
       "operator": "aws",
       "docs_url": "https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
       "env_vars": [
+        "AWS_PROFILE",
+        "AWS_REGION",
+        "AWS_DEFAULT_REGION",
         "AWS_ACCESS_KEY_ID",
-        "AWS_SECRET_ACCESS_KEY",
-        "AWS_REGION"
+        "AWS_SECRET_ACCESS_KEY"
       ],
       "provenance": [
+        {
+          "source_id": "bedrock-service",
+          "authority": "trusted",
+          "observed_at": "0001-01-01T00:00:00Z"
+        },
         {
           "source_id": "modelsdev",
           "authority": "enrichment",
@@ -22005,11 +21804,6 @@
         "OPENAI_API_KEY"
       ],
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -25503,12 +25297,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -25594,12 +25382,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo-0125"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -25687,12 +25469,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo-1106"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -25778,12 +25554,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo-16k"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -25871,12 +25641,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo-instruct"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -25963,12 +25727,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-3.5-turbo-instruct-0914"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -26053,12 +25811,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -26146,12 +25898,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4-0613"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -26238,12 +25984,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4-turbo"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -26329,12 +26069,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4-turbo-2024-04-09"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -26446,12 +26180,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -26565,12 +26293,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-2025-04-14"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -26682,12 +26404,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-mini"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -26801,12 +26517,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-mini-2025-04-14"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -26918,12 +26628,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-nano"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -27037,12 +26741,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4.1-nano-2025-04-14"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -27154,12 +26852,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -27270,12 +26962,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-2024-05-13"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -27389,12 +27075,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-2024-08-06"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -27507,70 +27187,10 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-2024-11-20"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-2024-11-20"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-audio-preview",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "audio-preview"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-audio-preview"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-audio-preview-2024-12-17",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "audio-preview-2024-12-17"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-audio-preview-2024-12-17"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-audio-preview-2025-06-03",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "audio-preview-2025-06-03"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-audio-preview-2025-06-03"
         }
       ]
     },
@@ -27679,376 +27299,10 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-4o-mini"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-2024-07-18",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-2024-07-18"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-2024-07-18"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-audio-preview",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-audio-preview"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-audio-preview"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-audio-preview-2024-12-17",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-audio-preview-2024-12-17"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-audio-preview-2024-12-17"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-realtime-preview",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-realtime-preview"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-realtime-preview"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-realtime-preview-2024-12-17",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-realtime-preview-2024-12-17"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-realtime-preview-2024-12-17"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-search-preview",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-search-preview"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-search-preview"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-search-preview-2025-03-11",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-search-preview-2025-03-11"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-search-preview-2025-03-11"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-transcribe",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-transcribe"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-transcribe"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-transcribe-2025-03-20",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-transcribe-2025-03-20"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-transcribe-2025-03-20"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-transcribe-2025-12-15",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-transcribe-2025-12-15"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-transcribe-2025-12-15"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-tts",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-tts"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-tts"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-tts-2025-03-20",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-tts-2025-03-20"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-tts-2025-03-20"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-mini-tts-2025-12-15",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "mini-tts-2025-12-15"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-mini-tts-2025-12-15"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-realtime-preview",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "realtime-preview"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-realtime-preview"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-realtime-preview-2024-12-17",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "realtime-preview-2024-12-17"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-realtime-preview-2024-12-17"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-realtime-preview-2025-06-03",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "realtime-preview-2025-06-03"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-realtime-preview-2025-06-03"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-search-preview",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "search-preview"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-search-preview"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-search-preview-2025-03-11",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "search-preview-2025-03-11"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-search-preview-2025-03-11"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-transcribe",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "transcribe"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-transcribe"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-4o-transcribe-diarize",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "4o",
-        "variant": "transcribe-diarize"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-4o-transcribe-diarize"
         }
       ]
     },
@@ -28155,12 +27409,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -28274,12 +27522,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-2025-08-07"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -28391,12 +27633,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-chat-latest"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -28510,12 +27746,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-codex"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -28627,12 +27857,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-mini"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -28746,12 +27970,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-mini-2025-08-07"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -28863,12 +28081,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-nano"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -28982,12 +28194,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-nano-2025-08-07"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -29096,12 +28302,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-pro"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -29213,12 +28413,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-pro-2025-10-06"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -29332,12 +28526,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-search-api"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -29449,12 +28637,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5-search-api-2025-10-14"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -29585,12 +28767,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -29718,12 +28894,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-2025-11-13"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -29853,12 +29023,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-chat-latest"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -29986,12 +29150,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-codex"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -30121,12 +29279,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-codex-max"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -30254,12 +29406,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.1-codex-mini"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -30392,12 +29538,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -30527,12 +29667,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-2025-12-11"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -30664,12 +29798,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-chat-latest"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -30800,12 +29928,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-codex"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -30935,12 +30057,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-pro"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -31069,12 +30185,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.2-pro-2025-12-11"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -31206,12 +30316,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.3-chat-latest"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -31342,12 +30446,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.3-codex"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -31476,12 +30574,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -31613,12 +30705,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-2026-03-05"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -31748,12 +30834,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-mini"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -31885,12 +30965,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-mini-2026-03-17"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -32020,12 +31094,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-nano"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -32157,12 +31225,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-nano-2026-03-17"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -32292,12 +31354,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-pro"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -32426,12 +31482,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.4-pro-2026-03-05"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -32563,12 +31613,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.5"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -32702,12 +31746,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.5-2026-04-23"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -32796,12 +31834,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.5-pro"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -32892,33 +31924,10 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-5.5-pro-2026-04-23"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-5.5-pro-2026-04-23"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-audio",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "audio"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio"
         }
       ]
     },
@@ -33027,124 +32036,10 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio-1.5"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-audio-1.5"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-audio-2025-08-28",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "audio",
-        "variant": "2025-08-28"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio-2025-08-28"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-audio-mini",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "audio",
-        "variant": "mini"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio-mini"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-audio-mini-2025-10-06",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "audio",
-        "variant": "mini-2025-10-06"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio-mini-2025-10-06"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-audio-mini-2025-12-15",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "audio",
-        "variant": "mini-2025-12-15"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-audio-mini-2025-12-15"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-image-1",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "image",
-        "variant": "1"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-image-1"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-image-1-mini",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "image",
-        "variant": "1-mini"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-image-1-mini"
         }
       ]
     },
@@ -33253,69 +32148,10 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-image-1.5"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-image-1.5"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-image-2",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "image",
-        "variant": "2"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-image-2"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-image-2-2026-04-21",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "image",
-        "variant": "2-2026-04-21"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-image-2-2026-04-21"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-realtime",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "realtime"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime"
         }
       ]
     },
@@ -33424,88 +32260,10 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime-1.5"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
           "raw_id": "gpt-realtime-1.5"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-realtime-2025-08-28",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "realtime",
-        "variant": "2025-08-28"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime-2025-08-28"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-realtime-mini",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "realtime",
-        "variant": "mini"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime-mini"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-realtime-mini-2025-10-06",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "realtime",
-        "variant": "mini-2025-10-06"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime-mini-2025-10-06"
-        }
-      ]
-    },
-    {
-      "service_id": "openai",
-      "wire_model_id": "gpt-realtime-mini-2025-12-15",
-      "model_key": {
-        "creator": "openai",
-        "family": "gpt",
-        "version": "realtime",
-        "variant": "mini-2025-12-15"
-      },
-      "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "gpt-realtime-mini-2025-12-15"
         }
       ]
     },
@@ -33612,12 +32370,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o1"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -33731,12 +32483,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o1-2024-12-17"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -33848,12 +32594,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o1-pro"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -33964,12 +32704,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o1-pro-2025-03-19"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -34097,12 +32831,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -34232,12 +32960,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-2025-04-16"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -34365,12 +33087,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-deep-research"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -34500,12 +33216,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-deep-research-2025-06-26"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -34633,12 +33343,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-mini"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -34768,12 +33472,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-mini-2025-01-31"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -34901,12 +33599,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-pro"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -35033,12 +33725,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o3-pro-2025-06-10"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -35168,12 +33854,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o4-mini"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -35301,12 +33981,6 @@
       },
       "pricing_status": "known",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o4-mini-2025-04-16"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",
@@ -35436,12 +34110,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o4-mini-deep-research"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -35570,12 +34238,6 @@
       "pricing_status": "known",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "o4-mini-deep-research-2025-06-26"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -35685,12 +34347,6 @@
       "pricing_status": "free",
       "provenance": [
         {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "omni-moderation-2024-09-26"
-        },
-        {
           "source_id": "openai-static",
           "authority": "trusted",
           "observed_at": "0001-01-01T00:00:00Z",
@@ -35799,12 +34455,6 @@
       },
       "pricing_status": "free",
       "provenance": [
-        {
-          "source_id": "openai-api",
-          "authority": "trusted",
-          "observed_at": "0001-01-01T00:00:00Z",
-          "raw_id": "omni-moderation-latest"
-        },
         {
           "source_id": "openai-static",
           "authority": "trusted",

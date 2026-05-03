@@ -62,13 +62,6 @@ func ValidateCatalog(c Catalog) error {
 			return err
 		}
 	}
-	return nil
-}
-
-func ValidateResolvedCatalog(c ResolvedCatalog) error {
-	if err := ValidateCatalog(c.Catalog); err != nil {
-		return err
-	}
 	for id, runtime := range c.Runtimes {
 		if _, ok := c.Services[runtime.ServiceID]; !ok {
 			return fmt.Errorf("runtime %q references unknown service %q", id, runtime.ServiceID)
@@ -91,6 +84,10 @@ func ValidateResolvedCatalog(c ResolvedCatalog) error {
 		}
 	}
 	return nil
+}
+
+func ValidateResolvedCatalog(c ResolvedCatalog) error {
+	return ValidateCatalog(c.Catalog)
 }
 
 func validateCapabilities(c Capabilities, id string) error {

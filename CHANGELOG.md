@@ -1,5 +1,29 @@
 # Changelog
 
+## v0.15.0 - 2026-05-03
+
+### Added
+
+- Added `APITypeBedrockConverse` for Amazon Bedrock native Converse
+  exposure metadata.
+- Added optional AWS-backed Bedrock runtime discovery with
+  `modeldb build --bedrock-runtime` and `--bedrock-region`.
+- Catalog JSON now persists runtime metadata, runtime access, and runtime
+  acquisition rows so build-time discovery can be consumed without a separate
+  resolved-catalog overlay.
+
+### Changed
+
+- Default catalog builds include stable Amazon Bedrock service metadata, while
+  region/model availability remains opt-in live discovery.
+- Runtime access merge and validation now operate on the base catalog graph.
+
+### Fixed
+
+- Bedrock runtime discovery prefers the active region inference profile over a
+  `global.*` profile for the same runtime/model pair, preserving the invariant
+  that each runtime/offering has one resolved wire model.
+
 ## v0.14.4 - 2026-05-03
 
 ### Fixed
