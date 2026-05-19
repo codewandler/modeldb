@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.15.1 - 2026-05-19
+
+### Model Changes
+
+- Refreshed the OpenRouter models fixture from the live `/api/v1/models`
+  endpoint and regenerated `catalog.json`.
+- Added OpenRouter `openai/gpt-5.5` and `openai/gpt-5.5-pro` offerings with
+  OpenAI Responses and OpenAI Messages exposure metadata.
+
 ## v0.15.0 - 2026-05-03
 
 ### Added
